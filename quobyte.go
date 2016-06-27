@@ -1,10 +1,11 @@
-// Golang API for the Quobyte Storage System
+// Package quobyte represents a golang API for the Quobyte Storage System
 package quobyte
 
 import (
 	"bytes"
-	"github.com/gorilla/rpc/v2/json2"
 	"net/http"
+
+	"github.com/gorilla/rpc/v2/json2"
 )
 
 type QuobyteClient struct {
@@ -24,45 +25,50 @@ func NewQuobyteClient(url string, username string, password string) *QuobyteClie
 	return result
 }
 
-type CreateVolumeRequest struct {
-	Name        string `json:"name"`
-	RootUserId  string `json:"root_user_id"`
-	RootGroupId string `json:"root_group_id"`
-}
-
-type CreateVolumeResponse struct {
-	VolumeUuid string `json:"volume_uuid"`
-}
-
 // Create a new Quobyte volume. Its root directory will be owned by given user and group
-func (client QuobyteClient) CreateVolume(name string, rootUserName string, rootGroupName string) (volumeUuid string, err error) {
-	request := &CreateVolumeRequest{
+func (client QuobyteClient) CreateVolume(name string, rootUserName string, rootGroupName string) (string, error) {
+	request := &createVolumeRequest{
 		Name:        name,
-		RootUserId:  rootUserName,
-		RootGroupId: rootGroupName,
+		RootUserID:  rootUserName,
+		RootGroupID: rootGroupName,
 	}
-	var response CreateVolumeResponse
-	err = client.sendRequest("createVolume", request, &response)
-	if err != nil {
+	var response createVolumeResponse
+	if err := client.sendRequest("createVolume", request, &response); err != nil {
 		return "", err
 	}
-	return response.VolumeUuid, nil
+
+	return response.VolumeUUID, nil
 }
 
-type DeleteVolumeRequest struct {
-	VolumeUuid string `json:"volume_uuid"`
-}
+// ResolveVolumeNameToUUID resolves a volume name to a UUID
+func (client QuobyteClient) ResolveVolumeNameToUUID(volumeName string) (string, error) {
+	request := &resolveVolumeNameRequest{
+		VolumeName: volumeName,
+	}
+	var response resolveVolumeNameResponse
+	if err := client.sendRequest("resolveVolumeName", request, &response); err != nil {
+		return "", err
+	}
 
-type DeleteVolumeResponse struct {
+	return response.VolumeUUID, nil
 }
 
 // Delete a Quobyte volume. Its root directory will be owned by given user and group and have access 700.
-func (client QuobyteClient) DeleteVolume(volumeUuid string) error {
-	request := &DeleteVolumeRequest{
-		VolumeUuid: volumeUuid,
+func (client QuobyteClient) DeleteVolume(volumeUUID string) error {
+	request := &deleteVolumeRequest{
+		VolumeUUID: volumeUUID,
 	}
-	var response DeleteVolumeResponse
+	var response deleteVolumeResponse
 	return client.sendRequest("deleteVolume", request, &response)
+}
+
+func (client QuobyteClient) DeleteVolumeByName(volumeName string) error {
+	uuid, err := client.ResolveVolumeNameToUUID(volumeName)
+	if err != nil {
+		return err
+	}
+
+	return client.DeleteVolume(uuid)
 }
 
 func (client QuobyteClient) sendRequest(method string, request interface{}, response interface{}) error {
