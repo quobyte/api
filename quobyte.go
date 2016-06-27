@@ -4,7 +4,6 @@ package quobyte
 import (
 	"bytes"
 	"github.com/gorilla/rpc/v2/json2"
-	"log"
 	"net/http"
 )
 
@@ -23,16 +22,6 @@ func NewQuobyteClient(url string, username string, password string) *QuobyteClie
 	result.username = username
 	result.password = password
 	return result
-}
-
-func ExampleCreateVolume() {
-	client := NewQuobyteClient("http://apiserver/", "user", "password")
-	volume_uuid, err := client.CreateVolume("golangtest", "root", "root")
-	if err != nil {
-		log.Fatalf("Error:", err)
-	}
-
-	log.Printf("%s", volume_uuid)
 }
 
 type CreateVolumeRequest struct {
