@@ -1,10 +1,11 @@
 // Golang API for the Quobyte Storage System
-package main
+package quobyte
 
 import (
 	"bytes"
-	"net/http"
 	"github.com/gorilla/rpc/v2/json2"
+	"log"
+	"net/http"
 )
 
 type QuobyteClient struct {
@@ -26,9 +27,9 @@ func NewQuobyteClient(url string, username string, password string) *QuobyteClie
 
 func ExampleCreateVolume() {
 	client := NewQuobyteClient("http://apiserver/", "user", "password")
-	volume_uuid, err := client.CreateVolume("golangtest")
+	volume_uuid, err := client.CreateVolume("golangtest", "root", "root")
 	if err != nil {
-		log.Fatal("error:", err)
+		log.Fatalf("Error:", err)
 	}
 
 	log.Printf("%s", volume_uuid)
@@ -52,7 +53,7 @@ func (client QuobyteClient) CreateVolume(name string, rootUserName string, rootG
 		RootGroupId: rootGroupName,
 	}
 	var response CreateVolumeResponse
-	err = sendRequest("createVolume", request, &response)
+	err = client.sendRequest("createVolume", request, &response)
 	if err != nil {
 		return "", err
 	}
@@ -69,15 +70,14 @@ type DeleteVolumeResponse struct {
 // Delete a Quobyte volume. Its root directory will be owned by given user and group and have access 700.
 func (client QuobyteClient) DeleteVolume(volumeUuid string) error {
 	request := &DeleteVolumeRequest{
-		VolumeUuid:  volumeUuid,
+		VolumeUuid: volumeUuid,
 	}
 	var response DeleteVolumeResponse
-	return sendRequest("deleteVolume", request, &response)
+	return client.sendRequest("deleteVolume", request, &response)
 }
 
-func (client QuobyteClient) sendRequest(method string, request interface{}, r io.Reader, response interface{}) error {
-	message, err := json2.EncodeClientRequest(method, request)
-	// log.Printf("%s %s", request, message)
+func (client QuobyteClient) sendRequest(method string, request interface{}, response interface{}) error {
+	message, err := json2.EncodeClientRequest("createVolume", request)
 	if err != nil {
 		return err
 	}
