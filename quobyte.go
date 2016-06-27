@@ -77,7 +77,7 @@ func (client QuobyteClient) DeleteVolume(volumeUuid string) error {
 }
 
 func (client QuobyteClient) sendRequest(method string, request interface{}, response interface{}) error {
-	message, err := json2.EncodeClientRequest("createVolume", request)
+	message, err := json2.EncodeClientRequest(method, request)
 	if err != nil {
 		return err
 	}
