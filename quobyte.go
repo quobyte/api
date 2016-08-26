@@ -4,8 +4,6 @@ package quobyte
 import (
 	"bytes"
 	"net/http"
-
-	"github.com/gorilla/rpc/v2/json2"
 )
 
 type QuobyteClient struct {
@@ -72,10 +70,11 @@ func (client QuobyteClient) DeleteVolumeByName(volumeName string) error {
 }
 
 func (client QuobyteClient) sendRequest(method string, request interface{}, response interface{}) error {
-	message, err := json2.EncodeClientRequest(method, request)
+	message, err := encodeClientRequest(method, request)
 	if err != nil {
 		return err
 	}
+
 	req, err := http.NewRequest("POST", client.url, bytes.NewBuffer(message))
 	if err != nil {
 		return err
@@ -88,9 +87,5 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 	}
 	defer resp.Body.Close()
 
-	err = json2.DecodeClientResponse(resp.Body, &response)
-	if err != nil {
-		return err
-	}
-	return nil
+	return decodeClientResponse(resp.Body, &response)
 }
