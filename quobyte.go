@@ -15,23 +15,18 @@ type QuobyteClient struct {
 	password string
 }
 
-// Create a new Quobyte API client
+// NewQuobyteClient creates a new Quobyte API client
 func NewQuobyteClient(url string, username string, password string) *QuobyteClient {
-	result := new(QuobyteClient)
-	result.client = new(http.Client)
-	result.url = url
-	result.username = username
-	result.password = password
-	return result
+	return &QuobyteClient{
+		client:   &http.Client{},
+		url:      url,
+		username: username,
+		password: password,
+	}
 }
 
 // Create a new Quobyte volume. Its root directory will be owned by given user and group
-func (client QuobyteClient) CreateVolume(name string, rootUserName string, rootGroupName string) (string, error) {
-	request := &createVolumeRequest{
-		Name:        name,
-		RootUserID:  rootUserName,
-		RootGroupID: rootGroupName,
-	}
+func (client QuobyteClient) CreateVolume(request *CreateVolumeRequest) (string, error) {
 	var response createVolumeResponse
 	if err := client.sendRequest("createVolume", request, &response); err != nil {
 		return "", err
@@ -58,8 +53,8 @@ func (client QuobyteClient) DeleteVolume(volumeUUID string) error {
 	request := &deleteVolumeRequest{
 		VolumeUUID: volumeUUID,
 	}
-	var response deleteVolumeResponse
-	return client.sendRequest("deleteVolume", request, &response)
+
+	return client.sendRequest("deleteVolume", request, nil)
 }
 
 func (client QuobyteClient) DeleteVolumeByName(volumeName string) error {
