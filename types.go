@@ -11,18 +11,24 @@ type CreateVolumeRequest struct {
 	TenantID          string  `json:"tenant_id,omitempty"`
 }
 
-type createVolumeResponse struct {
-	VolumeUUID string `json:"volume_uuid"`
-}
-
-type deleteVolumeRequest struct {
-	VolumeUUID string `json:"volume_uuid"`
-}
-
 type resolveVolumeNameRequest struct {
-	VolumeName string `json:"volume_name,omitempty"`
+	VolumeName   string `json:"volume_name,omitempty"`
+	TenantDomain string `json:"tenant_domain,omitempty"`
 }
 
-type resolveVolumeNameResponse struct {
+type volumeUUID struct {
 	VolumeUUID string `json:"volume_uuid,omitempty"`
+}
+
+type getClientListRequest struct {
+	TenantDomain string `json:"tenant_domain,omitempty"`
+}
+
+type GetClientListResponse struct {
+	Clients []Client `json:"client,omitempty"`
+}
+
+type Client struct {
+	MountedUserName   string `json:"mount_user_name,omitempty"`
+	MountedVolumeUUID string `json:"mounted_volume_uuid,omitempty"`
 }

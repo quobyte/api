@@ -75,7 +75,7 @@ func decodeResponse(ioReader io.Reader, reply interface{}) error {
 		return errors.New(rpcErr.Message)
 	}
 
-	if resp.Result != nil {
+	if resp.Result != nil && reply != nil {
 		return json.Unmarshal(*resp.Result, reply)
 	}
 

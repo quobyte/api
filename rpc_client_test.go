@@ -58,3 +58,5 @@ func TestSuccesfullDecodeResponse(t *testing.T) {}
 
 //TODO
 func TestSuccesfullDecodeResponseWithError(t *testing.T) {}
+
+//TODO test -> decodeErrorCode
