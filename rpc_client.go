@@ -9,6 +9,10 @@ import (
 	"net/http"
 )
 
+const (
+	emptyResponse string = "Empty result and no error occured"
+)
+
 type request struct {
 	ID      int64       `json:"id"`
 	Version string      `json:"jsonrpc"`
@@ -61,25 +65,24 @@ func decodeResponse(ioReader io.Reader, reply interface{}) error {
 	if resp.Error != nil {
 		var rpcErr rpcError
 		if err := json.Unmarshal(*resp.Error, &rpcErr); err != nil {
-			if rpcErr.Message != "" {
-				return errors.New(rpcErr.Message)
-			}
-			respError := rpcErr.decodeErrorCode()
-			if respError != "" {
-				return errors.New(respError)
-			}
-
 			return err
 		}
 
-		return errors.New(rpcErr.Message)
+		if rpcErr.Message != "" {
+			return errors.New(rpcErr.Message)
+		}
+
+		respError := rpcErr.decodeErrorCode()
+		if respError != "" {
+			return errors.New(respError)
+		}
 	}
 
 	if resp.Result != nil && reply != nil {
 		return json.Unmarshal(*resp.Result, reply)
 	}
 
-	return errors.New("Empty result and no error occured")
+	return errors.New(emptyResponse)
 }
 
 func (client QuobyteClient) sendRequest(method string, request interface{}, response interface{}) error {
