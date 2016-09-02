@@ -1,12 +1,7 @@
 // Package quobyte represents a golang API for the Quobyte Storage System
 package quobyte
 
-import (
-	"bytes"
-	"net/http"
-
-	"github.com/gorilla/rpc/v2/json2"
-)
+import "net/http"
 
 type QuobyteClient struct {
 	client   *http.Client
@@ -64,28 +59,4 @@ func (client QuobyteClient) DeleteVolumeByName(volumeName string) error {
 	}
 
 	return client.DeleteVolume(uuid)
-}
-
-func (client QuobyteClient) sendRequest(method string, request interface{}, response interface{}) error {
-	message, err := json2.EncodeClientRequest(method, request)
-	if err != nil {
-		return err
-	}
-	req, err := http.NewRequest("POST", client.url, bytes.NewBuffer(message))
-	if err != nil {
-		return err
-	}
-	req.Header.Set("Content-Type", "application/json")
-	req.SetBasicAuth(client.username, client.password)
-	resp, err := client.client.Do(req)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
-
-	err = json2.DecodeClientResponse(resp.Body, &response)
-	if err != nil {
-		return err
-	}
-	return nil
 }
