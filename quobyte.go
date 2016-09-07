@@ -1,12 +1,7 @@
 // Package quobyte represents a golang API for the Quobyte Storage System
 package quobyte
 
-import (
-	"bytes"
-	"net/http"
-
-	"github.com/gorilla/rpc/v2/json2"
-)
+import "net/http"
 
 type QuobyteClient struct {
 	client   *http.Client
@@ -15,24 +10,19 @@ type QuobyteClient struct {
 	password string
 }
 
-// Create a new Quobyte API client
+// NewQuobyteClient creates a new Quobyte API client
 func NewQuobyteClient(url string, username string, password string) *QuobyteClient {
-	result := new(QuobyteClient)
-	result.client = new(http.Client)
-	result.url = url
-	result.username = username
-	result.password = password
-	return result
+	return &QuobyteClient{
+		client:   &http.Client{},
+		url:      url,
+		username: username,
+		password: password,
+	}
 }
 
-// Create a new Quobyte volume. Its root directory will be owned by given user and group
-func (client QuobyteClient) CreateVolume(name string, rootUserName string, rootGroupName string) (string, error) {
-	request := &createVolumeRequest{
-		Name:        name,
-		RootUserID:  rootUserName,
-		RootGroupID: rootGroupName,
-	}
-	var response createVolumeResponse
+// CreateVolume creates a new Quobyte volume. Its root directory will be owned by given user and group
+func (client QuobyteClient) CreateVolume(request *CreateVolumeRequest) (string, error) {
+	var response volumeUUID
 	if err := client.sendRequest("createVolume", request, &response); err != nil {
 		return "", err
 	}
@@ -41,11 +31,12 @@ func (client QuobyteClient) CreateVolume(name string, rootUserName string, rootG
 }
 
 // ResolveVolumeNameToUUID resolves a volume name to a UUID
-func (client QuobyteClient) ResolveVolumeNameToUUID(volumeName string) (string, error) {
+func (client *QuobyteClient) ResolveVolumeNameToUUID(volumeName, tenant string) (string, error) {
 	request := &resolveVolumeNameRequest{
-		VolumeName: volumeName,
+		VolumeName:   volumeName,
+		TenantDomain: tenant,
 	}
-	var response resolveVolumeNameResponse
+	var response volumeUUID
 	if err := client.sendRequest("resolveVolumeName", request, &response); err != nil {
 		return "", err
 	}
@@ -53,17 +44,19 @@ func (client QuobyteClient) ResolveVolumeNameToUUID(volumeName string) (string, 
 	return response.VolumeUUID, nil
 }
 
-// Delete a Quobyte volume. Its root directory will be owned by given user and group and have access 700.
-func (client QuobyteClient) DeleteVolume(volumeUUID string) error {
-	request := &deleteVolumeRequest{
-		VolumeUUID: volumeUUID,
-	}
-	var response deleteVolumeResponse
-	return client.sendRequest("deleteVolume", request, &response)
+// DeleteVolume deletes a Quobyte volume
+func (client *QuobyteClient) DeleteVolume(UUID string) error {
+	return client.sendRequest(
+		"deleteVolume",
+		&volumeUUID{
+			VolumeUUID: UUID,
+		},
+		nil)
 }
 
-func (client QuobyteClient) DeleteVolumeByName(volumeName string) error {
-	uuid, err := client.ResolveVolumeNameToUUID(volumeName)
+// DeleteVolumeByName deletes a volume by a given name
+func (client *QuobyteClient) DeleteVolumeByName(volumeName, tenant string) error {
+	uuid, err := client.ResolveVolumeNameToUUID(volumeName, tenant)
 	if err != nil {
 		return err
 	}
@@ -71,26 +64,16 @@ func (client QuobyteClient) DeleteVolumeByName(volumeName string) error {
 	return client.DeleteVolume(uuid)
 }
 
-func (client QuobyteClient) sendRequest(method string, request interface{}, response interface{}) error {
-	message, err := json2.EncodeClientRequest(method, request)
-	if err != nil {
-		return err
+// GetClientList returns a list of all active clients
+func (client *QuobyteClient) GetClientList(tenant string) (GetClientListResponse, error) {
+	request := &getClientListRequest{
+		TenantDomain: tenant,
 	}
-	req, err := http.NewRequest("POST", client.url, bytes.NewBuffer(message))
-	if err != nil {
-		return err
-	}
-	req.Header.Set("Content-Type", "application/json")
-	req.SetBasicAuth(client.username, client.password)
-	resp, err := client.client.Do(req)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
 
-	err = json2.DecodeClientResponse(resp.Body, &response)
-	if err != nil {
-		return err
+	var response GetClientListResponse
+	if err := client.sendRequest("getClientListRequest", request, &response); err != nil {
+		return response, err
 	}
-	return nil
+
+	return response, nil
 }

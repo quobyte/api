@@ -1,26 +1,34 @@
 package quobyte
 
-type createVolumeRequest struct {
-	Name        string `json:"name"`
-	RootUserID  string `json:"root_user_id"`
-	RootGroupID string `json:"root_group_id"`
-}
-
-type createVolumeResponse struct {
-	VolumeUUID string `json:"volume_uuid"`
-}
-
-type deleteVolumeRequest struct {
-	VolumeUUID string `json:"volume_uuid"`
-}
-
-type deleteVolumeResponse struct {
+// CreateVolumeRequest represents a CreateVolumeRequest
+type CreateVolumeRequest struct {
+	Name              string  `json:"name,omitempty"`
+	RootUserID        string  `json:"root_user_id,omitempty"`
+	RootGroupID       string  `json:"root_group_id,omitempty"`
+	ReplicaDeviceIDS  []int64 `json:"replica_device_ids,omitempty"`
+	ConfigurationName string  `json:"configuration_name,omitempty"`
+	AccessMode        int32   `json:"access_mode,omitempty"`
+	TenantID          string  `json:"tenant_id,omitempty"`
 }
 
 type resolveVolumeNameRequest struct {
-	VolumeName string `json:"volume_name,omitempty"`
+	VolumeName   string `json:"volume_name,omitempty"`
+	TenantDomain string `json:"tenant_domain,omitempty"`
 }
 
-type resolveVolumeNameResponse struct {
+type volumeUUID struct {
 	VolumeUUID string `json:"volume_uuid,omitempty"`
+}
+
+type getClientListRequest struct {
+	TenantDomain string `json:"tenant_domain,omitempty"`
+}
+
+type GetClientListResponse struct {
+	Clients []Client `json:"client,omitempty"`
+}
+
+type Client struct {
+	MountedUserName   string `json:"mount_user_name,omitempty"`
+	MountedVolumeUUID string `json:"mounted_volume_uuid,omitempty"`
 }

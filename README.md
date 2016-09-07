@@ -18,7 +18,14 @@ import (
 
 func main() {
     client := quobyte_api.NewQuobyteClient("http://apiserver:7860", "user", "password")
-    volume_uuid, err := client.CreateVolume("MyVolume", "root", "root")
+    req := &quobyte_api.CreateVolumeRequest{
+        Name:              "MyVolume",
+        RootUserID:        "root",
+        RootGroupID:       "root",
+        ConfigurationName: "base",
+    }
+
+    volume_uuid, err := client.CreateVolume(req)
     if err != nil {
         log.Fatalf("Error:", err)
     }
