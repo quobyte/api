@@ -2,13 +2,13 @@ package quobyte
 
 // CreateVolumeRequest represents a CreateVolumeRequest
 type CreateVolumeRequest struct {
-	Name              string  `json:"name,omitempty"`
-	RootUserID        string  `json:"root_user_id,omitempty"`
-	RootGroupID       string  `json:"root_group_id,omitempty"`
-	ReplicaDeviceIDS  []int64 `json:"replica_device_ids,omitempty"`
-	ConfigurationName string  `json:"configuration_name,omitempty"`
-	AccessMode        int32   `json:"access_mode,omitempty"`
-	TenantID          string  `json:"tenant_id,omitempty"`
+	Name              string   `json:"name,omitempty"`
+	RootUserID        string   `json:"root_user_id,omitempty"`
+	RootGroupID       string   `json:"root_group_id,omitempty"`
+	ReplicaDeviceIDS  []uint64 `json:"replica_device_ids,string,omitempty"`
+	ConfigurationName string   `json:"configuration_name,omitempty"`
+	AccessMode        uint32   `json:"access_mode,string,omitempty"`
+	TenantID          string   `json:"tenant_id,omitempty"`
 }
 
 type resolveVolumeNameRequest struct {

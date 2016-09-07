@@ -152,7 +152,7 @@ func TestBadDecodeResponse(t *testing.T) {
 }
 
 type decodeErrorCodeTest struct {
-	code     int
+	code     int64
 	expected string
 }
 
