@@ -14,21 +14,21 @@ const (
 )
 
 type request struct {
-	ID      int64       `json:"id"`
+	ID      int64       `json:"id,string"`
 	Version string      `json:"jsonrpc"`
 	Method  string      `json:"method"`
 	Params  interface{} `json:"params"`
 }
 
 type response struct {
-	ID      int64            `json:"id"`
+	ID      int64            `json:"id,string"`
 	Version string           `json:"jsonrpc"`
 	Result  *json.RawMessage `json:"result"`
 	Error   *json.RawMessage `json:"error"`
 }
 
 type rpcError struct {
-	Code    int    `json:"code"`
+	Code    int64  `json:"code,string"`
 	Message string `json:"message"`
 }
 
