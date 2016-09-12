@@ -7,6 +7,7 @@ import (
 	"io"
 	"math/rand"
 	"net/http"
+	"strconv"
 )
 
 const (
@@ -14,21 +15,21 @@ const (
 )
 
 type request struct {
-	ID      int64       `json:"id,string"`
+	ID      string      `json:"id"`
 	Version string      `json:"jsonrpc"`
 	Method  string      `json:"method"`
 	Params  interface{} `json:"params"`
 }
 
 type response struct {
-	ID      int64            `json:"id,string"`
+	ID      string           `json:"id"`
 	Version string           `json:"jsonrpc"`
 	Result  *json.RawMessage `json:"result"`
 	Error   *json.RawMessage `json:"error"`
 }
 
 type rpcError struct {
-	Code    int64  `json:"code,string"`
+	Code    int64  `json:"code"`
 	Message string `json:"message"`
 }
 
@@ -49,7 +50,8 @@ func (err *rpcError) decodeErrorCode() string {
 
 func encodeRequest(method string, params interface{}) ([]byte, error) {
 	return json.Marshal(&request{
-		ID:      int64(rand.Int63()),
+		// Generate random ID and convert it to a string
+		ID:      strconv.FormatInt(rand.Int63(), 10),
 		Version: "2.0",
 		Method:  method,
 		Params:  params,

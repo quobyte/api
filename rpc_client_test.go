@@ -3,7 +3,6 @@ package quobyte
 import (
 	"bytes"
 	"encoding/json"
-	"math/rand"
 	"reflect"
 	"testing"
 )
@@ -21,7 +20,7 @@ func TestSuccesfullEncodeRequest(t *testing.T) {
 	_ = json.Unmarshal(byt, &param)
 
 	expectedRPCRequest := &request{
-		ID:      0,
+		ID:      "0",
 		Method:  "createVolume",
 		Version: "2.0",
 		Params:  param,
@@ -53,7 +52,7 @@ func TestSuccesfullDecodeResponse(t *testing.T) {
 	byt, _ = json.Marshal(map[string]interface{}{"volume_uuid": "1234"})
 
 	expectedResult := &response{
-		ID:      int64(rand.Int63()),
+		ID:      "0",
 		Version: "2.0",
 		Result:  &byt,
 	}
@@ -82,7 +81,7 @@ func TestSuccesfullDecodeResponseWithErrorMessage(t *testing.T) {
 	})
 
 	expectedResult := &response{
-		ID:      int64(rand.Int63()),
+		ID:      "0",
 		Version: "2.0",
 		Error:   &byt,
 	}
@@ -110,7 +109,7 @@ func TestSuccesfullDecodeResponseWithErrorCode(t *testing.T) {
 	})
 
 	expectedResult := &response{
-		ID:      int64(rand.Int63()),
+		ID:      "0",
 		Version: "2.0",
 		Error:   &byt,
 	}
@@ -132,7 +131,7 @@ func TestSuccesfullDecodeResponseWithErrorCode(t *testing.T) {
 
 func TestBadDecodeResponse(t *testing.T) {
 	expectedResult := &response{
-		ID:      int64(rand.Int63()),
+		ID:      "0",
 		Version: "2.0",
 	}
 
