@@ -32,3 +32,17 @@ type Client struct {
 	MountedUserName   string `json:"mount_user_name,omitempty"`
 	MountedVolumeUUID string `json:"mounted_volume_uuid,omitempty"`
 }
+
+type GetDeviceNetworkEndpointsRequest struct {
+	DeviceID uint64 `json:"device_id,omitempty"`
+}
+
+type DeviceNetworkEndpoint struct {
+	DeviceType string `json:"device_type,omitempty"`
+	Hostname   string `json:"hostname,omitempty"`
+	Port       int    `json:"devicporte_id,omitempty"`
+}
+
+type GetDeviceNetworkEndpointsResponse struct {
+	Endpoints []DeviceNetworkEndpoint `json:"endpoints,omitempty"`
+}

@@ -1,7 +1,9 @@
 // Package quobyte represents a golang API for the Quobyte Storage System
 package quobyte
 
-import "net/http"
+import (
+	"net/http"
+)
 
 type QuobyteClient struct {
 	client   *http.Client
@@ -37,11 +39,9 @@ func (client *QuobyteClient) ResolveVolumeNameToUUID(volumeName, tenant string) 
 		TenantDomain: tenant,
 	}
 	var response volumeUUID
-	if err := client.sendRequest("resolveVolumeName", request, &response); err != nil {
-		return "", err
-	}
+	err := client.sendRequest("resolveVolumeName", request, &response)
 
-	return response.VolumeUUID, nil
+	return response.VolumeUUID, err
 }
 
 // DeleteVolume deletes a Quobyte volume
@@ -71,9 +71,20 @@ func (client *QuobyteClient) GetClientList(tenant string) (GetClientListResponse
 	}
 
 	var response GetClientListResponse
-	if err := client.sendRequest("getClientListRequest", request, &response); err != nil {
-		return response, err
+	err := client.sendRequest("getClientListRequest", request, &response)
+
+	return response, err
+}
+
+// GetDeviceNetworkEndpoints returns a List of all requested DeviceNetworkEndpoints can be a single element or a list of DeviceNetworkEndpoints
+func (client *QuobyteClient) GetDeviceNetworkEndpoints(deviceID uint64) (GetDeviceNetworkEndpointsResponse, error) {
+	request := &GetDeviceNetworkEndpointsRequest{}
+	if deviceID > 0 {
+		request.DeviceID = deviceID
 	}
 
-	return response, nil
+	var response GetDeviceNetworkEndpointsResponse
+	err := client.sendRequest("getDeviceNetworkEndpoints", request, &response)
+
+	return response, err
 }
