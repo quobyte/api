@@ -88,3 +88,14 @@ func (client *QuobyteClient) GetDeviceNetworkEndpoints(deviceID uint64) (GetDevi
 
 	return response, err
 }
+
+// GetDeviceList returns a List of all requested Devices can be a single element or a list of Devices
+func (client *QuobyteClient) GetDeviceList(deviceIDs []uint64, deviceTypes []string) (GetDeviceListResponse, error) {
+	var response GetDeviceListResponse
+	err := client.sendRequest("getDeviceList", &GetDeviceListRequest{
+		DeviceID:   deviceIDs,
+		DeviceType: deviceTypes,
+	}, &response)
+
+	return response, err
+}
