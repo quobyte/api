@@ -1,6 +1,6 @@
 # Quobyte API Clients
 
-Get the quoybte api client
+Get the quobyte api client
 
 ```bash
 go get github.com/quobyte/api
