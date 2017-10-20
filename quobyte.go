@@ -5,20 +5,38 @@ import (
 	"net/http"
 )
 
+// retry policy codes
+const (
+	RetryNever         string = "NEVER"
+	RetryInteractive   string = "INTERACTIVE"
+	RetryInfinetely    string = "INFINITELY"
+	RetryOncePerTarget string = "ONCE_PER_TARGET"
+)
+
 type QuobyteClient struct {
-	client   *http.Client
-	url      string
-	username string
-	password string
+	client         *http.Client
+	url            string
+	username       string
+	password       string
+	apiRetryPolicy string
+}
+
+func (client *QuobyteClient) SetAPIRetryPolicy(retry string) {
+	client.apiRetryPolicy = retry
+}
+
+func (client *QuobyteClient) GetAPIRetryPolicy() string {
+	return client.apiRetryPolicy
 }
 
 // NewQuobyteClient creates a new Quobyte API client
 func NewQuobyteClient(url string, username string, password string) *QuobyteClient {
 	return &QuobyteClient{
-		client:   &http.Client{},
-		url:      url,
-		username: username,
-		password: password,
+		client:         &http.Client{},
+		url:            url,
+		username:       username,
+		password:       password,
+		apiRetryPolicy: RetryInteractive,
 	}
 }
 
@@ -139,6 +157,7 @@ func (client *QuobyteClient) SetTenant(tenantName string) (string, error) {
 		&TenantDomainConfiguration{
 			Name: tenantName,
 		},
+		retryPolicy{client.GetAPIRetryPolicy()},
 	}
 
 	var response setTenantResponse

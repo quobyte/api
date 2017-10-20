@@ -18,6 +18,7 @@ import (
 
 func main() {
     client := quobyte_api.NewQuobyteClient("http://apiserver:7860", "user", "password")
+    client.SetAPIRetryPolicy(quobyte_api.RetryInfinetely) // Default quobyte_api.RetryInteractive
     req := &quobyte_api.CreateVolumeRequest{
         Name:              "MyVolume",
         RootUserID:        "root",
