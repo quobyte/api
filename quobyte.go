@@ -9,7 +9,7 @@ import (
 const (
 	RetryNever         string = "NEVER"
 	RetryInteractive   string = "INTERACTIVE"
-	RetryInfinetely    string = "INFINITELY"
+	RetryInfinitely    string = "INFINITELY"
 	RetryOncePerTarget string = "ONCE_PER_TARGET"
 )
 
