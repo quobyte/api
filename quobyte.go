@@ -2,6 +2,7 @@
 package quobyte
 
 import (
+	"log"
 	"net/http"
 	"regexp"
 )
@@ -46,7 +47,8 @@ func (client QuobyteClient) CreateVolume(request *CreateVolumeRequest) (string, 
 	var response volumeUUID
 
 	if request.TenantID != "" && !IsValidUUID(request.TenantID) {
-		tenantUUID, err := client.ResolveTeantanNameTOUUID(request.TenantID)
+		log.Printf("Tenant name resolution: Resolving  %s to UUID\n", request.TenantID)
+		tenantUUID, err := client.ResolveTenantNameToUUID(request.TenantID)
 		if err != nil {
 			return "", err
 		}
@@ -186,14 +188,14 @@ func IsValidUUID(uuid string) bool {
 	return r.MatchString(uuid)
 }
 
-// ResolveTeantanNameTOUUID Returns UUID for given name, error if not found.
-func (client *QuobyteClient) ResolveTeantanNameTOUUID(name string) (string, error) {
+// ResolveTenantNameToUUID Returns UUID for given name, error if not found.
+func (client *QuobyteClient) ResolveTenantNameToUUID(name string) (string, error) {
 	request := &resolveTenantNameRequest{
 		TenantName: name,
 	}
 
 	var response resolveTenantNameResponse
-	err := client.sendRequest("resolveTenantNameRequest", request, &response)
+	err := client.sendRequest("resolveTenantName", request, &response)
 	if err != nil {
 		return "", err
 	}
