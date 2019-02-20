@@ -118,7 +118,7 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 		if resp.StatusCode == 401 {
 			return errors.New("Unable to authenticate with Quobyte API service")
 		}
-		body, err := io.ioutil.ReadAll(resp.Body)
+		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			return (err)
 		}
