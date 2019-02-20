@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"io/ioutil"
 	"log"
 	"math/rand"
 	"net/http"
@@ -112,7 +113,17 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 	defer resp.Body.Close()
 
 	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Printf("Warning: HTTP status code for request is %s\n", strconv.Itoa(resp.StatusCode))
+		log.Printf("Warning: HTTP status code for request is %s\n",
+			strconv.Itoa(resp.StatusCode))
+		if resp.StatusCode == 401 {
+			return errors.New("Unable to authenticate with Quobyte API service")
+		}
+		body, err := io.ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return (err)
+		}
+		log.Printf("Warning: Dumping full reply body:\n%s\n", string(body))
+		return errors.New("JsonRPC failed, see plugin logfile for details")
 	}
 	return decodeResponse(resp.Body, &response)
 }
