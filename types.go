@@ -11,7 +11,7 @@ type CreateVolumeRequest struct {
         RootGroupID       string   `json:"root_group_id,omitempty"`
         ReplicaDeviceIDS  []uint64 `json:"replica_device_ids,string,omitempty"`
         ConfigurationName string   `json:"configuration_name,omitempty"`
-        AccessMode        uint32   `json:"access_mode,string,omitempty"`
+        AccessMode        uint32   `json:"access_mode,uint32,omitempty"`
         TenantID          string   `json:"tenant_id,omitempty"`
         retryPolicy
 }
