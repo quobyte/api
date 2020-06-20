@@ -21,8 +21,8 @@ func main() {
     client.SetAPIRetryPolicy(quobyte_api.RetryInfinitely) // Default quobyte_api.RetryInteractive
     req := &quobyte_api.CreateVolumeRequest{
         Name:              "MyVolume",
-        RootUserID:        "root",
-        RootGroupID:       "root",
+        RootUserId:        "root",
+        RootGroupId:       "root",
         ConfigurationName: "BASE",
         Labels: []quobyte_api.Label{
             {Name: "label1", Value: "value1"},
@@ -30,11 +30,11 @@ func main() {
         },
     }
 
-    volumeUUID, err := client.CreateVolume(req)
+    response, err := client.CreateVolume(req)
     if err != nil {
         log.Fatalf("Error:", err)
     }
 
-    log.Printf("%s", volumeUUID)
+    log.Printf("Created volume %s", response.volumeUuid)
 }
 ```
