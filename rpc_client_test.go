@@ -9,8 +9,8 @@ import (
 
 func TestSuccesfullEncodeRequest(t *testing.T) {
 	req := &CreateVolumeRequest{
-		RootUserID:  "root",
-		RootGroupID: "root",
+		RootUserId:  "root",
+		RootGroupId: "root",
 		Name:        "test",
 	}
 
@@ -59,15 +59,15 @@ func TestSuccesfullDecodeResponse(t *testing.T) {
 
 	res, _ := json.Marshal(expectedResult)
 
-	var resp volumeUUID
+	var resp CreateVolumeResponse
 	err := decodeResponse(bytes.NewReader(res), &resp)
 	if err != nil {
 		t.Log(err)
 		t.Fail()
 	}
 
-	if "1234" != resp.VolumeUUID {
-		t.Logf("Expected Volume UUID: %v got %v\n", "1234", resp.VolumeUUID)
+	if "1234" != resp.VolumeUuid {
+		t.Logf("Expected Volume UUID: %v got %v\n", "1234", resp.VolumeUuid)
 		t.Fail()
 	}
 }
@@ -88,7 +88,7 @@ func TestSuccesfullDecodeResponseWithErrorMessage(t *testing.T) {
 
 	res, _ := json.Marshal(expectedResult)
 
-	var resp volumeUUID
+	var resp CreateVolumeResponse
 	err := decodeResponse(bytes.NewReader(res), &resp)
 	if err == nil {
 		t.Log("No error occured")
@@ -116,7 +116,7 @@ func TestSuccesfullDecodeResponseWithErrorCode(t *testing.T) {
 
 	res, _ := json.Marshal(expectedResult)
 
-	var resp volumeUUID
+	var resp CreateVolumeResponse
 	err := decodeResponse(bytes.NewReader(res), &resp)
 	if err == nil {
 		t.Log("No error occured")
@@ -137,7 +137,7 @@ func TestBadDecodeResponse(t *testing.T) {
 
 	res, _ := json.Marshal(expectedResult)
 
-	var resp volumeUUID
+	var resp CreateVolumeResponse
 	err := decodeResponse(bytes.NewReader(res), &resp)
 	if err == nil {
 		t.Log("No error occured")
