@@ -259,7 +259,7 @@ const(
 
 
 type AccessControlList struct {
-    Entries []*AccessControlList_AccessControlEntry `json:"entries"`
+    Entries []*AccessControlList_AccessControlEntry `json:"entries,omitempty"`
     PosixAccessMask int32 `json:"posix_access_mask,omitempty"`
     PosixDefaultMask int32 `json:"posix_default_mask,omitempty"`
 }
@@ -375,9 +375,9 @@ type AddRegistryReplicaResponse struct {
 
 type AlertConfiguration struct {
     // Ability to disable any effect of this rule.
-    Enabled bool `json:"enabled"`
+    Enabled bool `json:"enabled,omitempty"`
     // The sensor signal must be present for this much time.
-    AlertAfterSeconds int32 `json:"alert_after_seconds"`
+    AlertAfterSeconds int32 `json:"alert_after_seconds,omitempty"`
     // Only alert at these times
     RestrictTime RestrictTime `json:"restrict_time,omitempty"`
 }
@@ -390,7 +390,7 @@ type AsyncReplicationProgress struct {
 
 type AsyncReplicationSource struct {
     // List of remote registry targets.
-    RemoteRegistryTarget []string `json:"remote_registry_target"`
+    RemoteRegistryTarget []string `json:"remote_registry_target,omitempty"`
     // UUID of the remote volume to sync with.
     RemoteVolumeUuid string `json:"remote_volume_uuid,omitempty"`
 }
@@ -432,7 +432,7 @@ type CancelSupportDumpResponse struct {
 
 type CancelTaskRequest struct {
     // List of one or more IDs of the tasks to be canceled
-    TaskId []string `json:"task_id"`
+    TaskId []string `json:"task_id,omitempty"`
     retryPolicy
 }
 
@@ -491,11 +491,11 @@ type CertificateSigningRequest struct {
 
 type CertificateSubject struct {
     // Restrict to service types
-    ServiceType []*ServiceType `json:"service_type"`
+    ServiceType []*ServiceType `json:"service_type,omitempty"`
     // Restrict to hosts
-    RestrictToHosts []string `json:"restrict_to_hosts"`
+    RestrictToHosts []string `json:"restrict_to_hosts,omitempty"`
     // Restrict to subjects
-    RestrictToSubjects []*DelegationSubject `json:"restrict_to_subjects"`
+    RestrictToSubjects []*DelegationSubject `json:"restrict_to_subjects,omitempty"`
 }
 
 type Client struct {
@@ -521,13 +521,13 @@ type Client struct {
     Service ServiceDescription `json:"service,omitempty"`
     ReadOperationsRate int64 `json:"read_operations_rate,omitempty"`
     WriteOperationsRate int64 `json:"write_operations_rate,omitempty"`
-    TopCreatesPerSec []*Client_TopInfo `json:"top_creates_per_sec"`
-    TopDeletesPerSec []*Client_TopInfo `json:"top_deletes_per_sec"`
-    TopStatsPerSec []*Client_TopInfo `json:"top_stats_per_sec"`
-    TopIops []*Client_TopInfo `json:"top_iops"`
-    TopThroughputBytesPerSec []*Client_TopInfo `json:"top_throughput_bytes_per_sec"`
-    TopReaddirsPerSec []*Client_TopInfo `json:"top_readdirs_per_sec"`
-    TopOpensPerSec []*Client_TopInfo `json:"top_opens_per_sec"`
+    TopCreatesPerSec []*Client_TopInfo `json:"top_creates_per_sec,omitempty"`
+    TopDeletesPerSec []*Client_TopInfo `json:"top_deletes_per_sec,omitempty"`
+    TopStatsPerSec []*Client_TopInfo `json:"top_stats_per_sec,omitempty"`
+    TopIops []*Client_TopInfo `json:"top_iops,omitempty"`
+    TopThroughputBytesPerSec []*Client_TopInfo `json:"top_throughput_bytes_per_sec,omitempty"`
+    TopReaddirsPerSec []*Client_TopInfo `json:"top_readdirs_per_sec,omitempty"`
+    TopOpensPerSec []*Client_TopInfo `json:"top_opens_per_sec,omitempty"`
 }
 
 type Client_TopInfo struct {
@@ -541,7 +541,7 @@ type Client_TopInfo struct {
 
 type ConfigurationRefinement struct {
     // List of one or more filters. Multiple filters are combined with AND
-    Filter []*Filter `json:"filter"`
+    Filter []*Filter `json:"filter,omitempty"`
     // The configuration to be set
     Statement ConfigurationStatement `json:"statement,omitempty"`
 }
@@ -563,9 +563,9 @@ type ConfigureRuleRequest struct {
     //Identifier of the sensor to be used
     SetSensorIdentifier string `json:"set_sensor_identifier,omitempty"`
     // Optional parameters for the sensor, i.e. threshold etc.
-    SetSensorParameters []string `json:"set_sensor_parameters"`
+    SetSensorParameters []string `json:"set_sensor_parameters,omitempty"`
     // List of one or more actions to be invoked
-    SetActions []*RuleAction `json:"set_actions"`
+    SetActions []*RuleAction `json:"set_actions,omitempty"`
     retryPolicy
 }
 
@@ -598,7 +598,7 @@ const(
 
 type CopyFilesSettings struct {
     // Job configuration for each sub task of the batch.
-    Job []*CopyFilesSettings_Job `json:"job"`
+    Job []*CopyFilesSettings_Job `json:"job,omitempty"`
 }
 
 type CopyFilesSettings_Job struct {
@@ -607,7 +607,7 @@ type CopyFilesSettings_Job struct {
     // Defines to where files will be copied to.
     Destination CopyFilesSettings_Job_Location `json:"destination,omitempty"`
     // Filters are evaluated in a logical AND fashion.
-    Filter []*CopyFilesSettings_Job_Filter `json:"filter"`
+    Filter []*CopyFilesSettings_Job_Filter `json:"filter,omitempty"`
     // Defines how the destination files are being created.
     DestinationFileSettings CopyFilesSettings_Job_DestinationFileSettings `json:"destination_file_settings,omitempty"`
     // Define what happens to source and/or destination files after finishing copying. Only relevant if not doing in-place recode, but copies.
@@ -672,7 +672,7 @@ type CopyFilesSettings_Job_Location struct {
 
 type CopyFilesSettings_Job_Location_Quobyte struct {
     // Either a list of registries (<hostname/IP>:<port>), a single DNS SRV or QNS record. Can only be set for the destination; any Quobyte source must be the local cluster.
-    Registry []string `json:"registry"`
+    Registry []string `json:"registry,omitempty"`
     // The volume UUID.
     Volume string `json:"volume,omitempty"`
     // Path to a subdirectory to restrict to. If recoding, that is if source and destination volume are the same, must not be set. Otherwise, must only be set for the destination. (Infinite recursive copies could occur otherwise.)
@@ -705,7 +705,7 @@ type CreateMirroredVolumeRequest struct {
     LocalConfigurationName string `json:"local_configuration_name,omitempty"`
     LocalTenantId string `json:"local_tenant_id,omitempty"`
     RemoteVolumeUuid string `json:"remote_volume_uuid,omitempty"`
-    RemoteRegistryTarget []string `json:"remote_registry_target"`
+    RemoteRegistryTarget []string `json:"remote_registry_target,omitempty"`
     retryPolicy
 }
 
@@ -745,9 +745,9 @@ type CreateTaskRequest struct {
     // Settings for COPY_FILES tasks. (CURRENTLY IN BETA!)
     CopyFilesSettings CopyFilesSettings `json:"copy_files_settings,omitempty"`
     // List of devices the task should be restricted to
-    RestrictToDevices []*uint64 `json:"restrict_to_devices"`
+    RestrictToDevices []*uint64 `json:"restrict_to_devices,omitempty"`
     // List of volumes the task should be restricted to
-    RestrictToVolumes []string `json:"restrict_to_volumes"`
+    RestrictToVolumes []string `json:"restrict_to_volumes,omitempty"`
     // Optional comment
     Comment string `json:"comment,omitempty"`
     ObsoleteTargetUuid string `json:"OBSOLETE_target_uuid,omitempty"`
@@ -776,7 +776,7 @@ type CreateVolumeRequest struct {
     // Human readable name of the volume to be created.
     Name string `json:"name,omitempty"`
     // List of one or more metadata device uuids to store replicas of this volume. Optional, if absent replicas will be placed automatically.
-    ReplicaDeviceIds []*uint64 `json:"replica_device_ids"`
+    ReplicaDeviceIds []*uint64 `json:"replica_device_ids,omitempty"`
     // userid of the owner of the root directory (Linux uid, certificate CN).
     RootUserId string `json:"root_user_id,omitempty"`
     // group id of the owner of the root directory (Linux gid, certificate OU).
@@ -821,7 +821,7 @@ type DelegationSubject struct {
     // Restrict to user
     User string `json:"user,omitempty"`
     // Restrict to groups
-    Groups []string `json:"groups"`
+    Groups []string `json:"groups,omitempty"`
     // Allow only read access
     ReadOnly bool `json:"read_only,omitempty"`
     // Forbid root access
@@ -923,7 +923,7 @@ type Device struct {
     //Custom label (name) for the device
     DeviceLabel string `json:"device_label,omitempty"`
     // List of one or more contents of the device
-    Content []*DeviceContent `json:"content"`
+    Content []*DeviceContent `json:"content,omitempty"`
     //Current status of the device
     DeviceStatus Device_Status `json:"device_status,omitempty"`
     //Name of the host where this device resides
@@ -933,9 +933,9 @@ type Device struct {
     //Currently used bytes on the device
     UsedDiskSpaceBytes uint64 `json:"used_disk_space_bytes,omitempty"`
     //List of optional device tags
-    DeviceTags []string `json:"device_tags"`
+    DeviceTags []string `json:"device_tags,omitempty"`
     // List of optional failure domains this device belongs to
-    FailureDomainInfos []*FailureDomainInfo `json:"failure_domain_infos"`
+    FailureDomainInfos []*FailureDomainInfo `json:"failure_domain_infos,omitempty"`
     //Current LED status of the device
     LedStatus Device_LEDStatus `json:"led_status,omitempty"`
     //Device does not contain any active data after a drain
@@ -1054,7 +1054,7 @@ const(
 )
 
 type DeviceList struct {
-    Devices []*Device `json:"devices"`
+    Devices []*Device `json:"devices,omitempty"`
 }
 
 type DeviceNetworkEndpoint struct {
@@ -1134,14 +1134,14 @@ type FailureDomain struct {
     Name string `json:"name,omitempty"`
     DomainType FailureDomainType `json:"domain_type,omitempty"`
     //List of one or more IP addresses belonging to the failure domain
-    Ip []string `json:"ip"`
+    Ip []string `json:"ip,omitempty"`
     //List of one or more IP networks belonging to the failure domain. Notation: <address>/<netmask length>
-    Network []string `json:"network"`
+    Network []string `json:"network,omitempty"`
 }
 
 type FailureDomainConfiguration struct {
     // List of one or more configured failure domains
-    Domain []*FailureDomain `json:"domain"`
+    Domain []*FailureDomain `json:"domain,omitempty"`
 }
 
 type FailureDomainInfo struct {
@@ -1292,7 +1292,7 @@ type FileMetadataDump struct {
 
 type FileRetentionPolicy struct {
     // Retention properties
-    Property []*FileRetentionPolicy_RetentionProperty `json:"property"`
+    Property []*FileRetentionPolicy_RetentionProperty `json:"property,omitempty"`
     // If empty, quobyte.retention_timestamp must be set Retention is only effective when a timestamp is set.
     DefaultRetentionDurationS int64 `json:"default_retention_duration_s,omitempty"`
 }
@@ -1364,17 +1364,17 @@ type GenerateAsyncSupportDumpResponse struct {
 }
 
 type GetAccountingRequest struct {
-    Entity []*ConsumingEntity `json:"entity"`
+    Entity []*ConsumingEntity `json:"entity,omitempty"`
     retryPolicy
 }
 
 type GetAccountingResponse struct {
-    EntityUsage []*GetAccountingResponse_EntityUsage `json:"entity_usage"`
+    EntityUsage []*GetAccountingResponse_EntityUsage `json:"entity_usage,omitempty"`
 }
 
 type GetAccountingResponse_EntityUsage struct {
     Consumer ConsumingEntity `json:"consumer,omitempty"`
-    Usage []*Resource `json:"usage"`
+    Usage []*Resource `json:"usage,omitempty"`
 }
 
 type GetAuditLogRequest struct {
@@ -1399,7 +1399,7 @@ type GetAuditLogRequest_AuditDatabaseKey struct {
 
 type GetAuditLogResponse struct {
     // List of audit events matching the given filters
-    AuditEvent []*AuditEvent `json:"audit_event"`
+    AuditEvent []*AuditEvent `json:"audit_event,omitempty"`
 }
 
 type GetCertificateSubjectRequest struct {
@@ -1421,7 +1421,7 @@ type GetClientListRequest struct {
 
 type GetClientListResponse struct {
     // List of currently registered clients
-    Client []*Client `json:"client"`
+    Client []*Client `json:"client,omitempty"`
 }
 
 type GetConfigurationRequest struct {
@@ -1433,14 +1433,14 @@ type GetConfigurationRequest struct {
 }
 
 type GetConfigurationResponse struct {
-    VolumeConfiguration []*VolumeConfiguration `json:"volume_configuration"`
+    VolumeConfiguration []*VolumeConfiguration `json:"volume_configuration,omitempty"`
     FailureDomainConfiguration FailureDomainConfiguration `json:"failure_domain_configuration,omitempty"`
-    UserConfiguration []*UserConfiguration `json:"user_configuration"`
+    UserConfiguration []*UserConfiguration `json:"user_configuration,omitempty"`
     SystemConfiguration SystemConfiguration `json:"system_configuration,omitempty"`
-    QuotaPoolConfiguration []*QuotaPoolConfiguration `json:"quota_pool_configuration"`
-    RuleConfiguration []*RuleConfiguration `json:"rule_configuration"`
+    QuotaPoolConfiguration []*QuotaPoolConfiguration `json:"quota_pool_configuration,omitempty"`
+    RuleConfiguration []*RuleConfiguration `json:"rule_configuration,omitempty"`
     //Obsolete since release 1.4. Use getTenant() instead.
-    TenantConfiguration []*TenantDomainConfiguration `json:"tenant_configuration"`
+    TenantConfiguration []*TenantDomainConfiguration `json:"tenant_configuration,omitempty"`
 }
 
 type GetDeviceIdsRequest struct {
@@ -1449,14 +1449,14 @@ type GetDeviceIdsRequest struct {
 }
 
 type GetDeviceIdsResponse struct {
-    DeviceIds []*uint64 `json:"device_ids"`
+    DeviceIds []*uint64 `json:"device_ids,omitempty"`
 }
 
 type GetDeviceListRequest struct {
     // Specify device id to retrieve data for specific devices. Retrieve all if not set.
-    DeviceId []*uint64 `json:"device_id"`
+    DeviceId []*uint64 `json:"device_id,omitempty"`
     // Specify types to retrieve only devices with matching type.
-    DeviceType []*DeviceContent_ContentType `json:"device_type"`
+    DeviceType []*DeviceContent_ContentType `json:"device_type,omitempty"`
     retryPolicy
 }
 
@@ -1471,7 +1471,7 @@ type GetDeviceNetworkEndpointsRequest struct {
 }
 
 type GetDeviceNetworkEndpointsResponse struct {
-    Endpoints []*DeviceNetworkEndpoint `json:"endpoints"`
+    Endpoints []*DeviceNetworkEndpoint `json:"endpoints,omitempty"`
 }
 
 type GetDeviceTagsRequest struct {
@@ -1479,7 +1479,7 @@ type GetDeviceTagsRequest struct {
 }
 
 type GetDeviceTagsResponse struct {
-    Tag []string `json:"tag"`
+    Tag []string `json:"tag,omitempty"`
 }
 
 type GetEffectiveVolumeConfigurationRequest struct {
@@ -1509,7 +1509,7 @@ type GetFileMetadataDumpRequest struct {
 
 type GetFileMetadataDumpResponse struct {
     FileMetadataDump FileMetadataDump `json:"file_metadata_dump,omitempty"`
-    StripeBlockDump []string `json:"stripe_block_dump"`
+    StripeBlockDump []string `json:"stripe_block_dump,omitempty"`
     // start offset where stopped due to size limit
     LastSegmentStartOffset int64 `json:"last_segment_start_offset,omitempty"`
     // stripe number where stopped due to size limit
@@ -1522,7 +1522,7 @@ type GetFiringRulesRequest struct {
 
 type GetFiringRulesResponse struct {
     // List of currently firing alerts
-    Rule []*FiringRule `json:"rule"`
+    Rule []*FiringRule `json:"rule,omitempty"`
 }
 
 type GetHealthManagerStatusRequest struct {
@@ -1549,7 +1549,7 @@ type GetLabelsRequest struct {
 }
 
 type GetLabelsResponse struct {
-    Data []*Label `json:"data"`
+    Data []*Label `json:"data,omitempty"`
 }
 
 type GetLatestEventRequest struct {
@@ -1580,14 +1580,14 @@ type GetLicenseResponse struct {
 
 type GetQuotaRequest struct {
     TenantDomain string `json:"tenant_domain,omitempty"`
-    OnlyEntity []*ConsumingEntity `json:"only_entity"`
-    OnlyResourceType []*Resource_Type `json:"only_resource_type"`
+    OnlyEntity []*ConsumingEntity `json:"only_entity,omitempty"`
+    OnlyResourceType []*Resource_Type `json:"only_resource_type,omitempty"`
     IncludeDefaultQuotas bool `json:"include_default_quotas,omitempty"`
     retryPolicy
 }
 
 type GetQuotaResponse struct {
-    Quotas []*Quota `json:"quotas"`
+    Quotas []*Quota `json:"quotas,omitempty"`
 }
 
 type GetRulesRequest struct {
@@ -1612,14 +1612,14 @@ type GetServiceDumpResponse struct {
 
 type GetServicesRequest struct {
     // Filter for service type.
-    ServiceType []*ServiceType `json:"service_type"`
+    ServiceType []*ServiceType `json:"service_type,omitempty"`
     // Filter for service UUID
     Serviceuuid string `json:"serviceUuid,omitempty"`
     retryPolicy
 }
 
 type GetServicesResponse struct {
-    Service []*ServiceDescription `json:"service"`
+    Service []*ServiceDescription `json:"service,omitempty"`
 }
 
 type GetSupportDumpRequest struct {
@@ -1673,7 +1673,7 @@ type GetTaskListRequest struct {
     // Filter to tasks in non-final states.
     OnlyProcessing bool `json:"only_processing,omitempty"`
     // The task to query, or empty for all recent tasks.
-    TaskId []string `json:"task_id"`
+    TaskId []string `json:"task_id,omitempty"`
     // The type to filter to, if set.
     TaskType TaskType `json:"task_type,omitempty"`
     // UI Relevant Parameters Database lookup in reversed (descending) direction
@@ -1692,24 +1692,24 @@ type GetTaskListRequest struct {
 
 type GetTaskListResponse struct {
     // List of currently scheduled or running tasks
-    Tasks []*TaskInfo `json:"tasks"`
+    Tasks []*TaskInfo `json:"tasks,omitempty"`
 }
 
 type GetTenantRequest struct {
-    TenantId []string `json:"tenant_id"`
+    TenantId []string `json:"tenant_id,omitempty"`
     retryPolicy
 }
 
 type GetTenantResponse struct {
-    Tenant []*TenantDomainConfiguration `json:"tenant"`
+    Tenant []*TenantDomainConfiguration `json:"tenant,omitempty"`
 }
 
 type GetTopConsumerRequest struct {
     Scope GetTopConsumerRequest_Scope `json:"scope,omitempty"`
     ScopeIdentifier string `json:"scope_identifier,omitempty"`
     TopConsumerLimit uint32 `json:"top_consumer_limit,omitempty"`
-    OnlyConsumerType []*ConsumingEntity_Type `json:"only_consumer_type"`
-    OnlyResourceType []*Resource_Type `json:"only_resource_type"`
+    OnlyConsumerType []*ConsumingEntity_Type `json:"only_consumer_type,omitempty"`
+    OnlyResourceType []*Resource_Type `json:"only_resource_type,omitempty"`
     retryPolicy
 }
 
@@ -1722,7 +1722,7 @@ const(
 )
 
 type GetTopConsumerResponse struct {
-    TopConsumer []*GetTopConsumerResponse_TopConsumer `json:"top_consumer"`
+    TopConsumer []*GetTopConsumerResponse_TopConsumer `json:"top_consumer,omitempty"`
 }
 
 type GetTopConsumerResponse_Consumer struct {
@@ -1733,7 +1733,7 @@ type GetTopConsumerResponse_Consumer struct {
 type GetTopConsumerResponse_TopConsumer struct {
     ConsumerType ConsumingEntity_Type `json:"consumer_type,omitempty"`
     ResourceType Resource_Type `json:"resource_type,omitempty"`
-    Consumer []*GetTopConsumerResponse_Consumer `json:"consumer"`
+    Consumer []*GetTopConsumerResponse_Consumer `json:"consumer,omitempty"`
 }
 
 type GetUnformattedDevicesRequest struct {
@@ -1742,16 +1742,16 @@ type GetUnformattedDevicesRequest struct {
 }
 
 type GetUnformattedDevicesResponse struct {
-    UnformattedDevice []*UnformattedDevice `json:"unformatted_device"`
+    UnformattedDevice []*UnformattedDevice `json:"unformatted_device,omitempty"`
 }
 
 type GetUsersRequest struct {
-    UserId []string `json:"user_id"`
+    UserId []string `json:"user_id,omitempty"`
     retryPolicy
 }
 
 type GetUsersResponse struct {
-    UserConfiguration []*UserConfiguration `json:"user_configuration"`
+    UserConfiguration []*UserConfiguration `json:"user_configuration,omitempty"`
 }
 
 type GetVolumeListRequest struct {
@@ -1764,12 +1764,12 @@ type GetVolumeListRequest struct {
 
 type GetVolumeListResponse struct {
     // List of volumes
-    Volume []*Volume `json:"volume"`
+    Volume []*Volume `json:"volume,omitempty"`
 }
 
 type GetVolumeMappingInfosRequest struct {
     // Filter for specific uuids.
-    Uuid []string `json:"uuid"`
+    Uuid []string `json:"uuid,omitempty"`
     IncludeDeleted bool `json:"include_deleted,omitempty"`
     TenantDomain string `json:"tenant_domain,omitempty"`
     IncludeMirrored bool `json:"include_mirrored,omitempty"`
@@ -1777,7 +1777,7 @@ type GetVolumeMappingInfosRequest struct {
 }
 
 type GroupsToAttributesMapping struct {
-    LdapGroup []string `json:"ldap_group"`
+    LdapGroup []string `json:"ldap_group,omitempty"`
     // SUPER_USER, DOMAIN_ADMIN, ...
     Role UserRole `json:"role,omitempty"`
     Tenantid string `json:"tenantId,omitempty"`
@@ -1794,7 +1794,7 @@ type HealthManagerStatus struct {
     DevicesWithCatchupDue uint32 `json:"devices_with_catchup_due,omitempty"`
     VolumesWithEnforcePlacementDue uint32 `json:"volumes_with_enforce_placement_due,omitempty"`
     SystemHealth HealthManagerStatus_SystemHealth `json:"system_health,omitempty"`
-    SystemHealthReason []string `json:"system_health_reason"`
+    SystemHealthReason []string `json:"system_health_reason,omitempty"`
 }
 
 type HealthManagerStatus_MaintenanceWindowMode int32
@@ -1859,7 +1859,7 @@ type ListCaRequest struct {
 
 type ListCaResponse struct {
     // List of certificate authorities
-    Ca []*CertificateAuthority `json:"ca"`
+    Ca []*CertificateAuthority `json:"ca,omitempty"`
 }
 
 type ListCertificatesRequest struct {
@@ -1868,7 +1868,7 @@ type ListCertificatesRequest struct {
 
 type ListCertificatesResponse struct {
     // List of certificate records
-    Certificate []*CertificateRecord `json:"certificate"`
+    Certificate []*CertificateRecord `json:"certificate,omitempty"`
 }
 
 type ListCsrRequest struct {
@@ -1879,7 +1879,7 @@ type ListCsrRequest struct {
 
 type ListCsrResponse struct {
     // List of open CSRs
-    Csr []*CertificateSigningRequest `json:"csr"`
+    Csr []*CertificateSigningRequest `json:"csr,omitempty"`
 }
 
 type ListRegistryReplicasRequest struct {
@@ -1888,7 +1888,7 @@ type ListRegistryReplicasRequest struct {
 
 type ListRegistryReplicasResponse struct {
     // A list all DIR device IDs that are currently acting as replicas.
-    DeviceIds []string `json:"device_ids"`
+    DeviceIds []string `json:"device_ids,omitempty"`
 }
 
 type ListSnapshotsRequest struct {
@@ -1899,7 +1899,7 @@ type ListSnapshotsRequest struct {
 
 type ListSnapshotsResponse struct {
     // Snapshots
-    Snapshot []*VolumeSnapshot `json:"snapshot"`
+    Snapshot []*VolumeSnapshot `json:"snapshot,omitempty"`
 }
 
 type MakeDeviceRequest struct {
@@ -1953,7 +1953,7 @@ type PlacementSettings struct {
 }
 
 type PlacementSettings_Tags struct {
-    Tags []string `json:"tags"`
+    Tags []string `json:"tags,omitempty"`
 }
 
 type PublishBucketVolumeRequest struct {
@@ -1971,18 +1971,18 @@ type Quota struct {
     // Global identifier of this quota pool configuration (should be empty for new quotas)
     Id string `json:"id,omitempty"`
     // One consuming entity (Quota applies to the first consumer only; the list structure is kept for backward-compatibility).
-    Consumer []*ConsumingEntity `json:"consumer"`
+    Consumer []*ConsumingEntity `json:"consumer,omitempty"`
     // One or several resource limits
-    Limits []*Resource `json:"limits"`
+    Limits []*Resource `json:"limits,omitempty"`
     // Optional list of current quota usage (field is ignored for set/import quota)
-    CurrentUsage []*Resource `json:"current_usage"`
+    CurrentUsage []*Resource `json:"current_usage,omitempty"`
 }
 
 type QuotaPoolConfiguration struct {
     // One or several resource limits
-    Resource []*Resource `json:"resource"`
+    Resource []*Resource `json:"resource,omitempty"`
     // One consuming entity (Quota applies to the first consumer only; the list structure is kept for backward-compatibility).
-    Consumer []*ConsumingEntity `json:"consumer"`
+    Consumer []*ConsumingEntity `json:"consumer,omitempty"`
     //Global identifier of this quota pool configuration
     Id string `json:"id,omitempty"`
 }
@@ -2051,7 +2051,7 @@ type ResolveVolumeNameRequest struct {
 
 type ResolveVolumeNameResponse struct {
     VolumeUuid string `json:"volume_uuid,omitempty"`
-    ObsoleteVolumeUuid []string `json:"OBSOLETE_volume_uuid"`
+    ObsoleteVolumeUuid []string `json:"OBSOLETE_volume_uuid,omitempty"`
 }
 
 type Resource struct {
@@ -2087,16 +2087,16 @@ const(
 
 type RestrictTime struct {
     // 0-24
-    RestrictToHours []int32 `json:"restrict_to_hours"`
+    RestrictToHours []int32 `json:"restrict_to_hours,omitempty"`
     // 0=Sun, 1=Mon, ...
-    RestrictToWeekdays []int32 `json:"restrict_to_weekdays"`
+    RestrictToWeekdays []int32 `json:"restrict_to_weekdays,omitempty"`
     // 0-53, restrict to weeks of year.
-    RestrictToWeekOfYear []int32 `json:"restrict_to_week_of_year"`
+    RestrictToWeekOfYear []int32 `json:"restrict_to_week_of_year,omitempty"`
 }
 
 type ResumeTaskRequest struct {
     // List of one or more IDs of the tasks to be resumed
-    TaskId []string `json:"task_id"`
+    TaskId []string `json:"task_id,omitempty"`
     retryPolicy
 }
 
@@ -2105,7 +2105,7 @@ type ResumeTaskResponse struct {
 
 type RetryTaskRequest struct {
     // List of one or more IDs of the tasks to be restarted
-    TaskId []string `json:"task_id"`
+    TaskId []string `json:"task_id,omitempty"`
     retryPolicy
 }
 
@@ -2125,7 +2125,7 @@ type RevokeCertificateResponse struct {
 
 type RuleAction struct {
     ActionType RuleAction_ActionType `json:"action_type,omitempty"`
-    NotifyEmailAddress []string `json:"notify_email_address"`
+    NotifyEmailAddress []string `json:"notify_email_address,omitempty"`
 }
 
 type RuleAction_ActionType int32
@@ -2156,23 +2156,23 @@ type RuleConfiguration struct {
     // Time restrictions for alerting.
     RestrictTime RestrictTime `json:"restrict_time,omitempty"`
     // Actions to take when alerting.
-    Actions []*RuleAction `json:"actions"`
+    Actions []*RuleAction `json:"actions,omitempty"`
 }
 
 type RuleDescriptor struct {
     RuleIdentifier string `json:"rule_identifier,omitempty"`
     AlertConfiguration AlertConfiguration `json:"alert_configuration,omitempty"`
     SensorIdentifier string `json:"sensor_identifier,omitempty"`
-    SensorParameters []string `json:"sensor_parameters"`
+    SensorParameters []string `json:"sensor_parameters,omitempty"`
     // The description of the sensor's working (with placeholders)
     SensorDescription string `json:"sensor_description,omitempty"`
     // The description of what state has been detected (with placeholders)
     SensorMessage string `json:"sensor_message,omitempty"`
     // What the user should do manually
     SensorSuggestedAction string `json:"sensor_suggested_action,omitempty"`
-    Actions []*RuleAction `json:"actions"`
+    Actions []*RuleAction `json:"actions,omitempty"`
     // The set of supported actions for the rule.
-    SupportedActions []*RuleAction `json:"supported_actions"`
+    SupportedActions []*RuleAction `json:"supported_actions,omitempty"`
     Severity FiringRule_RuleSeverity `json:"severity,omitempty"`
 }
 
@@ -2185,7 +2185,7 @@ type ServiceDescription struct {
     ServiceUuid string `json:"service_uuid,omitempty"`
     ServiceName string `json:"service_name,omitempty"`
     // The service's network addresses.
-    NetworkAddresses []*ServiceDescription_NetworkEndpoint `json:"network_addresses"`
+    NetworkAddresses []*ServiceDescription_NetworkEndpoint `json:"network_addresses,omitempty"`
     // HTTP status page server endpoint.
     StatusServer ServiceDescription_NetworkEndpoint `json:"status_server,omitempty"`
     // service type
@@ -2197,7 +2197,7 @@ type ServiceDescription struct {
     // Service has a registered network location
     IsRegistered bool `json:"is_registered,omitempty"`
     IsPrimary bool `json:"is_primary,omitempty"`
-    FailureDomainInfos []*FailureDomainInfo `json:"failure_domain_infos"`
+    FailureDomainInfos []*FailureDomainInfo `json:"failure_domain_infos,omitempty"`
     //additional service information
     AdditionalServiceAddress ServiceDescription_NetworkEndpoint `json:"additional_service_address,omitempty"`
 }
@@ -2277,7 +2277,7 @@ type SetConfigurationResponse struct {
 
 type SetLabelsRequest struct {
     // Labels with empty values will be deleted.
-    Data []*Label `json:"data"`
+    Data []*Label `json:"data,omitempty"`
     retryPolicy
 }
 
@@ -2285,7 +2285,7 @@ type SetLabelsResponse struct {
 }
 
 type SetQuotaRequest struct {
-    Quotas []*Quota `json:"quotas"`
+    Quotas []*Quota `json:"quotas,omitempty"`
     retryPolicy
 }
 
@@ -2304,7 +2304,7 @@ type SetTenantResponse struct {
 type SubjectList struct {
     Type SubjectList_Type `json:"type,omitempty"`
     // in case of UNFORMATTED_DEVICE subjectId = serviceUuid.concat(path)
-    SubjectId []string `json:"subject_id"`
+    SubjectId []string `json:"subject_id,omitempty"`
     // is relevant for UNFORMATTED_DEVICE case
     Devicetype MakeDeviceSettings_DeviceType `json:"deviceType,omitempty"`
 }
@@ -2397,7 +2397,7 @@ const(
 type SystemConfiguration_HealthManagerConfig struct {
     Enable bool `json:"enable,omitempty"`
     // Some policies are restricted to run during a maintenance window. Define this window here.
-    MaintenanceWindow []*RestrictTime `json:"maintenance_window"`
+    MaintenanceWindow []*RestrictTime `json:"maintenance_window,omitempty"`
     RebalancePolicy SystemConfiguration_RebalancePolicy `json:"rebalance_policy,omitempty"`
     CatchupPolicy SystemConfiguration_CatchupPolicy `json:"catchup_policy,omitempty"`
     FstrimPolicy SystemConfiguration_FstrimPolicy `json:"fstrim_policy,omitempty"`
@@ -2436,9 +2436,9 @@ type SystemConfiguration_LdapServerConfig struct {
     // Source from where the user role should be obtained
     UserAttributesSource SystemConfiguration_LdapServerConfig_DataSource `json:"user_attributes_source,omitempty"`
     // mapping of ldap groups to user attributes (if role_source==LDAP_GROUP_MEMBERSHIP)
-    GroupsToAttributesMapping []*GroupsToAttributesMapping `json:"groups_to_attributes_mapping"`
+    GroupsToAttributesMapping []*GroupsToAttributesMapping `json:"groups_to_attributes_mapping,omitempty"`
     //Relative distinguished names (RDN) for groups used for the LDAP_GROUP_MEMBERSHIP search.
-    GroupRdn []string `json:"group_rdn"`
+    GroupRdn []string `json:"group_rdn,omitempty"`
     //Attribute name of user RDN
     UserRdnAttributeName string `json:"user_rdn_attribute_name,omitempty"`
     // Enables/disables "referral-follow" feature for LDAP client (in case of multiple LDAP-servers should be enabled)
@@ -2455,9 +2455,9 @@ const(
 
 type SystemConfiguration_NetworkConfig struct {
     //White-listed networks for service-service communication
-    EnabledServiceNetworks []string `json:"enabled_service_networks"`
+    EnabledServiceNetworks []string `json:"enabled_service_networks,omitempty"`
     //White-listed networks for client-service communication (if empty, the service network is used)
-    EnabledClientNetworks []string `json:"enabled_client_networks"`
+    EnabledClientNetworks []string `json:"enabled_client_networks,omitempty"`
 }
 
 type SystemConfiguration_QuobyteNameServiceConfig struct {
@@ -2503,7 +2503,7 @@ type SystemConfiguration_S3ProxyConfig struct {
     HttpPort int32 `json:"http_port,omitempty"`
     HttpsPort int32 `json:"https_port,omitempty"`
     RedirectToHttps bool `json:"redirect_to_https,omitempty"`
-    Hostname []string `json:"hostname"`
+    Hostname []string `json:"hostname,omitempty"`
     // Enables the S3 browser UI when set, accessible as subdomain of one of the configured hosts, i.e. http[s]://<browser_bucket_name>.<hostname>/index.html
     BrowserBucketName string `json:"browser_bucket_name,omitempty"`
 }
@@ -2550,7 +2550,7 @@ type SystemConfiguration_UpdateStatesOfDrainedDevicesPolicy struct {
 
 type SystemStatistics struct {
     // Number of tasks in the system. Number of FINISHED tasks might only contain recently completed tasks
-    TaskCounts []*SystemStatistics_TaskCount `json:"task_counts"`
+    TaskCounts []*SystemStatistics_TaskCount `json:"task_counts,omitempty"`
     //Number of registered devices
     RegisteredDeviceCount int32 `json:"registered_device_count,omitempty"`
     //Number of devices currently not registered with a service
@@ -2591,12 +2591,12 @@ type TaskInfo struct {
     Comment string `json:"comment,omitempty"`
     // Scope.
     SuperTaskId string `json:"super_task_id,omitempty"`
-    Scope []*SubjectList `json:"scope"`
+    Scope []*SubjectList `json:"scope,omitempty"`
     // Progress indicators.
     Progress TaskInfo_Progress `json:"progress,omitempty"`
-    Performance []*TaskInfo_Performance `json:"performance"`
+    Performance []*TaskInfo_Performance `json:"performance,omitempty"`
     // Listing of errorneous files/volumes (subtasks only).
-    ErrorDetails []*TaskInfo_ErrorDetails `json:"error_details"`
+    ErrorDetails []*TaskInfo_ErrorDetails `json:"error_details,omitempty"`
     OwnerType TaskInfo_OwnerType `json:"owner_type,omitempty"`
     MakeDeviceSettings MakeDeviceSettings `json:"make_device_settings,omitempty"`
     CopyFileSettings CopyFilesSettings `json:"copy_file_settings,omitempty"`
@@ -2611,7 +2611,7 @@ const(
 
 type TaskInfo_ErrorDetails struct {
     Description string `json:"description,omitempty"`
-    Item []string `json:"item"`
+    Item []string `json:"item,omitempty"`
 }
 
 type TaskInfo_Performance struct {
@@ -2639,7 +2639,7 @@ type TaskInfo_Progress struct {
     // Long.MAX_VALUE if not started yet.
     EtaS uint64 `json:"eta_s,omitempty"`
     OperationsInFlightCount int32 `json:"operations_in_flight_count,omitempty"`
-    LongRunningOperation []*TaskInfo_Progress_LongRunningOperation `json:"long_running_operation"`
+    LongRunningOperation []*TaskInfo_Progress_LongRunningOperation `json:"long_running_operation,omitempty"`
     CurrentLongRunningOperationsCount int32 `json:"current_long_running_operations_count,omitempty"`
     TotalLongRunningOperationsCount int64 `json:"total_long_running_operations_count,omitempty"`
     HumanReadableSummary string `json:"human_readable_summary,omitempty"`
@@ -2653,7 +2653,7 @@ type TaskInfo_Progress_LongRunningOperation struct {
     // The subject in question, e.g. a certain file.
     Subject string `json:"subject,omitempty"`
     // The operation's RPC target(s), e.g. volume or device UUID(s).
-    RpcTarget []string `json:"rpc_target"`
+    RpcTarget []string `json:"rpc_target,omitempty"`
     // Additional "free text" info about the operation.
     Details string `json:"details,omitempty"`
     // Timestamp in [ms] when the operation started.
@@ -2666,9 +2666,9 @@ type TenantDomainConfiguration struct {
     //Name of the tenant domain
     Name string `json:"name,omitempty"`
     //List of one or more IP networks belonging to the domain. Notation: <address>/<netmask length>
-    RestrictToNetwork []string `json:"restrict_to_network"`
+    RestrictToNetwork []string `json:"restrict_to_network,omitempty"`
     // List of one or more volumes accessible in the domain
-    VolumeAccess []*TenantDomainConfiguration_VolumeAccess `json:"volume_access"`
+    VolumeAccess []*TenantDomainConfiguration_VolumeAccess `json:"volume_access,omitempty"`
 }
 
 type TenantDomainConfiguration_VolumeAccess struct {
@@ -2710,7 +2710,7 @@ type UpdateDeviceRequest struct {
     // Set the device status, if set.
     SetDeviceStatus Device_Status `json:"set_device_status,omitempty"`
     // List of device tags to use, if update_device_tags is set.
-    DeviceTags []string `json:"device_tags"`
+    DeviceTags []string `json:"device_tags,omitempty"`
     UpdateDeviceTags bool `json:"update_device_tags,omitempty"`
     // Set draining mode.
     Draining bool `json:"draining,omitempty"`
@@ -2759,7 +2759,7 @@ type UpdateVolumeRequest struct {
     // Name of the configuration to be used for the volume
     SetConfigurationName string `json:"set_configuration_name,omitempty"`
     // Only for mirrored volume:
-    RemoteRegistryTarget []string `json:"remote_registry_target"`
+    RemoteRegistryTarget []string `json:"remote_registry_target,omitempty"`
     // Use publishVolume() instead.
     ObsoleteBucketName string `json:"OBSOLETE_bucket_name,omitempty"`
     ObsoleteBucketOwner string `json:"OBSOLETE_bucket_owner,omitempty"`
@@ -2782,18 +2782,18 @@ type UserConfiguration struct {
     //Email address od the user
     Email string `json:"email,omitempty"`
     //Role of the user
-    Role []*UserRole `json:"role"`
+    Role []*UserRole `json:"role,omitempty"`
     TenantId string `json:"tenant_id,omitempty"`
     LastLoginTimestampMs int64 `json:"last_login_timestamp_ms,omitempty"`
     // Access key credentials
-    AccessKeyCredentials []*AccessKeyCredentials `json:"access_key_credentials"`
+    AccessKeyCredentials []*AccessKeyCredentials `json:"access_key_credentials,omitempty"`
 }
 
 type UserCredentials struct {
     //Client-system user name
-    Username string `json:"username"`
+    Username string `json:"username,omitempty"`
     //List of one or more client-system group names
-    Groups []string `json:"groups"`
+    Groups []string `json:"groups,omitempty"`
     //The tenant domain of the given user. Defaults to an empty string for the default domain
     TenantDomain string `json:"tenant_domain,omitempty"`
     //Active user role
@@ -2812,7 +2812,7 @@ type VerifyLicenseResponse struct {
 type Volume struct {
     VolumeUuid string `json:"volume_uuid,omitempty"`
     Name string `json:"name,omitempty"`
-    ReplicaDeviceIds []*uint64 `json:"replica_device_ids"`
+    ReplicaDeviceIds []*uint64 `json:"replica_device_ids,omitempty"`
     // Not set if no replica device is preferred.
     PreferredPrimaryReplicaDeviceId uint64 `json:"preferred_primary_replica_device_id,omitempty"`
     QuotaDiskSpaceBytes uint64 `json:"quota_disk_space_bytes,omitempty"`
@@ -2824,12 +2824,12 @@ type Volume struct {
     ConfigurationName string `json:"configuration_name,omitempty"`
     TenantDomain string `json:"tenant_domain,omitempty"`
     // Set of devices that contain files of this volume.
-    DeviceSpread []*uint64 `json:"device_spread"`
+    DeviceSpread []*uint64 `json:"device_spread,omitempty"`
     // Timestamp of last successful scrub.
     LastSuccessfulScrubMs uint64 `json:"last_successful_scrub_ms,omitempty"`
     PrimaryDeviceId uint64 `json:"primary_device_id,omitempty"`
     UsedLogicalSpaceBytes uint64 `json:"used_logical_space_bytes,omitempty"`
-    BucketNames []string `json:"bucket_names"`
+    BucketNames []string `json:"bucket_names,omitempty"`
     Isexclusivevolumebucket bool `json:"isExclusiveVolumeBucket,omitempty"`
     // states if the bucket is default within tenant
     TenantDefault bool `json:"tenant_default,omitempty"`
@@ -2849,7 +2849,7 @@ type VolumeConfiguration struct {
     // Textual representation of the basic configuration
     DefaultConfig ConfigurationStatement `json:"default_config,omitempty"`
     // Optional list of one or more refinements of the basic configuration
-    Refinement []*ConfigurationRefinement `json:"refinement"`
+    Refinement []*ConfigurationRefinement `json:"refinement,omitempty"`
     SnapshotConfiguration VolumeSnapshotConfiguration `json:"snapshot_configuration,omitempty"`
     MetadataCacheConfiguration FileMetadataCacheConfiguration `json:"metadata_cache_configuration,omitempty"`
     // Definition of security critical behaviour
@@ -2890,7 +2890,7 @@ type VolumeSecurityConfiguration struct {
     // Policy to handle unknown accounts
     UserAndGroupMappingPolicy VolumeSecurityConfiguration_MappingPolicy `json:"user_and_group_mapping_policy,omitempty"`
     // Additional groups that have superuser privileges on volume
-    AdditionalPrivilegedGroups []string `json:"additional_privileged_groups"`
+    AdditionalPrivilegedGroups []string `json:"additional_privileged_groups,omitempty"`
     // Allow setting SUID and SGID without superuser privileges
     UnprivilegedUserCanSetSuid bool `json:"unprivileged_user_can_set_suid,omitempty"`
     // Allow chown without superuser privileges
@@ -2948,611 +2948,698 @@ type VolumeSnapshotConfiguration struct {
     SnapshotLifetimeS int32 `json:"snapshot_lifetime_s,omitempty"`
 }
 
-func (client QuobyteClient) AddCa(request *AddCaRequest) (response *AddCaResponse, err error) {
-    if err = client.sendRequest("addCa", request, response); err != nil {
+func (client QuobyteClient) AddCa(request *AddCaRequest) (result *AddCaResponse, err error) {
+    var response AddCaResponse
+    if err = client.sendRequest("addCa", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) AddCertificate(request *AddCertificateRequest) (response *AddCertificateResponse, err error) {
-    if err = client.sendRequest("addCertificate", request, response); err != nil {
+func (client QuobyteClient) AddCertificate(request *AddCertificateRequest) (result *AddCertificateResponse, err error) {
+    var response AddCertificateResponse
+    if err = client.sendRequest("addCertificate", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) AddCsr(request *AddCsrRequest) (response *AddCsrResponse, err error) {
-    if err = client.sendRequest("addCsr", request, response); err != nil {
+func (client QuobyteClient) AddCsr(request *AddCsrRequest) (result *AddCsrResponse, err error) {
+    var response AddCsrResponse
+    if err = client.sendRequest("addCsr", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) AddRegistryReplica(request *AddRegistryReplicaRequest) (response *AddRegistryReplicaResponse, err error) {
-    if err = client.sendRequest("addRegistryReplica", request, response); err != nil {
+func (client QuobyteClient) AddRegistryReplica(request *AddRegistryReplicaRequest) (result *AddRegistryReplicaResponse, err error) {
+    var response AddRegistryReplicaResponse
+    if err = client.sendRequest("addRegistryReplica", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) CancelSupportDump(request *CancelSupportDumpRequest) (response *CancelSupportDumpResponse, err error) {
-    if err = client.sendRequest("cancelSupportDump", request, response); err != nil {
+func (client QuobyteClient) CancelSupportDump(request *CancelSupportDumpRequest) (result *CancelSupportDumpResponse, err error) {
+    var response CancelSupportDumpResponse
+    if err = client.sendRequest("cancelSupportDump", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) CancelTask(request *CancelTaskRequest) (response *CancelTaskResponse, err error) {
-    if err = client.sendRequest("cancelTask", request, response); err != nil {
+func (client QuobyteClient) CancelTask(request *CancelTaskRequest) (result *CancelTaskResponse, err error) {
+    var response CancelTaskResponse
+    if err = client.sendRequest("cancelTask", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ConfigureRule(request *ConfigureRuleRequest) (response *ConfigureRuleResponse, err error) {
-    if err = client.sendRequest("configureRule", request, response); err != nil {
+func (client QuobyteClient) ConfigureRule(request *ConfigureRuleRequest) (result *ConfigureRuleResponse, err error) {
+    var response ConfigureRuleResponse
+    if err = client.sendRequest("configureRule", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) CreateAccessKeyCredentials(request *CreateAccessKeyCredentialsRequest) (response *CreateAccessKeyCredentialsResponse, err error) {
-    if err = client.sendRequest("createAccessKeyCredentials", request, response); err != nil {
+func (client QuobyteClient) CreateAccessKeyCredentials(request *CreateAccessKeyCredentialsRequest) (result *CreateAccessKeyCredentialsResponse, err error) {
+    var response CreateAccessKeyCredentialsResponse
+    if err = client.sendRequest("createAccessKeyCredentials", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) CreateCopyFilesTask(request *CreateCopyFilesTaskRequest) (response *CreateTaskResponse, err error) {
-    if err = client.sendRequest("createCopyFilesTask", request, response); err != nil {
+func (client QuobyteClient) CreateCopyFilesTask(request *CreateCopyFilesTaskRequest) (result *CreateTaskResponse, err error) {
+    var response CreateTaskResponse
+    if err = client.sendRequest("createCopyFilesTask", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) CreateMirroredVolume(request *CreateMirroredVolumeRequest) (response *CreateMirroredVolumeResponse, err error) {
-    if err = client.sendRequest("createMirroredVolume", request, response); err != nil {
+func (client QuobyteClient) CreateMirroredVolume(request *CreateMirroredVolumeRequest) (result *CreateMirroredVolumeResponse, err error) {
+    var response CreateMirroredVolumeResponse
+    if err = client.sendRequest("createMirroredVolume", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) CreateSnapshot(request *CreateSnapshotRequest) (response *CreateSnapshotResponse, err error) {
-    if err = client.sendRequest("createSnapshot", request, response); err != nil {
+func (client QuobyteClient) CreateSnapshot(request *CreateSnapshotRequest) (result *CreateSnapshotResponse, err error) {
+    var response CreateSnapshotResponse
+    if err = client.sendRequest("createSnapshot", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) CreateTask(request *CreateTaskRequest) (response *CreateTaskResponse, err error) {
-    if err = client.sendRequest("createTask", request, response); err != nil {
+func (client QuobyteClient) CreateTask(request *CreateTaskRequest) (result *CreateTaskResponse, err error) {
+    var response CreateTaskResponse
+    if err = client.sendRequest("createTask", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) CreateUser(request *CreateUserRequest) (response *CreateUserResponse, err error) {
-    if err = client.sendRequest("createUser", request, response); err != nil {
+func (client QuobyteClient) CreateUser(request *CreateUserRequest) (result *CreateUserResponse, err error) {
+    var response CreateUserResponse
+    if err = client.sendRequest("createUser", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) CreateVolume(request *CreateVolumeRequest) (response *CreateVolumeResponse, err error) {
-    if err = client.sendRequest("createVolume", request, response); err != nil {
+func (client QuobyteClient) CreateVolume(request *CreateVolumeRequest) (result *CreateVolumeResponse, err error) {
+    var response CreateVolumeResponse
+    if err = client.sendRequest("createVolume", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DecideCsr(request *DecideCsrRequest) (response *DecideCsrResponse, err error) {
-    if err = client.sendRequest("decideCsr", request, response); err != nil {
+func (client QuobyteClient) DecideCsr(request *DecideCsrRequest) (result *DecideCsrResponse, err error) {
+    var response DecideCsrResponse
+    if err = client.sendRequest("decideCsr", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeleteAccessKeyCredentials(request *DeleteAccessKeyCredentialsRequest) (response *DeleteAccessKeyCredentialsResponse, err error) {
-    if err = client.sendRequest("deleteAccessKeyCredentials", request, response); err != nil {
+func (client QuobyteClient) DeleteAccessKeyCredentials(request *DeleteAccessKeyCredentialsRequest) (result *DeleteAccessKeyCredentialsResponse, err error) {
+    var response DeleteAccessKeyCredentialsResponse
+    if err = client.sendRequest("deleteAccessKeyCredentials", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeleteCa(request *DeleteCaRequest) (response *DeleteCaResponse, err error) {
-    if err = client.sendRequest("deleteCa", request, response); err != nil {
+func (client QuobyteClient) DeleteCa(request *DeleteCaRequest) (result *DeleteCaResponse, err error) {
+    var response DeleteCaResponse
+    if err = client.sendRequest("deleteCa", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeleteCertificate(request *DeleteCertificateRequest) (response *DeleteCertificateResponse, err error) {
-    if err = client.sendRequest("deleteCertificate", request, response); err != nil {
+func (client QuobyteClient) DeleteCertificate(request *DeleteCertificateRequest) (result *DeleteCertificateResponse, err error) {
+    var response DeleteCertificateResponse
+    if err = client.sendRequest("deleteCertificate", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeleteConfiguration(request *DeleteConfigurationRequest) (response *DeleteConfigurationResponse, err error) {
-    if err = client.sendRequest("deleteConfiguration", request, response); err != nil {
+func (client QuobyteClient) DeleteConfiguration(request *DeleteConfigurationRequest) (result *DeleteConfigurationResponse, err error) {
+    var response DeleteConfigurationResponse
+    if err = client.sendRequest("deleteConfiguration", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeleteCsr(request *DeleteCsrRequest) (response *DeleteCsrResponse, err error) {
-    if err = client.sendRequest("deleteCsr", request, response); err != nil {
+func (client QuobyteClient) DeleteCsr(request *DeleteCsrRequest) (result *DeleteCsrResponse, err error) {
+    var response DeleteCsrResponse
+    if err = client.sendRequest("deleteCsr", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeleteSnapshot(request *DeleteSnapshotRequest) (response *DeleteSnapshotResponse, err error) {
-    if err = client.sendRequest("deleteSnapshot", request, response); err != nil {
+func (client QuobyteClient) DeleteSnapshot(request *DeleteSnapshotRequest) (result *DeleteSnapshotResponse, err error) {
+    var response DeleteSnapshotResponse
+    if err = client.sendRequest("deleteSnapshot", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeleteTenant(request *DeleteTenantRequest) (response *DeleteTenantResponse, err error) {
-    if err = client.sendRequest("deleteTenant", request, response); err != nil {
+func (client QuobyteClient) DeleteTenant(request *DeleteTenantRequest) (result *DeleteTenantResponse, err error) {
+    var response DeleteTenantResponse
+    if err = client.sendRequest("deleteTenant", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeleteUser(request *DeleteUserRequest) (response *DeleteUserResponse, err error) {
-    if err = client.sendRequest("deleteUser", request, response); err != nil {
+func (client QuobyteClient) DeleteUser(request *DeleteUserRequest) (result *DeleteUserResponse, err error) {
+    var response DeleteUserResponse
+    if err = client.sendRequest("deleteUser", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeleteVolume(request *DeleteVolumeRequest) (response *DeleteVolumeResponse, err error) {
-    if err = client.sendRequest("deleteVolume", request, response); err != nil {
+func (client QuobyteClient) DeleteVolume(request *DeleteVolumeRequest) (result *DeleteVolumeResponse, err error) {
+    var response DeleteVolumeResponse
+    if err = client.sendRequest("deleteVolume", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DeregisterService(request *DeregisterServiceRequest) (response *DeregisterServiceResponse, err error) {
-    if err = client.sendRequest("deregisterService", request, response); err != nil {
+func (client QuobyteClient) DeregisterService(request *DeregisterServiceRequest) (result *DeregisterServiceResponse, err error) {
+    var response DeregisterServiceResponse
+    if err = client.sendRequest("deregisterService", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) DisconnectMirroredVolume(request *DisconnectMirroredVolumeRequest) (response *DisconnectMirroredVolumeResponse, err error) {
-    if err = client.sendRequest("disconnectMirroredVolume", request, response); err != nil {
+func (client QuobyteClient) DisconnectMirroredVolume(request *DisconnectMirroredVolumeRequest) (result *DisconnectMirroredVolumeResponse, err error) {
+    var response DisconnectMirroredVolumeResponse
+    if err = client.sendRequest("disconnectMirroredVolume", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) EraseVolume(request *EraseVolumeRequest) (response *EraseVolumeResponse, err error) {
-    if err = client.sendRequest("eraseVolume", request, response); err != nil {
+func (client QuobyteClient) EraseVolume(request *EraseVolumeRequest) (result *EraseVolumeResponse, err error) {
+    var response EraseVolumeResponse
+    if err = client.sendRequest("eraseVolume", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ExportCertificate(request *ExportCertificateRequest) (response *ExportCertificateResponse, err error) {
-    if err = client.sendRequest("exportCertificate", request, response); err != nil {
+func (client QuobyteClient) ExportCertificate(request *ExportCertificateRequest) (result *ExportCertificateResponse, err error) {
+    var response ExportCertificateResponse
+    if err = client.sendRequest("exportCertificate", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ExportConfiguration(request *ExportConfigurationRequest) (response *ExportConfigurationResponse, err error) {
-    if err = client.sendRequest("exportConfiguration", request, response); err != nil {
+func (client QuobyteClient) ExportConfiguration(request *ExportConfigurationRequest) (result *ExportConfigurationResponse, err error) {
+    var response ExportConfigurationResponse
+    if err = client.sendRequest("exportConfiguration", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ExportVolume(request *ExportVolumeRequest) (response *ExportVolumeResponse, err error) {
-    if err = client.sendRequest("exportVolume", request, response); err != nil {
+func (client QuobyteClient) ExportVolume(request *ExportVolumeRequest) (result *ExportVolumeResponse, err error) {
+    var response ExportVolumeResponse
+    if err = client.sendRequest("exportVolume", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GenerateAsyncSupportDump(request *GenerateAsyncSupportDumpRequest) (response *GenerateAsyncSupportDumpResponse, err error) {
-    if err = client.sendRequest("generateAsyncSupportDump", request, response); err != nil {
+func (client QuobyteClient) GenerateAsyncSupportDump(request *GenerateAsyncSupportDumpRequest) (result *GenerateAsyncSupportDumpResponse, err error) {
+    var response GenerateAsyncSupportDumpResponse
+    if err = client.sendRequest("generateAsyncSupportDump", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetAccounting(request *GetAccountingRequest) (response *GetAccountingResponse, err error) {
-    if err = client.sendRequest("getAccounting", request, response); err != nil {
+func (client QuobyteClient) GetAccounting(request *GetAccountingRequest) (result *GetAccountingResponse, err error) {
+    var response GetAccountingResponse
+    if err = client.sendRequest("getAccounting", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetAuditLog(request *GetAuditLogRequest) (response *GetAuditLogResponse, err error) {
-    if err = client.sendRequest("getAuditLog", request, response); err != nil {
+func (client QuobyteClient) GetAuditLog(request *GetAuditLogRequest) (result *GetAuditLogResponse, err error) {
+    var response GetAuditLogResponse
+    if err = client.sendRequest("getAuditLog", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetCertificateSubject(request *GetCertificateSubjectRequest) (response *GetCertificateSubjectResponse, err error) {
-    if err = client.sendRequest("getCertificateSubject", request, response); err != nil {
+func (client QuobyteClient) GetCertificateSubject(request *GetCertificateSubjectRequest) (result *GetCertificateSubjectResponse, err error) {
+    var response GetCertificateSubjectResponse
+    if err = client.sendRequest("getCertificateSubject", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetClientList(request *GetClientListRequest) (response *GetClientListResponse, err error) {
-    if err = client.sendRequest("getClientList", request, response); err != nil {
+func (client QuobyteClient) GetClientList(request *GetClientListRequest) (result *GetClientListResponse, err error) {
+    var response GetClientListResponse
+    if err = client.sendRequest("getClientList", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetConfiguration(request *GetConfigurationRequest) (response *GetConfigurationResponse, err error) {
-    if err = client.sendRequest("getConfiguration", request, response); err != nil {
+func (client QuobyteClient) GetConfiguration(request *GetConfigurationRequest) (result *GetConfigurationResponse, err error) {
+    var response GetConfigurationResponse
+    if err = client.sendRequest("getConfiguration", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetDeviceIds(request *GetDeviceIdsRequest) (response *GetDeviceIdsResponse, err error) {
-    if err = client.sendRequest("getDeviceIds", request, response); err != nil {
+func (client QuobyteClient) GetDeviceIds(request *GetDeviceIdsRequest) (result *GetDeviceIdsResponse, err error) {
+    var response GetDeviceIdsResponse
+    if err = client.sendRequest("getDeviceIds", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetDeviceList(request *GetDeviceListRequest) (response *GetDeviceListResponse, err error) {
-    if err = client.sendRequest("getDeviceList", request, response); err != nil {
+func (client QuobyteClient) GetDeviceList(request *GetDeviceListRequest) (result *GetDeviceListResponse, err error) {
+    var response GetDeviceListResponse
+    if err = client.sendRequest("getDeviceList", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetDeviceNetworkEndpoints(request *GetDeviceNetworkEndpointsRequest) (response *GetDeviceNetworkEndpointsResponse, err error) {
-    if err = client.sendRequest("getDeviceNetworkEndpoints", request, response); err != nil {
+func (client QuobyteClient) GetDeviceNetworkEndpoints(request *GetDeviceNetworkEndpointsRequest) (result *GetDeviceNetworkEndpointsResponse, err error) {
+    var response GetDeviceNetworkEndpointsResponse
+    if err = client.sendRequest("getDeviceNetworkEndpoints", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetDeviceTags(request *GetDeviceTagsRequest) (response *GetDeviceTagsResponse, err error) {
-    if err = client.sendRequest("getDeviceTags", request, response); err != nil {
+func (client QuobyteClient) GetDeviceTags(request *GetDeviceTagsRequest) (result *GetDeviceTagsResponse, err error) {
+    var response GetDeviceTagsResponse
+    if err = client.sendRequest("getDeviceTags", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetEffectiveVolumeConfiguration(request *GetEffectiveVolumeConfigurationRequest) (response *GetEffectiveVolumeConfigurationResponse, err error) {
-    if err = client.sendRequest("getEffectiveVolumeConfiguration", request, response); err != nil {
+func (client QuobyteClient) GetEffectiveVolumeConfiguration(request *GetEffectiveVolumeConfigurationRequest) (result *GetEffectiveVolumeConfigurationResponse, err error) {
+    var response GetEffectiveVolumeConfigurationResponse
+    if err = client.sendRequest("getEffectiveVolumeConfiguration", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetFileMetadataDump(request *GetFileMetadataDumpRequest) (response *GetFileMetadataDumpResponse, err error) {
-    if err = client.sendRequest("getFileMetadataDump", request, response); err != nil {
+func (client QuobyteClient) GetFileMetadataDump(request *GetFileMetadataDumpRequest) (result *GetFileMetadataDumpResponse, err error) {
+    var response GetFileMetadataDumpResponse
+    if err = client.sendRequest("getFileMetadataDump", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetFiringRules(request *GetFiringRulesRequest) (response *GetFiringRulesResponse, err error) {
-    if err = client.sendRequest("getFiringRules", request, response); err != nil {
+func (client QuobyteClient) GetFiringRules(request *GetFiringRulesRequest) (result *GetFiringRulesResponse, err error) {
+    var response GetFiringRulesResponse
+    if err = client.sendRequest("getFiringRules", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetHealthManagerStatus(request *GetHealthManagerStatusRequest) (response *GetHealthManagerStatusResponse, err error) {
-    if err = client.sendRequest("getHealthManagerStatus", request, response); err != nil {
+func (client QuobyteClient) GetHealthManagerStatus(request *GetHealthManagerStatusRequest) (result *GetHealthManagerStatusResponse, err error) {
+    var response GetHealthManagerStatusResponse
+    if err = client.sendRequest("getHealthManagerStatus", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetInformation(request *GetInformationRequest) (response *GetInformationResponse, err error) {
-    if err = client.sendRequest("getInformation", request, response); err != nil {
+func (client QuobyteClient) GetInformation(request *GetInformationRequest) (result *GetInformationResponse, err error) {
+    var response GetInformationResponse
+    if err = client.sendRequest("getInformation", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetLabels(request *GetLabelsRequest) (response *GetLabelsResponse, err error) {
-    if err = client.sendRequest("getLabels", request, response); err != nil {
+func (client QuobyteClient) GetLabels(request *GetLabelsRequest) (result *GetLabelsResponse, err error) {
+    var response GetLabelsResponse
+    if err = client.sendRequest("getLabels", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetLatestEvent(request *GetLatestEventRequest) (response *GetLatestEventResponse, err error) {
-    if err = client.sendRequest("getLatestEvent", request, response); err != nil {
+func (client QuobyteClient) GetLatestEvent(request *GetLatestEventRequest) (result *GetLatestEventResponse, err error) {
+    var response GetLatestEventResponse
+    if err = client.sendRequest("getLatestEvent", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetLicense(request *GetLicenseRequest) (response *GetLicenseResponse, err error) {
-    if err = client.sendRequest("getLicense", request, response); err != nil {
+func (client QuobyteClient) GetLicense(request *GetLicenseRequest) (result *GetLicenseResponse, err error) {
+    var response GetLicenseResponse
+    if err = client.sendRequest("getLicense", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetQuota(request *GetQuotaRequest) (response *GetQuotaResponse, err error) {
-    if err = client.sendRequest("getQuota", request, response); err != nil {
+func (client QuobyteClient) GetQuota(request *GetQuotaRequest) (result *GetQuotaResponse, err error) {
+    var response GetQuotaResponse
+    if err = client.sendRequest("getQuota", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetRules(request *GetRulesRequest) (response *GetRulesResponse, err error) {
-    if err = client.sendRequest("getRules", request, response); err != nil {
+func (client QuobyteClient) GetRules(request *GetRulesRequest) (result *GetRulesResponse, err error) {
+    var response GetRulesResponse
+    if err = client.sendRequest("getRules", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetServiceDump(request *GetServiceDumpRequest) (response *GetServiceDumpResponse, err error) {
-    if err = client.sendRequest("getServiceDump", request, response); err != nil {
+func (client QuobyteClient) GetServiceDump(request *GetServiceDumpRequest) (result *GetServiceDumpResponse, err error) {
+    var response GetServiceDumpResponse
+    if err = client.sendRequest("getServiceDump", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetServices(request *GetServicesRequest) (response *GetServicesResponse, err error) {
-    if err = client.sendRequest("getServices", request, response); err != nil {
+func (client QuobyteClient) GetServices(request *GetServicesRequest) (result *GetServicesResponse, err error) {
+    var response GetServicesResponse
+    if err = client.sendRequest("getServices", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetSupportDump(request *GetSupportDumpRequest) (response *GetSupportDumpResponse, err error) {
-    if err = client.sendRequest("getSupportDump", request, response); err != nil {
+func (client QuobyteClient) GetSupportDump(request *GetSupportDumpRequest) (result *GetSupportDumpResponse, err error) {
+    var response GetSupportDumpResponse
+    if err = client.sendRequest("getSupportDump", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetSupportDumpStatus(request *GetSupportDumpStatusRequest) (response *GetSupportDumpStatusResponse, err error) {
-    if err = client.sendRequest("getSupportDumpStatus", request, response); err != nil {
+func (client QuobyteClient) GetSupportDumpStatus(request *GetSupportDumpStatusRequest) (result *GetSupportDumpStatusResponse, err error) {
+    var response GetSupportDumpStatusResponse
+    if err = client.sendRequest("getSupportDumpStatus", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetSystemStatistics(request *GetSystemStatisticsRequest) (response *GetSystemStatisticsResponse, err error) {
-    if err = client.sendRequest("getSystemStatistics", request, response); err != nil {
+func (client QuobyteClient) GetSystemStatistics(request *GetSystemStatisticsRequest) (result *GetSystemStatisticsResponse, err error) {
+    var response GetSystemStatisticsResponse
+    if err = client.sendRequest("getSystemStatistics", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetTaskList(request *GetTaskListRequest) (response *GetTaskListResponse, err error) {
-    if err = client.sendRequest("getTaskList", request, response); err != nil {
+func (client QuobyteClient) GetTaskList(request *GetTaskListRequest) (result *GetTaskListResponse, err error) {
+    var response GetTaskListResponse
+    if err = client.sendRequest("getTaskList", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetTenant(request *GetTenantRequest) (response *GetTenantResponse, err error) {
-    if err = client.sendRequest("getTenant", request, response); err != nil {
+func (client QuobyteClient) GetTenant(request *GetTenantRequest) (result *GetTenantResponse, err error) {
+    var response GetTenantResponse
+    if err = client.sendRequest("getTenant", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetUnformattedDevices(request *GetUnformattedDevicesRequest) (response *GetUnformattedDevicesResponse, err error) {
-    if err = client.sendRequest("getUnformattedDevices", request, response); err != nil {
+func (client QuobyteClient) GetUnformattedDevices(request *GetUnformattedDevicesRequest) (result *GetUnformattedDevicesResponse, err error) {
+    var response GetUnformattedDevicesResponse
+    if err = client.sendRequest("getUnformattedDevices", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetUsers(request *GetUsersRequest) (response *GetUsersResponse, err error) {
-    if err = client.sendRequest("getUsers", request, response); err != nil {
+func (client QuobyteClient) GetUsers(request *GetUsersRequest) (result *GetUsersResponse, err error) {
+    var response GetUsersResponse
+    if err = client.sendRequest("getUsers", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) GetVolumeList(request *GetVolumeListRequest) (response *GetVolumeListResponse, err error) {
-    if err = client.sendRequest("getVolumeList", request, response); err != nil {
+func (client QuobyteClient) GetVolumeList(request *GetVolumeListRequest) (result *GetVolumeListResponse, err error) {
+    var response GetVolumeListResponse
+    if err = client.sendRequest("getVolumeList", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ImportConfiguration(request *ImportConfigurationRequest) (response *ImportConfigurationResponse, err error) {
-    if err = client.sendRequest("importConfiguration", request, response); err != nil {
+func (client QuobyteClient) ImportConfiguration(request *ImportConfigurationRequest) (result *ImportConfigurationResponse, err error) {
+    var response ImportConfigurationResponse
+    if err = client.sendRequest("importConfiguration", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ListCa(request *ListCaRequest) (response *ListCaResponse, err error) {
-    if err = client.sendRequest("listCa", request, response); err != nil {
+func (client QuobyteClient) ListCa(request *ListCaRequest) (result *ListCaResponse, err error) {
+    var response ListCaResponse
+    if err = client.sendRequest("listCa", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ListCertificates(request *ListCertificatesRequest) (response *ListCertificatesResponse, err error) {
-    if err = client.sendRequest("listCertificates", request, response); err != nil {
+func (client QuobyteClient) ListCertificates(request *ListCertificatesRequest) (result *ListCertificatesResponse, err error) {
+    var response ListCertificatesResponse
+    if err = client.sendRequest("listCertificates", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ListCsr(request *ListCsrRequest) (response *ListCsrResponse, err error) {
-    if err = client.sendRequest("listCsr", request, response); err != nil {
+func (client QuobyteClient) ListCsr(request *ListCsrRequest) (result *ListCsrResponse, err error) {
+    var response ListCsrResponse
+    if err = client.sendRequest("listCsr", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ListRegistryReplicas(request *ListRegistryReplicasRequest) (response *ListRegistryReplicasResponse, err error) {
-    if err = client.sendRequest("listRegistryReplicas", request, response); err != nil {
+func (client QuobyteClient) ListRegistryReplicas(request *ListRegistryReplicasRequest) (result *ListRegistryReplicasResponse, err error) {
+    var response ListRegistryReplicasResponse
+    if err = client.sendRequest("listRegistryReplicas", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ListSnapshots(request *ListSnapshotsRequest) (response *ListSnapshotsResponse, err error) {
-    if err = client.sendRequest("listSnapshots", request, response); err != nil {
+func (client QuobyteClient) ListSnapshots(request *ListSnapshotsRequest) (result *ListSnapshotsResponse, err error) {
+    var response ListSnapshotsResponse
+    if err = client.sendRequest("listSnapshots", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) MakeDevice(request *MakeDeviceRequest) (response *MakeDeviceResponse, err error) {
-    if err = client.sendRequest("makeDevice", request, response); err != nil {
+func (client QuobyteClient) MakeDevice(request *MakeDeviceRequest) (result *MakeDeviceResponse, err error) {
+    var response MakeDeviceResponse
+    if err = client.sendRequest("makeDevice", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) PublishBucketVolume(request *PublishBucketVolumeRequest) (response *PublishBucketVolumeResponse, err error) {
-    if err = client.sendRequest("publishBucketVolume", request, response); err != nil {
+func (client QuobyteClient) PublishBucketVolume(request *PublishBucketVolumeRequest) (result *PublishBucketVolumeResponse, err error) {
+    var response PublishBucketVolumeResponse
+    if err = client.sendRequest("publishBucketVolume", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) RegenerateDatabase(request *RegenerateDatabaseRequest) (response *RegenerateDatabaseResponse, err error) {
-    if err = client.sendRequest("regenerateDatabase", request, response); err != nil {
+func (client QuobyteClient) RegenerateDatabase(request *RegenerateDatabaseRequest) (result *RegenerateDatabaseResponse, err error) {
+    var response RegenerateDatabaseResponse
+    if err = client.sendRequest("regenerateDatabase", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) RemoveRegistryReplica(request *RemoveRegistryReplicaRequest) (response *RemoveRegistryReplicaResponse, err error) {
-    if err = client.sendRequest("removeRegistryReplica", request, response); err != nil {
+func (client QuobyteClient) RemoveRegistryReplica(request *RemoveRegistryReplicaRequest) (result *RemoveRegistryReplicaResponse, err error) {
+    var response RemoveRegistryReplicaResponse
+    if err = client.sendRequest("removeRegistryReplica", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ResolveGlobalFileId(request *ResolveGlobalFileIdRequest) (response *ResolveGlobalFileIdResponse, err error) {
-    if err = client.sendRequest("resolveGlobalFileId", request, response); err != nil {
+func (client QuobyteClient) ResolveGlobalFileId(request *ResolveGlobalFileIdRequest) (result *ResolveGlobalFileIdResponse, err error) {
+    var response ResolveGlobalFileIdResponse
+    if err = client.sendRequest("resolveGlobalFileId", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ResolveTenantName(request *ResolveTenantNameRequest) (response *ResolveTenantNameResponse, err error) {
-    if err = client.sendRequest("resolveTenantName", request, response); err != nil {
+func (client QuobyteClient) ResolveTenantName(request *ResolveTenantNameRequest) (result *ResolveTenantNameResponse, err error) {
+    var response ResolveTenantNameResponse
+    if err = client.sendRequest("resolveTenantName", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ResolveVolumeName(request *ResolveVolumeNameRequest) (response *ResolveVolumeNameResponse, err error) {
-    if err = client.sendRequest("resolveVolumeName", request, response); err != nil {
+func (client QuobyteClient) ResolveVolumeName(request *ResolveVolumeNameRequest) (result *ResolveVolumeNameResponse, err error) {
+    var response ResolveVolumeNameResponse
+    if err = client.sendRequest("resolveVolumeName", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) ResumeTask(request *ResumeTaskRequest) (response *ResumeTaskResponse, err error) {
-    if err = client.sendRequest("resumeTask", request, response); err != nil {
+func (client QuobyteClient) ResumeTask(request *ResumeTaskRequest) (result *ResumeTaskResponse, err error) {
+    var response ResumeTaskResponse
+    if err = client.sendRequest("resumeTask", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) RetryTask(request *RetryTaskRequest) (response *RetryTaskResponse, err error) {
-    if err = client.sendRequest("retryTask", request, response); err != nil {
+func (client QuobyteClient) RetryTask(request *RetryTaskRequest) (result *RetryTaskResponse, err error) {
+    var response RetryTaskResponse
+    if err = client.sendRequest("retryTask", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) RevokeCertificate(request *RevokeCertificateRequest) (response *RevokeCertificateResponse, err error) {
-    if err = client.sendRequest("revokeCertificate", request, response); err != nil {
+func (client QuobyteClient) RevokeCertificate(request *RevokeCertificateRequest) (result *RevokeCertificateResponse, err error) {
+    var response RevokeCertificateResponse
+    if err = client.sendRequest("revokeCertificate", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) SetCertificateOwner(request *SetCertificateOwnerRequest) (response *SetCertificateOwnerResponse, err error) {
-    if err = client.sendRequest("setCertificateOwner", request, response); err != nil {
+func (client QuobyteClient) SetCertificateOwner(request *SetCertificateOwnerRequest) (result *SetCertificateOwnerResponse, err error) {
+    var response SetCertificateOwnerResponse
+    if err = client.sendRequest("setCertificateOwner", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) SetCertificateSubject(request *SetCertificateSubjectRequest) (response *SetCertificateSubjectResponse, err error) {
-    if err = client.sendRequest("setCertificateSubject", request, response); err != nil {
+func (client QuobyteClient) SetCertificateSubject(request *SetCertificateSubjectRequest) (result *SetCertificateSubjectResponse, err error) {
+    var response SetCertificateSubjectResponse
+    if err = client.sendRequest("setCertificateSubject", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) SetConfiguration(request *SetConfigurationRequest) (response *SetConfigurationResponse, err error) {
-    if err = client.sendRequest("setConfiguration", request, response); err != nil {
+func (client QuobyteClient) SetConfiguration(request *SetConfigurationRequest) (result *SetConfigurationResponse, err error) {
+    var response SetConfigurationResponse
+    if err = client.sendRequest("setConfiguration", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) SetLabels(request *SetLabelsRequest) (response *SetLabelsResponse, err error) {
-    if err = client.sendRequest("setLabels", request, response); err != nil {
+func (client QuobyteClient) SetLabels(request *SetLabelsRequest) (result *SetLabelsResponse, err error) {
+    var response SetLabelsResponse
+    if err = client.sendRequest("setLabels", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) SetQuota(request *SetQuotaRequest) (response *SetQuotaResponse, err error) {
-    if err = client.sendRequest("setQuota", request, response); err != nil {
+func (client QuobyteClient) SetQuota(request *SetQuotaRequest) (result *SetQuotaResponse, err error) {
+    var response SetQuotaResponse
+    if err = client.sendRequest("setQuota", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) SetTenant(request *SetTenantRequest) (response *SetTenantResponse, err error) {
-    if err = client.sendRequest("setTenant", request, response); err != nil {
+func (client QuobyteClient) SetTenant(request *SetTenantRequest) (result *SetTenantResponse, err error) {
+    var response SetTenantResponse
+    if err = client.sendRequest("setTenant", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) UnpublishBucketVolume(request *UnpublishBucketVolumeRequest) (response *UnpublishBucketVolumeResponse, err error) {
-    if err = client.sendRequest("unpublishBucketVolume", request, response); err != nil {
+func (client QuobyteClient) UnpublishBucketVolume(request *UnpublishBucketVolumeRequest) (result *UnpublishBucketVolumeResponse, err error) {
+    var response UnpublishBucketVolumeResponse
+    if err = client.sendRequest("unpublishBucketVolume", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) UpdateDevice(request *UpdateDeviceRequest) (response *UpdateDeviceResponse, err error) {
-    if err = client.sendRequest("updateDevice", request, response); err != nil {
+func (client QuobyteClient) UpdateDevice(request *UpdateDeviceRequest) (result *UpdateDeviceResponse, err error) {
+    var response UpdateDeviceResponse
+    if err = client.sendRequest("updateDevice", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) UpdateUser(request *UpdateUserRequest) (response *UpdateUserResponse, err error) {
-    if err = client.sendRequest("updateUser", request, response); err != nil {
+func (client QuobyteClient) UpdateUser(request *UpdateUserRequest) (result *UpdateUserResponse, err error) {
+    var response UpdateUserResponse
+    if err = client.sendRequest("updateUser", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) UpdateVolume(request *UpdateVolumeRequest) (response *UpdateVolumeResponse, err error) {
-    if err = client.sendRequest("updateVolume", request, response); err != nil {
+func (client QuobyteClient) UpdateVolume(request *UpdateVolumeRequest) (result *UpdateVolumeResponse, err error) {
+    var response UpdateVolumeResponse
+    if err = client.sendRequest("updateVolume", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
 
-func (client QuobyteClient) VerifyLicense(request *VerifyLicenseRequest) (response *VerifyLicenseResponse, err error) {
-    if err = client.sendRequest("verifyLicense", request, response); err != nil {
+func (client QuobyteClient) VerifyLicense(request *VerifyLicenseRequest) (result *VerifyLicenseResponse, err error) {
+    var response VerifyLicenseResponse
+    if err = client.sendRequest("verifyLicense", request, &response); err != nil {
         return nil, err
     }
-    return response, nil
+    return &response, nil
 }
