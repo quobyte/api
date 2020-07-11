@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"math/rand"
 	"net/http"
 	"reflect"
@@ -122,7 +121,7 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 			return (err)
 		}
 		return fmt.Errorf("JsonRPC failed with error (error code: %d) %s",
-                  resp.StatusCode, string(body))
+			resp.StatusCode, string(body))
 	}
 	return decodeResponse(resp.Body, &response)
 }
