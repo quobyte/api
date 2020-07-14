@@ -43,7 +43,7 @@ func main() {
 
     response, err := client.CreateVolume(req)
     if err != nil {
-        log.Fatalf("Error:", err)
+        log.Fatalf("Error: %v", err)
     }
 
     capactiy := int64(1024 * 1024 * 1024)
