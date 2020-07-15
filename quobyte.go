@@ -114,7 +114,7 @@ func (client *QuobyteClient) DeleteVolumeByName(volumeName, tenant string) error
 }
 
 // SetVolumeQuota sets a Quota to the specified Volume
-func (client *QuobyteClient) SetVolumeQuota(volumeUUID string, quotaSize int64) error {
+func (client *QuobyteClient) SetVolumeQuota(volumeUUID string, quotaSize uint64) error {
 	request := &SetQuotaRequest{
 		Quotas: []*Quota{
 			&Quota{
