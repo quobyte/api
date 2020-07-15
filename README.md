@@ -17,24 +17,41 @@ import (
 )
 
 func main() {
-    client := quobyte_api.NewQuobyteClient("http://apiserver:7860", "user", "password")
+    url := flag.String("url", "", "URL of Quobyte API")
+    username := flag.String("username", "", "username")
+    password := flag.String("password", "", "password")
+    flag.Parse()
+
+    if *url == "" || *username == "" || *password == "" {
+        flag.PrintDefaults()
+        os.Exit(1)
+    }
+
+    client := quobyte_api.NewQuobyteClient(*url, *username, *password)
     client.SetAPIRetryPolicy(quobyte_api.RetryInfinitely) // Default quobyte_api.RetryInteractive
     req := &quobyte_api.CreateVolumeRequest{
         Name:              "MyVolume",
-        RootUserID:        "root",
-        RootGroupID:       "root",
+        TenantId:          "32edb36d-badc-affe-b44a-4ab749af4d9a",
+        RootUserId:        "root",
+        RootGroupId:	   "root",
         ConfigurationName: "BASE",
-        Labels: []quobyte_api.Label{
+        Label: []*quobyte_api.Label{
             {Name: "label1", Value: "value1"},
             {Name: "label2", Value: "value2"},
         },
     }
 
-    volumeUUID, err := client.CreateVolume(req)
+    response, err := client.CreateVolume(req)
     if err != nil {
-        log.Fatalf("Error:", err)
+        log.Fatalf("Error: %v", err)
     }
 
-    log.Printf("%s", volumeUUID)
+    capactiy := int64(1024 * 1024 * 1024)
+    err = client.SetVolumeQuota(response.VolumeUuid, uint64(capactiy))
+    if err != nil {
+        log.Fatalf("Error: %v", err)
+    }
+
+    log.Printf("%s", response.VolumeUuid)
 }
 ```
