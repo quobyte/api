@@ -4322,7 +4322,7 @@ type XAttr struct {
     Value string `json:"value,omitempty"`
 }
 
-func (client QuobyteClient) AcknowledgeAlert(request *AcknowledgeAlertRequest) (result *AcknowledgeAlertResponse, err error) {
+func (client *QuobyteClient) AcknowledgeAlert(request *AcknowledgeAlertRequest) (result *AcknowledgeAlertResponse, err error) {
     var response AcknowledgeAlertResponse
     if err = client.sendRequest("acknowledgeAlert", request, &response); err != nil {
         return nil, err
@@ -4330,7 +4330,7 @@ func (client QuobyteClient) AcknowledgeAlert(request *AcknowledgeAlertRequest) (
     return &response, nil
 }
 
-func (client QuobyteClient) AddCa(request *AddCaRequest) (result *AddCaResponse, err error) {
+func (client *QuobyteClient) AddCa(request *AddCaRequest) (result *AddCaResponse, err error) {
     var response AddCaResponse
     if err = client.sendRequest("addCa", request, &response); err != nil {
         return nil, err
@@ -4338,7 +4338,7 @@ func (client QuobyteClient) AddCa(request *AddCaRequest) (result *AddCaResponse,
     return &response, nil
 }
 
-func (client QuobyteClient) AddCertificate(request *AddCertificateRequest) (result *AddCertificateResponse, err error) {
+func (client *QuobyteClient) AddCertificate(request *AddCertificateRequest) (result *AddCertificateResponse, err error) {
     var response AddCertificateResponse
     if err = client.sendRequest("addCertificate", request, &response); err != nil {
         return nil, err
@@ -4346,7 +4346,7 @@ func (client QuobyteClient) AddCertificate(request *AddCertificateRequest) (resu
     return &response, nil
 }
 
-func (client QuobyteClient) AddCsr(request *AddCsrRequest) (result *AddCsrResponse, err error) {
+func (client *QuobyteClient) AddCsr(request *AddCsrRequest) (result *AddCsrResponse, err error) {
     var response AddCsrResponse
     if err = client.sendRequest("addCsr", request, &response); err != nil {
         return nil, err
@@ -4354,7 +4354,7 @@ func (client QuobyteClient) AddCsr(request *AddCsrRequest) (result *AddCsrRespon
     return &response, nil
 }
 
-func (client QuobyteClient) AddRegistryReplica(request *AddRegistryReplicaRequest) (result *AddRegistryReplicaResponse, err error) {
+func (client *QuobyteClient) AddRegistryReplica(request *AddRegistryReplicaRequest) (result *AddRegistryReplicaResponse, err error) {
     var response AddRegistryReplicaResponse
     if err = client.sendRequest("addRegistryReplica", request, &response); err != nil {
         return nil, err
@@ -4362,7 +4362,7 @@ func (client QuobyteClient) AddRegistryReplica(request *AddRegistryReplicaReques
     return &response, nil
 }
 
-func (client QuobyteClient) CancelNetworkTest(request *CancelNetworkTestRequest) (result *CancelNetworkTestResponse, err error) {
+func (client *QuobyteClient) CancelNetworkTest(request *CancelNetworkTestRequest) (result *CancelNetworkTestResponse, err error) {
     var response CancelNetworkTestResponse
     if err = client.sendRequest("cancelNetworkTest", request, &response); err != nil {
         return nil, err
@@ -4370,7 +4370,7 @@ func (client QuobyteClient) CancelNetworkTest(request *CancelNetworkTestRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) CancelSupportDump(request *CancelSupportDumpRequest) (result *CancelSupportDumpResponse, err error) {
+func (client *QuobyteClient) CancelSupportDump(request *CancelSupportDumpRequest) (result *CancelSupportDumpResponse, err error) {
     var response CancelSupportDumpResponse
     if err = client.sendRequest("cancelSupportDump", request, &response); err != nil {
         return nil, err
@@ -4378,7 +4378,7 @@ func (client QuobyteClient) CancelSupportDump(request *CancelSupportDumpRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) CancelTask(request *CancelTaskRequest) (result *CancelTaskResponse, err error) {
+func (client *QuobyteClient) CancelTask(request *CancelTaskRequest) (result *CancelTaskResponse, err error) {
     var response CancelTaskResponse
     if err = client.sendRequest("cancelTask", request, &response); err != nil {
         return nil, err
@@ -4386,7 +4386,7 @@ func (client QuobyteClient) CancelTask(request *CancelTaskRequest) (result *Canc
     return &response, nil
 }
 
-func (client QuobyteClient) CancelVolumeErasure(request *CancelVolumeErasureRequest) (result *CancelVolumeErasureResponse, err error) {
+func (client *QuobyteClient) CancelVolumeErasure(request *CancelVolumeErasureRequest) (result *CancelVolumeErasureResponse, err error) {
     var response CancelVolumeErasureResponse
     if err = client.sendRequest("cancelVolumeErasure", request, &response); err != nil {
         return nil, err
@@ -4394,7 +4394,7 @@ func (client QuobyteClient) CancelVolumeErasure(request *CancelVolumeErasureRequ
     return &response, nil
 }
 
-func (client QuobyteClient) ChangePolicyRulePriority(request *ChangePolicyRulePriorityRequest) (result *ChangePolicyRulePriorityResponse, err error) {
+func (client *QuobyteClient) ChangePolicyRulePriority(request *ChangePolicyRulePriorityRequest) (result *ChangePolicyRulePriorityResponse, err error) {
     var response ChangePolicyRulePriorityResponse
     if err = client.sendRequest("changePolicyRulePriority", request, &response); err != nil {
         return nil, err
@@ -4402,7 +4402,7 @@ func (client QuobyteClient) ChangePolicyRulePriority(request *ChangePolicyRulePr
     return &response, nil
 }
 
-func (client QuobyteClient) ConfigureRule(request *ConfigureRuleRequest) (result *ConfigureRuleResponse, err error) {
+func (client *QuobyteClient) ConfigureRule(request *ConfigureRuleRequest) (result *ConfigureRuleResponse, err error) {
     var response ConfigureRuleResponse
     if err = client.sendRequest("configureRule", request, &response); err != nil {
         return nil, err
@@ -4410,7 +4410,7 @@ func (client QuobyteClient) ConfigureRule(request *ConfigureRuleRequest) (result
     return &response, nil
 }
 
-func (client QuobyteClient) CreateAccessKeyCredentials(request *CreateAccessKeyCredentialsRequest) (result *CreateAccessKeyCredentialsResponse, err error) {
+func (client *QuobyteClient) CreateAccessKeyCredentials(request *CreateAccessKeyCredentialsRequest) (result *CreateAccessKeyCredentialsResponse, err error) {
     var response CreateAccessKeyCredentialsResponse
     if err = client.sendRequest("createAccessKeyCredentials", request, &response); err != nil {
         return nil, err
@@ -4418,7 +4418,7 @@ func (client QuobyteClient) CreateAccessKeyCredentials(request *CreateAccessKeyC
     return &response, nil
 }
 
-func (client QuobyteClient) CreateCopyFilesTask(request *CreateCopyFilesTaskRequest) (result *CreateTaskResponse, err error) {
+func (client *QuobyteClient) CreateCopyFilesTask(request *CreateCopyFilesTaskRequest) (result *CreateTaskResponse, err error) {
     var response CreateTaskResponse
     if err = client.sendRequest("createCopyFilesTask", request, &response); err != nil {
         return nil, err
@@ -4426,7 +4426,7 @@ func (client QuobyteClient) CreateCopyFilesTask(request *CreateCopyFilesTaskRequ
     return &response, nil
 }
 
-func (client QuobyteClient) CreateMasterKeystoreSlot(request *CreateMasterKeystoreSlotRequest) (result *CreateMasterKeystoreSlotResponse, err error) {
+func (client *QuobyteClient) CreateMasterKeystoreSlot(request *CreateMasterKeystoreSlotRequest) (result *CreateMasterKeystoreSlotResponse, err error) {
     var response CreateMasterKeystoreSlotResponse
     if err = client.sendRequest("createMasterKeystoreSlot", request, &response); err != nil {
         return nil, err
@@ -4434,7 +4434,7 @@ func (client QuobyteClient) CreateMasterKeystoreSlot(request *CreateMasterKeysto
     return &response, nil
 }
 
-func (client QuobyteClient) CreateMirroredVolume(request *CreateMirroredVolumeRequest) (result *CreateMirroredVolumeResponse, err error) {
+func (client *QuobyteClient) CreateMirroredVolume(request *CreateMirroredVolumeRequest) (result *CreateMirroredVolumeResponse, err error) {
     var response CreateMirroredVolumeResponse
     if err = client.sendRequest("createMirroredVolume", request, &response); err != nil {
         return nil, err
@@ -4442,7 +4442,7 @@ func (client QuobyteClient) CreateMirroredVolume(request *CreateMirroredVolumeRe
     return &response, nil
 }
 
-func (client QuobyteClient) CreateNewUserKeystoreSlot(request *CreateNewUserKeystoreSlotRequest) (result *CreateNewUserKeystoreSlotResponse, err error) {
+func (client *QuobyteClient) CreateNewUserKeystoreSlot(request *CreateNewUserKeystoreSlotRequest) (result *CreateNewUserKeystoreSlotResponse, err error) {
     var response CreateNewUserKeystoreSlotResponse
     if err = client.sendRequest("createNewUserKeystoreSlot", request, &response); err != nil {
         return nil, err
@@ -4450,7 +4450,7 @@ func (client QuobyteClient) CreateNewUserKeystoreSlot(request *CreateNewUserKeys
     return &response, nil
 }
 
-func (client QuobyteClient) CreateNotificationRule(request *CreateNotificationRuleRequest) (result *CreateNotificationRuleResponse, err error) {
+func (client *QuobyteClient) CreateNotificationRule(request *CreateNotificationRuleRequest) (result *CreateNotificationRuleResponse, err error) {
     var response CreateNotificationRuleResponse
     if err = client.sendRequest("createNotificationRule", request, &response); err != nil {
         return nil, err
@@ -4458,7 +4458,7 @@ func (client QuobyteClient) CreateNotificationRule(request *CreateNotificationRu
     return &response, nil
 }
 
-func (client QuobyteClient) CreatePolicyRule(request *CreatePolicyRuleRequest) (result *CreatePolicyRuleResponse, err error) {
+func (client *QuobyteClient) CreatePolicyRule(request *CreatePolicyRuleRequest) (result *CreatePolicyRuleResponse, err error) {
     var response CreatePolicyRuleResponse
     if err = client.sendRequest("createPolicyRule", request, &response); err != nil {
         return nil, err
@@ -4466,7 +4466,7 @@ func (client QuobyteClient) CreatePolicyRule(request *CreatePolicyRuleRequest) (
     return &response, nil
 }
 
-func (client QuobyteClient) CreatePolicyRuleSet(request *CreatePolicyRuleSetRequest) (result *CreatePolicyRuleSetResponse, err error) {
+func (client *QuobyteClient) CreatePolicyRuleSet(request *CreatePolicyRuleSetRequest) (result *CreatePolicyRuleSetResponse, err error) {
     var response CreatePolicyRuleSetResponse
     if err = client.sendRequest("createPolicyRuleSet", request, &response); err != nil {
         return nil, err
@@ -4474,7 +4474,7 @@ func (client QuobyteClient) CreatePolicyRuleSet(request *CreatePolicyRuleSetRequ
     return &response, nil
 }
 
-func (client QuobyteClient) CreateSnapshot(request *CreateSnapshotRequest) (result *CreateSnapshotResponse, err error) {
+func (client *QuobyteClient) CreateSnapshot(request *CreateSnapshotRequest) (result *CreateSnapshotResponse, err error) {
     var response CreateSnapshotResponse
     if err = client.sendRequest("createSnapshot", request, &response); err != nil {
         return nil, err
@@ -4482,7 +4482,7 @@ func (client QuobyteClient) CreateSnapshot(request *CreateSnapshotRequest) (resu
     return &response, nil
 }
 
-func (client QuobyteClient) CreateTask(request *CreateTaskRequest) (result *CreateTaskResponse, err error) {
+func (client *QuobyteClient) CreateTask(request *CreateTaskRequest) (result *CreateTaskResponse, err error) {
     var response CreateTaskResponse
     if err = client.sendRequest("createTask", request, &response); err != nil {
         return nil, err
@@ -4490,7 +4490,7 @@ func (client QuobyteClient) CreateTask(request *CreateTaskRequest) (result *Crea
     return &response, nil
 }
 
-func (client QuobyteClient) CreateUser(request *CreateUserRequest) (result *CreateUserResponse, err error) {
+func (client *QuobyteClient) CreateUser(request *CreateUserRequest) (result *CreateUserResponse, err error) {
     var response CreateUserResponse
     if err = client.sendRequest("createUser", request, &response); err != nil {
         return nil, err
@@ -4498,7 +4498,7 @@ func (client QuobyteClient) CreateUser(request *CreateUserRequest) (result *Crea
     return &response, nil
 }
 
-func (client QuobyteClient) CreateVolume(request *CreateVolumeRequest) (result *CreateVolumeResponse, err error) {
+func (client *QuobyteClient) CreateVolume(request *CreateVolumeRequest) (result *CreateVolumeResponse, err error) {
     var response CreateVolumeResponse
     if err = client.sendRequest("createVolume", request, &response); err != nil {
         return nil, err
@@ -4506,7 +4506,7 @@ func (client QuobyteClient) CreateVolume(request *CreateVolumeRequest) (result *
     return &response, nil
 }
 
-func (client QuobyteClient) DecideCsr(request *DecideCsrRequest) (result *DecideCsrResponse, err error) {
+func (client *QuobyteClient) DecideCsr(request *DecideCsrRequest) (result *DecideCsrResponse, err error) {
     var response DecideCsrResponse
     if err = client.sendRequest("decideCsr", request, &response); err != nil {
         return nil, err
@@ -4514,7 +4514,7 @@ func (client QuobyteClient) DecideCsr(request *DecideCsrRequest) (result *Decide
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteAccessKeyCredentials(request *DeleteAccessKeyCredentialsRequest) (result *DeleteAccessKeyCredentialsResponse, err error) {
+func (client *QuobyteClient) DeleteAccessKeyCredentials(request *DeleteAccessKeyCredentialsRequest) (result *DeleteAccessKeyCredentialsResponse, err error) {
     var response DeleteAccessKeyCredentialsResponse
     if err = client.sendRequest("deleteAccessKeyCredentials", request, &response); err != nil {
         return nil, err
@@ -4522,7 +4522,7 @@ func (client QuobyteClient) DeleteAccessKeyCredentials(request *DeleteAccessKeyC
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteCa(request *DeleteCaRequest) (result *DeleteCaResponse, err error) {
+func (client *QuobyteClient) DeleteCa(request *DeleteCaRequest) (result *DeleteCaResponse, err error) {
     var response DeleteCaResponse
     if err = client.sendRequest("deleteCa", request, &response); err != nil {
         return nil, err
@@ -4530,7 +4530,7 @@ func (client QuobyteClient) DeleteCa(request *DeleteCaRequest) (result *DeleteCa
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteCertificate(request *DeleteCertificateRequest) (result *DeleteCertificateResponse, err error) {
+func (client *QuobyteClient) DeleteCertificate(request *DeleteCertificateRequest) (result *DeleteCertificateResponse, err error) {
     var response DeleteCertificateResponse
     if err = client.sendRequest("deleteCertificate", request, &response); err != nil {
         return nil, err
@@ -4538,7 +4538,7 @@ func (client QuobyteClient) DeleteCertificate(request *DeleteCertificateRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteConfiguration(request *DeleteConfigurationRequest) (result *DeleteConfigurationResponse, err error) {
+func (client *QuobyteClient) DeleteConfiguration(request *DeleteConfigurationRequest) (result *DeleteConfigurationResponse, err error) {
     var response DeleteConfigurationResponse
     if err = client.sendRequest("deleteConfiguration", request, &response); err != nil {
         return nil, err
@@ -4546,7 +4546,7 @@ func (client QuobyteClient) DeleteConfiguration(request *DeleteConfigurationRequ
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteCsr(request *DeleteCsrRequest) (result *DeleteCsrResponse, err error) {
+func (client *QuobyteClient) DeleteCsr(request *DeleteCsrRequest) (result *DeleteCsrResponse, err error) {
     var response DeleteCsrResponse
     if err = client.sendRequest("deleteCsr", request, &response); err != nil {
         return nil, err
@@ -4554,7 +4554,7 @@ func (client QuobyteClient) DeleteCsr(request *DeleteCsrRequest) (result *Delete
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteLabels(request *DeleteLabelsRequest) (result *DeleteLabelsResponse, err error) {
+func (client *QuobyteClient) DeleteLabels(request *DeleteLabelsRequest) (result *DeleteLabelsResponse, err error) {
     var response DeleteLabelsResponse
     if err = client.sendRequest("deleteLabels", request, &response); err != nil {
         return nil, err
@@ -4562,7 +4562,7 @@ func (client QuobyteClient) DeleteLabels(request *DeleteLabelsRequest) (result *
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteNotificationRule(request *DeleteNotificationRuleRequest) (result *DeleteNotificationRuleResponse, err error) {
+func (client *QuobyteClient) DeleteNotificationRule(request *DeleteNotificationRuleRequest) (result *DeleteNotificationRuleResponse, err error) {
     var response DeleteNotificationRuleResponse
     if err = client.sendRequest("deleteNotificationRule", request, &response); err != nil {
         return nil, err
@@ -4570,7 +4570,7 @@ func (client QuobyteClient) DeleteNotificationRule(request *DeleteNotificationRu
     return &response, nil
 }
 
-func (client QuobyteClient) DeletePolicyRules(request *DeletePolicyRulesRequest) (result *DeletePolicyRulesResponse, err error) {
+func (client *QuobyteClient) DeletePolicyRules(request *DeletePolicyRulesRequest) (result *DeletePolicyRulesResponse, err error) {
     var response DeletePolicyRulesResponse
     if err = client.sendRequest("deletePolicyRules", request, &response); err != nil {
         return nil, err
@@ -4578,7 +4578,7 @@ func (client QuobyteClient) DeletePolicyRules(request *DeletePolicyRulesRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteSnapshot(request *DeleteSnapshotRequest) (result *DeleteSnapshotResponse, err error) {
+func (client *QuobyteClient) DeleteSnapshot(request *DeleteSnapshotRequest) (result *DeleteSnapshotResponse, err error) {
     var response DeleteSnapshotResponse
     if err = client.sendRequest("deleteSnapshot", request, &response); err != nil {
         return nil, err
@@ -4586,7 +4586,7 @@ func (client QuobyteClient) DeleteSnapshot(request *DeleteSnapshotRequest) (resu
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteTenant(request *DeleteTenantRequest) (result *DeleteTenantResponse, err error) {
+func (client *QuobyteClient) DeleteTenant(request *DeleteTenantRequest) (result *DeleteTenantResponse, err error) {
     var response DeleteTenantResponse
     if err = client.sendRequest("deleteTenant", request, &response); err != nil {
         return nil, err
@@ -4594,7 +4594,7 @@ func (client QuobyteClient) DeleteTenant(request *DeleteTenantRequest) (result *
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteUser(request *DeleteUserRequest) (result *DeleteUserResponse, err error) {
+func (client *QuobyteClient) DeleteUser(request *DeleteUserRequest) (result *DeleteUserResponse, err error) {
     var response DeleteUserResponse
     if err = client.sendRequest("deleteUser", request, &response); err != nil {
         return nil, err
@@ -4602,7 +4602,7 @@ func (client QuobyteClient) DeleteUser(request *DeleteUserRequest) (result *Dele
     return &response, nil
 }
 
-func (client QuobyteClient) DeleteVolume(request *DeleteVolumeRequest) (result *DeleteVolumeResponse, err error) {
+func (client *QuobyteClient) DeleteVolume(request *DeleteVolumeRequest) (result *DeleteVolumeResponse, err error) {
     var response DeleteVolumeResponse
     if err = client.sendRequest("deleteVolume", request, &response); err != nil {
         return nil, err
@@ -4610,7 +4610,7 @@ func (client QuobyteClient) DeleteVolume(request *DeleteVolumeRequest) (result *
     return &response, nil
 }
 
-func (client QuobyteClient) DeregisterService(request *DeregisterServiceRequest) (result *DeregisterServiceResponse, err error) {
+func (client *QuobyteClient) DeregisterService(request *DeregisterServiceRequest) (result *DeregisterServiceResponse, err error) {
     var response DeregisterServiceResponse
     if err = client.sendRequest("deregisterService", request, &response); err != nil {
         return nil, err
@@ -4618,7 +4618,7 @@ func (client QuobyteClient) DeregisterService(request *DeregisterServiceRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) DisconnectMirroredVolume(request *DisconnectMirroredVolumeRequest) (result *DisconnectMirroredVolumeResponse, err error) {
+func (client *QuobyteClient) DisconnectMirroredVolume(request *DisconnectMirroredVolumeRequest) (result *DisconnectMirroredVolumeResponse, err error) {
     var response DisconnectMirroredVolumeResponse
     if err = client.sendRequest("disconnectMirroredVolume", request, &response); err != nil {
         return nil, err
@@ -4626,7 +4626,7 @@ func (client QuobyteClient) DisconnectMirroredVolume(request *DisconnectMirrored
     return &response, nil
 }
 
-func (client QuobyteClient) DumpEffectivePolicyRules(request *DumpEffectivePolicyRulesRequest) (result *DumpEffectivePolicyRulesResponse, err error) {
+func (client *QuobyteClient) DumpEffectivePolicyRules(request *DumpEffectivePolicyRulesRequest) (result *DumpEffectivePolicyRulesResponse, err error) {
     var response DumpEffectivePolicyRulesResponse
     if err = client.sendRequest("dumpEffectivePolicyRules", request, &response); err != nil {
         return nil, err
@@ -4634,7 +4634,7 @@ func (client QuobyteClient) DumpEffectivePolicyRules(request *DumpEffectivePolic
     return &response, nil
 }
 
-func (client QuobyteClient) DumpPolicyPresets(request *DumpPolicyPresetsRequest) (result *DumpPolicyPresetsResponse, err error) {
+func (client *QuobyteClient) DumpPolicyPresets(request *DumpPolicyPresetsRequest) (result *DumpPolicyPresetsResponse, err error) {
     var response DumpPolicyPresetsResponse
     if err = client.sendRequest("dumpPolicyPresets", request, &response); err != nil {
         return nil, err
@@ -4642,7 +4642,7 @@ func (client QuobyteClient) DumpPolicyPresets(request *DumpPolicyPresetsRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) EraseSnapshot(request *EraseSnapshotRequest) (result *EraseSnapshotResponse, err error) {
+func (client *QuobyteClient) EraseSnapshot(request *EraseSnapshotRequest) (result *EraseSnapshotResponse, err error) {
     var response EraseSnapshotResponse
     if err = client.sendRequest("eraseSnapshot", request, &response); err != nil {
         return nil, err
@@ -4650,7 +4650,7 @@ func (client QuobyteClient) EraseSnapshot(request *EraseSnapshotRequest) (result
     return &response, nil
 }
 
-func (client QuobyteClient) EraseVolume(request *EraseVolumeRequest) (result *EraseVolumeResponse, err error) {
+func (client *QuobyteClient) EraseVolume(request *EraseVolumeRequest) (result *EraseVolumeResponse, err error) {
     var response EraseVolumeResponse
     if err = client.sendRequest("eraseVolume", request, &response); err != nil {
         return nil, err
@@ -4658,7 +4658,7 @@ func (client QuobyteClient) EraseVolume(request *EraseVolumeRequest) (result *Er
     return &response, nil
 }
 
-func (client QuobyteClient) ExportCertificate(request *ExportCertificateRequest) (result *ExportCertificateResponse, err error) {
+func (client *QuobyteClient) ExportCertificate(request *ExportCertificateRequest) (result *ExportCertificateResponse, err error) {
     var response ExportCertificateResponse
     if err = client.sendRequest("exportCertificate", request, &response); err != nil {
         return nil, err
@@ -4666,7 +4666,7 @@ func (client QuobyteClient) ExportCertificate(request *ExportCertificateRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) ExportConfiguration(request *ExportConfigurationRequest) (result *ExportConfigurationResponse, err error) {
+func (client *QuobyteClient) ExportConfiguration(request *ExportConfigurationRequest) (result *ExportConfigurationResponse, err error) {
     var response ExportConfigurationResponse
     if err = client.sendRequest("exportConfiguration", request, &response); err != nil {
         return nil, err
@@ -4674,7 +4674,7 @@ func (client QuobyteClient) ExportConfiguration(request *ExportConfigurationRequ
     return &response, nil
 }
 
-func (client QuobyteClient) ExportPolicyRules(request *ExportPolicyRulesRequest) (result *ExportPolicyRulesResponse, err error) {
+func (client *QuobyteClient) ExportPolicyRules(request *ExportPolicyRulesRequest) (result *ExportPolicyRulesResponse, err error) {
     var response ExportPolicyRulesResponse
     if err = client.sendRequest("exportPolicyRules", request, &response); err != nil {
         return nil, err
@@ -4682,7 +4682,7 @@ func (client QuobyteClient) ExportPolicyRules(request *ExportPolicyRulesRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) ExportVolume(request *ExportVolumeRequest) (result *ExportVolumeResponse, err error) {
+func (client *QuobyteClient) ExportVolume(request *ExportVolumeRequest) (result *ExportVolumeResponse, err error) {
     var response ExportVolumeResponse
     if err = client.sendRequest("exportVolume", request, &response); err != nil {
         return nil, err
@@ -4690,7 +4690,7 @@ func (client QuobyteClient) ExportVolume(request *ExportVolumeRequest) (result *
     return &response, nil
 }
 
-func (client QuobyteClient) FilterPolicyRules(request *FilterPolicyRulesRequest) (result *FilterPolicyRulesResponse, err error) {
+func (client *QuobyteClient) FilterPolicyRules(request *FilterPolicyRulesRequest) (result *FilterPolicyRulesResponse, err error) {
     var response FilterPolicyRulesResponse
     if err = client.sendRequest("filterPolicyRules", request, &response); err != nil {
         return nil, err
@@ -4698,7 +4698,7 @@ func (client QuobyteClient) FilterPolicyRules(request *FilterPolicyRulesRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) GenerateAsyncSupportDump(request *GenerateAsyncSupportDumpRequest) (result *GenerateAsyncSupportDumpResponse, err error) {
+func (client *QuobyteClient) GenerateAsyncSupportDump(request *GenerateAsyncSupportDumpRequest) (result *GenerateAsyncSupportDumpResponse, err error) {
     var response GenerateAsyncSupportDumpResponse
     if err = client.sendRequest("generateAsyncSupportDump", request, &response); err != nil {
         return nil, err
@@ -4706,7 +4706,7 @@ func (client QuobyteClient) GenerateAsyncSupportDump(request *GenerateAsyncSuppo
     return &response, nil
 }
 
-func (client QuobyteClient) GetAccounting(request *GetAccountingRequest) (result *GetAccountingResponse, err error) {
+func (client *QuobyteClient) GetAccounting(request *GetAccountingRequest) (result *GetAccountingResponse, err error) {
     var response GetAccountingResponse
     if err = client.sendRequest("getAccounting", request, &response); err != nil {
         return nil, err
@@ -4714,7 +4714,7 @@ func (client QuobyteClient) GetAccounting(request *GetAccountingRequest) (result
     return &response, nil
 }
 
-func (client QuobyteClient) GetAddKeySlotData(request *GetAddKeySlotDataRequest) (result *GetAddKeySlotDataResponse, err error) {
+func (client *QuobyteClient) GetAddKeySlotData(request *GetAddKeySlotDataRequest) (result *GetAddKeySlotDataResponse, err error) {
     var response GetAddKeySlotDataResponse
     if err = client.sendRequest("getAddKeySlotData", request, &response); err != nil {
         return nil, err
@@ -4722,7 +4722,7 @@ func (client QuobyteClient) GetAddKeySlotData(request *GetAddKeySlotDataRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) GetAnalyzeReports(request *GetAnalyzeReportsRequest) (result *GetAnalyzeReportsResponse, err error) {
+func (client *QuobyteClient) GetAnalyzeReports(request *GetAnalyzeReportsRequest) (result *GetAnalyzeReportsResponse, err error) {
     var response GetAnalyzeReportsResponse
     if err = client.sendRequest("getAnalyzeReports", request, &response); err != nil {
         return nil, err
@@ -4730,7 +4730,7 @@ func (client QuobyteClient) GetAnalyzeReports(request *GetAnalyzeReportsRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) GetAuditLog(request *GetAuditLogRequest) (result *GetAuditLogResponse, err error) {
+func (client *QuobyteClient) GetAuditLog(request *GetAuditLogRequest) (result *GetAuditLogResponse, err error) {
     var response GetAuditLogResponse
     if err = client.sendRequest("getAuditLog", request, &response); err != nil {
         return nil, err
@@ -4738,7 +4738,7 @@ func (client QuobyteClient) GetAuditLog(request *GetAuditLogRequest) (result *Ge
     return &response, nil
 }
 
-func (client QuobyteClient) GetCertificateSubject(request *GetCertificateSubjectRequest) (result *GetCertificateSubjectResponse, err error) {
+func (client *QuobyteClient) GetCertificateSubject(request *GetCertificateSubjectRequest) (result *GetCertificateSubjectResponse, err error) {
     var response GetCertificateSubjectResponse
     if err = client.sendRequest("getCertificateSubject", request, &response); err != nil {
         return nil, err
@@ -4746,7 +4746,7 @@ func (client QuobyteClient) GetCertificateSubject(request *GetCertificateSubject
     return &response, nil
 }
 
-func (client QuobyteClient) GetClientList(request *GetClientListRequest) (result *GetClientListResponse, err error) {
+func (client *QuobyteClient) GetClientList(request *GetClientListRequest) (result *GetClientListResponse, err error) {
     var response GetClientListResponse
     if err = client.sendRequest("getClientList", request, &response); err != nil {
         return nil, err
@@ -4754,7 +4754,7 @@ func (client QuobyteClient) GetClientList(request *GetClientListRequest) (result
     return &response, nil
 }
 
-func (client QuobyteClient) GetConfiguration(request *GetConfigurationRequest) (result *GetConfigurationResponse, err error) {
+func (client *QuobyteClient) GetConfiguration(request *GetConfigurationRequest) (result *GetConfigurationResponse, err error) {
     var response GetConfigurationResponse
     if err = client.sendRequest("getConfiguration", request, &response); err != nil {
         return nil, err
@@ -4762,7 +4762,7 @@ func (client QuobyteClient) GetConfiguration(request *GetConfigurationRequest) (
     return &response, nil
 }
 
-func (client QuobyteClient) GetDefaultKeyStoreSlotParams(request *GetDefaultKeyStoreSlotParamsRequest) (result *GetDefaultKeyStoreSlotParamsResponse, err error) {
+func (client *QuobyteClient) GetDefaultKeyStoreSlotParams(request *GetDefaultKeyStoreSlotParamsRequest) (result *GetDefaultKeyStoreSlotParamsResponse, err error) {
     var response GetDefaultKeyStoreSlotParamsResponse
     if err = client.sendRequest("getDefaultKeyStoreSlotParams", request, &response); err != nil {
         return nil, err
@@ -4770,7 +4770,7 @@ func (client QuobyteClient) GetDefaultKeyStoreSlotParams(request *GetDefaultKeyS
     return &response, nil
 }
 
-func (client QuobyteClient) GetDeviceIds(request *GetDeviceIdsRequest) (result *GetDeviceIdsResponse, err error) {
+func (client *QuobyteClient) GetDeviceIds(request *GetDeviceIdsRequest) (result *GetDeviceIdsResponse, err error) {
     var response GetDeviceIdsResponse
     if err = client.sendRequest("getDeviceIds", request, &response); err != nil {
         return nil, err
@@ -4778,7 +4778,7 @@ func (client QuobyteClient) GetDeviceIds(request *GetDeviceIdsRequest) (result *
     return &response, nil
 }
 
-func (client QuobyteClient) GetDeviceList(request *GetDeviceListRequest) (result *GetDeviceListResponse, err error) {
+func (client *QuobyteClient) GetDeviceList(request *GetDeviceListRequest) (result *GetDeviceListResponse, err error) {
     var response GetDeviceListResponse
     if err = client.sendRequest("getDeviceList", request, &response); err != nil {
         return nil, err
@@ -4786,7 +4786,7 @@ func (client QuobyteClient) GetDeviceList(request *GetDeviceListRequest) (result
     return &response, nil
 }
 
-func (client QuobyteClient) GetDeviceNetworkEndpoints(request *GetDeviceNetworkEndpointsRequest) (result *GetDeviceNetworkEndpointsResponse, err error) {
+func (client *QuobyteClient) GetDeviceNetworkEndpoints(request *GetDeviceNetworkEndpointsRequest) (result *GetDeviceNetworkEndpointsResponse, err error) {
     var response GetDeviceNetworkEndpointsResponse
     if err = client.sendRequest("getDeviceNetworkEndpoints", request, &response); err != nil {
         return nil, err
@@ -4794,7 +4794,7 @@ func (client QuobyteClient) GetDeviceNetworkEndpoints(request *GetDeviceNetworkE
     return &response, nil
 }
 
-func (client QuobyteClient) GetDeviceTags(request *GetDeviceTagsRequest) (result *GetDeviceTagsResponse, err error) {
+func (client *QuobyteClient) GetDeviceTags(request *GetDeviceTagsRequest) (result *GetDeviceTagsResponse, err error) {
     var response GetDeviceTagsResponse
     if err = client.sendRequest("getDeviceTags", request, &response); err != nil {
         return nil, err
@@ -4802,7 +4802,7 @@ func (client QuobyteClient) GetDeviceTags(request *GetDeviceTagsRequest) (result
     return &response, nil
 }
 
-func (client QuobyteClient) GetEffectiveVolumeConfiguration(request *GetEffectiveVolumeConfigurationRequest) (result *GetEffectiveVolumeConfigurationResponse, err error) {
+func (client *QuobyteClient) GetEffectiveVolumeConfiguration(request *GetEffectiveVolumeConfigurationRequest) (result *GetEffectiveVolumeConfigurationResponse, err error) {
     var response GetEffectiveVolumeConfigurationResponse
     if err = client.sendRequest("getEffectiveVolumeConfiguration", request, &response); err != nil {
         return nil, err
@@ -4810,7 +4810,7 @@ func (client QuobyteClient) GetEffectiveVolumeConfiguration(request *GetEffectiv
     return &response, nil
 }
 
-func (client QuobyteClient) GetEncryptStatus(request *GetEncryptStatusRequest) (result *GetEncryptStatusResponse, err error) {
+func (client *QuobyteClient) GetEncryptStatus(request *GetEncryptStatusRequest) (result *GetEncryptStatusResponse, err error) {
     var response GetEncryptStatusResponse
     if err = client.sendRequest("getEncryptStatus", request, &response); err != nil {
         return nil, err
@@ -4818,7 +4818,7 @@ func (client QuobyteClient) GetEncryptStatus(request *GetEncryptStatusRequest) (
     return &response, nil
 }
 
-func (client QuobyteClient) GetEncryptedVolumeKey(request *GetEncryptedVolumeKeyRequest) (result *GetEncryptedVolumeKeyResponse, err error) {
+func (client *QuobyteClient) GetEncryptedVolumeKey(request *GetEncryptedVolumeKeyRequest) (result *GetEncryptedVolumeKeyResponse, err error) {
     var response GetEncryptedVolumeKeyResponse
     if err = client.sendRequest("getEncryptedVolumeKey", request, &response); err != nil {
         return nil, err
@@ -4826,7 +4826,7 @@ func (client QuobyteClient) GetEncryptedVolumeKey(request *GetEncryptedVolumeKey
     return &response, nil
 }
 
-func (client QuobyteClient) GetFileMetadataDump(request *GetFileMetadataDumpRequest) (result *GetFileMetadataDumpResponse, err error) {
+func (client *QuobyteClient) GetFileMetadataDump(request *GetFileMetadataDumpRequest) (result *GetFileMetadataDumpResponse, err error) {
     var response GetFileMetadataDumpResponse
     if err = client.sendRequest("getFileMetadataDump", request, &response); err != nil {
         return nil, err
@@ -4834,7 +4834,7 @@ func (client QuobyteClient) GetFileMetadataDump(request *GetFileMetadataDumpRequ
     return &response, nil
 }
 
-func (client QuobyteClient) GetFiringRules(request *GetFiringRulesRequest) (result *GetFiringRulesResponse, err error) {
+func (client *QuobyteClient) GetFiringRules(request *GetFiringRulesRequest) (result *GetFiringRulesResponse, err error) {
     var response GetFiringRulesResponse
     if err = client.sendRequest("getFiringRules", request, &response); err != nil {
         return nil, err
@@ -4842,7 +4842,7 @@ func (client QuobyteClient) GetFiringRules(request *GetFiringRulesRequest) (resu
     return &response, nil
 }
 
-func (client QuobyteClient) GetHealthManagerStatus(request *GetHealthManagerStatusRequest) (result *GetHealthManagerStatusResponse, err error) {
+func (client *QuobyteClient) GetHealthManagerStatus(request *GetHealthManagerStatusRequest) (result *GetHealthManagerStatusResponse, err error) {
     var response GetHealthManagerStatusResponse
     if err = client.sendRequest("getHealthManagerStatus", request, &response); err != nil {
         return nil, err
@@ -4850,7 +4850,7 @@ func (client QuobyteClient) GetHealthManagerStatus(request *GetHealthManagerStat
     return &response, nil
 }
 
-func (client QuobyteClient) GetInformation(request *GetInformationRequest) (result *GetInformationResponse, err error) {
+func (client *QuobyteClient) GetInformation(request *GetInformationRequest) (result *GetInformationResponse, err error) {
     var response GetInformationResponse
     if err = client.sendRequest("getInformation", request, &response); err != nil {
         return nil, err
@@ -4858,7 +4858,7 @@ func (client QuobyteClient) GetInformation(request *GetInformationRequest) (resu
     return &response, nil
 }
 
-func (client QuobyteClient) GetKeyStoreSlotWithoutHash(request *GetKeyStoreSlotWithoutHashRequest) (result *GetKeyStoreSlotWithoutHashResponse, err error) {
+func (client *QuobyteClient) GetKeyStoreSlotWithoutHash(request *GetKeyStoreSlotWithoutHashRequest) (result *GetKeyStoreSlotWithoutHashResponse, err error) {
     var response GetKeyStoreSlotWithoutHashResponse
     if err = client.sendRequest("getKeyStoreSlotWithoutHash", request, &response); err != nil {
         return nil, err
@@ -4866,7 +4866,7 @@ func (client QuobyteClient) GetKeyStoreSlotWithoutHash(request *GetKeyStoreSlotW
     return &response, nil
 }
 
-func (client QuobyteClient) GetLabels(request *GetLabelsRequest) (result *GetLabelsResponse, err error) {
+func (client *QuobyteClient) GetLabels(request *GetLabelsRequest) (result *GetLabelsResponse, err error) {
     var response GetLabelsResponse
     if err = client.sendRequest("getLabels", request, &response); err != nil {
         return nil, err
@@ -4874,7 +4874,7 @@ func (client QuobyteClient) GetLabels(request *GetLabelsRequest) (result *GetLab
     return &response, nil
 }
 
-func (client QuobyteClient) GetLatestEvent(request *GetLatestEventRequest) (result *GetLatestEventResponse, err error) {
+func (client *QuobyteClient) GetLatestEvent(request *GetLatestEventRequest) (result *GetLatestEventResponse, err error) {
     var response GetLatestEventResponse
     if err = client.sendRequest("getLatestEvent", request, &response); err != nil {
         return nil, err
@@ -4882,7 +4882,7 @@ func (client QuobyteClient) GetLatestEvent(request *GetLatestEventRequest) (resu
     return &response, nil
 }
 
-func (client QuobyteClient) GetLicense(request *GetLicenseRequest) (result *GetLicenseResponse, err error) {
+func (client *QuobyteClient) GetLicense(request *GetLicenseRequest) (result *GetLicenseResponse, err error) {
     var response GetLicenseResponse
     if err = client.sendRequest("getLicense", request, &response); err != nil {
         return nil, err
@@ -4890,7 +4890,7 @@ func (client QuobyteClient) GetLicense(request *GetLicenseRequest) (result *GetL
     return &response, nil
 }
 
-func (client QuobyteClient) GetNetworkTestResult(request *GetNetworkTestResultRequest) (result *GetNetworkTestResultResponse, err error) {
+func (client *QuobyteClient) GetNetworkTestResult(request *GetNetworkTestResultRequest) (result *GetNetworkTestResultResponse, err error) {
     var response GetNetworkTestResultResponse
     if err = client.sendRequest("getNetworkTestResult", request, &response); err != nil {
         return nil, err
@@ -4898,7 +4898,7 @@ func (client QuobyteClient) GetNetworkTestResult(request *GetNetworkTestResultRe
     return &response, nil
 }
 
-func (client QuobyteClient) GetNotificationRules(request *GetNotificationRulesRequest) (result *GetNotificationRulesResponse, err error) {
+func (client *QuobyteClient) GetNotificationRules(request *GetNotificationRulesRequest) (result *GetNotificationRulesResponse, err error) {
     var response GetNotificationRulesResponse
     if err = client.sendRequest("getNotificationRules", request, &response); err != nil {
         return nil, err
@@ -4906,7 +4906,7 @@ func (client QuobyteClient) GetNotificationRules(request *GetNotificationRulesRe
     return &response, nil
 }
 
-func (client QuobyteClient) GetPolicyPresets(request *GetPolicyPresetsRequest) (result *GetPolicyPresetsResponse, err error) {
+func (client *QuobyteClient) GetPolicyPresets(request *GetPolicyPresetsRequest) (result *GetPolicyPresetsResponse, err error) {
     var response GetPolicyPresetsResponse
     if err = client.sendRequest("getPolicyPresets", request, &response); err != nil {
         return nil, err
@@ -4914,7 +4914,7 @@ func (client QuobyteClient) GetPolicyPresets(request *GetPolicyPresetsRequest) (
     return &response, nil
 }
 
-func (client QuobyteClient) GetPolicyRuleSets(request *GetPolicyRuleSetsRequest) (result *GetPolicyRuleSetsResponse, err error) {
+func (client *QuobyteClient) GetPolicyRuleSets(request *GetPolicyRuleSetsRequest) (result *GetPolicyRuleSetsResponse, err error) {
     var response GetPolicyRuleSetsResponse
     if err = client.sendRequest("getPolicyRuleSets", request, &response); err != nil {
         return nil, err
@@ -4922,7 +4922,7 @@ func (client QuobyteClient) GetPolicyRuleSets(request *GetPolicyRuleSetsRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) GetPolicyRules(request *GetPolicyRulesRequest) (result *GetPolicyRulesResponse, err error) {
+func (client *QuobyteClient) GetPolicyRules(request *GetPolicyRulesRequest) (result *GetPolicyRulesResponse, err error) {
     var response GetPolicyRulesResponse
     if err = client.sendRequest("getPolicyRules", request, &response); err != nil {
         return nil, err
@@ -4930,7 +4930,7 @@ func (client QuobyteClient) GetPolicyRules(request *GetPolicyRulesRequest) (resu
     return &response, nil
 }
 
-func (client QuobyteClient) GetQuota(request *GetQuotaRequest) (result *GetQuotaResponse, err error) {
+func (client *QuobyteClient) GetQuota(request *GetQuotaRequest) (result *GetQuotaResponse, err error) {
     var response GetQuotaResponse
     if err = client.sendRequest("getQuota", request, &response); err != nil {
         return nil, err
@@ -4938,7 +4938,7 @@ func (client QuobyteClient) GetQuota(request *GetQuotaRequest) (result *GetQuota
     return &response, nil
 }
 
-func (client QuobyteClient) GetRules(request *GetRulesRequest) (result *GetRulesResponse, err error) {
+func (client *QuobyteClient) GetRules(request *GetRulesRequest) (result *GetRulesResponse, err error) {
     var response GetRulesResponse
     if err = client.sendRequest("getRules", request, &response); err != nil {
         return nil, err
@@ -4946,7 +4946,7 @@ func (client QuobyteClient) GetRules(request *GetRulesRequest) (result *GetRules
     return &response, nil
 }
 
-func (client QuobyteClient) GetServiceDump(request *GetServiceDumpRequest) (result *GetServiceDumpResponse, err error) {
+func (client *QuobyteClient) GetServiceDump(request *GetServiceDumpRequest) (result *GetServiceDumpResponse, err error) {
     var response GetServiceDumpResponse
     if err = client.sendRequest("getServiceDump", request, &response); err != nil {
         return nil, err
@@ -4954,7 +4954,7 @@ func (client QuobyteClient) GetServiceDump(request *GetServiceDumpRequest) (resu
     return &response, nil
 }
 
-func (client QuobyteClient) GetServices(request *GetServicesRequest) (result *GetServicesResponse, err error) {
+func (client *QuobyteClient) GetServices(request *GetServicesRequest) (result *GetServicesResponse, err error) {
     var response GetServicesResponse
     if err = client.sendRequest("getServices", request, &response); err != nil {
         return nil, err
@@ -4962,7 +4962,7 @@ func (client QuobyteClient) GetServices(request *GetServicesRequest) (result *Ge
     return &response, nil
 }
 
-func (client QuobyteClient) GetSupportDump(request *GetSupportDumpRequest) (result *GetSupportDumpResponse, err error) {
+func (client *QuobyteClient) GetSupportDump(request *GetSupportDumpRequest) (result *GetSupportDumpResponse, err error) {
     var response GetSupportDumpResponse
     if err = client.sendRequest("getSupportDump", request, &response); err != nil {
         return nil, err
@@ -4970,7 +4970,7 @@ func (client QuobyteClient) GetSupportDump(request *GetSupportDumpRequest) (resu
     return &response, nil
 }
 
-func (client QuobyteClient) GetSupportDumpStatus(request *GetSupportDumpStatusRequest) (result *GetSupportDumpStatusResponse, err error) {
+func (client *QuobyteClient) GetSupportDumpStatus(request *GetSupportDumpStatusRequest) (result *GetSupportDumpStatusResponse, err error) {
     var response GetSupportDumpStatusResponse
     if err = client.sendRequest("getSupportDumpStatus", request, &response); err != nil {
         return nil, err
@@ -4978,7 +4978,7 @@ func (client QuobyteClient) GetSupportDumpStatus(request *GetSupportDumpStatusRe
     return &response, nil
 }
 
-func (client QuobyteClient) GetSystemStatistics(request *GetSystemStatisticsRequest) (result *GetSystemStatisticsResponse, err error) {
+func (client *QuobyteClient) GetSystemStatistics(request *GetSystemStatisticsRequest) (result *GetSystemStatisticsResponse, err error) {
     var response GetSystemStatisticsResponse
     if err = client.sendRequest("getSystemStatistics", request, &response); err != nil {
         return nil, err
@@ -4986,7 +4986,7 @@ func (client QuobyteClient) GetSystemStatistics(request *GetSystemStatisticsRequ
     return &response, nil
 }
 
-func (client QuobyteClient) GetTaskList(request *GetTaskListRequest) (result *GetTaskListResponse, err error) {
+func (client *QuobyteClient) GetTaskList(request *GetTaskListRequest) (result *GetTaskListResponse, err error) {
     var response GetTaskListResponse
     if err = client.sendRequest("getTaskList", request, &response); err != nil {
         return nil, err
@@ -4994,7 +4994,7 @@ func (client QuobyteClient) GetTaskList(request *GetTaskListRequest) (result *Ge
     return &response, nil
 }
 
-func (client QuobyteClient) GetTenant(request *GetTenantRequest) (result *GetTenantResponse, err error) {
+func (client *QuobyteClient) GetTenant(request *GetTenantRequest) (result *GetTenantResponse, err error) {
     var response GetTenantResponse
     if err = client.sendRequest("getTenant", request, &response); err != nil {
         return nil, err
@@ -5002,7 +5002,7 @@ func (client QuobyteClient) GetTenant(request *GetTenantRequest) (result *GetTen
     return &response, nil
 }
 
-func (client QuobyteClient) GetUnformattedDevices(request *GetUnformattedDevicesRequest) (result *GetUnformattedDevicesResponse, err error) {
+func (client *QuobyteClient) GetUnformattedDevices(request *GetUnformattedDevicesRequest) (result *GetUnformattedDevicesResponse, err error) {
     var response GetUnformattedDevicesResponse
     if err = client.sendRequest("getUnformattedDevices", request, &response); err != nil {
         return nil, err
@@ -5010,7 +5010,7 @@ func (client QuobyteClient) GetUnformattedDevices(request *GetUnformattedDevices
     return &response, nil
 }
 
-func (client QuobyteClient) GetUsers(request *GetUsersRequest) (result *GetUsersResponse, err error) {
+func (client *QuobyteClient) GetUsers(request *GetUsersRequest) (result *GetUsersResponse, err error) {
     var response GetUsersResponse
     if err = client.sendRequest("getUsers", request, &response); err != nil {
         return nil, err
@@ -5018,7 +5018,7 @@ func (client QuobyteClient) GetUsers(request *GetUsersRequest) (result *GetUsers
     return &response, nil
 }
 
-func (client QuobyteClient) GetVolumeList(request *GetVolumeListRequest) (result *GetVolumeListResponse, err error) {
+func (client *QuobyteClient) GetVolumeList(request *GetVolumeListRequest) (result *GetVolumeListResponse, err error) {
     var response GetVolumeListResponse
     if err = client.sendRequest("getVolumeList", request, &response); err != nil {
         return nil, err
@@ -5026,7 +5026,7 @@ func (client QuobyteClient) GetVolumeList(request *GetVolumeListRequest) (result
     return &response, nil
 }
 
-func (client QuobyteClient) ImportAccessKeys(request *ImportAccessKeysRequest) (result *ImportAccessKeysResponse, err error) {
+func (client *QuobyteClient) ImportAccessKeys(request *ImportAccessKeysRequest) (result *ImportAccessKeysResponse, err error) {
     var response ImportAccessKeysResponse
     if err = client.sendRequest("importAccessKeys", request, &response); err != nil {
         return nil, err
@@ -5034,7 +5034,7 @@ func (client QuobyteClient) ImportAccessKeys(request *ImportAccessKeysRequest) (
     return &response, nil
 }
 
-func (client QuobyteClient) ImportConfiguration(request *ImportConfigurationRequest) (result *ImportConfigurationResponse, err error) {
+func (client *QuobyteClient) ImportConfiguration(request *ImportConfigurationRequest) (result *ImportConfigurationResponse, err error) {
     var response ImportConfigurationResponse
     if err = client.sendRequest("importConfiguration", request, &response); err != nil {
         return nil, err
@@ -5042,7 +5042,7 @@ func (client QuobyteClient) ImportConfiguration(request *ImportConfigurationRequ
     return &response, nil
 }
 
-func (client QuobyteClient) ImportPolicyRules(request *ImportPolicyRulesRequest) (result *ImportPolicyRulesResponse, err error) {
+func (client *QuobyteClient) ImportPolicyRules(request *ImportPolicyRulesRequest) (result *ImportPolicyRulesResponse, err error) {
     var response ImportPolicyRulesResponse
     if err = client.sendRequest("importPolicyRules", request, &response); err != nil {
         return nil, err
@@ -5050,7 +5050,7 @@ func (client QuobyteClient) ImportPolicyRules(request *ImportPolicyRulesRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) ListCa(request *ListCaRequest) (result *ListCaResponse, err error) {
+func (client *QuobyteClient) ListCa(request *ListCaRequest) (result *ListCaResponse, err error) {
     var response ListCaResponse
     if err = client.sendRequest("listCa", request, &response); err != nil {
         return nil, err
@@ -5058,7 +5058,7 @@ func (client QuobyteClient) ListCa(request *ListCaRequest) (result *ListCaRespon
     return &response, nil
 }
 
-func (client QuobyteClient) ListCertificates(request *ListCertificatesRequest) (result *ListCertificatesResponse, err error) {
+func (client *QuobyteClient) ListCertificates(request *ListCertificatesRequest) (result *ListCertificatesResponse, err error) {
     var response ListCertificatesResponse
     if err = client.sendRequest("listCertificates", request, &response); err != nil {
         return nil, err
@@ -5066,7 +5066,7 @@ func (client QuobyteClient) ListCertificates(request *ListCertificatesRequest) (
     return &response, nil
 }
 
-func (client QuobyteClient) ListCsr(request *ListCsrRequest) (result *ListCsrResponse, err error) {
+func (client *QuobyteClient) ListCsr(request *ListCsrRequest) (result *ListCsrResponse, err error) {
     var response ListCsrResponse
     if err = client.sendRequest("listCsr", request, &response); err != nil {
         return nil, err
@@ -5074,7 +5074,7 @@ func (client QuobyteClient) ListCsr(request *ListCsrRequest) (result *ListCsrRes
     return &response, nil
 }
 
-func (client QuobyteClient) ListRegistryReplicas(request *ListRegistryReplicasRequest) (result *ListRegistryReplicasResponse, err error) {
+func (client *QuobyteClient) ListRegistryReplicas(request *ListRegistryReplicasRequest) (result *ListRegistryReplicasResponse, err error) {
     var response ListRegistryReplicasResponse
     if err = client.sendRequest("listRegistryReplicas", request, &response); err != nil {
         return nil, err
@@ -5082,7 +5082,7 @@ func (client QuobyteClient) ListRegistryReplicas(request *ListRegistryReplicasRe
     return &response, nil
 }
 
-func (client QuobyteClient) ListSnapshots(request *ListSnapshotsRequest) (result *ListSnapshotsResponse, err error) {
+func (client *QuobyteClient) ListSnapshots(request *ListSnapshotsRequest) (result *ListSnapshotsResponse, err error) {
     var response ListSnapshotsResponse
     if err = client.sendRequest("listSnapshots", request, &response); err != nil {
         return nil, err
@@ -5090,7 +5090,7 @@ func (client QuobyteClient) ListSnapshots(request *ListSnapshotsRequest) (result
     return &response, nil
 }
 
-func (client QuobyteClient) MakeDevice(request *MakeDeviceRequest) (result *MakeDeviceResponse, err error) {
+func (client *QuobyteClient) MakeDevice(request *MakeDeviceRequest) (result *MakeDeviceResponse, err error) {
     var response MakeDeviceResponse
     if err = client.sendRequest("makeDevice", request, &response); err != nil {
         return nil, err
@@ -5098,7 +5098,7 @@ func (client QuobyteClient) MakeDevice(request *MakeDeviceRequest) (result *Make
     return &response, nil
 }
 
-func (client QuobyteClient) PublishBucketVolume(request *PublishBucketVolumeRequest) (result *PublishBucketVolumeResponse, err error) {
+func (client *QuobyteClient) PublishBucketVolume(request *PublishBucketVolumeRequest) (result *PublishBucketVolumeResponse, err error) {
     var response PublishBucketVolumeResponse
     if err = client.sendRequest("publishBucketVolume", request, &response); err != nil {
         return nil, err
@@ -5106,7 +5106,7 @@ func (client QuobyteClient) PublishBucketVolume(request *PublishBucketVolumeRequ
     return &response, nil
 }
 
-func (client QuobyteClient) RegenerateDatabase(request *RegenerateDatabaseRequest) (result *RegenerateDatabaseResponse, err error) {
+func (client *QuobyteClient) RegenerateDatabase(request *RegenerateDatabaseRequest) (result *RegenerateDatabaseResponse, err error) {
     var response RegenerateDatabaseResponse
     if err = client.sendRequest("regenerateDatabase", request, &response); err != nil {
         return nil, err
@@ -5114,7 +5114,7 @@ func (client QuobyteClient) RegenerateDatabase(request *RegenerateDatabaseReques
     return &response, nil
 }
 
-func (client QuobyteClient) RemoveKeystoreSlot(request *RemoveKeystoreSlotRequest) (result *RemoveKeystoreSlotResponse, err error) {
+func (client *QuobyteClient) RemoveKeystoreSlot(request *RemoveKeystoreSlotRequest) (result *RemoveKeystoreSlotResponse, err error) {
     var response RemoveKeystoreSlotResponse
     if err = client.sendRequest("removeKeystoreSlot", request, &response); err != nil {
         return nil, err
@@ -5122,7 +5122,7 @@ func (client QuobyteClient) RemoveKeystoreSlot(request *RemoveKeystoreSlotReques
     return &response, nil
 }
 
-func (client QuobyteClient) RemoveRegistryReplica(request *RemoveRegistryReplicaRequest) (result *RemoveRegistryReplicaResponse, err error) {
+func (client *QuobyteClient) RemoveRegistryReplica(request *RemoveRegistryReplicaRequest) (result *RemoveRegistryReplicaResponse, err error) {
     var response RemoveRegistryReplicaResponse
     if err = client.sendRequest("removeRegistryReplica", request, &response); err != nil {
         return nil, err
@@ -5130,7 +5130,7 @@ func (client QuobyteClient) RemoveRegistryReplica(request *RemoveRegistryReplica
     return &response, nil
 }
 
-func (client QuobyteClient) ResolveGlobalFileId(request *ResolveGlobalFileIdRequest) (result *ResolveGlobalFileIdResponse, err error) {
+func (client *QuobyteClient) ResolveGlobalFileId(request *ResolveGlobalFileIdRequest) (result *ResolveGlobalFileIdResponse, err error) {
     var response ResolveGlobalFileIdResponse
     if err = client.sendRequest("resolveGlobalFileId", request, &response); err != nil {
         return nil, err
@@ -5138,7 +5138,7 @@ func (client QuobyteClient) ResolveGlobalFileId(request *ResolveGlobalFileIdRequ
     return &response, nil
 }
 
-func (client QuobyteClient) ResolvePolicyRuleName(request *ResolvePolicyRuleNameRequest) (result *ResolvePolicyRuleNameResponse, err error) {
+func (client *QuobyteClient) ResolvePolicyRuleName(request *ResolvePolicyRuleNameRequest) (result *ResolvePolicyRuleNameResponse, err error) {
     var response ResolvePolicyRuleNameResponse
     if err = client.sendRequest("resolvePolicyRuleName", request, &response); err != nil {
         return nil, err
@@ -5146,7 +5146,7 @@ func (client QuobyteClient) ResolvePolicyRuleName(request *ResolvePolicyRuleName
     return &response, nil
 }
 
-func (client QuobyteClient) ResolveTenantName(request *ResolveTenantNameRequest) (result *ResolveTenantNameResponse, err error) {
+func (client *QuobyteClient) ResolveTenantName(request *ResolveTenantNameRequest) (result *ResolveTenantNameResponse, err error) {
     var response ResolveTenantNameResponse
     if err = client.sendRequest("resolveTenantName", request, &response); err != nil {
         return nil, err
@@ -5154,7 +5154,7 @@ func (client QuobyteClient) ResolveTenantName(request *ResolveTenantNameRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) ResolveVolumeName(request *ResolveVolumeNameRequest) (result *ResolveVolumeNameResponse, err error) {
+func (client *QuobyteClient) ResolveVolumeName(request *ResolveVolumeNameRequest) (result *ResolveVolumeNameResponse, err error) {
     var response ResolveVolumeNameResponse
     if err = client.sendRequest("resolveVolumeName", request, &response); err != nil {
         return nil, err
@@ -5162,7 +5162,7 @@ func (client QuobyteClient) ResolveVolumeName(request *ResolveVolumeNameRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) ResumeTask(request *ResumeTaskRequest) (result *ResumeTaskResponse, err error) {
+func (client *QuobyteClient) ResumeTask(request *ResumeTaskRequest) (result *ResumeTaskResponse, err error) {
     var response ResumeTaskResponse
     if err = client.sendRequest("resumeTask", request, &response); err != nil {
         return nil, err
@@ -5170,7 +5170,7 @@ func (client QuobyteClient) ResumeTask(request *ResumeTaskRequest) (result *Resu
     return &response, nil
 }
 
-func (client QuobyteClient) RetryTask(request *RetryTaskRequest) (result *RetryTaskResponse, err error) {
+func (client *QuobyteClient) RetryTask(request *RetryTaskRequest) (result *RetryTaskResponse, err error) {
     var response RetryTaskResponse
     if err = client.sendRequest("retryTask", request, &response); err != nil {
         return nil, err
@@ -5178,7 +5178,7 @@ func (client QuobyteClient) RetryTask(request *RetryTaskRequest) (result *RetryT
     return &response, nil
 }
 
-func (client QuobyteClient) RevokeCertificate(request *RevokeCertificateRequest) (result *RevokeCertificateResponse, err error) {
+func (client *QuobyteClient) RevokeCertificate(request *RevokeCertificateRequest) (result *RevokeCertificateResponse, err error) {
     var response RevokeCertificateResponse
     if err = client.sendRequest("revokeCertificate", request, &response); err != nil {
         return nil, err
@@ -5186,7 +5186,7 @@ func (client QuobyteClient) RevokeCertificate(request *RevokeCertificateRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) SetCertificateOwner(request *SetCertificateOwnerRequest) (result *SetCertificateOwnerResponse, err error) {
+func (client *QuobyteClient) SetCertificateOwner(request *SetCertificateOwnerRequest) (result *SetCertificateOwnerResponse, err error) {
     var response SetCertificateOwnerResponse
     if err = client.sendRequest("setCertificateOwner", request, &response); err != nil {
         return nil, err
@@ -5194,7 +5194,7 @@ func (client QuobyteClient) SetCertificateOwner(request *SetCertificateOwnerRequ
     return &response, nil
 }
 
-func (client QuobyteClient) SetCertificateSubject(request *SetCertificateSubjectRequest) (result *SetCertificateSubjectResponse, err error) {
+func (client *QuobyteClient) SetCertificateSubject(request *SetCertificateSubjectRequest) (result *SetCertificateSubjectResponse, err error) {
     var response SetCertificateSubjectResponse
     if err = client.sendRequest("setCertificateSubject", request, &response); err != nil {
         return nil, err
@@ -5202,7 +5202,7 @@ func (client QuobyteClient) SetCertificateSubject(request *SetCertificateSubject
     return &response, nil
 }
 
-func (client QuobyteClient) SetConfiguration(request *SetConfigurationRequest) (result *SetConfigurationResponse, err error) {
+func (client *QuobyteClient) SetConfiguration(request *SetConfigurationRequest) (result *SetConfigurationResponse, err error) {
     var response SetConfigurationResponse
     if err = client.sendRequest("setConfiguration", request, &response); err != nil {
         return nil, err
@@ -5210,7 +5210,7 @@ func (client QuobyteClient) SetConfiguration(request *SetConfigurationRequest) (
     return &response, nil
 }
 
-func (client QuobyteClient) SetEncryptedVolumeKey(request *SetEncryptedVolumeKeyRequest) (result *SetEncryptedVolumeKeyResponse, err error) {
+func (client *QuobyteClient) SetEncryptedVolumeKey(request *SetEncryptedVolumeKeyRequest) (result *SetEncryptedVolumeKeyResponse, err error) {
     var response SetEncryptedVolumeKeyResponse
     if err = client.sendRequest("setEncryptedVolumeKey", request, &response); err != nil {
         return nil, err
@@ -5218,7 +5218,7 @@ func (client QuobyteClient) SetEncryptedVolumeKey(request *SetEncryptedVolumeKey
     return &response, nil
 }
 
-func (client QuobyteClient) SetLabels(request *SetLabelsRequest) (result *SetLabelsResponse, err error) {
+func (client *QuobyteClient) SetLabels(request *SetLabelsRequest) (result *SetLabelsResponse, err error) {
     var response SetLabelsResponse
     if err = client.sendRequest("setLabels", request, &response); err != nil {
         return nil, err
@@ -5226,7 +5226,7 @@ func (client QuobyteClient) SetLabels(request *SetLabelsRequest) (result *SetLab
     return &response, nil
 }
 
-func (client QuobyteClient) SetNotificationRule(request *SetNotificationRuleRequest) (result *SetNotificationRuleResponse, err error) {
+func (client *QuobyteClient) SetNotificationRule(request *SetNotificationRuleRequest) (result *SetNotificationRuleResponse, err error) {
     var response SetNotificationRuleResponse
     if err = client.sendRequest("setNotificationRule", request, &response); err != nil {
         return nil, err
@@ -5234,7 +5234,7 @@ func (client QuobyteClient) SetNotificationRule(request *SetNotificationRuleRequ
     return &response, nil
 }
 
-func (client QuobyteClient) SetQuota(request *SetQuotaRequest) (result *SetQuotaResponse, err error) {
+func (client *QuobyteClient) SetQuota(request *SetQuotaRequest) (result *SetQuotaResponse, err error) {
     var response SetQuotaResponse
     if err = client.sendRequest("setQuota", request, &response); err != nil {
         return nil, err
@@ -5242,7 +5242,7 @@ func (client QuobyteClient) SetQuota(request *SetQuotaRequest) (result *SetQuota
     return &response, nil
 }
 
-func (client QuobyteClient) SetTenant(request *SetTenantRequest) (result *SetTenantResponse, err error) {
+func (client *QuobyteClient) SetTenant(request *SetTenantRequest) (result *SetTenantResponse, err error) {
     var response SetTenantResponse
     if err = client.sendRequest("setTenant", request, &response); err != nil {
         return nil, err
@@ -5250,7 +5250,7 @@ func (client QuobyteClient) SetTenant(request *SetTenantRequest) (result *SetTen
     return &response, nil
 }
 
-func (client QuobyteClient) SilenceAlert(request *SilenceAlertRequest) (result *SilenceAlertResponse, err error) {
+func (client *QuobyteClient) SilenceAlert(request *SilenceAlertRequest) (result *SilenceAlertResponse, err error) {
     var response SilenceAlertResponse
     if err = client.sendRequest("silenceAlert", request, &response); err != nil {
         return nil, err
@@ -5258,7 +5258,7 @@ func (client QuobyteClient) SilenceAlert(request *SilenceAlertRequest) (result *
     return &response, nil
 }
 
-func (client QuobyteClient) StartNetworkTest(request *StartNetworkTestRequest) (result *StartNetworkTestResponse, err error) {
+func (client *QuobyteClient) StartNetworkTest(request *StartNetworkTestRequest) (result *StartNetworkTestResponse, err error) {
     var response StartNetworkTestResponse
     if err = client.sendRequest("startNetworkTest", request, &response); err != nil {
         return nil, err
@@ -5266,7 +5266,7 @@ func (client QuobyteClient) StartNetworkTest(request *StartNetworkTestRequest) (
     return &response, nil
 }
 
-func (client QuobyteClient) UnlockMasterKeystoreSlot(request *UnlockMasterKeystoreSlotRequest) (result *UnlockMasterKeystoreSlotResponse, err error) {
+func (client *QuobyteClient) UnlockMasterKeystoreSlot(request *UnlockMasterKeystoreSlotRequest) (result *UnlockMasterKeystoreSlotResponse, err error) {
     var response UnlockMasterKeystoreSlotResponse
     if err = client.sendRequest("unlockMasterKeystoreSlot", request, &response); err != nil {
         return nil, err
@@ -5274,7 +5274,7 @@ func (client QuobyteClient) UnlockMasterKeystoreSlot(request *UnlockMasterKeysto
     return &response, nil
 }
 
-func (client QuobyteClient) UnpublishBucketVolume(request *UnpublishBucketVolumeRequest) (result *UnpublishBucketVolumeResponse, err error) {
+func (client *QuobyteClient) UnpublishBucketVolume(request *UnpublishBucketVolumeRequest) (result *UnpublishBucketVolumeResponse, err error) {
     var response UnpublishBucketVolumeResponse
     if err = client.sendRequest("unpublishBucketVolume", request, &response); err != nil {
         return nil, err
@@ -5282,7 +5282,7 @@ func (client QuobyteClient) UnpublishBucketVolume(request *UnpublishBucketVolume
     return &response, nil
 }
 
-func (client QuobyteClient) UpdateDevice(request *UpdateDeviceRequest) (result *UpdateDeviceResponse, err error) {
+func (client *QuobyteClient) UpdateDevice(request *UpdateDeviceRequest) (result *UpdateDeviceResponse, err error) {
     var response UpdateDeviceResponse
     if err = client.sendRequest("updateDevice", request, &response); err != nil {
         return nil, err
@@ -5290,7 +5290,7 @@ func (client QuobyteClient) UpdateDevice(request *UpdateDeviceRequest) (result *
     return &response, nil
 }
 
-func (client QuobyteClient) UpdatePolicyRules(request *UpdatePolicyRulesRequest) (result *UpdatePolicyRulesResponse, err error) {
+func (client *QuobyteClient) UpdatePolicyRules(request *UpdatePolicyRulesRequest) (result *UpdatePolicyRulesResponse, err error) {
     var response UpdatePolicyRulesResponse
     if err = client.sendRequest("updatePolicyRules", request, &response); err != nil {
         return nil, err
@@ -5298,7 +5298,7 @@ func (client QuobyteClient) UpdatePolicyRules(request *UpdatePolicyRulesRequest)
     return &response, nil
 }
 
-func (client QuobyteClient) UpdateUser(request *UpdateUserRequest) (result *UpdateUserResponse, err error) {
+func (client *QuobyteClient) UpdateUser(request *UpdateUserRequest) (result *UpdateUserResponse, err error) {
     var response UpdateUserResponse
     if err = client.sendRequest("updateUser", request, &response); err != nil {
         return nil, err
@@ -5306,7 +5306,7 @@ func (client QuobyteClient) UpdateUser(request *UpdateUserRequest) (result *Upda
     return &response, nil
 }
 
-func (client QuobyteClient) UpdateVolume(request *UpdateVolumeRequest) (result *UpdateVolumeResponse, err error) {
+func (client *QuobyteClient) UpdateVolume(request *UpdateVolumeRequest) (result *UpdateVolumeResponse, err error) {
     var response UpdateVolumeResponse
     if err = client.sendRequest("updateVolume", request, &response); err != nil {
         return nil, err
@@ -5314,7 +5314,7 @@ func (client QuobyteClient) UpdateVolume(request *UpdateVolumeRequest) (result *
     return &response, nil
 }
 
-func (client QuobyteClient) VerifyLicense(request *VerifyLicenseRequest) (result *VerifyLicenseResponse, err error) {
+func (client *QuobyteClient) VerifyLicense(request *VerifyLicenseRequest) (result *VerifyLicenseResponse, err error) {
     var response VerifyLicenseResponse
     if err = client.sendRequest("verifyLicense", request, &response); err != nil {
         return nil, err
