@@ -47,7 +47,7 @@ func main() {
     }
 
     capactiy := int64(1024 * 1024 * 1024)
-    err = client.SetVolumeQuota(response.VolumeUuid, capactiy)
+    err = client.SetVolumeQuota(response.VolumeUuid, uint64(capactiy))
     if err != nil {
         log.Fatalf("Error: %v", err)
     }
