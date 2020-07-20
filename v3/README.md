@@ -1,14 +1,10 @@
 # Quobyte API Clients
 
-Quobyte golang API follows `go module` system for versioning.
-
-To get Quobyte 3.x api client, please follow 3.x [documentation](v3/README.md)
-
-Get the Quobyte 2.x api client
+Get the Quobyte 3.x api client
 
 ```bash
-# Get Quobyte 2.x api
-go get github.com/quobyte/api
+# Get Quobyte 3.x api (notice v3 at the end of the import)
+go get github.com/quobyte/api/v3
 ```
 
 ## Usage
@@ -18,8 +14,8 @@ package main
 
 import (
   "log"
-  // Get Quobyte 2.x api
-  quobyte_api "github.com/quobyte/api"
+  // Get Quobyte 3.x api (notice v3 at the end of the import)
+  quobyte_api "github.com/quobyte/api/v3"
 )
 
 func main() {
@@ -53,7 +49,7 @@ func main() {
     }
 
     capactiy := int64(1024 * 1024 * 1024)
-    err = client.SetVolumeQuota(response.VolumeUuid, uint64(capactiy))
+    err = client.SetVolumeQuota(response.VolumeUuid, capactiy)
     if err != nil {
         log.Fatalf("Error: %v", err)
     }
