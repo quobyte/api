@@ -1,8 +1,13 @@
 # Quobyte API Clients
 
-Get the quobyte api client
+Quobyte golang API follows `go module` system for versioning.
+
+To get Quobyte 3.x api client, please follow 3.x [documentation](v3/README.md)
+
+Get the Quobyte 2.x api client
 
 ```bash
+# Get Quobyte 2.x api
 go get github.com/quobyte/api
 ```
 
@@ -13,6 +18,7 @@ package main
 
 import (
   "log"
+  // Get Quobyte 2.x api
   quobyte_api "github.com/quobyte/api"
 )
 
