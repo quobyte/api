@@ -90,7 +90,7 @@ func decodeResponse(ioReader io.Reader, reply interface{}) error {
 	return errors.New(emptyResponse)
 }
 
-func (client QuobyteClient) sendRequest(method string, request interface{}, response interface{}) error {
+func (client *QuobyteClient) SendRequest(method string, request interface{}, response interface{}) error {
 	etype := reflect.ValueOf(request).Elem()
 	field := etype.FieldByName("RetryPolicy")
 	if field.IsValid() {
