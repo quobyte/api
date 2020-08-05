@@ -82,7 +82,7 @@ func (client *QuobyteClient) ResolveVolumeNameToUUID(volumeName, tenant string) 
 		TenantDomain: tenant,
 	}
 	var response ResolveVolumeNameResponse
-	if err := client.SendRequest("resolveVolumeName", request, &response); err != nil {
+	if err := client.sendRequest("resolveVolumeName", request, &response); err != nil {
 		return "", err
 	}
 
@@ -134,7 +134,7 @@ func (client *QuobyteClient) SetVolumeQuota(volumeUUID string, quotaSize int64) 
 		},
 	}
 
-	return client.SendRequest("setQuota", request, nil)
+	return client.sendRequest("setQuota", request, nil)
 }
 
 // GetTenantMap returns a map that contains all tenant names and there ID's
@@ -165,7 +165,7 @@ func (client *QuobyteClient) ResolveTenantNameToUUID(name string) (string, error
 	}
 
 	var response ResolveTenantNameResponse
-	err := client.SendRequest("resolveTenantName", request, &response)
+	err := client.sendRequest("resolveTenantName", request, &response)
 	if err != nil {
 		return "", err
 	}
