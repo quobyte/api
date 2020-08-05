@@ -3,5321 +3,5330 @@
 
 package quobyte
 
-
 type retryPolicy struct {
-        RetryPolicy string `json:"retry,omitempty"`
+	RetryPolicy string `json:"retry,omitempty"`
 }
 
 type AccessKeyType string
 
-const(
-    AccessKeyType_S3 AccessKeyType = "S3"
+const (
+	AccessKeyType_S3 AccessKeyType = "S3"
 )
 
 type AlertState string
 
-const(
-    //  Disabled
-    AlertState_DISABLED AlertState = "DISABLED"
-    //  Enabled but not signaled
-    AlertState_DORMANT AlertState = "DORMANT"
-    //  Alert active
-    AlertState_FIRING AlertState = "FIRING"
-    //  Superseded by another alert
-    AlertState_INHIBITED AlertState = "INHIBITED"
-    //  Signaled, but not long enough yet
-    AlertState_SIGNALLED AlertState = "SIGNALLED"
-    //  Active but muted
-    AlertState_SILENCED AlertState = "SILENCED"
+const (
+	//  Disabled
+	AlertState_DISABLED AlertState = "DISABLED"
+	//  Enabled but not signaled
+	AlertState_DORMANT AlertState = "DORMANT"
+	//  Alert active
+	AlertState_FIRING AlertState = "FIRING"
+	//  Superseded by another alert
+	AlertState_INHIBITED AlertState = "INHIBITED"
+	//  Signaled, but not long enough yet
+	AlertState_SIGNALLED AlertState = "SIGNALLED"
+	//  Active but muted
+	AlertState_SILENCED AlertState = "SILENCED"
 )
 
 type ConfigurationType string
 
-const(
-    ConfigurationType_FAILURE_DOMAINS ConfigurationType = "FAILURE_DOMAINS"
-    ConfigurationType_QUOTA_POOL ConfigurationType = "QUOTA_POOL"
-    ConfigurationType_RULE_CONFIGURATION ConfigurationType = "RULE_CONFIGURATION"
-    ConfigurationType_SYSTEM_CONFIGURATION ConfigurationType = "SYSTEM_CONFIGURATION"
-    //  Obsolete since release 1.4. Use setTenant() and getTenant() instead.
-    //     Must not be changed to preserve compatibility with open stack drivers
-    //     (MANILA v1.2.3).
-    ConfigurationType_TENANT_DOMAIN ConfigurationType = "TENANT_DOMAIN"
-    ConfigurationType_USER ConfigurationType = "USER"
-    ConfigurationType_VOLUME_CONFIGURATION ConfigurationType = "VOLUME_CONFIGURATION"
+const (
+	ConfigurationType_FAILURE_DOMAINS      ConfigurationType = "FAILURE_DOMAINS"
+	ConfigurationType_QUOTA_POOL           ConfigurationType = "QUOTA_POOL"
+	ConfigurationType_RULE_CONFIGURATION   ConfigurationType = "RULE_CONFIGURATION"
+	ConfigurationType_SYSTEM_CONFIGURATION ConfigurationType = "SYSTEM_CONFIGURATION"
+	//  Obsolete since release 1.4. Use setTenant() and getTenant() instead.
+	//     Must not be changed to preserve compatibility with open stack drivers
+	//     (MANILA v1.2.3).
+	ConfigurationType_TENANT_DOMAIN        ConfigurationType = "TENANT_DOMAIN"
+	ConfigurationType_USER                 ConfigurationType = "USER"
+	ConfigurationType_VOLUME_CONFIGURATION ConfigurationType = "VOLUME_CONFIGURATION"
 )
 
 type CrlReason string
 
-const(
-    CrlReason_AA_COMPROMISE CrlReason = "AA_COMPROMISE"
-    CrlReason_AFFILIATION_CHANGED CrlReason = "AFFILIATION_CHANGED"
-    CrlReason_CA_COMPROMISE CrlReason = "CA_COMPROMISE"
-    CrlReason_CERTIFICATE_HOLD CrlReason = "CERTIFICATE_HOLD"
-    CrlReason_CESSATION_OF_OPERATION CrlReason = "CESSATION_OF_OPERATION"
-    CrlReason_KEY_COMPROMISE CrlReason = "KEY_COMPROMISE"
-    CrlReason_PRIVILEGE_WITHDRAWN CrlReason = "PRIVILEGE_WITHDRAWN"
-    CrlReason_REMOVE_FROM_CRL CrlReason = "REMOVE_FROM_CRL"
-    CrlReason_SUPERSEDED CrlReason = "SUPERSEDED"
-    CrlReason_UNSPECIFIED CrlReason = "UNSPECIFIED"
+const (
+	CrlReason_AA_COMPROMISE          CrlReason = "AA_COMPROMISE"
+	CrlReason_AFFILIATION_CHANGED    CrlReason = "AFFILIATION_CHANGED"
+	CrlReason_CA_COMPROMISE          CrlReason = "CA_COMPROMISE"
+	CrlReason_CERTIFICATE_HOLD       CrlReason = "CERTIFICATE_HOLD"
+	CrlReason_CESSATION_OF_OPERATION CrlReason = "CESSATION_OF_OPERATION"
+	CrlReason_KEY_COMPROMISE         CrlReason = "KEY_COMPROMISE"
+	CrlReason_PRIVILEGE_WITHDRAWN    CrlReason = "PRIVILEGE_WITHDRAWN"
+	CrlReason_REMOVE_FROM_CRL        CrlReason = "REMOVE_FROM_CRL"
+	CrlReason_SUPERSEDED             CrlReason = "SUPERSEDED"
+	CrlReason_UNSPECIFIED            CrlReason = "UNSPECIFIED"
 )
 
 type CsrState string
 
-const(
-    CsrState_APPROVED CsrState = "APPROVED"
-    CsrState_PENDING CsrState = "PENDING"
-    CsrState_REJECTED CsrState = "REJECTED"
+const (
+	CsrState_APPROVED CsrState = "APPROVED"
+	CsrState_PENDING  CsrState = "PENDING"
+	CsrState_REJECTED CsrState = "REJECTED"
 )
 
 type DeviceHardwareType string
 
-const(
-    DeviceHardwareType_ROTATING_DISK DeviceHardwareType = "ROTATING_DISK"
-    DeviceHardwareType_SHINGLED_DISK DeviceHardwareType = "SHINGLED_DISK"
-    DeviceHardwareType_SOLID_STATE_DISK DeviceHardwareType = "SOLID_STATE_DISK"
-    DeviceHardwareType_SOLID_STATE_DISK_NVME DeviceHardwareType = "SOLID_STATE_DISK_NVME"
-    DeviceHardwareType_UNKNOWN DeviceHardwareType = "UNKNOWN"
+const (
+	DeviceHardwareType_ROTATING_DISK         DeviceHardwareType = "ROTATING_DISK"
+	DeviceHardwareType_SHINGLED_DISK         DeviceHardwareType = "SHINGLED_DISK"
+	DeviceHardwareType_SOLID_STATE_DISK      DeviceHardwareType = "SOLID_STATE_DISK"
+	DeviceHardwareType_SOLID_STATE_DISK_NVME DeviceHardwareType = "SOLID_STATE_DISK_NVME"
+	DeviceHardwareType_UNKNOWN               DeviceHardwareType = "UNKNOWN"
 )
 
 type FailureDomainType string
 
-const(
-    FailureDomainType_CLUSTER FailureDomainType = "CLUSTER"
-    FailureDomainType_MACHINE FailureDomainType = "MACHINE"
-    FailureDomainType_METRO FailureDomainType = "METRO"
-    FailureDomainType_POWER_1 FailureDomainType = "POWER_1"
-    FailureDomainType_POWER_2 FailureDomainType = "POWER_2"
-    FailureDomainType_RACK FailureDomainType = "RACK"
-    FailureDomainType_ROOM FailureDomainType = "ROOM"
+const (
+	FailureDomainType_CLUSTER FailureDomainType = "CLUSTER"
+	FailureDomainType_MACHINE FailureDomainType = "MACHINE"
+	FailureDomainType_METRO   FailureDomainType = "METRO"
+	FailureDomainType_POWER_1 FailureDomainType = "POWER_1"
+	FailureDomainType_POWER_2 FailureDomainType = "POWER_2"
+	FailureDomainType_RACK    FailureDomainType = "RACK"
+	FailureDomainType_ROOM    FailureDomainType = "ROOM"
 )
 
 type FilterFileProperty string
 
-const(
-    FilterFileProperty_CURRENT_FILE_SIZE FilterFileProperty = "CURRENT_FILE_SIZE"
-    FilterFileProperty_EXPECTED_SIZE_OF_NEW_FILE FilterFileProperty = "EXPECTED_SIZE_OF_NEW_FILE"
-    FilterFileProperty_FILENAME FilterFileProperty = "FILENAME"
-    FilterFileProperty_LAST_ACCESS_AGE FilterFileProperty = "LAST_ACCESS_AGE"
-    FilterFileProperty_LAST_MODIFICATION_AGE FilterFileProperty = "LAST_MODIFICATION_AGE"
-    FilterFileProperty_OWNER_USER_NAME FilterFileProperty = "OWNER_USER_NAME"
+const (
+	FilterFileProperty_CURRENT_FILE_SIZE         FilterFileProperty = "CURRENT_FILE_SIZE"
+	FilterFileProperty_EXPECTED_SIZE_OF_NEW_FILE FilterFileProperty = "EXPECTED_SIZE_OF_NEW_FILE"
+	FilterFileProperty_FILENAME                  FilterFileProperty = "FILENAME"
+	FilterFileProperty_LAST_ACCESS_AGE           FilterFileProperty = "LAST_ACCESS_AGE"
+	FilterFileProperty_LAST_MODIFICATION_AGE     FilterFileProperty = "LAST_MODIFICATION_AGE"
+	FilterFileProperty_OWNER_USER_NAME           FilterFileProperty = "OWNER_USER_NAME"
 )
 
 type FilterOperator string
 
-const(
-    FilterOperator_CONTAINS FilterOperator = "CONTAINS"
-    FilterOperator_ENDS_WITH FilterOperator = "ENDS_WITH"
-    FilterOperator_EQUALS FilterOperator = "EQUALS"
-    FilterOperator_EXTENSION_MATCHES FilterOperator = "EXTENSION_MATCHES"
-    FilterOperator_LARGER_THAN FilterOperator = "LARGER_THAN"
-    FilterOperator_REGEX_MATCHES FilterOperator = "REGEX_MATCHES"
-    FilterOperator_SMALLER_THAN FilterOperator = "SMALLER_THAN"
-    FilterOperator_STARTS_WITH FilterOperator = "STARTS_WITH"
+const (
+	FilterOperator_CONTAINS          FilterOperator = "CONTAINS"
+	FilterOperator_ENDS_WITH         FilterOperator = "ENDS_WITH"
+	FilterOperator_EQUALS            FilterOperator = "EQUALS"
+	FilterOperator_EXTENSION_MATCHES FilterOperator = "EXTENSION_MATCHES"
+	FilterOperator_LARGER_THAN       FilterOperator = "LARGER_THAN"
+	FilterOperator_REGEX_MATCHES     FilterOperator = "REGEX_MATCHES"
+	FilterOperator_SMALLER_THAN      FilterOperator = "SMALLER_THAN"
+	FilterOperator_STARTS_WITH       FilterOperator = "STARTS_WITH"
 )
 
 type HashMethod string
 
-const(
-    //  up to date security, flexible to parameterize
-    HashMethod_SALTED_PBKDF2_SHA512 HashMethod = "SALTED_PBKDF2_SHA512"
-    //  keep the same order like in GLOBALCONFIGURATION.proto!  moderate
-    //     security
-    HashMethod_SALTED_SHA512 HashMethod = "SALTED_SHA512"
+const (
+	//  up to date security, flexible to parameterize
+	HashMethod_SALTED_PBKDF2_SHA512 HashMethod = "SALTED_PBKDF2_SHA512"
+	//  keep the same order like in GLOBALCONFIGURATION.proto!  moderate
+	//     security
+	HashMethod_SALTED_SHA512 HashMethod = "SALTED_SHA512"
 )
 
 type ImplicitLockingMode string
 
-const(
-    ImplicitLockingMode_FILE_BLOCKING ImplicitLockingMode = "FILE_BLOCKING"
-    ImplicitLockingMode_FILE_NON_BLOCKING ImplicitLockingMode = "FILE_NON_BLOCKING"
-    ImplicitLockingMode_IO_BLOCKING ImplicitLockingMode = "IO_BLOCKING"
-    ImplicitLockingMode_IO_NON_BLOCKING ImplicitLockingMode = "IO_NON_BLOCKING"
-    ImplicitLockingMode_NO_LOCKING ImplicitLockingMode = "NO_LOCKING"
+const (
+	ImplicitLockingMode_FILE_BLOCKING     ImplicitLockingMode = "FILE_BLOCKING"
+	ImplicitLockingMode_FILE_NON_BLOCKING ImplicitLockingMode = "FILE_NON_BLOCKING"
+	ImplicitLockingMode_IO_BLOCKING       ImplicitLockingMode = "IO_BLOCKING"
+	ImplicitLockingMode_IO_NON_BLOCKING   ImplicitLockingMode = "IO_NON_BLOCKING"
+	ImplicitLockingMode_NO_LOCKING        ImplicitLockingMode = "NO_LOCKING"
 )
 
 type KeystoreSlotOwner string
 
-const(
-    KeystoreSlotOwner_SYSTEM_SLOT KeystoreSlotOwner = "SYSTEM_SLOT"
-    KeystoreSlotOwner_USER_SLOT KeystoreSlotOwner = "USER_SLOT"
+const (
+	KeystoreSlotOwner_SYSTEM_SLOT KeystoreSlotOwner = "SYSTEM_SLOT"
+	KeystoreSlotOwner_USER_SLOT   KeystoreSlotOwner = "USER_SLOT"
 )
 
 type LostLockBehavior string
 
-const(
-    LostLockBehavior_BLOCK_IO LostLockBehavior = "BLOCK_IO"
-    LostLockBehavior_IO_ERROR LostLockBehavior = "IO_ERROR"
-    LostLockBehavior_KILL_APPLICATION LostLockBehavior = "KILL_APPLICATION"
+const (
+	LostLockBehavior_BLOCK_IO         LostLockBehavior = "BLOCK_IO"
+	LostLockBehavior_IO_ERROR         LostLockBehavior = "IO_ERROR"
+	LostLockBehavior_KILL_APPLICATION LostLockBehavior = "KILL_APPLICATION"
 )
 
 type ModeOverride string
 
-const(
-    ModeOverride_AS_REQUESTED ModeOverride = "AS_REQUESTED"
-    ModeOverride_DISABLE_ALWAYS ModeOverride = "DISABLE_ALWAYS"
-    ModeOverride_ENABLE_ALWAYS ModeOverride = "ENABLE_ALWAYS"
+const (
+	ModeOverride_AS_REQUESTED   ModeOverride = "AS_REQUESTED"
+	ModeOverride_DISABLE_ALWAYS ModeOverride = "DISABLE_ALWAYS"
+	ModeOverride_ENABLE_ALWAYS  ModeOverride = "ENABLE_ALWAYS"
 )
 
 type PageCacheMode string
 
-const(
-    PageCacheMode_FLUSH_ALWAYS PageCacheMode = "FLUSH_ALWAYS"
-    PageCacheMode_KEEP_ALWAYS PageCacheMode = "KEEP_ALWAYS"
-    PageCacheMode_USE_HEURISTIC PageCacheMode = "USE_HEURISTIC"
+const (
+	PageCacheMode_FLUSH_ALWAYS  PageCacheMode = "FLUSH_ALWAYS"
+	PageCacheMode_KEEP_ALWAYS   PageCacheMode = "KEEP_ALWAYS"
+	PageCacheMode_USE_HEURISTIC PageCacheMode = "USE_HEURISTIC"
 )
 
 type QuorumReadMode string
 
-const(
-    //  elect primary after read (if file is larger than first read)
-    QuorumReadMode_FIRST_READ QuorumReadMode = "FIRST_READ"
-    //  regular primary election + read
-    QuorumReadMode_OFF QuorumReadMode = "OFF"
+const (
+	//  elect primary after read (if file is larger than first read)
+	QuorumReadMode_FIRST_READ QuorumReadMode = "FIRST_READ"
+	//  regular primary election + read
+	QuorumReadMode_OFF QuorumReadMode = "OFF"
 )
 
 type RpcRetryMode string
 
-const(
-    RpcRetryMode_RETRY_FOREVER RpcRetryMode = "RETRY_FOREVER"
-    RpcRetryMode_RETRY_FOREVER_UNLESS_FULL RpcRetryMode = "RETRY_FOREVER_UNLESS_FULL"
-    RpcRetryMode_RETRY_INTERACTIVE RpcRetryMode = "RETRY_INTERACTIVE"
-    RpcRetryMode_RETRY_NEVER RpcRetryMode = "RETRY_NEVER"
+const (
+	RpcRetryMode_RETRY_FOREVER             RpcRetryMode = "RETRY_FOREVER"
+	RpcRetryMode_RETRY_FOREVER_UNLESS_FULL RpcRetryMode = "RETRY_FOREVER_UNLESS_FULL"
+	RpcRetryMode_RETRY_INTERACTIVE         RpcRetryMode = "RETRY_INTERACTIVE"
+	RpcRetryMode_RETRY_NEVER               RpcRetryMode = "RETRY_NEVER"
 )
 
 type ServiceType string
 
-const(
-    ServiceType_API_PROXY ServiceType = "API_PROXY"
-    //  Clients and proxies.
-    ServiceType_CLIENT ServiceType = "CLIENT"
-    ServiceType_DIRECTORY_SERVICE ServiceType = "DIRECTORY_SERVICE"
-    ServiceType_METADATA_SERVICE ServiceType = "METADATA_SERVICE"
-    ServiceType_NFS_PROXY ServiceType = "NFS_PROXY"
-    ServiceType_S3_PROXY ServiceType = "S3_PROXY"
-    ServiceType_STORAGE_SERVICE ServiceType = "STORAGE_SERVICE"
-    ServiceType_WEBCONSOLE ServiceType = "WEBCONSOLE"
+const (
+	ServiceType_API_PROXY ServiceType = "API_PROXY"
+	//  Clients and proxies.
+	ServiceType_CLIENT            ServiceType = "CLIENT"
+	ServiceType_DIRECTORY_SERVICE ServiceType = "DIRECTORY_SERVICE"
+	ServiceType_METADATA_SERVICE  ServiceType = "METADATA_SERVICE"
+	ServiceType_NFS_PROXY         ServiceType = "NFS_PROXY"
+	ServiceType_S3_PROXY          ServiceType = "S3_PROXY"
+	ServiceType_STORAGE_SERVICE   ServiceType = "STORAGE_SERVICE"
+	ServiceType_WEBCONSOLE        ServiceType = "WEBCONSOLE"
 )
 
 type TaskState string
 
-const(
-    TaskState_CANCELED TaskState = "CANCELED"
-    TaskState_CANCELLING TaskState = "CANCELLING"
-    TaskState_FAILED TaskState = "FAILED"
-    TaskState_FINISHED TaskState = "FINISHED"
-    TaskState_RUNNING TaskState = "RUNNING"
-    TaskState_SCHEDULED TaskState = "SCHEDULED"
+const (
+	TaskState_CANCELED   TaskState = "CANCELED"
+	TaskState_CANCELLING TaskState = "CANCELLING"
+	TaskState_FAILED     TaskState = "FAILED"
+	TaskState_FINISHED   TaskState = "FINISHED"
+	TaskState_RUNNING    TaskState = "RUNNING"
+	TaskState_SCHEDULED  TaskState = "SCHEDULED"
 )
 
 type TaskType string
 
-const(
-    //  Analyze file system volume
-    TaskType_ANALYZE_VOLUMES TaskType = "ANALYZE_VOLUMES"
-    //  Synchronizes replica sets when devices were temporarily unavailable.
-    TaskType_CATCH_UP TaskType = "CATCH_UP"
-    //  Cleans up unreferenced data.
-    TaskType_CLEANUP TaskType = "CLEANUP"
-    //  Moves data from a device to other suitable devices.
-    TaskType_CLEAR TaskType = "CLEAR"
-    //  Copies, moves or recodes files certain files from a source to another.
-    TaskType_COPY_FILES TaskType = "COPY_FILES"
-    //  Safely remove a device from the Quobyte installation.
-    TaskType_DRAIN TaskType = "DRAIN"
-    //  Restores replica sets and replaces replicas of volume metadata and files
-    //     according to the configured replication policy.
-    TaskType_ENFORCE_PLACEMENT TaskType = "ENFORCE_PLACEMENT"
-    //  Restores replica sets and replaces replicas of volume metadata according
-    //     to the configured replication policy.
-    TaskType_ENFORCE_VOLUME_PLACEMENT TaskType = "ENFORCE_VOLUME_PLACEMENT"
-    //  Deletes a snapshot with all then unreferenced files from data services.
-    TaskType_ERASE_SNAPSHOTS TaskType = "ERASE_SNAPSHOTS"
-    //  Erases volume file data and database, and deletes volume from registry
-    //     afterwards.
-    TaskType_ERASE_VOLUMES TaskType = "ERASE_VOLUMES"
-    TaskType_FSTRIM TaskType = "FSTRIM"
-    TaskType_MAKE_DEVICE TaskType = "MAKE_DEVICE"
-    //  Moves replicas from overutilized to underutilized data devices.
-    TaskType_REBALANCE TaskType = "REBALANCE"
-    //  Moves metadata replicas between metadata devices, trying to eliminate
-    //     over- and underutilized metadata devices.
-    TaskType_REBALANCE_METADATA_DEVICES TaskType = "REBALANCE_METADATA_DEVICES"
-    //  Regenerates replicas located at an inaccessible device.
-    TaskType_REGENERATE TaskType = "REGENERATE"
-    //  Update service to newer releases
-    TaskType_RELEASE_ROLLOUT TaskType = "RELEASE_ROLLOUT"
-    //  Reads file system data and checks for CRC errors.
-    TaskType_SCRUB TaskType = "SCRUB"
-    //  Move replicas according to there configured replication policy between
-    //     device classes.
-    TaskType_TIERING TaskType = "TIERING"
+const (
+	//  Analyze file system volume
+	TaskType_ANALYZE_VOLUMES TaskType = "ANALYZE_VOLUMES"
+	//  Synchronizes replica sets when devices were temporarily unavailable.
+	TaskType_CATCH_UP TaskType = "CATCH_UP"
+	//  Cleans up unreferenced data.
+	TaskType_CLEANUP TaskType = "CLEANUP"
+	//  Moves data from a device to other suitable devices.
+	TaskType_CLEAR TaskType = "CLEAR"
+	//  Copies, moves or recodes files certain files from a source to another.
+	TaskType_COPY_FILES TaskType = "COPY_FILES"
+	//  Safely remove a device from the Quobyte installation.
+	TaskType_DRAIN TaskType = "DRAIN"
+	//  Restores replica sets and replaces replicas of volume metadata and files
+	//     according to the configured replication policy.
+	TaskType_ENFORCE_PLACEMENT TaskType = "ENFORCE_PLACEMENT"
+	//  Restores replica sets and replaces replicas of volume metadata according
+	//     to the configured replication policy.
+	TaskType_ENFORCE_VOLUME_PLACEMENT TaskType = "ENFORCE_VOLUME_PLACEMENT"
+	//  Deletes a snapshot with all then unreferenced files from data services.
+	TaskType_ERASE_SNAPSHOTS TaskType = "ERASE_SNAPSHOTS"
+	//  Erases volume file data and database, and deletes volume from registry
+	//     afterwards.
+	TaskType_ERASE_VOLUMES TaskType = "ERASE_VOLUMES"
+	TaskType_FSTRIM        TaskType = "FSTRIM"
+	TaskType_MAKE_DEVICE   TaskType = "MAKE_DEVICE"
+	//  Moves replicas from overutilized to underutilized data devices.
+	TaskType_REBALANCE TaskType = "REBALANCE"
+	//  Moves metadata replicas between metadata devices, trying to eliminate
+	//     over- and underutilized metadata devices.
+	TaskType_REBALANCE_METADATA_DEVICES TaskType = "REBALANCE_METADATA_DEVICES"
+	//  Regenerates replicas located at an inaccessible device.
+	TaskType_REGENERATE TaskType = "REGENERATE"
+	//  Update service to newer releases
+	TaskType_RELEASE_ROLLOUT TaskType = "RELEASE_ROLLOUT"
+	//  Reads file system data and checks for CRC errors.
+	TaskType_SCRUB TaskType = "SCRUB"
+	//  Move replicas according to there configured replication policy between
+	//     device classes.
+	TaskType_TIERING TaskType = "TIERING"
 )
 
 type UserDatabase string
 
-const(
-    //  Internal Quobyte database
-    UserDatabase_DB UserDatabase = "DB"
-    //  OpenStack Keystone identity service
-    UserDatabase_KEYSTONE UserDatabase = "KEYSTONE"
-    //  LDAP directory
-    UserDatabase_LDAP UserDatabase = "LDAP"
+const (
+	//  Internal Quobyte database
+	UserDatabase_DB UserDatabase = "DB"
+	//  OpenStack Keystone identity service
+	UserDatabase_KEYSTONE UserDatabase = "KEYSTONE"
+	//  LDAP directory
+	UserDatabase_LDAP UserDatabase = "LDAP"
 )
 
 type UserRole string
 
-const(
-    UserRole_FILESYSTEM_ADMIN UserRole = "FILESYSTEM_ADMIN"
-    UserRole_FILESYSTEM_ADMIN_READONLY UserRole = "FILESYSTEM_ADMIN_READONLY"
-    UserRole_HARDWARE_OPERATOR UserRole = "HARDWARE_OPERATOR"
-    //  Not effective anymore. Use new user property instead.
-    UserRole_OBSOLETE_DOMAIN_ADMIN UserRole = "OBSOLETE_DOMAIN_ADMIN"
-    //  Not effective anymore
-    UserRole_OBSOLETE_DOMAIN_ADMIN_READONLY UserRole = "OBSOLETE_DOMAIN_ADMIN_READONLY"
-    UserRole_OBSOLETE_UNPRIVILEGED_USER UserRole = "OBSOLETE_UNPRIVILEGED_USER"
-    UserRole_SUPER_USER UserRole = "SUPER_USER"
-    UserRole_SUPER_USER_READONLY UserRole = "SUPER_USER_READONLY"
+const (
+	UserRole_FILESYSTEM_ADMIN          UserRole = "FILESYSTEM_ADMIN"
+	UserRole_FILESYSTEM_ADMIN_READONLY UserRole = "FILESYSTEM_ADMIN_READONLY"
+	UserRole_HARDWARE_OPERATOR         UserRole = "HARDWARE_OPERATOR"
+	//  Not effective anymore. Use new user property instead.
+	UserRole_OBSOLETE_DOMAIN_ADMIN UserRole = "OBSOLETE_DOMAIN_ADMIN"
+	//  Not effective anymore
+	UserRole_OBSOLETE_DOMAIN_ADMIN_READONLY UserRole = "OBSOLETE_DOMAIN_ADMIN_READONLY"
+	UserRole_OBSOLETE_UNPRIVILEGED_USER     UserRole = "OBSOLETE_UNPRIVILEGED_USER"
+	UserRole_SUPER_USER                     UserRole = "SUPER_USER"
+	UserRole_SUPER_USER_READONLY            UserRole = "SUPER_USER_READONLY"
 )
 
-
 type AccessControlList struct {
-    Entries []*AccessControlList_AccessControlEntry `json:"entries,omitempty"`
-    PosixAccessMask int32 `json:"posix_access_mask,omitempty"`
-    PosixDefaultMask int32 `json:"posix_default_mask,omitempty"`
+	Entries          []*AccessControlList_AccessControlEntry `json:"entries,omitempty"`
+	PosixAccessMask  int32                                   `json:"posix_access_mask,omitempty"`
+	PosixDefaultMask int32                                   `json:"posix_default_mask,omitempty"`
 }
 
 type AccessControlList_AceFlags string
 
-const(
-    AccessControlList_AceFlags_DIR_INHERIT AccessControlList_AceFlags = "DIR_INHERIT"
-    AccessControlList_AceFlags_FILE_INHERIT AccessControlList_AceFlags = "FILE_INHERIT"
-    AccessControlList_AceFlags_GROUP AccessControlList_AceFlags = "GROUP"
-    AccessControlList_AceFlags_INHERIT_ONLY AccessControlList_AceFlags = "INHERIT_ONLY"
-    AccessControlList_AceFlags_NO_PROPAGATE_INHERIT AccessControlList_AceFlags = "NO_PROPAGATE_INHERIT"
+const (
+	AccessControlList_AceFlags_DIR_INHERIT          AccessControlList_AceFlags = "DIR_INHERIT"
+	AccessControlList_AceFlags_FILE_INHERIT         AccessControlList_AceFlags = "FILE_INHERIT"
+	AccessControlList_AceFlags_GROUP                AccessControlList_AceFlags = "GROUP"
+	AccessControlList_AceFlags_INHERIT_ONLY         AccessControlList_AceFlags = "INHERIT_ONLY"
+	AccessControlList_AceFlags_NO_PROPAGATE_INHERIT AccessControlList_AceFlags = "NO_PROPAGATE_INHERIT"
 )
 
 type AccessControlList_AcePermissionMask string
 
-const(
-    AccessControlList_AcePermissionMask_APPEND AccessControlList_AcePermissionMask = "APPEND"
-    AccessControlList_AcePermissionMask_CHOWN AccessControlList_AcePermissionMask = "CHOWN"
-    AccessControlList_AcePermissionMask_DELETE AccessControlList_AcePermissionMask = "DELETE"
-    AccessControlList_AcePermissionMask_DELETE_CHILD AccessControlList_AcePermissionMask = "DELETE_CHILD"
-    AccessControlList_AcePermissionMask_EXECUTE AccessControlList_AcePermissionMask = "EXECUTE"
-    AccessControlList_AcePermissionMask_READ AccessControlList_AcePermissionMask = "READ"
-    AccessControlList_AcePermissionMask_READ_ACL AccessControlList_AcePermissionMask = "READ_ACL"
-    AccessControlList_AcePermissionMask_READ_ATTRIBUTES AccessControlList_AcePermissionMask = "READ_ATTRIBUTES"
-    AccessControlList_AcePermissionMask_READ_NAMED_ATTRS AccessControlList_AcePermissionMask = "READ_NAMED_ATTRS"
-    AccessControlList_AcePermissionMask_SYNCHRONIZE_FILE AccessControlList_AcePermissionMask = "SYNCHRONIZE_FILE"
-    AccessControlList_AcePermissionMask_WRITE AccessControlList_AcePermissionMask = "WRITE"
-    AccessControlList_AcePermissionMask_WRITE_ACL AccessControlList_AcePermissionMask = "WRITE_ACL"
-    AccessControlList_AcePermissionMask_WRITE_ATTRIBUTES AccessControlList_AcePermissionMask = "WRITE_ATTRIBUTES"
-    AccessControlList_AcePermissionMask_WRITE_NAMED_ATTRS AccessControlList_AcePermissionMask = "WRITE_NAMED_ATTRS"
+const (
+	AccessControlList_AcePermissionMask_APPEND            AccessControlList_AcePermissionMask = "APPEND"
+	AccessControlList_AcePermissionMask_CHOWN             AccessControlList_AcePermissionMask = "CHOWN"
+	AccessControlList_AcePermissionMask_DELETE            AccessControlList_AcePermissionMask = "DELETE"
+	AccessControlList_AcePermissionMask_DELETE_CHILD      AccessControlList_AcePermissionMask = "DELETE_CHILD"
+	AccessControlList_AcePermissionMask_EXECUTE           AccessControlList_AcePermissionMask = "EXECUTE"
+	AccessControlList_AcePermissionMask_READ              AccessControlList_AcePermissionMask = "READ"
+	AccessControlList_AcePermissionMask_READ_ACL          AccessControlList_AcePermissionMask = "READ_ACL"
+	AccessControlList_AcePermissionMask_READ_ATTRIBUTES   AccessControlList_AcePermissionMask = "READ_ATTRIBUTES"
+	AccessControlList_AcePermissionMask_READ_NAMED_ATTRS  AccessControlList_AcePermissionMask = "READ_NAMED_ATTRS"
+	AccessControlList_AcePermissionMask_SYNCHRONIZE_FILE  AccessControlList_AcePermissionMask = "SYNCHRONIZE_FILE"
+	AccessControlList_AcePermissionMask_WRITE             AccessControlList_AcePermissionMask = "WRITE"
+	AccessControlList_AcePermissionMask_WRITE_ACL         AccessControlList_AcePermissionMask = "WRITE_ACL"
+	AccessControlList_AcePermissionMask_WRITE_ATTRIBUTES  AccessControlList_AcePermissionMask = "WRITE_ATTRIBUTES"
+	AccessControlList_AcePermissionMask_WRITE_NAMED_ATTRS AccessControlList_AcePermissionMask = "WRITE_NAMED_ATTRS"
 )
 
 type AccessControlList_AceType string
 
-const(
-    AccessControlList_AceType_ALLOW AccessControlList_AceType = "ALLOW"
-    AccessControlList_AceType_DENY AccessControlList_AceType = "DENY"
+const (
+	AccessControlList_AceType_ALLOW AccessControlList_AceType = "ALLOW"
+	AccessControlList_AceType_DENY  AccessControlList_AceType = "DENY"
 )
 
 type AccessControlList_AccessControlEntry struct {
-    // Name of the user or group to whom this entry refers.
-    Principal string `json:"principal,omitempty"`
-    // Entry type (ALLOW or DENY).
-    Type AccessControlList_AceType `json:"type,omitempty"`
-    // Flags defining how to process the entry.
-    Flags int32 `json:"flags,omitempty"`
-    // Permissions attached to the entry.
-    Permissions int32 `json:"permissions,omitempty"`
+	// Name of the user or group to whom this entry refers.
+	Principal string `json:"principal,omitempty"`
+	// Entry type (ALLOW or DENY).
+	Type AccessControlList_AceType `json:"type,omitempty"`
+	// Flags defining how to process the entry.
+	Flags int32 `json:"flags,omitempty"`
+	// Permissions attached to the entry.
+	Permissions int32 `json:"permissions,omitempty"`
 }
 
 type AccessKeyCredentials struct {
-    // Access key ID
-    AccessKeyId string `json:"access_key_id,omitempty"`
-    // Secret access key
-    SecretAccessKey string `json:"secret_access_key,omitempty"`
-    // Validity time for credentials. If value is 0, the keys are non-expiring.
-    ValidUntilTimestampMs int64 `json:"valid_until_timestamp_ms,omitempty"`
-    Type AccessKeyType `json:"type,omitempty"`
-    // The tenant to use for UserCredentials.
-    TenantId string `json:"tenant_id,omitempty"`
+	// Access key ID
+	AccessKeyId string `json:"access_key_id,omitempty"`
+	// Secret access key
+	SecretAccessKey string `json:"secret_access_key,omitempty"`
+	// Validity time for credentials. If value is 0, the keys are non-expiring.
+	ValidUntilTimestampMs int64         `json:"valid_until_timestamp_ms,omitempty"`
+	Type                  AccessKeyType `json:"type,omitempty"`
+	// The tenant to use for UserCredentials.
+	TenantId string `json:"tenant_id,omitempty"`
 }
 
 type AccessKeyDetails struct {
-    Type AccessKeyType `json:"type,omitempty"`
-    // Access key ID
-    AccessKeyId string `json:"access_key_id,omitempty"`
-    // Secret access key
-    SecretAccessKey string `json:"secret_access_key,omitempty"`
-    // Validity time for credentials. If value is 0, the keys are non-expiring.
-    ValidityDays int32 `json:"validity_days,omitempty"`
-    // The tenant to use for UserCredentials.
-    TenantId string `json:"tenant_id,omitempty"`
+	Type AccessKeyType `json:"type,omitempty"`
+	// Access key ID
+	AccessKeyId string `json:"access_key_id,omitempty"`
+	// Secret access key
+	SecretAccessKey string `json:"secret_access_key,omitempty"`
+	// Validity time for credentials. If value is 0, the keys are non-expiring.
+	ValidityDays int32 `json:"validity_days,omitempty"`
+	// The tenant to use for UserCredentials.
+	TenantId string `json:"tenant_id,omitempty"`
 }
 
 type AcknowledgeAlertRequest struct {
-    AlertIdentifier string `json:"alert_identifier,omitempty"`
-    Qualifiers FiringRule `json:"qualifiers,omitempty"`
-    retryPolicy
+	AlertIdentifier string     `json:"alert_identifier,omitempty"`
+	Qualifiers      FiringRule `json:"qualifiers,omitempty"`
+	retryPolicy
 }
 
 type AcknowledgeAlertResponse struct {
 }
 
 type AddCaRequest struct {
-    // CA name
-    Name string `json:"name,omitempty"`
-    // CA description
-    CertificateAuthority CertificateAuthority `json:"certificate_authority,omitempty"`
-    retryPolicy
+	// CA name
+	Name string `json:"name,omitempty"`
+	// CA description
+	CertificateAuthority CertificateAuthority `json:"certificate_authority,omitempty"`
+	retryPolicy
 }
 
 type AddCaResponse struct {
 }
 
 type AddCertificateRequest struct {
-    // Certificate to import (will create new one if empty)
-    Certificate Certificate `json:"certificate,omitempty"`
-    // CSR that is approved by this certificate
-    CsrId int64 `json:"csr_id,omitempty"`
-    retryPolicy
+	// Certificate to import (will create new one if empty)
+	Certificate Certificate `json:"certificate,omitempty"`
+	// CSR that is approved by this certificate
+	CsrId int64 `json:"csr_id,omitempty"`
+	retryPolicy
 }
 
 type AddCertificateResponse struct {
-    // Generated certificate
-    Certificate Certificate `json:"certificate,omitempty"`
-    // Fingerprint
-    Fingerprint string `json:"fingerprint,omitempty"`
-    // Human readable subject
-    SubjectString string `json:"subject_string,omitempty"`
+	// Generated certificate
+	Certificate Certificate `json:"certificate,omitempty"`
+	// Fingerprint
+	Fingerprint string `json:"fingerprint,omitempty"`
+	// Human readable subject
+	SubjectString string `json:"subject_string,omitempty"`
 }
 
 type AddCsrRequest struct {
-    // CSR
-    Csr CertificateSigningRequest `json:"csr,omitempty"`
-    retryPolicy
+	// CSR
+	Csr CertificateSigningRequest `json:"csr,omitempty"`
+	retryPolicy
 }
 
 type AddCsrResponse struct {
-    // CSR identifier
-    CsrId int64 `json:"csr_id,omitempty"`
+	// CSR identifier
+	CsrId int64 `json:"csr_id,omitempty"`
 }
 
 type AddRegistryReplicaRequest struct {
-    // A string containing the device ID of the replica to add.
-    DeviceId string `json:"device_id,omitempty"`
-    // Optional comment field for auditing.
-    Comment string `json:"comment,omitempty"`
-    retryPolicy
+	// A string containing the device ID of the replica to add.
+	DeviceId string `json:"device_id,omitempty"`
+	// Optional comment field for auditing.
+	Comment string `json:"comment,omitempty"`
+	retryPolicy
 }
 
 type AddRegistryReplicaResponse struct {
 }
 
 type AdditionalPrivilegedGroupsSecurityPolicy struct {
-    Group []string `json:"group,omitempty"`
+	Group []string `json:"group,omitempty"`
 }
 
 type AlertConfiguration struct {
-    // Ability to disable any effect of this rule.
-    Enabled bool `json:"enabled,omitempty"`
-    // The sensor signal must be present for this much time.
-    AlertAfterSeconds int32 `json:"alert_after_seconds,omitempty"`
-    // Only alert at these times
-    RestrictTime RestrictTime `json:"restrict_time,omitempty"`
+	// Ability to disable any effect of this rule.
+	Enabled bool `json:"enabled,omitempty"`
+	// The sensor signal must be present for this much time.
+	AlertAfterSeconds int32 `json:"alert_after_seconds,omitempty"`
+	// Only alert at these times
+	RestrictTime RestrictTime `json:"restrict_time,omitempty"`
 }
 
 type AsyncReplicationProgress struct {
-    FilesInProgress int64 `json:"files_in_progress,omitempty"`
-    InSyncUntilTimestampS int64 `json:"in_sync_until_timestamp_s,omitempty"`
-    Connected bool `json:"connected,omitempty"`
+	FilesInProgress       int64 `json:"files_in_progress,omitempty"`
+	InSyncUntilTimestampS int64 `json:"in_sync_until_timestamp_s,omitempty"`
+	Connected             bool  `json:"connected,omitempty"`
 }
 
 type AsyncReplicationSource struct {
-    // List of remote registry targets.
-    RemoteRegistryTarget []string `json:"remote_registry_target,omitempty"`
-    // UUID of the remote volume to sync with.
-    RemoteVolumeUuid string `json:"remote_volume_uuid,omitempty"`
+	// List of remote registry targets.
+	RemoteRegistryTarget []string `json:"remote_registry_target,omitempty"`
+	// UUID of the remote volume to sync with.
+	RemoteVolumeUuid string `json:"remote_volume_uuid,omitempty"`
 }
 
 type AuditEvent struct {
-    // Time at which the event was triggered
-    TimestampMs int64 `json:"timestamp_ms,omitempty"`
-    //User who triggered the event (if empty, triggered by automation rule)
-    Username string `json:"username,omitempty"`
-    //Subject type that was affected
-    SubjectType AuditEvent_SubjectType `json:"subject_type,omitempty"`
-    //ID of the affected subject
-    SubjectId string `json:"subject_id,omitempty"`
-    //Action that was executed
-    Action string `json:"action,omitempty"`
-    // Optional description
-    Comment string `json:"comment,omitempty"`
+	// Time at which the event was triggered
+	TimestampMs int64 `json:"timestamp_ms,omitempty"`
+	//User who triggered the event (if empty, triggered by automation rule)
+	Username string `json:"username,omitempty"`
+	//Subject type that was affected
+	SubjectType AuditEvent_SubjectType `json:"subject_type,omitempty"`
+	//ID of the affected subject
+	SubjectId string `json:"subject_id,omitempty"`
+	//Action that was executed
+	Action string `json:"action,omitempty"`
+	// Optional description
+	Comment string `json:"comment,omitempty"`
 }
 
 type AuditEvent_SubjectType string
 
-const(
-    AuditEvent_SubjectType_CONFIGURATION AuditEvent_SubjectType = "CONFIGURATION"
-    AuditEvent_SubjectType_DEVICE AuditEvent_SubjectType = "DEVICE"
-    AuditEvent_SubjectType_KEY_STORE AuditEvent_SubjectType = "KEY_STORE"
-    AuditEvent_SubjectType_POLICY_RULE AuditEvent_SubjectType = "POLICY_RULE"
-    AuditEvent_SubjectType_QUOTA AuditEvent_SubjectType = "QUOTA"
-    AuditEvent_SubjectType_RULE AuditEvent_SubjectType = "RULE"
-    AuditEvent_SubjectType_TASK AuditEvent_SubjectType = "TASK"
-    AuditEvent_SubjectType_USER AuditEvent_SubjectType = "USER"
-    AuditEvent_SubjectType_VOLUME AuditEvent_SubjectType = "VOLUME"
-    AuditEvent_SubjectType_VOLUME_CONFIGURATION AuditEvent_SubjectType = "VOLUME_CONFIGURATION"
+const (
+	AuditEvent_SubjectType_CONFIGURATION        AuditEvent_SubjectType = "CONFIGURATION"
+	AuditEvent_SubjectType_DEVICE               AuditEvent_SubjectType = "DEVICE"
+	AuditEvent_SubjectType_KEY_STORE            AuditEvent_SubjectType = "KEY_STORE"
+	AuditEvent_SubjectType_POLICY_RULE          AuditEvent_SubjectType = "POLICY_RULE"
+	AuditEvent_SubjectType_QUOTA                AuditEvent_SubjectType = "QUOTA"
+	AuditEvent_SubjectType_RULE                 AuditEvent_SubjectType = "RULE"
+	AuditEvent_SubjectType_TASK                 AuditEvent_SubjectType = "TASK"
+	AuditEvent_SubjectType_USER                 AuditEvent_SubjectType = "USER"
+	AuditEvent_SubjectType_VOLUME               AuditEvent_SubjectType = "VOLUME"
+	AuditEvent_SubjectType_VOLUME_CONFIGURATION AuditEvent_SubjectType = "VOLUME_CONFIGURATION"
 )
 
 type CancelNetworkTestRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type CancelNetworkTestResponse struct {
 }
 
 type CancelSupportDumpRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type CancelSupportDumpResponse struct {
 }
 
 type CancelTaskRequest struct {
-    // List of one or more IDs of the tasks to be canceled
-    TaskId []string `json:"task_id,omitempty"`
-    retryPolicy
+	// List of one or more IDs of the tasks to be canceled
+	TaskId []string `json:"task_id,omitempty"`
+	retryPolicy
 }
 
 type CancelTaskResponse struct {
 }
 
 type CancelVolumeErasureRequest struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    retryPolicy
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	retryPolicy
 }
 
 type CancelVolumeErasureResponse struct {
 }
 
 type CatchUpSettings struct {
-    // Parameters for the downtime interval.
-    DowntimeBeginTimestampMs int64 `json:"downtime_begin_timestamp_ms,omitempty"`
-    // Obsolete since release 2.10
-    ObsoleteDowntimeEndTimestampMs int64 `json:"OBSOLETE_downtime_end_timestamp_ms,omitempty"`
+	// Parameters for the downtime interval.
+	DowntimeBeginTimestampMs int64 `json:"downtime_begin_timestamp_ms,omitempty"`
+	// Obsolete since release 2.10
+	ObsoleteDowntimeEndTimestampMs int64 `json:"OBSOLETE_downtime_end_timestamp_ms,omitempty"`
 }
 
 type Certificate struct {
-    // Base64 encoded certificate
-    Certificate string `json:"certificate,omitempty"`
-    // Base64 encoded private key (optional)
-    PrivateKey string `json:"private_key,omitempty"`
-    // Certificate record
-    Record CertificateRecord `json:"record,omitempty"`
+	// Base64 encoded certificate
+	Certificate string `json:"certificate,omitempty"`
+	// Base64 encoded private key (optional)
+	PrivateKey string `json:"private_key,omitempty"`
+	// Certificate record
+	Record CertificateRecord `json:"record,omitempty"`
 }
 
 type CertificateAuthority struct {
-    // CA name
-    Name string `json:"name,omitempty"`
-    // CA certificate
-    Certificate Certificate `json:"certificate,omitempty"`
+	// CA name
+	Name string `json:"name,omitempty"`
+	// CA certificate
+	Certificate Certificate `json:"certificate,omitempty"`
 }
 
 type CertificateRecord struct {
-    // Restrict to subject
-    Subject CertificateSubject `json:"subject,omitempty"`
-    // X.509 certificate fingerprint
-    Fingerprint string `json:"fingerprint,omitempty"`
-    // Last used from host
-    LastSeenFromHost string `json:"last_seen_from_host,omitempty"`
-    // Last used at timestamp
-    LastSeenTimestampSeconds int64 `json:"last_seen_timestamp_seconds,omitempty"`
-    // Human readable subject
-    SubjectString string `json:"subject_string,omitempty"`
+	// Restrict to subject
+	Subject CertificateSubject `json:"subject,omitempty"`
+	// X.509 certificate fingerprint
+	Fingerprint string `json:"fingerprint,omitempty"`
+	// Last used from host
+	LastSeenFromHost string `json:"last_seen_from_host,omitempty"`
+	// Last used at timestamp
+	LastSeenTimestampSeconds int64 `json:"last_seen_timestamp_seconds,omitempty"`
+	// Human readable subject
+	SubjectString string `json:"subject_string,omitempty"`
 }
 
 type CertificateSigningRequest struct {
-    // CSR identifier
-    CsrId int64 `json:"csr_id,omitempty"`
-    // Textual CSR description
-    CsrDescription string `json:"csr_description,omitempty"`
-    // Encoded subject
-    Subject string `json:"subject,omitempty"`
-    // CSR state
-    State CsrState `json:"state,omitempty"`
-    // Resulting certificate fingerprint
-    CertificateFingerprint string `json:"certificate_fingerprint,omitempty"`
-    retryPolicy
+	// CSR identifier
+	CsrId int64 `json:"csr_id,omitempty"`
+	// Textual CSR description
+	CsrDescription string `json:"csr_description,omitempty"`
+	// Encoded subject
+	Subject string `json:"subject,omitempty"`
+	// CSR state
+	State CsrState `json:"state,omitempty"`
+	// Resulting certificate fingerprint
+	CertificateFingerprint string `json:"certificate_fingerprint,omitempty"`
+	retryPolicy
 }
 
 type CertificateSubject struct {
-    // Restrict to service types
-    ServiceType []*ServiceType `json:"service_type,omitempty"`
-    // Restrict to hosts
-    RestrictToHosts []string `json:"restrict_to_hosts,omitempty"`
-    // Restrict to subjects
-    RestrictToSubjects []*DelegationSubject `json:"restrict_to_subjects,omitempty"`
+	// Restrict to service types
+	ServiceType []*ServiceType `json:"service_type,omitempty"`
+	// Restrict to hosts
+	RestrictToHosts []string `json:"restrict_to_hosts,omitempty"`
+	// Restrict to subjects
+	RestrictToSubjects []*DelegationSubject `json:"restrict_to_subjects,omitempty"`
 }
 
 type ChangePolicyRulePriorityRequest struct {
-    PolicyRuleUuid string `json:"policy_rule_uuid,omitempty"`
-    PriorityChange ChangePolicyRulePriorityRequest_PriorityChange `json:"priority_change,omitempty"`
-    retryPolicy
+	PolicyRuleUuid string                                         `json:"policy_rule_uuid,omitempty"`
+	PriorityChange ChangePolicyRulePriorityRequest_PriorityChange `json:"priority_change,omitempty"`
+	retryPolicy
 }
 
 type ChangePolicyRulePriorityRequest_PriorityChange string
 
-const(
-    ChangePolicyRulePriorityRequest_PriorityChange_DECREASE ChangePolicyRulePriorityRequest_PriorityChange = "DECREASE"
-    ChangePolicyRulePriorityRequest_PriorityChange_INCREASE ChangePolicyRulePriorityRequest_PriorityChange = "INCREASE"
+const (
+	ChangePolicyRulePriorityRequest_PriorityChange_DECREASE ChangePolicyRulePriorityRequest_PriorityChange = "DECREASE"
+	ChangePolicyRulePriorityRequest_PriorityChange_INCREASE ChangePolicyRulePriorityRequest_PriorityChange = "INCREASE"
 )
 
 type ChangePolicyRulePriorityResponse struct {
 }
 
 type ChecksumPolicy struct {
-    EnableServerChecksumComputationBeforeWrite bool `json:"enable_server_checksum_computation_before_write,omitempty"`
-    EnableServerChecksumVerificationAfterRead bool `json:"enable_server_checksum_verification_after_read,omitempty"`
-    EnableClientChecksumComputationBeforeWrite bool `json:"enable_client_checksum_computation_before_write,omitempty"`
-    EnableClientChecksumVerificationAfterRead bool `json:"enable_client_checksum_verification_after_read,omitempty"`
+	EnableServerChecksumComputationBeforeWrite bool `json:"enable_server_checksum_computation_before_write,omitempty"`
+	EnableServerChecksumVerificationAfterRead  bool `json:"enable_server_checksum_verification_after_read,omitempty"`
+	EnableClientChecksumComputationBeforeWrite bool `json:"enable_client_checksum_computation_before_write,omitempty"`
+	EnableClientChecksumVerificationAfterRead  bool `json:"enable_client_checksum_verification_after_read,omitempty"`
 }
 
 type Client struct {
-    ClientUuid string `json:"client_uuid,omitempty"`
-    MountedVolumeUuid string `json:"mounted_volume_uuid,omitempty"`
-    LocalMountPoint string `json:"local_mount_point,omitempty"`
-    ClientSoftwareVersion string `json:"client_software_version,omitempty"`
-    Hostname string `json:"hostname,omitempty"`
-    MountUserName string `json:"mount_user_name,omitempty"`
-    StatusServerUrl string `json:"status_server_url,omitempty"`
-    // Client start time in ms since epoch
-    ClientStartTimeMs int64 `json:"client_start_time_ms,omitempty"`
-    // Total bytes read
-    BytesRead int64 `json:"bytes_read,omitempty"`
-    // Total bytes written
-    BytesWritten int64 `json:"bytes_written,omitempty"`
-    // Current read rate in byte/s
-    ReadRate int64 `json:"read_rate,omitempty"`
-    // Current write rate in byte/s
-    WriteRate int64 `json:"write_rate,omitempty"`
-    ReadOperations int64 `json:"read_operations,omitempty"`
-    WriteOperations int64 `json:"write_operations,omitempty"`
-    Service ServiceDescription `json:"service,omitempty"`
-    ReadOperationsRate int64 `json:"read_operations_rate,omitempty"`
-    WriteOperationsRate int64 `json:"write_operations_rate,omitempty"`
-    TopCreatesPerSec []*Client_TopInfo `json:"top_creates_per_sec,omitempty"`
-    TopDeletesPerSec []*Client_TopInfo `json:"top_deletes_per_sec,omitempty"`
-    TopStatsPerSec []*Client_TopInfo `json:"top_stats_per_sec,omitempty"`
-    TopIops []*Client_TopInfo `json:"top_iops,omitempty"`
-    TopThroughputBytesPerSec []*Client_TopInfo `json:"top_throughput_bytes_per_sec,omitempty"`
-    TopReaddirsPerSec []*Client_TopInfo `json:"top_readdirs_per_sec,omitempty"`
-    TopOpensPerSec []*Client_TopInfo `json:"top_opens_per_sec,omitempty"`
-    RdmaEnabled bool `json:"rdma_enabled,omitempty"`
+	ClientUuid            string `json:"client_uuid,omitempty"`
+	MountedVolumeUuid     string `json:"mounted_volume_uuid,omitempty"`
+	LocalMountPoint       string `json:"local_mount_point,omitempty"`
+	ClientSoftwareVersion string `json:"client_software_version,omitempty"`
+	Hostname              string `json:"hostname,omitempty"`
+	MountUserName         string `json:"mount_user_name,omitempty"`
+	StatusServerUrl       string `json:"status_server_url,omitempty"`
+	// Client start time in ms since epoch
+	ClientStartTimeMs int64 `json:"client_start_time_ms,omitempty"`
+	// Total bytes read
+	BytesRead int64 `json:"bytes_read,omitempty"`
+	// Total bytes written
+	BytesWritten int64 `json:"bytes_written,omitempty"`
+	// Current read rate in byte/s
+	ReadRate int64 `json:"read_rate,omitempty"`
+	// Current write rate in byte/s
+	WriteRate                int64              `json:"write_rate,omitempty"`
+	ReadOperations           int64              `json:"read_operations,omitempty"`
+	WriteOperations          int64              `json:"write_operations,omitempty"`
+	Service                  ServiceDescription `json:"service,omitempty"`
+	ReadOperationsRate       int64              `json:"read_operations_rate,omitempty"`
+	WriteOperationsRate      int64              `json:"write_operations_rate,omitempty"`
+	TopCreatesPerSec         []*Client_TopInfo  `json:"top_creates_per_sec,omitempty"`
+	TopDeletesPerSec         []*Client_TopInfo  `json:"top_deletes_per_sec,omitempty"`
+	TopStatsPerSec           []*Client_TopInfo  `json:"top_stats_per_sec,omitempty"`
+	TopIops                  []*Client_TopInfo  `json:"top_iops,omitempty"`
+	TopThroughputBytesPerSec []*Client_TopInfo  `json:"top_throughput_bytes_per_sec,omitempty"`
+	TopReaddirsPerSec        []*Client_TopInfo  `json:"top_readdirs_per_sec,omitempty"`
+	TopOpensPerSec           []*Client_TopInfo  `json:"top_opens_per_sec,omitempty"`
+	RdmaEnabled              bool               `json:"rdma_enabled,omitempty"`
 }
 
 type Client_TopInfo struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    User string `json:"user,omitempty"`
-    Process string `json:"process,omitempty"`
-    Directory string `json:"directory,omitempty"`
-    File string `json:"file,omitempty"`
-    Value float64 `json:"value,omitempty"`
+	VolumeUuid string  `json:"volume_uuid,omitempty"`
+	User       string  `json:"user,omitempty"`
+	Process    string  `json:"process,omitempty"`
+	Directory  string  `json:"directory,omitempty"`
+	File       string  `json:"file,omitempty"`
+	Value      float64 `json:"value,omitempty"`
 }
 
 type ClientCachePolicy struct {
-    Mode ClientCachePolicy_Mode `json:"mode,omitempty"`
+	Mode ClientCachePolicy_Mode `json:"mode,omitempty"`
 }
 
 type ClientCachePolicy_Mode string
 
-const(
-    ClientCachePolicy_Mode_DISABLE_ALWAYS ClientCachePolicy_Mode = "DISABLE_ALWAYS"
-    ClientCachePolicy_Mode_DISABLE_FOR_O_DIRECT ClientCachePolicy_Mode = "DISABLE_FOR_O_DIRECT"
-    ClientCachePolicy_Mode_ENABLE_ALWAYS ClientCachePolicy_Mode = "ENABLE_ALWAYS"
+const (
+	ClientCachePolicy_Mode_DISABLE_ALWAYS       ClientCachePolicy_Mode = "DISABLE_ALWAYS"
+	ClientCachePolicy_Mode_DISABLE_FOR_O_DIRECT ClientCachePolicy_Mode = "DISABLE_FOR_O_DIRECT"
+	ClientCachePolicy_Mode_ENABLE_ALWAYS        ClientCachePolicy_Mode = "ENABLE_ALWAYS"
 )
 
 type ClientScope struct {
-    // IP address in CIDR notation, e.g. 192.168.1.0/24.
-    ClientNetwork string `json:"client_network,omitempty"`
-    ClientType ClientScope_ClientType `json:"client_type,omitempty"`
+	// IP address in CIDR notation, e.g. 192.168.1.0/24.
+	ClientNetwork string                 `json:"client_network,omitempty"`
+	ClientType    ClientScope_ClientType `json:"client_type,omitempty"`
 }
 
 type ClientScope_ClientType string
 
-const(
-    ClientScope_ClientType_NATIVE ClientScope_ClientType = "NATIVE"
-    ClientScope_ClientType_NFS ClientScope_ClientType = "NFS"
-    ClientScope_ClientType_S3 ClientScope_ClientType = "S3"
+const (
+	ClientScope_ClientType_NATIVE ClientScope_ClientType = "NATIVE"
+	ClientScope_ClientType_NFS    ClientScope_ClientType = "NFS"
+	ClientScope_ClientType_S3     ClientScope_ClientType = "S3"
 )
 
 type ConcurrentAppendHandlingPolicy struct {
-    Behavior ConcurrentAppendHandlingPolicy_Behavior `json:"behavior,omitempty"`
+	Behavior ConcurrentAppendHandlingPolicy_Behavior `json:"behavior,omitempty"`
 }
 
 type ConcurrentAppendHandlingPolicy_Behavior string
 
-const(
-    ConcurrentAppendHandlingPolicy_Behavior_ALLOW_READ_MODIFY_WRITE ConcurrentAppendHandlingPolicy_Behavior = "ALLOW_READ_MODIFY_WRITE"
-    ConcurrentAppendHandlingPolicy_Behavior_IO_ERROR ConcurrentAppendHandlingPolicy_Behavior = "IO_ERROR"
+const (
+	ConcurrentAppendHandlingPolicy_Behavior_ALLOW_READ_MODIFY_WRITE ConcurrentAppendHandlingPolicy_Behavior = "ALLOW_READ_MODIFY_WRITE"
+	ConcurrentAppendHandlingPolicy_Behavior_IO_ERROR                ConcurrentAppendHandlingPolicy_Behavior = "IO_ERROR"
 )
 
 type ConfigurationRefinement struct {
-    // List of one or more filters. Multiple filters are combined with AND
-    Filter []*Filter `json:"filter,omitempty"`
-    // The configuration to be set
-    Statement ConfigurationStatement `json:"statement,omitempty"`
+	// List of one or more filters. Multiple filters are combined with AND
+	Filter []*Filter `json:"filter,omitempty"`
+	// The configuration to be set
+	Statement ConfigurationStatement `json:"statement,omitempty"`
 }
 
 type ConfigurationStatement struct {
-    // Definition of the static (creation time) file layout
-    FileLayout FileLayoutSettings `json:"file_layout,omitempty"`
-    // Definition of the dynamic placement constraints
-    Placement PlacementSettings `json:"placement,omitempty"`
-    // Definition of the IO path behavior
-    IoPolicy FileIoSettings `json:"io_policy,omitempty"`
+	// Definition of the static (creation time) file layout
+	FileLayout FileLayoutSettings `json:"file_layout,omitempty"`
+	// Definition of the dynamic placement constraints
+	Placement PlacementSettings `json:"placement,omitempty"`
+	// Definition of the IO path behavior
+	IoPolicy FileIoSettings `json:"io_policy,omitempty"`
 }
 
 type ConfigureRuleRequest struct {
-    //Identifier of the rule to be configured
-    RuleIdentifier string `json:"rule_identifier,omitempty"`
-    // Enable or disable rule
-    SetAlertConfiguration AlertConfiguration `json:"set_alert_configuration,omitempty"`
-    //Identifier of the sensor to be used
-    SetSensorIdentifier string `json:"set_sensor_identifier,omitempty"`
-    // Optional parameters for the sensor, i.e. threshold etc.
-    SetSensorParameters []string `json:"set_sensor_parameters,omitempty"`
-    // List of one or more actions to be invoked
-    SetActions []*RuleAction `json:"set_actions,omitempty"`
-    retryPolicy
+	//Identifier of the rule to be configured
+	RuleIdentifier string `json:"rule_identifier,omitempty"`
+	// Enable or disable rule
+	SetAlertConfiguration AlertConfiguration `json:"set_alert_configuration,omitempty"`
+	//Identifier of the sensor to be used
+	SetSensorIdentifier string `json:"set_sensor_identifier,omitempty"`
+	// Optional parameters for the sensor, i.e. threshold etc.
+	SetSensorParameters []string `json:"set_sensor_parameters,omitempty"`
+	// List of one or more actions to be invoked
+	SetActions []*RuleAction `json:"set_actions,omitempty"`
+	retryPolicy
 }
 
 type ConfigureRuleResponse struct {
 }
 
 type ConsumingEntity struct {
-    //Type of the entity
-    Type ConsumingEntity_Type `json:"type,omitempty"`
-    //Identifier of the entity (ID/UUID/name)
-    Identifier string `json:"identifier,omitempty"`
-    // Acts as a scope for USER, GROUP and VOLUME type entities. Is ignored for other entity types.
-    TenantId string `json:"tenant_id,omitempty"`
-    // if set: - Only allow creating TENANT quotas or VOLUME quotas for that tenant. - If the entity is a volume, check if sum of new resource limits exceeds existing tenant limit.
-    DisableOversubscription bool `json:"disable_oversubscription,omitempty"`
-    // Only for entity type FAILURE_DOMAIN, is ignored for other entity types. Only for response, is ignored for request.
-    FailureDomainType FailureDomainType `json:"failure_domain_type,omitempty"`
-    // Only for user/group as additional filter
-    VolumeId string `json:"volume_id,omitempty"`
+	//Type of the entity
+	Type ConsumingEntity_Type `json:"type,omitempty"`
+	//Identifier of the entity (ID/UUID/name)
+	Identifier string `json:"identifier,omitempty"`
+	// Acts as a scope for USER, GROUP and VOLUME type entities. Is ignored for other entity types.
+	TenantId string `json:"tenant_id,omitempty"`
+	// if set: - Only allow creating TENANT quotas or VOLUME quotas for that tenant. - If the entity is a volume, check if sum of new resource limits exceeds existing tenant limit.
+	DisableOversubscription bool `json:"disable_oversubscription,omitempty"`
+	// Only for entity type FAILURE_DOMAIN, is ignored for other entity types. Only for response, is ignored for request.
+	FailureDomainType FailureDomainType `json:"failure_domain_type,omitempty"`
+	// Only for user/group as additional filter
+	VolumeId string `json:"volume_id,omitempty"`
 }
 
 type ConsumingEntity_Type string
 
-const(
-    ConsumingEntity_Type_DEVICE ConsumingEntity_Type = "DEVICE"
-    ConsumingEntity_Type_FAILURE_DOMAIN ConsumingEntity_Type = "FAILURE_DOMAIN"
-    ConsumingEntity_Type_GROUP ConsumingEntity_Type = "GROUP"
-    ConsumingEntity_Type_SYSTEM ConsumingEntity_Type = "SYSTEM"
-    ConsumingEntity_Type_TENANT ConsumingEntity_Type = "TENANT"
-    ConsumingEntity_Type_USER ConsumingEntity_Type = "USER"
-    ConsumingEntity_Type_VOLUME ConsumingEntity_Type = "VOLUME"
+const (
+	ConsumingEntity_Type_DEVICE         ConsumingEntity_Type = "DEVICE"
+	ConsumingEntity_Type_FAILURE_DOMAIN ConsumingEntity_Type = "FAILURE_DOMAIN"
+	ConsumingEntity_Type_GROUP          ConsumingEntity_Type = "GROUP"
+	ConsumingEntity_Type_SYSTEM         ConsumingEntity_Type = "SYSTEM"
+	ConsumingEntity_Type_TENANT         ConsumingEntity_Type = "TENANT"
+	ConsumingEntity_Type_USER           ConsumingEntity_Type = "USER"
+	ConsumingEntity_Type_VOLUME         ConsumingEntity_Type = "VOLUME"
 )
 
 type CopyFilesSettings struct {
-    // Job configuration for each sub task of the batch.
-    Job []*CopyFilesSettings_Job `json:"job,omitempty"`
+	// Job configuration for each sub task of the batch.
+	Job []*CopyFilesSettings_Job `json:"job,omitempty"`
 }
 
 type CopyFilesSettings_Job struct {
-    // Defines from where files will be copied from.
-    Source CopyFilesSettings_Job_Location `json:"source,omitempty"`
-    // Defines to where files will be copied to.
-    Destination CopyFilesSettings_Job_Location `json:"destination,omitempty"`
-    // Filters are evaluated in a logical AND fashion.
-    Filter []*CopyFilesSettings_Job_Filter `json:"filter,omitempty"`
-    // Defines how the destination files are being created.
-    DestinationFileSettings CopyFilesSettings_Job_DestinationFileSettings `json:"destination_file_settings,omitempty"`
-    // Define what happens to source and/or destination files after finishing copying. Only relevant if not doing in-place recode, but copies.
-    CommitAction CopyFilesSettings_Job_CommitAction `json:"commit_action,omitempty"`
+	// Defines from where files will be copied from.
+	Source CopyFilesSettings_Job_Location `json:"source,omitempty"`
+	// Defines to where files will be copied to.
+	Destination CopyFilesSettings_Job_Location `json:"destination,omitempty"`
+	// Filters are evaluated in a logical AND fashion.
+	Filter []*CopyFilesSettings_Job_Filter `json:"filter,omitempty"`
+	// Defines how the destination files are being created.
+	DestinationFileSettings CopyFilesSettings_Job_DestinationFileSettings `json:"destination_file_settings,omitempty"`
+	// Define what happens to source and/or destination files after finishing copying. Only relevant if not doing in-place recode, but copies.
+	CommitAction CopyFilesSettings_Job_CommitAction `json:"commit_action,omitempty"`
 }
 
 type CopyFilesSettings_Job_CommitAction string
 
-const(
-    CopyFilesSettings_Job_CommitAction_DELETE_SOURCE_FILE CopyFilesSettings_Job_CommitAction = "DELETE_SOURCE_FILE"
+const (
+	CopyFilesSettings_Job_CommitAction_DELETE_SOURCE_FILE CopyFilesSettings_Job_CommitAction = "DELETE_SOURCE_FILE"
 )
 
 type CopyFilesSettings_Job_DestinationFileSettings struct {
-    // Define behavior on file creation. Only relevant if not doing in-place recode, but copies.
-    CreateBehavior CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior `json:"create_behavior,omitempty"`
-    // Define whether to keep existing redundancy or recode the file.
-    RedundancySetting CopyFilesSettings_Job_DestinationFileSettings_RedundancySetting `json:"redundancy_setting,omitempty"`
+	// Define behavior on file creation. Only relevant if not doing in-place recode, but copies.
+	CreateBehavior CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior `json:"create_behavior,omitempty"`
+	// Define whether to keep existing redundancy or recode the file.
+	RedundancySetting CopyFilesSettings_Job_DestinationFileSettings_RedundancySetting `json:"redundancy_setting,omitempty"`
 }
 
 type CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior string
 
-const(
-    CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior_FAIL_IF_FILE_EXISTS CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior = "FAIL_IF_FILE_EXISTS"
-    CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior_OVERWRITE_EXISTING_FILE CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior = "OVERWRITE_EXISTING_FILE"
+const (
+	CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior_FAIL_IF_FILE_EXISTS     CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior = "FAIL_IF_FILE_EXISTS"
+	CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior_OVERWRITE_EXISTING_FILE CopyFilesSettings_Job_DestinationFileSettings_CreateBehavior = "OVERWRITE_EXISTING_FILE"
 )
 
 type CopyFilesSettings_Job_DestinationFileSettings_RedundancySetting string
 
-const(
-    CopyFilesSettings_Job_DestinationFileSettings_RedundancySetting_APPLY_DESTINATION_POLICY_RULES CopyFilesSettings_Job_DestinationFileSettings_RedundancySetting = "APPLY_DESTINATION_POLICY_RULES"
+const (
+	CopyFilesSettings_Job_DestinationFileSettings_RedundancySetting_APPLY_DESTINATION_POLICY_RULES CopyFilesSettings_Job_DestinationFileSettings_RedundancySetting = "APPLY_DESTINATION_POLICY_RULES"
 )
 
 type CopyFilesSettings_Job_Filter struct {
-    // Filter files by either current file size, atime or mtime.
-    Type CopyFilesSettings_Job_Filter_Type `json:"type,omitempty"`
-    // Compare current file size, atime or mtime of files using this operator.
-    Operator CopyFilesSettings_Job_Filter_Operator `json:"operator,omitempty"`
-    // The current file size, atime or mtime value to compare with.
-    Value int64 `json:"value,omitempty"`
+	// Filter files by either current file size, atime or mtime.
+	Type CopyFilesSettings_Job_Filter_Type `json:"type,omitempty"`
+	// Compare current file size, atime or mtime of files using this operator.
+	Operator CopyFilesSettings_Job_Filter_Operator `json:"operator,omitempty"`
+	// The current file size, atime or mtime value to compare with.
+	Value int64 `json:"value,omitempty"`
 }
 
 type CopyFilesSettings_Job_Filter_Operator string
 
-const(
-    CopyFilesSettings_Job_Filter_Operator_EQUALS CopyFilesSettings_Job_Filter_Operator = "EQUALS"
-    CopyFilesSettings_Job_Filter_Operator_LARGER_THAN CopyFilesSettings_Job_Filter_Operator = "LARGER_THAN"
-    CopyFilesSettings_Job_Filter_Operator_SMALLER_THAN CopyFilesSettings_Job_Filter_Operator = "SMALLER_THAN"
+const (
+	CopyFilesSettings_Job_Filter_Operator_EQUALS       CopyFilesSettings_Job_Filter_Operator = "EQUALS"
+	CopyFilesSettings_Job_Filter_Operator_LARGER_THAN  CopyFilesSettings_Job_Filter_Operator = "LARGER_THAN"
+	CopyFilesSettings_Job_Filter_Operator_SMALLER_THAN CopyFilesSettings_Job_Filter_Operator = "SMALLER_THAN"
 )
 
 type CopyFilesSettings_Job_Filter_Type string
 
-const(
-    CopyFilesSettings_Job_Filter_Type_CURRENT_FILE_SIZE CopyFilesSettings_Job_Filter_Type = "CURRENT_FILE_SIZE"
-    CopyFilesSettings_Job_Filter_Type_LAST_ACCESS_AGE_S CopyFilesSettings_Job_Filter_Type = "LAST_ACCESS_AGE_S"
-    CopyFilesSettings_Job_Filter_Type_LAST_MODIFICATION_AGE_S CopyFilesSettings_Job_Filter_Type = "LAST_MODIFICATION_AGE_S"
+const (
+	CopyFilesSettings_Job_Filter_Type_CURRENT_FILE_SIZE       CopyFilesSettings_Job_Filter_Type = "CURRENT_FILE_SIZE"
+	CopyFilesSettings_Job_Filter_Type_LAST_ACCESS_AGE_S       CopyFilesSettings_Job_Filter_Type = "LAST_ACCESS_AGE_S"
+	CopyFilesSettings_Job_Filter_Type_LAST_MODIFICATION_AGE_S CopyFilesSettings_Job_Filter_Type = "LAST_MODIFICATION_AGE_S"
 )
 
 type CopyFilesSettings_Job_Location struct {
-    // Exactly one Location type is allowed to be set. (Currently, only Quobyte is supported.)
-    Quobyte CopyFilesSettings_Job_Location_Quobyte `json:"quobyte,omitempty"`
+	// Exactly one Location type is allowed to be set. (Currently, only Quobyte is supported.)
+	Quobyte CopyFilesSettings_Job_Location_Quobyte `json:"quobyte,omitempty"`
 }
 
 type CopyFilesSettings_Job_Location_Quobyte struct {
-    // Either a list of registries (<hostname/IP>:<port>), a single DNS SRV or QNS record. Can only be set for the destination; any Quobyte source must be the local cluster.
-    Registry []string `json:"registry,omitempty"`
-    // The volume UUID.
-    Volume string `json:"volume,omitempty"`
-    // Path to a subdirectory to restrict to. If recoding, that is if source and destination volume are the same, must not be set. Otherwise, must only be set for the destination. (Infinite recursive copies could occur otherwise.)
-    Path string `json:"path,omitempty"`
+	// Either a list of registries (<hostname/IP>:<port>), a single DNS SRV or QNS record. Can only be set for the destination; any Quobyte source must be the local cluster.
+	Registry []string `json:"registry,omitempty"`
+	// The volume UUID.
+	Volume string `json:"volume,omitempty"`
+	// Path to a subdirectory to restrict to. If recoding, that is if source and destination volume are the same, must not be set. Otherwise, must only be set for the destination. (Infinite recursive copies could occur otherwise.)
+	Path string `json:"path,omitempty"`
 }
 
 type CreateAccessKeyCredentialsRequest struct {
-    TenantId string `json:"tenant_id,omitempty"`
-    UserName string `json:"user_name,omitempty"`
-    ValidityDays int32 `json:"validity_days,omitempty"`
-    // e.g. S3 for S3 credentials
-    AccessKeyType AccessKeyType `json:"access_key_type,omitempty"`
-    retryPolicy
+	TenantId     string `json:"tenant_id,omitempty"`
+	UserName     string `json:"user_name,omitempty"`
+	ValidityDays int32  `json:"validity_days,omitempty"`
+	// e.g. S3 for S3 credentials
+	AccessKeyType AccessKeyType `json:"access_key_type,omitempty"`
+	retryPolicy
 }
 
 type CreateAccessKeyCredentialsResponse struct {
-    AccessKeyCredentials AccessKeyCredentials `json:"access_key_credentials,omitempty"`
+	AccessKeyCredentials AccessKeyCredentials `json:"access_key_credentials,omitempty"`
 }
 
 type CreateCopyFilesTaskRequest struct {
-    // Textual representation of the settings.
-    CopyFilesSettingsProtoDump string `json:"copy_files_settings_proto_dump,omitempty"`
-    // Optional comment
-    Comment string `json:"comment,omitempty"`
-    retryPolicy
+	// Textual representation of the settings.
+	CopyFilesSettingsProtoDump string `json:"copy_files_settings_proto_dump,omitempty"`
+	// Optional comment
+	Comment string `json:"comment,omitempty"`
+	retryPolicy
 }
 
 type CreateMasterKeystoreSlotRequest struct {
-    MasterKeystoreSlotPassword string `json:"master_keystore_slot_password,omitempty"`
-    retryPolicy
+	MasterKeystoreSlotPassword string `json:"master_keystore_slot_password,omitempty"`
+	retryPolicy
 }
 
 type CreateMasterKeystoreSlotResponse struct {
-    KeystoreSlotUuid string `json:"keystore_slot_uuid,omitempty"`
-    PasswordHashHex string `json:"password_hash_hex,omitempty"`
+	KeystoreSlotUuid string `json:"keystore_slot_uuid,omitempty"`
+	PasswordHashHex  string `json:"password_hash_hex,omitempty"`
 }
 
 type CreateMirroredVolumeRequest struct {
-    LocalVolumeName string `json:"local_volume_name,omitempty"`
-    LocalConfigurationName string `json:"local_configuration_name,omitempty"`
-    LocalTenantId string `json:"local_tenant_id,omitempty"`
-    RemoteVolumeUuid string `json:"remote_volume_uuid,omitempty"`
-    RemoteRegistryTarget []string `json:"remote_registry_target,omitempty"`
-    retryPolicy
+	LocalVolumeName        string   `json:"local_volume_name,omitempty"`
+	LocalConfigurationName string   `json:"local_configuration_name,omitempty"`
+	LocalTenantId          string   `json:"local_tenant_id,omitempty"`
+	RemoteVolumeUuid       string   `json:"remote_volume_uuid,omitempty"`
+	RemoteRegistryTarget   []string `json:"remote_registry_target,omitempty"`
+	retryPolicy
 }
 
 type CreateMirroredVolumeResponse struct {
-    //UUID of the created volume
-    VolumeUuid string `json:"volume_uuid,omitempty"`
+	//UUID of the created volume
+	VolumeUuid string `json:"volume_uuid,omitempty"`
 }
 
 type CreateNewUserKeystoreSlotRequest struct {
-    EncodedNewKeystoreSlotPasswordHash string `json:"encoded_new_keystore_slot_password_hash,omitempty"`
-    EncodedNewKeystoreSlotPasswordSalt string `json:"encoded_new_keystore_slot_password_salt,omitempty"`
-    retryPolicy
+	EncodedNewKeystoreSlotPasswordHash string `json:"encoded_new_keystore_slot_password_hash,omitempty"`
+	EncodedNewKeystoreSlotPasswordSalt string `json:"encoded_new_keystore_slot_password_salt,omitempty"`
+	retryPolicy
 }
 
 type CreateNewUserKeystoreSlotResponse struct {
-    KeystoreSlotUuid string `json:"keystore_slot_uuid,omitempty"`
+	KeystoreSlotUuid string `json:"keystore_slot_uuid,omitempty"`
 }
 
 type CreateNotificationRuleRequest struct {
-    Rule NotificationRule `json:"rule,omitempty"`
-    retryPolicy
+	Rule NotificationRule `json:"rule,omitempty"`
+	retryPolicy
 }
 
 type CreateNotificationRuleResponse struct {
-    Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type CreatePolicyRuleRequest struct {
-    // Must omit UUID; will be generated. ordering_number may be omitted. If omitted, set to next highest. Disallows default. Default policy rules can't be created.
-    PolicyRule PolicyRule `json:"policy_rule,omitempty"`
-    retryPolicy
+	// Must omit UUID; will be generated. ordering_number may be omitted. If omitted, set to next highest. Disallows default. Default policy rules can't be created.
+	PolicyRule PolicyRule `json:"policy_rule,omitempty"`
+	retryPolicy
 }
 
 type CreatePolicyRuleResponse struct {
-    // The UUID of the created policy rule.
-    PolicyRuleUuid string `json:"policy_rule_uuid,omitempty"`
+	// The UUID of the created policy rule.
+	PolicyRuleUuid string `json:"policy_rule_uuid,omitempty"`
 }
 
 type CreatePolicyRuleSetRequest struct {
-    // Must not create, update or delete default ones.
-    PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
-    Creator string `json:"creator,omitempty"`
-    Comment string `json:"comment,omitempty"`
-    retryPolicy
+	// Must not create, update or delete default ones.
+	PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
+	Creator    string        `json:"creator,omitempty"`
+	Comment    string        `json:"comment,omitempty"`
+	retryPolicy
 }
 
 type CreatePolicyRuleSetResponse struct {
 }
 
 type CreateSnapshotRequest struct {
-    // Volume uuid
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    // Snapshot name
-    Name string `json:"name,omitempty"`
-    // Comment
-    Comment string `json:"comment,omitempty"`
-    // Create pinned snapshot (will not be deleted by cleanup)
-    Pinned bool `json:"pinned,omitempty"`
-    retryPolicy
+	// Volume uuid
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	// Snapshot name
+	Name string `json:"name,omitempty"`
+	// Comment
+	Comment string `json:"comment,omitempty"`
+	// Create pinned snapshot (will not be deleted by cleanup)
+	Pinned bool `json:"pinned,omitempty"`
+	retryPolicy
 }
 
 type CreateSnapshotResponse struct {
-    // Snapshot version
-    Version int64 `json:"version,omitempty"`
+	// Snapshot version
+	Version int64 `json:"version,omitempty"`
 }
 
 type CreateTaskRequest struct {
-    //Type of the task
-    TaskType TaskType `json:"task_type,omitempty"`
-    // Settings for REBALANCE tasks
-    RebalanceSettings RebalanceSettings `json:"rebalance_settings,omitempty"`
-    // Settings for SCRUB tasks
-    ScrubSettings ScrubSettings `json:"scrub_settings,omitempty"`
-    // Settings for CATCH UP tasks
-    CatchUpSettings CatchUpSettings `json:"catch_up_settings,omitempty"`
-    // Settings for MAKE DEVICE tasks
-    MakeDeviceSettings MakeDeviceSettings `json:"make_device_settings,omitempty"`
-    // Settings for COPY_FILES tasks
-    CopyFilesSettings CopyFilesSettings `json:"copy_files_settings,omitempty"`
-    // List of devices the task should be restricted to
-    RestrictToDevices []int64 `json:"restrict_to_devices,omitempty"`
-    // List of volumes the task should be restricted to
-    RestrictToVolumes []string `json:"restrict_to_volumes,omitempty"`
-    // Optional comment
-    Comment string `json:"comment,omitempty"`
-    ObsoleteTargetUuid string `json:"OBSOLETE_target_uuid,omitempty"`
-    retryPolicy
+	//Type of the task
+	TaskType TaskType `json:"task_type,omitempty"`
+	// Settings for REBALANCE tasks
+	RebalanceSettings RebalanceSettings `json:"rebalance_settings,omitempty"`
+	// Settings for SCRUB tasks
+	ScrubSettings ScrubSettings `json:"scrub_settings,omitempty"`
+	// Settings for CATCH UP tasks
+	CatchUpSettings CatchUpSettings `json:"catch_up_settings,omitempty"`
+	// Settings for MAKE DEVICE tasks
+	MakeDeviceSettings MakeDeviceSettings `json:"make_device_settings,omitempty"`
+	// Settings for COPY_FILES tasks
+	CopyFilesSettings CopyFilesSettings `json:"copy_files_settings,omitempty"`
+	// List of devices the task should be restricted to
+	RestrictToDevices []int64 `json:"restrict_to_devices,omitempty"`
+	// List of volumes the task should be restricted to
+	RestrictToVolumes []string `json:"restrict_to_volumes,omitempty"`
+	// Optional comment
+	Comment            string `json:"comment,omitempty"`
+	ObsoleteTargetUuid string `json:"OBSOLETE_target_uuid,omitempty"`
+	retryPolicy
 }
 
 type CreateTaskResponse struct {
-    // ID of the created task
-    TaskId string `json:"task_id,omitempty"`
+	// ID of the created task
+	TaskId string `json:"task_id,omitempty"`
 }
 
 type CreateUserRequest struct {
-    UserName string `json:"user_name,omitempty"`
-    Password string `json:"password,omitempty"`
-    Email string `json:"email,omitempty"`
-    AdminOfTenantId []string `json:"admin_of_tenant_id,omitempty"`
-    Role UserRole `json:"role,omitempty"`
-    MemberOfTenantId []string `json:"member_of_tenant_id,omitempty"`
-    MemberOfGroup []string `json:"member_of_group,omitempty"`
-    retryPolicy
+	UserName         string   `json:"user_name,omitempty"`
+	Password         string   `json:"password,omitempty"`
+	Email            string   `json:"email,omitempty"`
+	AdminOfTenantId  []string `json:"admin_of_tenant_id,omitempty"`
+	Role             UserRole `json:"role,omitempty"`
+	MemberOfTenantId []string `json:"member_of_tenant_id,omitempty"`
+	MemberOfGroup    []string `json:"member_of_group,omitempty"`
+	retryPolicy
 }
 
 type CreateUserResponse struct {
-    UserConfiguration UserConfiguration `json:"user_configuration,omitempty"`
+	UserConfiguration UserConfiguration `json:"user_configuration,omitempty"`
 }
 
 type CreateVolumeRequest struct {
-    // Human readable name of the volume to be created.
-    Name string `json:"name,omitempty"`
-    // List of one or more metadata device uuids to store replicas of this volume. Optional, if absent replicas will be placed automatically.
-    ReplicaDeviceIds []int64 `json:"replica_device_ids,omitempty"`
-    // userid of the owner of the root directory (Linux uid, certificate CN).
-    RootUserId string `json:"root_user_id,omitempty"`
-    // group id of the owner of the root directory (Linux gid, certificate OU).
-    RootGroupId string `json:"root_group_id,omitempty"`
-    // Will be generated automatically.
-    ObsoleteVolumeUuid string `json:"OBSOLETE_volume_uuid,omitempty"`
-    ConfigurationName string `json:"configuration_name,omitempty"`
-    // POSIX access mode for the root directory of the newly created volume.
-    AccessMode int32 `json:"access_mode,omitempty"`
-    // Optional tenant
-    TenantId string `json:"tenant_id,omitempty"`
-    // DEPRECATED Legacy name for field 8
-    TenantDomain string `json:"tenant_domain,omitempty"`
-    // Labels to set for the volume prior to its creation. Name and value are sufficient.
-    Label []*Label `json:"label,omitempty"`
-    VolumeEncryptionProfile CreateVolumeRequest_VolumeEncryptionProfile `json:"volume_encryption_profile,omitempty"`
-    RootAcl AccessControlList `json:"root_acl,omitempty"`
-    retryPolicy
+	// Human readable name of the volume to be created.
+	Name string `json:"name,omitempty"`
+	// List of one or more metadata device uuids to store replicas of this volume. Optional, if absent replicas will be placed automatically.
+	ReplicaDeviceIds []int64 `json:"replica_device_ids,omitempty"`
+	// userid of the owner of the root directory (Linux uid, certificate CN).
+	RootUserId string `json:"root_user_id,omitempty"`
+	// group id of the owner of the root directory (Linux gid, certificate OU).
+	RootGroupId string `json:"root_group_id,omitempty"`
+	// Will be generated automatically.
+	ObsoleteVolumeUuid string `json:"OBSOLETE_volume_uuid,omitempty"`
+	ConfigurationName  string `json:"configuration_name,omitempty"`
+	// POSIX access mode for the root directory of the newly created volume.
+	AccessMode int32 `json:"access_mode,omitempty"`
+	// Optional tenant
+	TenantId string `json:"tenant_id,omitempty"`
+	// DEPRECATED Legacy name for field 8
+	TenantDomain string `json:"tenant_domain,omitempty"`
+	// Labels to set for the volume prior to its creation. Name and value are sufficient.
+	Label                   []*Label                                    `json:"label,omitempty"`
+	VolumeEncryptionProfile CreateVolumeRequest_VolumeEncryptionProfile `json:"volume_encryption_profile,omitempty"`
+	RootAcl                 AccessControlList                           `json:"root_acl,omitempty"`
+	retryPolicy
 }
 
 type CreateVolumeRequest_VolumeEncryptionProfile string
 
-const(
-    CreateVolumeRequest_VolumeEncryptionProfile_NONE CreateVolumeRequest_VolumeEncryptionProfile = "NONE"
-    CreateVolumeRequest_VolumeEncryptionProfile_SYSTEM_AES_128 CreateVolumeRequest_VolumeEncryptionProfile = "SYSTEM_AES_128"
-    CreateVolumeRequest_VolumeEncryptionProfile_SYSTEM_AES_256 CreateVolumeRequest_VolumeEncryptionProfile = "SYSTEM_AES_256"
-    CreateVolumeRequest_VolumeEncryptionProfile_USER_AES_128 CreateVolumeRequest_VolumeEncryptionProfile = "USER_AES_128"
-    CreateVolumeRequest_VolumeEncryptionProfile_USER_AES_256 CreateVolumeRequest_VolumeEncryptionProfile = "USER_AES_256"
+const (
+	CreateVolumeRequest_VolumeEncryptionProfile_NONE           CreateVolumeRequest_VolumeEncryptionProfile = "NONE"
+	CreateVolumeRequest_VolumeEncryptionProfile_SYSTEM_AES_128 CreateVolumeRequest_VolumeEncryptionProfile = "SYSTEM_AES_128"
+	CreateVolumeRequest_VolumeEncryptionProfile_SYSTEM_AES_256 CreateVolumeRequest_VolumeEncryptionProfile = "SYSTEM_AES_256"
+	CreateVolumeRequest_VolumeEncryptionProfile_USER_AES_128   CreateVolumeRequest_VolumeEncryptionProfile = "USER_AES_128"
+	CreateVolumeRequest_VolumeEncryptionProfile_USER_AES_256   CreateVolumeRequest_VolumeEncryptionProfile = "USER_AES_256"
 )
 
 type CreateVolumeResponse struct {
-    //UUID of the created volume
-    VolumeUuid string `json:"volume_uuid,omitempty"`
+	//UUID of the created volume
+	VolumeUuid string `json:"volume_uuid,omitempty"`
 }
 
 type DataServiceCachePolicy struct {
-    NotifyOnClose bool `json:"notify_on_close,omitempty"`
+	NotifyOnClose bool `json:"notify_on_close,omitempty"`
 }
 
 type DecideCsrRequest struct {
-    // CSR identifier
-    CsrId int64 `json:"csr_id,omitempty"`
-    // Override csr subject with effective subject
-    EffectiveSubject string `json:"effective_subject,omitempty"`
-    // Approve CSR
-    Approve bool `json:"approve,omitempty"`
-    retryPolicy
+	// CSR identifier
+	CsrId int64 `json:"csr_id,omitempty"`
+	// Override csr subject with effective subject
+	EffectiveSubject string `json:"effective_subject,omitempty"`
+	// Approve CSR
+	Approve bool `json:"approve,omitempty"`
+	retryPolicy
 }
 
 type DecideCsrResponse struct {
 }
 
 type DeferredClosePolicy struct {
-    DeferCloseUpToS int64 `json:"defer_close_up_to_s,omitempty"`
+	DeferCloseUpToS int64 `json:"defer_close_up_to_s,omitempty"`
 }
 
 type DeferredWritebackPolicy struct {
-    DeferWritebackAfterCloseUpToS int64 `json:"defer_writeback_after_close_up_to_s,omitempty"`
+	DeferWritebackAfterCloseUpToS int64 `json:"defer_writeback_after_close_up_to_s,omitempty"`
 }
 
 type DelegationSubject struct {
-    // Restrict to tenant id
-    Tenant string `json:"tenant,omitempty"`
-    // Restrict to volume
-    Volume string `json:"volume,omitempty"`
-    // Restrict to user
-    User string `json:"user,omitempty"`
-    // Restrict to groups
-    Groups []string `json:"groups,omitempty"`
-    // Allow only read access
-    ReadOnly bool `json:"read_only,omitempty"`
-    // Forbid root access
-    ForbidRoot bool `json:"forbid_root,omitempty"`
+	// Restrict to tenant id
+	Tenant string `json:"tenant,omitempty"`
+	// Restrict to volume
+	Volume string `json:"volume,omitempty"`
+	// Restrict to user
+	User string `json:"user,omitempty"`
+	// Restrict to groups
+	Groups []string `json:"groups,omitempty"`
+	// Allow only read access
+	ReadOnly bool `json:"read_only,omitempty"`
+	// Forbid root access
+	ForbidRoot bool `json:"forbid_root,omitempty"`
 }
 
 type DeleteAccessKeyCredentialsRequest struct {
-    UserName string `json:"user_name,omitempty"`
-    AccessKeyId string `json:"access_key_id,omitempty"`
-    retryPolicy
+	UserName    string `json:"user_name,omitempty"`
+	AccessKeyId string `json:"access_key_id,omitempty"`
+	retryPolicy
 }
 
 type DeleteAccessKeyCredentialsResponse struct {
 }
 
 type DeleteCaRequest struct {
-    // CA name
-    Name string `json:"name,omitempty"`
-    retryPolicy
+	// CA name
+	Name string `json:"name,omitempty"`
+	retryPolicy
 }
 
 type DeleteCaResponse struct {
 }
 
 type DeleteCertificateRequest struct {
-    // X.509 certificate fingerprint
-    Fingerprint string `json:"fingerprint,omitempty"`
-    retryPolicy
+	// X.509 certificate fingerprint
+	Fingerprint string `json:"fingerprint,omitempty"`
+	retryPolicy
 }
 
 type DeleteCertificateResponse struct {
 }
 
 type DeleteConfigurationRequest struct {
-    //Type of the configuration to be deleted
-    ConfigurationType ConfigurationType `json:"configuration_type,omitempty"`
-    // Name of the configuration to be deleted
-    ConfigurationName string `json:"configuration_name,omitempty"`
-    retryPolicy
+	//Type of the configuration to be deleted
+	ConfigurationType ConfigurationType `json:"configuration_type,omitempty"`
+	// Name of the configuration to be deleted
+	ConfigurationName string `json:"configuration_name,omitempty"`
+	retryPolicy
 }
 
 type DeleteConfigurationResponse struct {
 }
 
 type DeleteCsrRequest struct {
-    CsrId int64 `json:"csr_id,omitempty"`
-    retryPolicy
+	CsrId int64 `json:"csr_id,omitempty"`
+	retryPolicy
 }
 
 type DeleteCsrResponse struct {
 }
 
 type DeleteLabelsRequest struct {
-    Label []*Label `json:"label,omitempty"`
-    retryPolicy
+	Label []*Label `json:"label,omitempty"`
+	retryPolicy
 }
 
 type DeleteLabelsResponse struct {
 }
 
 type DeleteNotificationRuleRequest struct {
-    Uuid string `json:"uuid,omitempty"`
-    retryPolicy
+	Uuid string `json:"uuid,omitempty"`
+	retryPolicy
 }
 
 type DeleteNotificationRuleResponse struct {
 }
 
 type DeletePolicyRulesRequest struct {
-    PolicyRuleUuid []string `json:"policy_rule_uuid,omitempty"`
-    retryPolicy
+	PolicyRuleUuid []string `json:"policy_rule_uuid,omitempty"`
+	retryPolicy
 }
 
 type DeletePolicyRulesResponse struct {
 }
 
 type DeleteSnapshotRequest struct {
-    // Volume uuid
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    // Snapshot name
-    Name string `json:"name,omitempty"`
-    retryPolicy
+	// Volume uuid
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	// Snapshot name
+	Name string `json:"name,omitempty"`
+	retryPolicy
 }
 
 type DeleteSnapshotResponse struct {
 }
 
 type DeleteTenantRequest struct {
-    TenantId string `json:"tenant_id,omitempty"`
-    retryPolicy
+	TenantId string `json:"tenant_id,omitempty"`
+	retryPolicy
 }
 
 type DeleteTenantResponse struct {
 }
 
 type DeleteUserRequest struct {
-    UserName string `json:"user_name,omitempty"`
-    retryPolicy
+	UserName string `json:"user_name,omitempty"`
+	retryPolicy
 }
 
 type DeleteUserResponse struct {
 }
 
 type DeleteVolumeRequest struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    retryPolicy
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	retryPolicy
 }
 
 type DeleteVolumeResponse struct {
 }
 
 type DeregisterServiceRequest struct {
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    retryPolicy
+	ServiceUuid string `json:"service_uuid,omitempty"`
+	retryPolicy
 }
 
 type DeregisterServiceResponse struct {
 }
 
 type Device struct {
-    // UUID of the device (e.g.
-    DeviceId int64 `json:"device_id,omitempty"`
-    //Custom label (name) for the device
-    DeviceLabel string `json:"device_label,omitempty"`
-    // List of one or more contents of the device
-    Content []*DeviceContent `json:"content,omitempty"`
-    //Current status of the device
-    DeviceStatus Device_Status `json:"device_status,omitempty"`
-    //Name of the host where this device resides
-    HostName string `json:"host_name,omitempty"`
-    //Total size of the device
-    TotalDiskSpaceBytes int64 `json:"total_disk_space_bytes,omitempty"`
-    //Currently used bytes on the device
-    UsedDiskSpaceBytes int64 `json:"used_disk_space_bytes,omitempty"`
-    //List of optional device tags
-    DeviceTags []string `json:"device_tags,omitempty"`
-    // List of optional failure domains this device belongs to
-    FailureDomainInfos []*FailureDomainInfo `json:"failure_domain_infos,omitempty"`
-    //Current LED status of the device
-    LedStatus Device_LEDStatus `json:"led_status,omitempty"`
-    //Device does not contain any active data after a drain
-    IsEmpty bool `json:"is_empty,omitempty"`
-    //If true, file placement will move any replica under consideration away from this device.
-    Draining bool `json:"draining,omitempty"`
-    //Device serial number extracted via smartctl by qmkdev
-    DeviceSerialNumber string `json:"device_serial_number,omitempty"`
-    //Device model extracted via smartctl by qmkdev
-    DeviceModel string `json:"device_model,omitempty"`
-    //Disk type detected by the storage server
-    DetectedDiskType DeviceHardwareType `json:"detected_disk_type,omitempty"`
-    //Local file system path where the device is mounted
-    CurrentMountPath string `json:"current_mount_path,omitempty"`
-    //Number of referenced files, according to Metadata service
-    FileCount int64 `json:"file_count,omitempty"`
-    //Number of volume replicas
-    VolumeDatabaseCount int64 `json:"volume_database_count,omitempty"`
-    //Number of registry replicas (0 or 1)
-    RegistryDatabaseCount int64 `json:"registry_database_count,omitempty"`
-    //Number of IO errors
-    IoErrorCount int64 `json:"io_error_count,omitempty"`
-    //Number of CRC errors
-    CrcErrorCount int64 `json:"crc_error_count,omitempty"`
-    //Timestamp of last cleanup
-    LastCleanupMs int64 `json:"last_cleanup_ms,omitempty"`
-    //Current utilization in percent
-    CurrentUtilization float64 `json:"current_utilization,omitempty"`
-    //Number of reallocated sectors, extracted via smartctl (attribute #5)
-    ReallocatedSectorCt int64 `json:"reallocated_sector_ct,omitempty"`
-    //Number of unrecoverable errors, extracted via smartctl (attribute #187)
-    ReportedUncorrect int64 `json:"reported_uncorrect,omitempty"`
-    //Number of aborted operations due to timeout, extracted via smartctl (attribute #188)
-    CommandTimeout int64 `json:"command_timeout,omitempty"`
-    //Number of currently unstable sectors waiting to be remapped, extracted via smartctl (attribute #197)
-    CurrentPendingSector int64 `json:"current_pending_sector,omitempty"`
-    //Number of uncorrectable errors, extracted via smartctl (attribute #198)
-    OfflineUncorrectable int64 `json:"offline_uncorrectable,omitempty"`
-    // Total time the drive was running, extracted via smartctl (attribute #9)
-    PowerOnHours int64 `json:"power_on_hours,omitempty"`
-    // The total number of bytes written during the entire lifetime of the device, extracted via smartctl (attribute #241)
-    TotalBytesWritten int64 `json:"total_bytes_written,omitempty"`
-    // The total number of bytes read during the entire lifetime of the device, extracted via smartctl (attribute #242)
-    TotalBytesRead int64 `json:"total_bytes_read,omitempty"`
-    // The wear-out indicator of the device (attribute #177, #231, or #233)
-    DeviceLifeLeft int64 `json:"device_life_left,omitempty"`
-    // The crc error count, extracted via smartclt (attribute #199)
-    SmartCrcErrorCount int64 `json:"smart_crc_error_count,omitempty"`
-    // The device temperature in degree celsius (attribute #194)
-    DeviceTemperatureInC int64 `json:"device_temperature_in_c,omitempty"`
-    // normalized percentage (0 to 100%) of the remaining spare capacity available.
-    AvailableSpare int64 `json:"available_spare,omitempty"`
-    // vendor specific estimate of the percentage of NVM subsystem life used.
-    PercentageUsed int64 `json:"percentage_used,omitempty"`
-    // number of unsafe shutdowns (CC.SHN is not received prior to loss of power)
-    UnsafeShutdowns int64 `json:"unsafe_shutdowns,omitempty"`
-    // number of unrecovered data integrity error
-    MediaErrors int64 `json:"media_errors,omitempty"`
-    // bitwise indicator where each corresponds to a critical warning type; multiple bits may be set.
-    CriticalWarningIndicator int64 `json:"critical_warning_indicator,omitempty"`
-    // True if device is primary in the current replica set
-    IsPrimary bool `json:"is_primary,omitempty"`
-    //Timestamp of last fstrim
-    LastFstrimMs int64 `json:"last_fstrim_ms,omitempty"`
-    DeviceHealth Device_DeviceHealth `json:"device_health,omitempty"`
-    // timestamp when this device was detected fully available by the health manager timestamp is used for device unavailable alerts and Regenerate Unavailable HM policy.
-    LastDeviceAvailableMs int64 `json:"last_device_available_ms,omitempty"`
-    FirmwareVersion string `json:"firmware_version,omitempty"`
-    MountState Device_MountState `json:"mount_state,omitempty"`
-    FilesystemCheckBeforeMount Device_FileSystemCheckBeforeMount `json:"filesystem_check_before_mount,omitempty"`
+	// UUID of the device (e.g.
+	DeviceId int64 `json:"device_id,omitempty"`
+	//Custom label (name) for the device
+	DeviceLabel string `json:"device_label,omitempty"`
+	// List of one or more contents of the device
+	Content []*DeviceContent `json:"content,omitempty"`
+	//Current status of the device
+	DeviceStatus Device_Status `json:"device_status,omitempty"`
+	//Name of the host where this device resides
+	HostName string `json:"host_name,omitempty"`
+	//Total size of the device
+	TotalDiskSpaceBytes int64 `json:"total_disk_space_bytes,omitempty"`
+	//Currently used bytes on the device
+	UsedDiskSpaceBytes int64 `json:"used_disk_space_bytes,omitempty"`
+	//List of optional device tags
+	DeviceTags []string `json:"device_tags,omitempty"`
+	// List of optional failure domains this device belongs to
+	FailureDomainInfos []*FailureDomainInfo `json:"failure_domain_infos,omitempty"`
+	//Current LED status of the device
+	LedStatus Device_LEDStatus `json:"led_status,omitempty"`
+	//Device does not contain any active data after a drain
+	IsEmpty bool `json:"is_empty,omitempty"`
+	//If true, file placement will move any replica under consideration away from this device.
+	Draining bool `json:"draining,omitempty"`
+	//Device serial number extracted via smartctl by qmkdev
+	DeviceSerialNumber string `json:"device_serial_number,omitempty"`
+	//Device model extracted via smartctl by qmkdev
+	DeviceModel string `json:"device_model,omitempty"`
+	//Disk type detected by the storage server
+	DetectedDiskType DeviceHardwareType `json:"detected_disk_type,omitempty"`
+	//Local file system path where the device is mounted
+	CurrentMountPath string `json:"current_mount_path,omitempty"`
+	//Number of referenced files, according to Metadata service
+	FileCount int64 `json:"file_count,omitempty"`
+	//Number of volume replicas
+	VolumeDatabaseCount int64 `json:"volume_database_count,omitempty"`
+	//Number of registry replicas (0 or 1)
+	RegistryDatabaseCount int64 `json:"registry_database_count,omitempty"`
+	//Number of IO errors
+	IoErrorCount int64 `json:"io_error_count,omitempty"`
+	//Number of CRC errors
+	CrcErrorCount int64 `json:"crc_error_count,omitempty"`
+	//Timestamp of last cleanup
+	LastCleanupMs int64 `json:"last_cleanup_ms,omitempty"`
+	//Current utilization in percent
+	CurrentUtilization float64 `json:"current_utilization,omitempty"`
+	//Number of reallocated sectors, extracted via smartctl (attribute #5)
+	ReallocatedSectorCt int64 `json:"reallocated_sector_ct,omitempty"`
+	//Number of unrecoverable errors, extracted via smartctl (attribute #187)
+	ReportedUncorrect int64 `json:"reported_uncorrect,omitempty"`
+	//Number of aborted operations due to timeout, extracted via smartctl (attribute #188)
+	CommandTimeout int64 `json:"command_timeout,omitempty"`
+	//Number of currently unstable sectors waiting to be remapped, extracted via smartctl (attribute #197)
+	CurrentPendingSector int64 `json:"current_pending_sector,omitempty"`
+	//Number of uncorrectable errors, extracted via smartctl (attribute #198)
+	OfflineUncorrectable int64 `json:"offline_uncorrectable,omitempty"`
+	// Total time the drive was running, extracted via smartctl (attribute #9)
+	PowerOnHours int64 `json:"power_on_hours,omitempty"`
+	// The total number of bytes written during the entire lifetime of the device, extracted via smartctl (attribute #241)
+	TotalBytesWritten int64 `json:"total_bytes_written,omitempty"`
+	// The total number of bytes read during the entire lifetime of the device, extracted via smartctl (attribute #242)
+	TotalBytesRead int64 `json:"total_bytes_read,omitempty"`
+	// The wear-out indicator of the device (attribute #177, #231, or #233)
+	DeviceLifeLeft int64 `json:"device_life_left,omitempty"`
+	// The crc error count, extracted via smartclt (attribute #199)
+	SmartCrcErrorCount int64 `json:"smart_crc_error_count,omitempty"`
+	// The device temperature in degree celsius (attribute #194)
+	DeviceTemperatureInC int64 `json:"device_temperature_in_c,omitempty"`
+	// normalized percentage (0 to 100%) of the remaining spare capacity available.
+	AvailableSpare int64 `json:"available_spare,omitempty"`
+	// vendor specific estimate of the percentage of NVM subsystem life used.
+	PercentageUsed int64 `json:"percentage_used,omitempty"`
+	// number of unsafe shutdowns (CC.SHN is not received prior to loss of power)
+	UnsafeShutdowns int64 `json:"unsafe_shutdowns,omitempty"`
+	// number of unrecovered data integrity error
+	MediaErrors int64 `json:"media_errors,omitempty"`
+	// bitwise indicator where each corresponds to a critical warning type; multiple bits may be set.
+	CriticalWarningIndicator int64 `json:"critical_warning_indicator,omitempty"`
+	// True if device is primary in the current replica set
+	IsPrimary bool `json:"is_primary,omitempty"`
+	//Timestamp of last fstrim
+	LastFstrimMs int64               `json:"last_fstrim_ms,omitempty"`
+	DeviceHealth Device_DeviceHealth `json:"device_health,omitempty"`
+	// timestamp when this device was detected fully available by the health manager timestamp is used for device unavailable alerts and Regenerate Unavailable HM policy.
+	LastDeviceAvailableMs      int64                             `json:"last_device_available_ms,omitempty"`
+	FirmwareVersion            string                            `json:"firmware_version,omitempty"`
+	MountState                 Device_MountState                 `json:"mount_state,omitempty"`
+	FilesystemCheckBeforeMount Device_FileSystemCheckBeforeMount `json:"filesystem_check_before_mount,omitempty"`
 }
 
 type Device_FileSystemCheckBeforeMount string
 
-const(
-    Device_FileSystemCheckBeforeMount_DISABLED Device_FileSystemCheckBeforeMount = "DISABLED"
-    Device_FileSystemCheckBeforeMount_ENABLED Device_FileSystemCheckBeforeMount = "ENABLED"
+const (
+	Device_FileSystemCheckBeforeMount_DISABLED Device_FileSystemCheckBeforeMount = "DISABLED"
+	Device_FileSystemCheckBeforeMount_ENABLED  Device_FileSystemCheckBeforeMount = "ENABLED"
 )
 
 type Device_LEDStatus string
 
-const(
-    Device_LEDStatus_FAIL Device_LEDStatus = "FAIL"
-    Device_LEDStatus_LOCATE Device_LEDStatus = "LOCATE"
-    Device_LEDStatus_OFF Device_LEDStatus = "OFF"
+const (
+	Device_LEDStatus_FAIL   Device_LEDStatus = "FAIL"
+	Device_LEDStatus_LOCATE Device_LEDStatus = "LOCATE"
+	Device_LEDStatus_OFF    Device_LEDStatus = "OFF"
 )
 
 type Device_MountState string
 
-const(
-    Device_MountState_MOUNTED Device_MountState = "MOUNTED"
-    Device_MountState_UNMOUNTED Device_MountState = "UNMOUNTED"
+const (
+	Device_MountState_MOUNTED   Device_MountState = "MOUNTED"
+	Device_MountState_UNMOUNTED Device_MountState = "UNMOUNTED"
 )
 
 type Device_Status string
 
-const(
-    Device_Status_DECOMMISSIONED Device_Status = "DECOMMISSIONED"
-    Device_Status_DRAIN Device_Status = "DRAIN"
-    Device_Status_OFFLINE Device_Status = "OFFLINE"
-    Device_Status_ONLINE Device_Status = "ONLINE"
-    Device_Status_REGENERATE Device_Status = "REGENERATE"
+const (
+	Device_Status_DECOMMISSIONED Device_Status = "DECOMMISSIONED"
+	Device_Status_DRAIN          Device_Status = "DRAIN"
+	Device_Status_OFFLINE        Device_Status = "OFFLINE"
+	Device_Status_ONLINE         Device_Status = "ONLINE"
+	Device_Status_REGENERATE     Device_Status = "REGENERATE"
 )
 
 type Device_DeviceHealth struct {
-    HealthStatus Device_DeviceHealth_DeviceHealthStatus `json:"health_status,omitempty"`
-    ErrorReport string `json:"error_report,omitempty"`
+	HealthStatus Device_DeviceHealth_DeviceHealthStatus `json:"health_status,omitempty"`
+	ErrorReport  string                                 `json:"error_report,omitempty"`
 }
 
 type Device_DeviceHealth_DeviceHealthStatus string
 
-const(
-    Device_DeviceHealth_DeviceHealthStatus_DEFECTIVE Device_DeviceHealth_DeviceHealthStatus = "DEFECTIVE"
-    Device_DeviceHealth_DeviceHealthStatus_HEALTHY Device_DeviceHealth_DeviceHealthStatus = "HEALTHY"
+const (
+	Device_DeviceHealth_DeviceHealthStatus_DEFECTIVE Device_DeviceHealth_DeviceHealthStatus = "DEFECTIVE"
+	Device_DeviceHealth_DeviceHealthStatus_HEALTHY   Device_DeviceHealth_DeviceHealthStatus = "HEALTHY"
 )
 
 type DeviceContent struct {
-    // Type of data this content has.
-    ContentType DeviceContent_ContentType `json:"content_type,omitempty"`
-    //The service that manages the content
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    // Last time it was online
-    LastSeenTimestampMs int64 `json:"last_seen_timestamp_ms,omitempty"`
-    // Indicates whether device is currently available
-    Available bool `json:"available,omitempty"`
-    //If the device is not available (not currently registered with a service) this field contains the UUID of the service where the device was last registered.
-    LastSeenServiceUuid string `json:"last_seen_service_uuid,omitempty"`
-    // Name of the service where it was last registered
-    LastSeenServiceName string `json:"last_seen_service_name,omitempty"`
-    //Mountpoint that it was last registered at
-    LastSeenMountPath string `json:"last_seen_mount_path,omitempty"`
-    // Timestamp until which the device can be considered as up-to-date for this content (i.e., needs no catch-up). If not set, the device can be considered as completely up-to-date for this content.
-    UpToDateUntilMs int64 `json:"up_to_date_until_ms,omitempty"`
-    // if the disk is dead, the last_seen_service_uuid + last_seen_device_location are used to locate the device with ledctl
-    LastSeenDeviceLocation string `json:"last_seen_device_location,omitempty"`
+	// Type of data this content has.
+	ContentType DeviceContent_ContentType `json:"content_type,omitempty"`
+	//The service that manages the content
+	ServiceUuid string `json:"service_uuid,omitempty"`
+	// Last time it was online
+	LastSeenTimestampMs int64 `json:"last_seen_timestamp_ms,omitempty"`
+	// Indicates whether device is currently available
+	Available bool `json:"available,omitempty"`
+	//If the device is not available (not currently registered with a service) this field contains the UUID of the service where the device was last registered.
+	LastSeenServiceUuid string `json:"last_seen_service_uuid,omitempty"`
+	// Name of the service where it was last registered
+	LastSeenServiceName string `json:"last_seen_service_name,omitempty"`
+	//Mountpoint that it was last registered at
+	LastSeenMountPath string `json:"last_seen_mount_path,omitempty"`
+	// Timestamp until which the device can be considered as up-to-date for this content (i.e., needs no catch-up). If not set, the device can be considered as completely up-to-date for this content.
+	UpToDateUntilMs int64 `json:"up_to_date_until_ms,omitempty"`
+	// if the disk is dead, the last_seen_service_uuid + last_seen_device_location are used to locate the device with ledctl
+	LastSeenDeviceLocation string `json:"last_seen_device_location,omitempty"`
 }
 
 type DeviceContent_ContentType string
 
-const(
-    DeviceContent_ContentType_DATA DeviceContent_ContentType = "DATA"
-    DeviceContent_ContentType_METADATA DeviceContent_ContentType = "METADATA"
-    DeviceContent_ContentType_REGISTRY DeviceContent_ContentType = "REGISTRY"
+const (
+	DeviceContent_ContentType_DATA     DeviceContent_ContentType = "DATA"
+	DeviceContent_ContentType_METADATA DeviceContent_ContentType = "METADATA"
+	DeviceContent_ContentType_REGISTRY DeviceContent_ContentType = "REGISTRY"
 )
 
 type DeviceList struct {
-    Devices []*Device `json:"devices,omitempty"`
+	Devices []*Device `json:"devices,omitempty"`
 }
 
 type DeviceNetworkEndpoint struct {
-    // FQDN or IP address of the server.
-    Hostname string `json:"hostname,omitempty"`
-    // TCP/UDP port number.
-    Port int32 `json:"port,omitempty"`
-    // Type of device for this endpoint.
-    DeviceType DeviceContent_ContentType `json:"device_type,omitempty"`
+	// FQDN or IP address of the server.
+	Hostname string `json:"hostname,omitempty"`
+	// TCP/UDP port number.
+	Port int32 `json:"port,omitempty"`
+	// Type of device for this endpoint.
+	DeviceType DeviceContent_ContentType `json:"device_type,omitempty"`
 }
 
 type DisconnectMirroredVolumeRequest struct {
-    // The volume UUID.
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    retryPolicy
+	// The volume UUID.
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	retryPolicy
 }
 
 type DisconnectMirroredVolumeResponse struct {
 }
 
 type DiskIoPolicy struct {
-    Priority DiskIoPolicy_Priority `json:"priority,omitempty"`
+	Priority DiskIoPolicy_Priority `json:"priority,omitempty"`
 }
 
 type DiskIoPolicy_Priority string
 
-const(
-    DiskIoPolicy_Priority_HIGH DiskIoPolicy_Priority = "HIGH"
-    DiskIoPolicy_Priority_LOW DiskIoPolicy_Priority = "LOW"
-    DiskIoPolicy_Priority_NORMAL DiskIoPolicy_Priority = "NORMAL"
+const (
+	DiskIoPolicy_Priority_HIGH   DiskIoPolicy_Priority = "HIGH"
+	DiskIoPolicy_Priority_LOW    DiskIoPolicy_Priority = "LOW"
+	DiskIoPolicy_Priority_NORMAL DiskIoPolicy_Priority = "NORMAL"
 )
 
 type DumpEffectivePolicyRulesRequest struct {
-    PolicySubject FilterPolicyRulesRequest_PolicySubject `json:"policy_subject,omitempty"`
-    // If true, returns only effective Policies. Otherwise, all effective PolicyRules are returned.
-    PoliciesOnly bool `json:"policies_only,omitempty"`
-    retryPolicy
+	PolicySubject FilterPolicyRulesRequest_PolicySubject `json:"policy_subject,omitempty"`
+	// If true, returns only effective Policies. Otherwise, all effective PolicyRules are returned.
+	PoliciesOnly bool `json:"policies_only,omitempty"`
+	retryPolicy
 }
 
 type DumpEffectivePolicyRulesResponse struct {
-    // Has the format of Policies or repeated PolicyRule.
-    ProtoDump string `json:"proto_dump,omitempty"`
+	// Has the format of Policies or repeated PolicyRule.
+	ProtoDump string `json:"proto_dump,omitempty"`
 }
 
 type DumpPolicyPresetsRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type DumpPolicyPresetsResponse struct {
-    // Has the format of repeated PolicyPreset.
-    ProtoDump string `json:"proto_dump,omitempty"`
+	// Has the format of repeated PolicyPreset.
+	ProtoDump string `json:"proto_dump,omitempty"`
 }
 
 type EcParityPolicy struct {
-    Mode EcParityPolicy_Mode `json:"mode,omitempty"`
+	Mode EcParityPolicy_Mode `json:"mode,omitempty"`
 }
 
 type EcParityPolicy_Mode string
 
-const(
-    EcParityPolicy_Mode_RELAXED EcParityPolicy_Mode = "RELAXED"
-    EcParityPolicy_Mode_STRONG EcParityPolicy_Mode = "STRONG"
+const (
+	EcParityPolicy_Mode_RELAXED EcParityPolicy_Mode = "RELAXED"
+	EcParityPolicy_Mode_STRONG  EcParityPolicy_Mode = "STRONG"
 )
 
 type EcRedundancyDetailsPolicy struct {
-    FileStructure EcRedundancyDetailsPolicy_FileStructure `json:"file_structure,omitempty"`
-    DistributionSchema EcRedundancyDetailsPolicy_DistributionSchema `json:"distribution_schema,omitempty"`
-    EcMetadataFormat EcRedundancyDetailsPolicy_EcMetadataFormat `json:"ec_metadata_format,omitempty"`
+	FileStructure      EcRedundancyDetailsPolicy_FileStructure      `json:"file_structure,omitempty"`
+	DistributionSchema EcRedundancyDetailsPolicy_DistributionSchema `json:"distribution_schema,omitempty"`
+	EcMetadataFormat   EcRedundancyDetailsPolicy_EcMetadataFormat   `json:"ec_metadata_format,omitempty"`
 }
 
 type EcRedundancyDetailsPolicy_EcMetadataFormat string
 
-const(
-    EcRedundancyDetailsPolicy_EcMetadataFormat_EC_COMMIT_IDS EcRedundancyDetailsPolicy_EcMetadataFormat = "EC_COMMIT_IDS"
+const (
+	EcRedundancyDetailsPolicy_EcMetadataFormat_EC_COMMIT_IDS EcRedundancyDetailsPolicy_EcMetadataFormat = "EC_COMMIT_IDS"
 )
 
 type EcRedundancyDetailsPolicy_DistributionSchema struct {
-    DataStripeCount int32 `json:"data_stripe_count,omitempty"`
-    CodingStripeCount int32 `json:"coding_stripe_count,omitempty"`
-    StripingMethod EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod `json:"striping_method,omitempty"`
+	DataStripeCount   int32                                                       `json:"data_stripe_count,omitempty"`
+	CodingStripeCount int32                                                       `json:"coding_stripe_count,omitempty"`
+	StripingMethod    EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod `json:"striping_method,omitempty"`
 }
 
 type EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod string
 
-const(
-    EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod_BLOCK_LEVEL EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod = "BLOCK_LEVEL"
-    EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod_OBJECT_LEVEL EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod = "OBJECT_LEVEL"
+const (
+	EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod_BLOCK_LEVEL  EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod = "BLOCK_LEVEL"
+	EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod_OBJECT_LEVEL EcRedundancyDetailsPolicy_DistributionSchema_StripingMethod = "OBJECT_LEVEL"
 )
 
 type EcRedundancyDetailsPolicy_FileStructure struct {
-    BlockSizeBytes int32 `json:"block_size_bytes,omitempty"`
-    ObjectSizeBytes int64 `json:"object_size_bytes,omitempty"`
-    SegmentSizeBytes int64 `json:"segment_size_bytes,omitempty"`
+	BlockSizeBytes   int32 `json:"block_size_bytes,omitempty"`
+	ObjectSizeBytes  int64 `json:"object_size_bytes,omitempty"`
+	SegmentSizeBytes int64 `json:"segment_size_bytes,omitempty"`
 }
 
 type EditablePolicyRuleSet struct {
-    PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
+	PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
 }
 
 type EncodedEncryptedKey struct {
-    // base64 encoded byte arrays
-    EncodedInitializationVector string `json:"encoded_initialization_vector,omitempty"`
-    EncodedKeyDerivationSalt string `json:"encoded_key_derivation_salt,omitempty"`
-    EncodedEncryptedKey string `json:"encoded_encrypted_key,omitempty"`
+	// base64 encoded byte arrays
+	EncodedInitializationVector string `json:"encoded_initialization_vector,omitempty"`
+	EncodedKeyDerivationSalt    string `json:"encoded_key_derivation_salt,omitempty"`
+	EncodedEncryptedKey         string `json:"encoded_encrypted_key,omitempty"`
 }
 
 type EncodedKeyStoreSlot struct {
-    EncodedSlotPasswordSalt string `json:"encoded_slot_password_salt,omitempty"`
-    KeystoreSlotOwner KeystoreSlotOwner `json:"keystore_slot_owner,omitempty"`
-    KeystoreSlotParams KeyStoreSlotParams `json:"keystore_slot_params,omitempty"`
+	EncodedSlotPasswordSalt string             `json:"encoded_slot_password_salt,omitempty"`
+	KeystoreSlotOwner       KeystoreSlotOwner  `json:"keystore_slot_owner,omitempty"`
+	KeystoreSlotParams      KeyStoreSlotParams `json:"keystore_slot_params,omitempty"`
 }
 
 type EraseSnapshotRequest struct {
-    // Volume uuid
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    // Snapshot name
-    Name string `json:"name,omitempty"`
-    retryPolicy
+	// Volume uuid
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	// Snapshot name
+	Name string `json:"name,omitempty"`
+	retryPolicy
 }
 
 type EraseSnapshotResponse struct {
 }
 
 type EraseVolumeRequest struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    Force bool `json:"force,omitempty"`
-    retryPolicy
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	Force      bool   `json:"force,omitempty"`
+	retryPolicy
 }
 
 type EraseVolumeResponse struct {
 }
 
 type ExportCertificateRequest struct {
-    // X.509 certificate fingerprint
-    Fingerprint string `json:"fingerprint,omitempty"`
-    retryPolicy
+	// X.509 certificate fingerprint
+	Fingerprint string `json:"fingerprint,omitempty"`
+	retryPolicy
 }
 
 type ExportCertificateResponse struct {
-    // Certificate
-    Certificate Certificate `json:"certificate,omitempty"`
+	// Certificate
+	Certificate Certificate `json:"certificate,omitempty"`
 }
 
 type ExportConfigurationRequest struct {
-    // Requested configuration type (e.g."VOLUME_CONFIGURATION")
-    ConfigurationType ConfigurationType `json:"configuration_type,omitempty"`
-    // Name of the configuration
-    ConfigurationName string `json:"configuration_name,omitempty"`
-    retryPolicy
+	// Requested configuration type (e.g."VOLUME_CONFIGURATION")
+	ConfigurationType ConfigurationType `json:"configuration_type,omitempty"`
+	// Name of the configuration
+	ConfigurationName string `json:"configuration_name,omitempty"`
+	retryPolicy
 }
 
 type ExportConfigurationResponse struct {
-    // String representation of the requested configuration
-    ProtoDump string `json:"proto_dump,omitempty"`
+	// String representation of the requested configuration
+	ProtoDump string `json:"proto_dump,omitempty"`
 }
 
 type ExportPolicyRulesRequest struct {
-    // If set, export only this policy rule. Otherwise, export all.
-    PolicyRuleUuid string `json:"policy_rule_uuid,omitempty"`
-    // If true, also include default policy rules. Otherwise, they will not be exported.
-    IncludeDefaultPolicyRules bool `json:"include_default_policy_rules,omitempty"`
-    retryPolicy
+	// If set, export only this policy rule. Otherwise, export all.
+	PolicyRuleUuid string `json:"policy_rule_uuid,omitempty"`
+	// If true, also include default policy rules. Otherwise, they will not be exported.
+	IncludeDefaultPolicyRules bool `json:"include_default_policy_rules,omitempty"`
+	retryPolicy
 }
 
 type ExportPolicyRulesResponse struct {
-    // Has the format of EditablePolicyRuleSet.
-    ProtoDump string `json:"proto_dump,omitempty"`
+	// Has the format of EditablePolicyRuleSet.
+	ProtoDump string `json:"proto_dump,omitempty"`
 }
 
 type ExportVolumeRequest struct {
-    //UUID of the volume to be made available
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    Protocol string `json:"protocol,omitempty"`
-    //IP or network address to grant access to
-    AddAllowIp string `json:"add_allow_ip,omitempty"`
-    //IP or network address to revoke access for
-    RemoveAllowIp string `json:"remove_allow_ip,omitempty"`
-    // True if export should be read-only
-    ReadOnly bool `json:"read_only,omitempty"`
-    // True if volume should be made unavailable
-    RemoveExport bool `json:"remove_export,omitempty"`
-    retryPolicy
+	//UUID of the volume to be made available
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	Protocol   string `json:"protocol,omitempty"`
+	//IP or network address to grant access to
+	AddAllowIp string `json:"add_allow_ip,omitempty"`
+	//IP or network address to revoke access for
+	RemoveAllowIp string `json:"remove_allow_ip,omitempty"`
+	// True if export should be read-only
+	ReadOnly bool `json:"read_only,omitempty"`
+	// True if volume should be made unavailable
+	RemoveExport bool `json:"remove_export,omitempty"`
+	retryPolicy
 }
 
 type ExportVolumeResponse struct {
-    // The IP address of the NFS endpoint
-    NfsServerIp string `json:"nfs_server_ip,omitempty"`
-    // The NFS export path
-    NfsExportPath string `json:"nfs_export_path,omitempty"`
+	// The IP address of the NFS endpoint
+	NfsServerIp string `json:"nfs_server_ip,omitempty"`
+	// The NFS export path
+	NfsExportPath string `json:"nfs_export_path,omitempty"`
 }
 
 type FailureDomain struct {
-    //The name of the failure domain
-    Name string `json:"name,omitempty"`
-    DomainType FailureDomainType `json:"domain_type,omitempty"`
-    //List of one or more IP addresses belonging to the failure domain
-    Ip []string `json:"ip,omitempty"`
-    //List of one or more IP networks belonging to the failure domain. Notation: <address>/<netmask length>
-    Network []string `json:"network,omitempty"`
+	//The name of the failure domain
+	Name       string            `json:"name,omitempty"`
+	DomainType FailureDomainType `json:"domain_type,omitempty"`
+	//List of one or more IP addresses belonging to the failure domain
+	Ip []string `json:"ip,omitempty"`
+	//List of one or more IP networks belonging to the failure domain. Notation: <address>/<netmask length>
+	Network []string `json:"network,omitempty"`
 }
 
 type FailureDomainConfiguration struct {
-    // List of one or more configured failure domains
-    Domain []*FailureDomain `json:"domain,omitempty"`
+	// List of one or more configured failure domains
+	Domain []*FailureDomain `json:"domain,omitempty"`
 }
 
 type FailureDomainInfo struct {
-    //Name of the failure domain
-    Name string `json:"name,omitempty"`
-    //Type of the failure domain
-    DomainType FailureDomainType `json:"domain_type,omitempty"`
+	//Name of the failure domain
+	Name string `json:"name,omitempty"`
+	//Type of the failure domain
+	DomainType FailureDomainType `json:"domain_type,omitempty"`
 }
 
 type FailureDomainPlacementPolicy struct {
-    Type FailureDomainPlacementPolicy_Type `json:"type,omitempty"`
+	Type FailureDomainPlacementPolicy_Type `json:"type,omitempty"`
 }
 
 type FailureDomainPlacementPolicy_Type string
 
-const(
-    FailureDomainPlacementPolicy_Type_MACHINE FailureDomainPlacementPolicy_Type = "MACHINE"
-    FailureDomainPlacementPolicy_Type_OBSOLETE_CLUSTER FailureDomainPlacementPolicy_Type = "OBSOLETE_CLUSTER"
-    FailureDomainPlacementPolicy_Type_OBSOLETE_METRO FailureDomainPlacementPolicy_Type = "OBSOLETE_METRO"
-    FailureDomainPlacementPolicy_Type_OBSOLETE_POWER_1 FailureDomainPlacementPolicy_Type = "OBSOLETE_POWER_1"
-    FailureDomainPlacementPolicy_Type_OBSOLETE_POWER_2 FailureDomainPlacementPolicy_Type = "OBSOLETE_POWER_2"
-    FailureDomainPlacementPolicy_Type_RACK FailureDomainPlacementPolicy_Type = "RACK"
-    FailureDomainPlacementPolicy_Type_ROOM FailureDomainPlacementPolicy_Type = "ROOM"
+const (
+	FailureDomainPlacementPolicy_Type_MACHINE          FailureDomainPlacementPolicy_Type = "MACHINE"
+	FailureDomainPlacementPolicy_Type_OBSOLETE_CLUSTER FailureDomainPlacementPolicy_Type = "OBSOLETE_CLUSTER"
+	FailureDomainPlacementPolicy_Type_OBSOLETE_METRO   FailureDomainPlacementPolicy_Type = "OBSOLETE_METRO"
+	FailureDomainPlacementPolicy_Type_OBSOLETE_POWER_1 FailureDomainPlacementPolicy_Type = "OBSOLETE_POWER_1"
+	FailureDomainPlacementPolicy_Type_OBSOLETE_POWER_2 FailureDomainPlacementPolicy_Type = "OBSOLETE_POWER_2"
+	FailureDomainPlacementPolicy_Type_RACK             FailureDomainPlacementPolicy_Type = "RACK"
+	FailureDomainPlacementPolicy_Type_ROOM             FailureDomainPlacementPolicy_Type = "ROOM"
 )
 
 type FileIoSettings struct {
-    // Cache size in objects. Determines possible parallelism
-    ObsoleteCacheSizeInObjects int64 `json:"OBSOLETE_cache_size_in_objects,omitempty"`
-    // Enable asynchronous write-backs of dirty data
-    ObsoleteEnableAsyncWritebacks bool `json:"OBSOLETE_enable_async_writebacks,omitempty"`
-    // Write dirty data directly to disk
-    ObsoleteAsyncWritebacksAreSync bool `json:"OBSOLETE_async_writebacks_are_sync,omitempty"`
-    // Enable checksum verification on the client for read
-    EnableClientChecksumVerification bool `json:"enable_client_checksum_verification,omitempty"`
-    // Enable checksum computation on the client for write (DO NOT DISABLE)
-    EnableClientChecksumComputation bool `json:"enable_client_checksum_computation,omitempty"`
-    // O_SYNC semantics (default is to pass O_SYNC with write to client).
-    SyncWrites ModeOverride `json:"sync_writes,omitempty"`
-    // O_DIRECT semantics (default is no caching, direct write to OSD), DISABLE_ALWAYS will enable the client cache also for writes with O_DIRECT */
-    DirectIo ModeOverride `json:"direct_io,omitempty"`
-    // Pass-through errors to application instead of retrying forever.
-    ObsoleteInteractiveMode bool `json:"OBSOLETE_interactive_mode,omitempty"`
-    // implicitly lock file on open
-    ObsoleteImplicitLocking bool `json:"OBSOLETE_implicit_locking,omitempty"`
-    // Behavior in case of lost locks
-    LostLockBehavior LostLockBehavior `json:"lost_lock_behavior,omitempty"`
-    // Do not clean page cache on open. Deprecated since Quobyte 1.4
-    ObsoleteKeepPageCache bool `json:"OBSOLETE_keep_page_cache,omitempty"`
-    // Implicit locking mode
-    ImplicitLockingMode ImplicitLockingMode `json:"implicit_locking_mode,omitempty"`
-    //  Skip page cache on data service for cache write backs
-    EnableDirectWritebacks bool `json:"enable_direct_writebacks,omitempty"`
-    // Notify data service on close. Leads to higher but more consistent close latencies
-    NotifyDataserviceOnClose bool `json:"notify_dataservice_on_close,omitempty"`
-    // Whether to clear fuse page cache on open or use heuristic based on mtime
-    KeepPageCacheMode PageCacheMode `json:"keep_page_cache_mode,omitempty"`
-    // Control quorum reads
-    ObsoleteQuorumReadMode QuorumReadMode `json:"OBSOLETE_quorum_read_mode,omitempty"`
-    // retry mode for client rpcs (replaces interactive_mode)
-    RpcRetryMode RpcRetryMode `json:"rpc_retry_mode,omitempty"`
-    // require some or all successful parity updates for ec files
-    EcRequiredParities FileIoSettings_EcParityMode `json:"ec_required_parities,omitempty"`
-    // Handle locks locally by the client
-    LockScope FileIoSettings_LockScope `json:"lock_scope,omitempty"`
-    // Priority of operations in queues of the IO path
-    IoPriority FileIoSettings_IoPriority `json:"io_priority,omitempty"`
-    // Maximum time a write back is deferred after close
-    DeferWritebackAfterCloseUpToS int64 `json:"defer_writeback_after_close_up_to_s,omitempty"`
-    // Handle concurrently appended files with a read-modify-write cycle
-    HandleConcurrentAppends bool `json:"handle_concurrent_appends,omitempty"`
+	// Cache size in objects. Determines possible parallelism
+	ObsoleteCacheSizeInObjects int64 `json:"OBSOLETE_cache_size_in_objects,omitempty"`
+	// Enable asynchronous write-backs of dirty data
+	ObsoleteEnableAsyncWritebacks bool `json:"OBSOLETE_enable_async_writebacks,omitempty"`
+	// Write dirty data directly to disk
+	ObsoleteAsyncWritebacksAreSync bool `json:"OBSOLETE_async_writebacks_are_sync,omitempty"`
+	// Enable checksum verification on the client for read
+	EnableClientChecksumVerification bool `json:"enable_client_checksum_verification,omitempty"`
+	// Enable checksum computation on the client for write (DO NOT DISABLE)
+	EnableClientChecksumComputation bool `json:"enable_client_checksum_computation,omitempty"`
+	// O_SYNC semantics (default is to pass O_SYNC with write to client).
+	SyncWrites ModeOverride `json:"sync_writes,omitempty"`
+	// O_DIRECT semantics (default is no caching, direct write to OSD), DISABLE_ALWAYS will enable the client cache also for writes with O_DIRECT */
+	DirectIo ModeOverride `json:"direct_io,omitempty"`
+	// Pass-through errors to application instead of retrying forever.
+	ObsoleteInteractiveMode bool `json:"OBSOLETE_interactive_mode,omitempty"`
+	// implicitly lock file on open
+	ObsoleteImplicitLocking bool `json:"OBSOLETE_implicit_locking,omitempty"`
+	// Behavior in case of lost locks
+	LostLockBehavior LostLockBehavior `json:"lost_lock_behavior,omitempty"`
+	// Do not clean page cache on open. Deprecated since Quobyte 1.4
+	ObsoleteKeepPageCache bool `json:"OBSOLETE_keep_page_cache,omitempty"`
+	// Implicit locking mode
+	ImplicitLockingMode ImplicitLockingMode `json:"implicit_locking_mode,omitempty"`
+	//  Skip page cache on data service for cache write backs
+	EnableDirectWritebacks bool `json:"enable_direct_writebacks,omitempty"`
+	// Notify data service on close. Leads to higher but more consistent close latencies
+	NotifyDataserviceOnClose bool `json:"notify_dataservice_on_close,omitempty"`
+	// Whether to clear fuse page cache on open or use heuristic based on mtime
+	KeepPageCacheMode PageCacheMode `json:"keep_page_cache_mode,omitempty"`
+	// Control quorum reads
+	ObsoleteQuorumReadMode QuorumReadMode `json:"OBSOLETE_quorum_read_mode,omitempty"`
+	// retry mode for client rpcs (replaces interactive_mode)
+	RpcRetryMode RpcRetryMode `json:"rpc_retry_mode,omitempty"`
+	// require some or all successful parity updates for ec files
+	EcRequiredParities FileIoSettings_EcParityMode `json:"ec_required_parities,omitempty"`
+	// Handle locks locally by the client
+	LockScope FileIoSettings_LockScope `json:"lock_scope,omitempty"`
+	// Priority of operations in queues of the IO path
+	IoPriority FileIoSettings_IoPriority `json:"io_priority,omitempty"`
+	// Maximum time a write back is deferred after close
+	DeferWritebackAfterCloseUpToS int64 `json:"defer_writeback_after_close_up_to_s,omitempty"`
+	// Handle concurrently appended files with a read-modify-write cycle
+	HandleConcurrentAppends bool `json:"handle_concurrent_appends,omitempty"`
 }
 
 type FileIoSettings_EcParityMode string
 
-const(
-    FileIoSettings_EcParityMode_RELAXED FileIoSettings_EcParityMode = "RELAXED"
-    FileIoSettings_EcParityMode_STRONG FileIoSettings_EcParityMode = "STRONG"
+const (
+	FileIoSettings_EcParityMode_RELAXED FileIoSettings_EcParityMode = "RELAXED"
+	FileIoSettings_EcParityMode_STRONG  FileIoSettings_EcParityMode = "STRONG"
 )
 
 type FileIoSettings_IoPriority string
 
-const(
-    FileIoSettings_IoPriority_HIGH_PRIORITY FileIoSettings_IoPriority = "HIGH_PRIORITY"
-    FileIoSettings_IoPriority_LOW_PRIORITY FileIoSettings_IoPriority = "LOW_PRIORITY"
-    FileIoSettings_IoPriority_NORMAL_PRIORITY FileIoSettings_IoPriority = "NORMAL_PRIORITY"
+const (
+	FileIoSettings_IoPriority_HIGH_PRIORITY   FileIoSettings_IoPriority = "HIGH_PRIORITY"
+	FileIoSettings_IoPriority_LOW_PRIORITY    FileIoSettings_IoPriority = "LOW_PRIORITY"
+	FileIoSettings_IoPriority_NORMAL_PRIORITY FileIoSettings_IoPriority = "NORMAL_PRIORITY"
 )
 
 type FileIoSettings_LockScope string
 
-const(
-    FileIoSettings_LockScope_CLIENT FileIoSettings_LockScope = "CLIENT"
-    FileIoSettings_LockScope_GLOBAL FileIoSettings_LockScope = "GLOBAL"
+const (
+	FileIoSettings_LockScope_CLIENT FileIoSettings_LockScope = "CLIENT"
+	FileIoSettings_LockScope_GLOBAL FileIoSettings_LockScope = "GLOBAL"
 )
 
 type FileLayoutSettings struct {
-    // Number of stripes
-    StripeWidth int32 `json:"stripe_width,omitempty"`
-    // Number of replicas. Each stripe has its own replica set.
-    ReplicationFactor int32 `json:"replication_factor,omitempty"`
-    // Size of an individual block. Multiple of 512 bytes. Default: 4k.
-    BlockSizeBytes int32 `json:"block_size_bytes,omitempty"`
-    // Size of an object, the unit of replication. Multiple of block size. Default: 8M.
-    ObjectSizeBytes int64 `json:"object_size_bytes,omitempty"`
-    //
-    StripingMethod FileLayoutSettings_StripingMethod `json:"striping_method,omitempty"`
-    // Size of a segment, the unit for splitting files across devices. Multiple of object size. Default: 10G.
-    SegmentSizeBytes int64 `json:"segment_size_bytes,omitempty"`
-    CrcMethod FileLayoutSettings_CrcMethod `json:"crc_method,omitempty"`
-    CodingMethod FileLayoutSettings_CodingMethod `json:"coding_method,omitempty"`
-    // Erasure Code N
-    CodingDataBlocks int32 `json:"coding_data_blocks,omitempty"`
-    // Erasure Code M
-    CodingParityBlocks int32 `json:"coding_parity_blocks,omitempty"`
-    PersistentFormat FileLayoutSettings_PersistentFormat `json:"persistent_format,omitempty"`
-    RedundancyMethod FileLayoutSettings_RedundancyMethod `json:"redundancy_method,omitempty"`
+	// Number of stripes
+	StripeWidth int32 `json:"stripe_width,omitempty"`
+	// Number of replicas. Each stripe has its own replica set.
+	ReplicationFactor int32 `json:"replication_factor,omitempty"`
+	// Size of an individual block. Multiple of 512 bytes. Default: 4k.
+	BlockSizeBytes int32 `json:"block_size_bytes,omitempty"`
+	// Size of an object, the unit of replication. Multiple of block size. Default: 8M.
+	ObjectSizeBytes int64 `json:"object_size_bytes,omitempty"`
+	//
+	StripingMethod FileLayoutSettings_StripingMethod `json:"striping_method,omitempty"`
+	// Size of a segment, the unit for splitting files across devices. Multiple of object size. Default: 10G.
+	SegmentSizeBytes int64                           `json:"segment_size_bytes,omitempty"`
+	CrcMethod        FileLayoutSettings_CrcMethod    `json:"crc_method,omitempty"`
+	CodingMethod     FileLayoutSettings_CodingMethod `json:"coding_method,omitempty"`
+	// Erasure Code N
+	CodingDataBlocks int32 `json:"coding_data_blocks,omitempty"`
+	// Erasure Code M
+	CodingParityBlocks int32                               `json:"coding_parity_blocks,omitempty"`
+	PersistentFormat   FileLayoutSettings_PersistentFormat `json:"persistent_format,omitempty"`
+	RedundancyMethod   FileLayoutSettings_RedundancyMethod `json:"redundancy_method,omitempty"`
 }
 
 type FileLayoutSettings_CodingMethod string
 
-const(
-    FileLayoutSettings_CodingMethod_NONE FileLayoutSettings_CodingMethod = "NONE"
-    FileLayoutSettings_CodingMethod_REED_SOLOMON FileLayoutSettings_CodingMethod = "REED_SOLOMON"
+const (
+	FileLayoutSettings_CodingMethod_NONE         FileLayoutSettings_CodingMethod = "NONE"
+	FileLayoutSettings_CodingMethod_REED_SOLOMON FileLayoutSettings_CodingMethod = "REED_SOLOMON"
 )
 
 type FileLayoutSettings_CrcMethod string
 
-const(
-    FileLayoutSettings_CrcMethod_CRC32C FileLayoutSettings_CrcMethod = "CRC32C"
-    FileLayoutSettings_CrcMethod_CRC_32_ISCSI FileLayoutSettings_CrcMethod = "CRC_32_ISCSI"
-    FileLayoutSettings_CrcMethod_NO_CRC FileLayoutSettings_CrcMethod = "NO_CRC"
+const (
+	FileLayoutSettings_CrcMethod_CRC32C       FileLayoutSettings_CrcMethod = "CRC32C"
+	FileLayoutSettings_CrcMethod_CRC_32_ISCSI FileLayoutSettings_CrcMethod = "CRC_32_ISCSI"
+	FileLayoutSettings_CrcMethod_NO_CRC       FileLayoutSettings_CrcMethod = "NO_CRC"
 )
 
 type FileLayoutSettings_PersistentFormat string
 
-const(
-    FileLayoutSettings_PersistentFormat_V1 FileLayoutSettings_PersistentFormat = "V1"
-    FileLayoutSettings_PersistentFormat_V2 FileLayoutSettings_PersistentFormat = "V2"
-    FileLayoutSettings_PersistentFormat_V3 FileLayoutSettings_PersistentFormat = "V3"
+const (
+	FileLayoutSettings_PersistentFormat_V1 FileLayoutSettings_PersistentFormat = "V1"
+	FileLayoutSettings_PersistentFormat_V2 FileLayoutSettings_PersistentFormat = "V2"
+	FileLayoutSettings_PersistentFormat_V3 FileLayoutSettings_PersistentFormat = "V3"
 )
 
 type FileLayoutSettings_RedundancyMethod string
 
-const(
-    FileLayoutSettings_RedundancyMethod_AUTO_WRITE_SEQUENTIAL FileLayoutSettings_RedundancyMethod = "AUTO_WRITE_SEQUENTIAL"
-    FileLayoutSettings_RedundancyMethod_CUSTOM FileLayoutSettings_RedundancyMethod = "CUSTOM"
+const (
+	FileLayoutSettings_RedundancyMethod_AUTO_WRITE_SEQUENTIAL FileLayoutSettings_RedundancyMethod = "AUTO_WRITE_SEQUENTIAL"
+	FileLayoutSettings_RedundancyMethod_CUSTOM                FileLayoutSettings_RedundancyMethod = "CUSTOM"
 )
 
 type FileLayoutSettings_StripingMethod string
 
-const(
-    FileLayoutSettings_StripingMethod_BLOCK_LEVEL FileLayoutSettings_StripingMethod = "BLOCK_LEVEL"
-    FileLayoutSettings_StripingMethod_OBJECT_LEVEL FileLayoutSettings_StripingMethod = "OBJECT_LEVEL"
+const (
+	FileLayoutSettings_StripingMethod_BLOCK_LEVEL  FileLayoutSettings_StripingMethod = "BLOCK_LEVEL"
+	FileLayoutSettings_StripingMethod_OBJECT_LEVEL FileLayoutSettings_StripingMethod = "OBJECT_LEVEL"
 )
 
 type FileLockPolicy struct {
-    LockScope FileLockPolicy_LockScope `json:"lock_scope,omitempty"`
-    LostLockBehavior FileLockPolicy_LostLockBehavior `json:"lost_lock_behavior,omitempty"`
-    ImplicitLockingMode FileLockPolicy_ImplicitLockingMode `json:"implicit_locking_mode,omitempty"`
+	LockScope           FileLockPolicy_LockScope           `json:"lock_scope,omitempty"`
+	LostLockBehavior    FileLockPolicy_LostLockBehavior    `json:"lost_lock_behavior,omitempty"`
+	ImplicitLockingMode FileLockPolicy_ImplicitLockingMode `json:"implicit_locking_mode,omitempty"`
 }
 
 type FileLockPolicy_ImplicitLockingMode string
 
-const(
-    FileLockPolicy_ImplicitLockingMode_FILE_BLOCKING FileLockPolicy_ImplicitLockingMode = "FILE_BLOCKING"
-    FileLockPolicy_ImplicitLockingMode_FILE_NON_BLOCKING FileLockPolicy_ImplicitLockingMode = "FILE_NON_BLOCKING"
-    FileLockPolicy_ImplicitLockingMode_IO_BLOCKING FileLockPolicy_ImplicitLockingMode = "IO_BLOCKING"
-    FileLockPolicy_ImplicitLockingMode_IO_NON_BLOCKING FileLockPolicy_ImplicitLockingMode = "IO_NON_BLOCKING"
-    FileLockPolicy_ImplicitLockingMode_NO_LOCKING FileLockPolicy_ImplicitLockingMode = "NO_LOCKING"
+const (
+	FileLockPolicy_ImplicitLockingMode_FILE_BLOCKING     FileLockPolicy_ImplicitLockingMode = "FILE_BLOCKING"
+	FileLockPolicy_ImplicitLockingMode_FILE_NON_BLOCKING FileLockPolicy_ImplicitLockingMode = "FILE_NON_BLOCKING"
+	FileLockPolicy_ImplicitLockingMode_IO_BLOCKING       FileLockPolicy_ImplicitLockingMode = "IO_BLOCKING"
+	FileLockPolicy_ImplicitLockingMode_IO_NON_BLOCKING   FileLockPolicy_ImplicitLockingMode = "IO_NON_BLOCKING"
+	FileLockPolicy_ImplicitLockingMode_NO_LOCKING        FileLockPolicy_ImplicitLockingMode = "NO_LOCKING"
 )
 
 type FileLockPolicy_LockScope string
 
-const(
-    FileLockPolicy_LockScope_CLIENT FileLockPolicy_LockScope = "CLIENT"
-    FileLockPolicy_LockScope_GLOBAL FileLockPolicy_LockScope = "GLOBAL"
+const (
+	FileLockPolicy_LockScope_CLIENT FileLockPolicy_LockScope = "CLIENT"
+	FileLockPolicy_LockScope_GLOBAL FileLockPolicy_LockScope = "GLOBAL"
 )
 
 type FileLockPolicy_LostLockBehavior string
 
-const(
-    FileLockPolicy_LostLockBehavior_LOST_LOCK_BLOCK_IO FileLockPolicy_LostLockBehavior = "LOST_LOCK_BLOCK_IO"
-    FileLockPolicy_LostLockBehavior_LOST_LOCK_IO_ERROR FileLockPolicy_LostLockBehavior = "LOST_LOCK_IO_ERROR"
-    FileLockPolicy_LostLockBehavior_LOST_LOCK_KILL_APPLICATION FileLockPolicy_LostLockBehavior = "LOST_LOCK_KILL_APPLICATION"
+const (
+	FileLockPolicy_LostLockBehavior_LOST_LOCK_BLOCK_IO         FileLockPolicy_LostLockBehavior = "LOST_LOCK_BLOCK_IO"
+	FileLockPolicy_LostLockBehavior_LOST_LOCK_IO_ERROR         FileLockPolicy_LostLockBehavior = "LOST_LOCK_IO_ERROR"
+	FileLockPolicy_LostLockBehavior_LOST_LOCK_KILL_APPLICATION FileLockPolicy_LostLockBehavior = "LOST_LOCK_KILL_APPLICATION"
 )
 
 type FileMetadataCacheConfiguration struct {
-    // TTL in milliseconds for cached metadata
-    CacheTtlMs int32 `json:"cache_ttl_ms,omitempty"`
-    // TTL in milliseconds for negative cache of metadata. Set to 0 to disable
-    NegativeCacheTtlMs int32 `json:"negative_cache_ttl_ms,omitempty"`
-    // Enable some metadata to be written back asynchronously
-    EnableWriteBackCache bool `json:"enable_write_back_cache,omitempty"`
+	// TTL in milliseconds for cached metadata
+	CacheTtlMs int32 `json:"cache_ttl_ms,omitempty"`
+	// TTL in milliseconds for negative cache of metadata. Set to 0 to disable
+	NegativeCacheTtlMs int32 `json:"negative_cache_ttl_ms,omitempty"`
+	// Enable some metadata to be written back asynchronously
+	EnableWriteBackCache bool `json:"enable_write_back_cache,omitempty"`
 }
 
 type FileMetadataCachePolicy struct {
-    CacheTtlMs int32 `json:"cache_ttl_ms,omitempty"`
-    NegativeCacheTtlMs int32 `json:"negative_cache_ttl_ms,omitempty"`
-    EnableWriteBackCache bool `json:"enable_write_back_cache,omitempty"`
+	CacheTtlMs           int32 `json:"cache_ttl_ms,omitempty"`
+	NegativeCacheTtlMs   int32 `json:"negative_cache_ttl_ms,omitempty"`
+	EnableWriteBackCache bool  `json:"enable_write_back_cache,omitempty"`
 }
 
 type FileMetadataDump struct {
-    // resolved file path
-    File string `json:"file,omitempty"`
-    // resolved file id
-    FileId int64 `json:"file_id,omitempty"`
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    FileMetadata string `json:"file_metadata,omitempty"`
-    DynamicFileMetadata string `json:"dynamic_file_metadata,omitempty"`
+	// resolved file path
+	File string `json:"file,omitempty"`
+	// resolved file id
+	FileId              int64  `json:"file_id,omitempty"`
+	VolumeUuid          string `json:"volume_uuid,omitempty"`
+	FileMetadata        string `json:"file_metadata,omitempty"`
+	DynamicFileMetadata string `json:"dynamic_file_metadata,omitempty"`
 }
 
 type FilePrefetchPolicy struct {
-    FileNameRegex string `json:"file_name_regex,omitempty"`
-    RegexMatchIndex int32 `json:"regex_match_index,omitempty"`
+	FileNameRegex   string `json:"file_name_regex,omitempty"`
+	RegexMatchIndex int32  `json:"regex_match_index,omitempty"`
 }
 
 type FileRecodePolicy struct {
-    RecodeFileIfNecessary bool `json:"recode_file_if_necessary,omitempty"`
+	RecodeFileIfNecessary bool `json:"recode_file_if_necessary,omitempty"`
 }
 
 type FileRedundancyPolicy struct {
-    Redundancy FileRedundancyPolicy_Redundancy `json:"redundancy,omitempty"`
+	Redundancy FileRedundancyPolicy_Redundancy `json:"redundancy,omitempty"`
 }
 
 type FileRedundancyPolicy_Redundancy string
 
-const(
-    FileRedundancyPolicy_Redundancy_AUTO_WRITE_SEQUENTIAL FileRedundancyPolicy_Redundancy = "AUTO_WRITE_SEQUENTIAL"
-    FileRedundancyPolicy_Redundancy_EC FileRedundancyPolicy_Redundancy = "EC"
-    FileRedundancyPolicy_Redundancy_REPLICATION FileRedundancyPolicy_Redundancy = "REPLICATION"
+const (
+	FileRedundancyPolicy_Redundancy_AUTO_WRITE_SEQUENTIAL FileRedundancyPolicy_Redundancy = "AUTO_WRITE_SEQUENTIAL"
+	FileRedundancyPolicy_Redundancy_EC                    FileRedundancyPolicy_Redundancy = "EC"
+	FileRedundancyPolicy_Redundancy_REPLICATION           FileRedundancyPolicy_Redundancy = "REPLICATION"
 )
 
 type FileRetentionPolicy struct {
-    // Retention properties
-    Property []*FileRetentionPolicy_RetentionProperty `json:"property,omitempty"`
-    // If empty, quobyte.retention_timestamp must be set Retention is only effective when a timestamp is set.
-    DefaultRetentionDurationS int64 `json:"default_retention_duration_s,omitempty"`
+	// Retention properties
+	Property []*FileRetentionPolicy_RetentionProperty `json:"property,omitempty"`
+	// If empty, quobyte.retention_timestamp must be set Retention is only effective when a timestamp is set.
+	DefaultRetentionDurationS int64 `json:"default_retention_duration_s,omitempty"`
 }
 
 type FileRetentionPolicy_RetentionProperty string
 
-const(
-    FileRetentionPolicy_RetentionProperty_DELETE_AFTER FileRetentionPolicy_RetentionProperty = "DELETE_AFTER"
-    FileRetentionPolicy_RetentionProperty_IMMUTABLE FileRetentionPolicy_RetentionProperty = "IMMUTABLE"
-    FileRetentionPolicy_RetentionProperty_MAY_EXTEND_RETENTION FileRetentionPolicy_RetentionProperty = "MAY_EXTEND_RETENTION"
-    FileRetentionPolicy_RetentionProperty_MAY_SHORTEN_RETENTION FileRetentionPolicy_RetentionProperty = "MAY_SHORTEN_RETENTION"
-    FileRetentionPolicy_RetentionProperty_RETAIN_UNTIL FileRetentionPolicy_RetentionProperty = "RETAIN_UNTIL"
+const (
+	FileRetentionPolicy_RetentionProperty_DELETE_AFTER          FileRetentionPolicy_RetentionProperty = "DELETE_AFTER"
+	FileRetentionPolicy_RetentionProperty_IMMUTABLE             FileRetentionPolicy_RetentionProperty = "IMMUTABLE"
+	FileRetentionPolicy_RetentionProperty_MAY_EXTEND_RETENTION  FileRetentionPolicy_RetentionProperty = "MAY_EXTEND_RETENTION"
+	FileRetentionPolicy_RetentionProperty_MAY_SHORTEN_RETENTION FileRetentionPolicy_RetentionProperty = "MAY_SHORTEN_RETENTION"
+	FileRetentionPolicy_RetentionProperty_RETAIN_UNTIL          FileRetentionPolicy_RetentionProperty = "RETAIN_UNTIL"
 )
 
 type FileScope struct {
-    FilterType FileScope_FilterType `json:"filter_type,omitempty"`
-    Operator FileScope_Operator `json:"operator,omitempty"`
-    // Exactly one of the following fields must be set, depending on FilterType.
-    TextValue string `json:"text_value,omitempty"`
-    NumericValue int64 `json:"numeric_value,omitempty"`
-    Xattr XAttr `json:"xattr,omitempty"`
+	FilterType FileScope_FilterType `json:"filter_type,omitempty"`
+	Operator   FileScope_Operator   `json:"operator,omitempty"`
+	// Exactly one of the following fields must be set, depending on FilterType.
+	TextValue    string `json:"text_value,omitempty"`
+	NumericValue int64  `json:"numeric_value,omitempty"`
+	Xattr        XAttr  `json:"xattr,omitempty"`
 }
 
 type FileScope_FilterType string
 
-const(
-    FileScope_FilterType_CURRENT_FILE_SIZE FileScope_FilterType = "CURRENT_FILE_SIZE"
-    FileScope_FilterType_DIRECTORY_XATTR FileScope_FilterType = "DIRECTORY_XATTR"
-    FileScope_FilterType_EXPECTED_SIZE_OF_NEW_FILE FileScope_FilterType = "EXPECTED_SIZE_OF_NEW_FILE"
-    FileScope_FilterType_FILE_XATTR FileScope_FilterType = "FILE_XATTR"
-    FileScope_FilterType_LAST_ACCESS_AGE_S FileScope_FilterType = "LAST_ACCESS_AGE_S"
-    FileScope_FilterType_LAST_MODIFICATION_AGE_S FileScope_FilterType = "LAST_MODIFICATION_AGE_S"
-    FileScope_FilterType_NAME FileScope_FilterType = "NAME"
-    FileScope_FilterType_OWNER_USER_NAME FileScope_FilterType = "OWNER_USER_NAME"
-    FileScope_FilterType_RECURSIVE_DIRECTORY_XATTR FileScope_FilterType = "RECURSIVE_DIRECTORY_XATTR"
+const (
+	FileScope_FilterType_CURRENT_FILE_SIZE         FileScope_FilterType = "CURRENT_FILE_SIZE"
+	FileScope_FilterType_DIRECTORY_XATTR           FileScope_FilterType = "DIRECTORY_XATTR"
+	FileScope_FilterType_EXPECTED_SIZE_OF_NEW_FILE FileScope_FilterType = "EXPECTED_SIZE_OF_NEW_FILE"
+	FileScope_FilterType_FILE_XATTR                FileScope_FilterType = "FILE_XATTR"
+	FileScope_FilterType_LAST_ACCESS_AGE_S         FileScope_FilterType = "LAST_ACCESS_AGE_S"
+	FileScope_FilterType_LAST_MODIFICATION_AGE_S   FileScope_FilterType = "LAST_MODIFICATION_AGE_S"
+	FileScope_FilterType_NAME                      FileScope_FilterType = "NAME"
+	FileScope_FilterType_OWNER_USER_NAME           FileScope_FilterType = "OWNER_USER_NAME"
+	FileScope_FilterType_RECURSIVE_DIRECTORY_XATTR FileScope_FilterType = "RECURSIVE_DIRECTORY_XATTR"
 )
 
 type FileScope_Operator string
 
-const(
-    FileScope_Operator_CONTAINS FileScope_Operator = "CONTAINS"
-    FileScope_Operator_ENDS_WITH FileScope_Operator = "ENDS_WITH"
-    FileScope_Operator_EQUALS FileScope_Operator = "EQUALS"
-    FileScope_Operator_EXTENSION_MATCHES FileScope_Operator = "EXTENSION_MATCHES"
-    FileScope_Operator_LARGER_THAN FileScope_Operator = "LARGER_THAN"
-    FileScope_Operator_REGEX_MATCHES FileScope_Operator = "REGEX_MATCHES"
-    FileScope_Operator_SMALLER_THAN FileScope_Operator = "SMALLER_THAN"
-    FileScope_Operator_STARTS_WITH FileScope_Operator = "STARTS_WITH"
+const (
+	FileScope_Operator_CONTAINS          FileScope_Operator = "CONTAINS"
+	FileScope_Operator_ENDS_WITH         FileScope_Operator = "ENDS_WITH"
+	FileScope_Operator_EQUALS            FileScope_Operator = "EQUALS"
+	FileScope_Operator_EXTENSION_MATCHES FileScope_Operator = "EXTENSION_MATCHES"
+	FileScope_Operator_LARGER_THAN       FileScope_Operator = "LARGER_THAN"
+	FileScope_Operator_REGEX_MATCHES     FileScope_Operator = "REGEX_MATCHES"
+	FileScope_Operator_SMALLER_THAN      FileScope_Operator = "SMALLER_THAN"
+	FileScope_Operator_STARTS_WITH       FileScope_Operator = "STARTS_WITH"
 )
 
 type Filter struct {
-    // Supported properties: path, filename, size, last_access, username
-    Property FilterFileProperty `json:"property,omitempty"`
-    // Supported operators: matches, smaller, larger, older
-    Operator FilterOperator `json:"operator,omitempty"`
-    // Supported values (depending on property and operator): regex, times, byte sizes
-    Value string `json:"value,omitempty"`
+	// Supported properties: path, filename, size, last_access, username
+	Property FilterFileProperty `json:"property,omitempty"`
+	// Supported operators: matches, smaller, larger, older
+	Operator FilterOperator `json:"operator,omitempty"`
+	// Supported values (depending on property and operator): regex, times, byte sizes
+	Value string `json:"value,omitempty"`
 }
 
 type FilterPolicyRulesRequest struct {
-    // If not set, simply returns all policy rules. If set, returns only effective policy rules with their effective policies.
-    PolicySubject FilterPolicyRulesRequest_PolicySubject `json:"policy_subject,omitempty"`
-    // If not set, returns latest version.
-    PolicyRuleSetVersion int64 `json:"policy_rule_set_version,omitempty"`
-    retryPolicy
+	// If not set, simply returns all policy rules. If set, returns only effective policy rules with their effective policies.
+	PolicySubject FilterPolicyRulesRequest_PolicySubject `json:"policy_subject,omitempty"`
+	// If not set, returns latest version.
+	PolicyRuleSetVersion int64 `json:"policy_rule_set_version,omitempty"`
+	retryPolicy
 }
 
 type FilterPolicyRulesRequest_PolicySubject struct {
-    // Set the following subject(s) to match a certain one: Global: global. Tenant: tenant. Volume: volume. File: volume and file. Client: volume, file and client info.
-    Global bool `json:"global,omitempty"`
-    Tenant FilterPolicyRulesRequest_PolicySubject_TenantPolicySubject `json:"tenant,omitempty"`
-    Volume FilterPolicyRulesRequest_PolicySubject_VolumePolicySubject `json:"volume,omitempty"`
-    File FilterPolicyRulesRequest_PolicySubject_FilePolicySubject `json:"file,omitempty"`
-    Client GetPolicyRulesRequest_PolicySubject_ClientPolicySubject `json:"client,omitempty"`
+	// Set the following subject(s) to match a certain one: Global: global. Tenant: tenant. Volume: volume. File: volume and file. Client: volume, file and client info.
+	Global bool                                                       `json:"global,omitempty"`
+	Tenant FilterPolicyRulesRequest_PolicySubject_TenantPolicySubject `json:"tenant,omitempty"`
+	Volume FilterPolicyRulesRequest_PolicySubject_VolumePolicySubject `json:"volume,omitempty"`
+	File   FilterPolicyRulesRequest_PolicySubject_FilePolicySubject   `json:"file,omitempty"`
+	Client GetPolicyRulesRequest_PolicySubject_ClientPolicySubject    `json:"client,omitempty"`
 }
 
 type FilterPolicyRulesRequest_PolicySubject_FilePolicySubject struct {
-    Path string `json:"path,omitempty"`
+	Path string `json:"path,omitempty"`
 }
 
 type FilterPolicyRulesRequest_PolicySubject_TenantPolicySubject struct {
-    Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type FilterPolicyRulesRequest_PolicySubject_VolumePolicySubject struct {
-    Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type FilterPolicyRulesResponse struct {
-    PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
+	PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
 }
 
 type FiringRule struct {
-    //Identifier for the rule
-    RuleIdentifier string `json:"rule_identifier,omitempty"`
-    //Severity level
-    Severity FiringRule_RuleSeverity `json:"severity,omitempty"`
-    //Current status of the alert
-    AlertState AlertState `json:"alert_state,omitempty"`
-    //ID of the affected device
-    DeviceId string `json:"device_id,omitempty"`
-    //UUID of the affected service
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    //UUID of the affected volume
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    //UUID of the affected client
-    ClientUuid string `json:"client_uuid,omitempty"`
-    //ID of the affected tenant
-    TenantId string `json:"tenant_id,omitempty"`
-    // affected user with his tenant-id (e.g 'admin@c858ffe2-4fa1-4c78-adbf-54c211734883')
-    UserAtTenant string `json:"user_at_tenant,omitempty"`
-    // affected group with his tenant-id (e.g 'users@c858ffe2-4fa1-4c78-adbf-54c211734883')
-    GroupAtTenant string `json:"group_at_tenant,omitempty"`
-    Db string `json:"db,omitempty"`
-    Config string `json:"config,omitempty"`
-    Hostname string `json:"hostname,omitempty"`
-    // Description of the alert
-    UserMessage string `json:"user_message,omitempty"`
-    // Description of actions to be taken for a fix
-    UserSuggestedAction string `json:"user_suggested_action,omitempty"`
-    AlertIdentifier string `json:"alert_identifier,omitempty"`
-    FiringSinceTimestampS int64 `json:"firing_since_timestamp_s,omitempty"`
-    SilencedUntilTimestampS int64 `json:"silenced_until_timestamp_s,omitempty"`
+	//Identifier for the rule
+	RuleIdentifier string `json:"rule_identifier,omitempty"`
+	//Severity level
+	Severity FiringRule_RuleSeverity `json:"severity,omitempty"`
+	//Current status of the alert
+	AlertState AlertState `json:"alert_state,omitempty"`
+	//ID of the affected device
+	DeviceId string `json:"device_id,omitempty"`
+	//UUID of the affected service
+	ServiceUuid string `json:"service_uuid,omitempty"`
+	//UUID of the affected volume
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	//UUID of the affected client
+	ClientUuid string `json:"client_uuid,omitempty"`
+	//ID of the affected tenant
+	TenantId string `json:"tenant_id,omitempty"`
+	// affected user with his tenant-id (e.g 'admin@c858ffe2-4fa1-4c78-adbf-54c211734883')
+	UserAtTenant string `json:"user_at_tenant,omitempty"`
+	// affected group with his tenant-id (e.g 'users@c858ffe2-4fa1-4c78-adbf-54c211734883')
+	GroupAtTenant string `json:"group_at_tenant,omitempty"`
+	Db            string `json:"db,omitempty"`
+	Config        string `json:"config,omitempty"`
+	Hostname      string `json:"hostname,omitempty"`
+	// Description of the alert
+	UserMessage string `json:"user_message,omitempty"`
+	// Description of actions to be taken for a fix
+	UserSuggestedAction     string `json:"user_suggested_action,omitempty"`
+	AlertIdentifier         string `json:"alert_identifier,omitempty"`
+	FiringSinceTimestampS   int64  `json:"firing_since_timestamp_s,omitempty"`
+	SilencedUntilTimestampS int64  `json:"silenced_until_timestamp_s,omitempty"`
 }
 
 type FiringRule_RuleSeverity string
 
-const(
-    FiringRule_RuleSeverity_ERROR FiringRule_RuleSeverity = "ERROR"
-    FiringRule_RuleSeverity_INFO FiringRule_RuleSeverity = "INFO"
-    FiringRule_RuleSeverity_WARNING FiringRule_RuleSeverity = "WARNING"
+const (
+	FiringRule_RuleSeverity_ERROR   FiringRule_RuleSeverity = "ERROR"
+	FiringRule_RuleSeverity_INFO    FiringRule_RuleSeverity = "INFO"
+	FiringRule_RuleSeverity_WARNING FiringRule_RuleSeverity = "WARNING"
 )
 
 type FsyncBehaviorPolicy struct {
-    Mode FsyncBehaviorPolicy_Mode `json:"mode,omitempty"`
+	Mode FsyncBehaviorPolicy_Mode `json:"mode,omitempty"`
 }
 
 type FsyncBehaviorPolicy_Mode string
 
-const(
-    FsyncBehaviorPolicy_Mode_ALWAYS_FLUSH_METADATA FsyncBehaviorPolicy_Mode = "ALWAYS_FLUSH_METADATA"
-    FsyncBehaviorPolicy_Mode_FLUSH_METADATA_AS_REQUESTED FsyncBehaviorPolicy_Mode = "FLUSH_METADATA_AS_REQUESTED"
-    FsyncBehaviorPolicy_Mode_NEVER_FLUSH_METADATA FsyncBehaviorPolicy_Mode = "NEVER_FLUSH_METADATA"
+const (
+	FsyncBehaviorPolicy_Mode_ALWAYS_FLUSH_METADATA       FsyncBehaviorPolicy_Mode = "ALWAYS_FLUSH_METADATA"
+	FsyncBehaviorPolicy_Mode_FLUSH_METADATA_AS_REQUESTED FsyncBehaviorPolicy_Mode = "FLUSH_METADATA_AS_REQUESTED"
+	FsyncBehaviorPolicy_Mode_NEVER_FLUSH_METADATA        FsyncBehaviorPolicy_Mode = "NEVER_FLUSH_METADATA"
 )
 
 type GenerateAsyncSupportDumpRequest struct {
-    SupportTicketId int32 `json:"support_ticket_id,omitempty"`
-    retryPolicy
+	SupportTicketId int32 `json:"support_ticket_id,omitempty"`
+	retryPolicy
 }
 
 type GenerateAsyncSupportDumpResponse struct {
-    IsScheduled bool `json:"is_scheduled,omitempty"`
+	IsScheduled bool `json:"is_scheduled,omitempty"`
 }
 
 type GetAccountingRequest struct {
-    Entity []*ConsumingEntity `json:"entity,omitempty"`
-    retryPolicy
+	Entity []*ConsumingEntity `json:"entity,omitempty"`
+	retryPolicy
 }
 
 type GetAccountingResponse struct {
-    EntityUsage []*GetAccountingResponse_EntityUsage `json:"entity_usage,omitempty"`
+	EntityUsage []*GetAccountingResponse_EntityUsage `json:"entity_usage,omitempty"`
 }
 
 type GetAccountingResponse_EntityUsage struct {
-    Consumer ConsumingEntity `json:"consumer,omitempty"`
-    Usage []*Resource `json:"usage,omitempty"`
+	Consumer ConsumingEntity `json:"consumer,omitempty"`
+	Usage    []*Resource     `json:"usage,omitempty"`
 }
 
 type GetAddKeySlotDataRequest struct {
-    NewKeystoreSlotUuid string `json:"new_keystore_slot_uuid,omitempty"`
-    ExistingKeystoreSlotUuid string `json:"existing_keystore_slot_uuid,omitempty"`
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    retryPolicy
+	NewKeystoreSlotUuid      string `json:"new_keystore_slot_uuid,omitempty"`
+	ExistingKeystoreSlotUuid string `json:"existing_keystore_slot_uuid,omitempty"`
+	VolumeUuid               string `json:"volume_uuid,omitempty"`
+	retryPolicy
 }
 
 type GetAddKeySlotDataResponse struct {
-    NewKeystoreSlotData EncodedKeyStoreSlot `json:"new_keystore_slot_data,omitempty"`
-    ExistingKeystoreSlotData EncodedKeyStoreSlot `json:"existing_keystore_slot_data,omitempty"`
-    KeyVersion int32 `json:"key_version,omitempty"`
+	NewKeystoreSlotData      EncodedKeyStoreSlot `json:"new_keystore_slot_data,omitempty"`
+	ExistingKeystoreSlotData EncodedKeyStoreSlot `json:"existing_keystore_slot_data,omitempty"`
+	KeyVersion               int32               `json:"key_version,omitempty"`
 }
 
 type GetAnalyzeReportsRequest struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    TaskId string `json:"task_id,omitempty"`
-    Format GetAnalyzeReportsRequest_Format `json:"format,omitempty"`
-    retryPolicy
+	VolumeUuid string                          `json:"volume_uuid,omitempty"`
+	TaskId     string                          `json:"task_id,omitempty"`
+	Format     GetAnalyzeReportsRequest_Format `json:"format,omitempty"`
+	retryPolicy
 }
 
 type GetAnalyzeReportsRequest_Format string
 
-const(
-    GetAnalyzeReportsRequest_Format_PLAIN_UTF8 GetAnalyzeReportsRequest_Format = "PLAIN_UTF8"
+const (
+	GetAnalyzeReportsRequest_Format_PLAIN_UTF8 GetAnalyzeReportsRequest_Format = "PLAIN_UTF8"
 )
 
 type GetAnalyzeReportsResponse struct {
-    ReportBinaryData string `json:"report_binary_data,omitempty"`
-    // only set if a string encode-able format was requested
-    ReportString string `json:"report_string,omitempty"`
+	ReportBinaryData string `json:"report_binary_data,omitempty"`
+	// only set if a string encode-able format was requested
+	ReportString string `json:"report_string,omitempty"`
 }
 
 type GetAuditLogRequest struct {
-    // Filter by subject type
-    OnlySubjectType AuditEvent_SubjectType `json:"only_subject_type,omitempty"`
-    // Filter by subject ID
-    OnlySubjectId string `json:"only_subject_id,omitempty"`
-    // AuditDatabase key at which to start the lookup.
-    StartAtKey GetAuditLogRequest_AuditDatabaseKey `json:"start_at_key,omitempty"`
-    // Number of log entries to return (no limit if 0)
-    LogsLimit int32 `json:"logs_limit,omitempty"`
-    // Database lookup direction
-    OldestLogFirst bool `json:"oldest_log_first,omitempty"`
-    retryPolicy
+	// Filter by subject type
+	OnlySubjectType AuditEvent_SubjectType `json:"only_subject_type,omitempty"`
+	// Filter by subject ID
+	OnlySubjectId string `json:"only_subject_id,omitempty"`
+	// AuditDatabase key at which to start the lookup.
+	StartAtKey GetAuditLogRequest_AuditDatabaseKey `json:"start_at_key,omitempty"`
+	// Number of log entries to return (no limit if 0)
+	LogsLimit int32 `json:"logs_limit,omitempty"`
+	// Database lookup direction
+	OldestLogFirst bool `json:"oldest_log_first,omitempty"`
+	retryPolicy
 }
 
 type GetAuditLogRequest_AuditDatabaseKey struct {
-    SubjectType AuditEvent_SubjectType `json:"subject_type,omitempty"`
-    SubjectId string `json:"subject_id,omitempty"`
-    TimestampMs int64 `json:"timestamp_ms,omitempty"`
+	SubjectType AuditEvent_SubjectType `json:"subject_type,omitempty"`
+	SubjectId   string                 `json:"subject_id,omitempty"`
+	TimestampMs int64                  `json:"timestamp_ms,omitempty"`
 }
 
 type GetAuditLogResponse struct {
-    // List of audit events matching the given filters
-    AuditEvent []*AuditEvent `json:"audit_event,omitempty"`
+	// List of audit events matching the given filters
+	AuditEvent []*AuditEvent `json:"audit_event,omitempty"`
 }
 
 type GetCertificateSubjectRequest struct {
-    // X.509 certificate fingerprint
-    Fingerprint string `json:"fingerprint,omitempty"`
-    retryPolicy
+	// X.509 certificate fingerprint
+	Fingerprint string `json:"fingerprint,omitempty"`
+	retryPolicy
 }
 
 type GetCertificateSubjectResponse struct {
-    // Certificate subject description
-    Subject CertificateSubject `json:"subject,omitempty"`
+	// Certificate subject description
+	Subject CertificateSubject `json:"subject,omitempty"`
 }
 
 type GetClientListRequest struct {
-    // Only list clients in this domain
-    TenantDomain string `json:"tenant_domain,omitempty"`
-    retryPolicy
+	// Only list clients in this domain
+	TenantDomain string `json:"tenant_domain,omitempty"`
+	retryPolicy
 }
 
 type GetClientListResponse struct {
-    // List of currently registered clients
-    Client []*Client `json:"client,omitempty"`
+	// List of currently registered clients
+	Client []*Client `json:"client,omitempty"`
 }
 
 type GetConfigurationRequest struct {
-    // Type of the requested configuration
-    ConfigurationType ConfigurationType `json:"configuration_type,omitempty"`
-    // Name of the requested configuration (leave empty for a full list)
-    ConfigurationName string `json:"configuration_name,omitempty"`
-    retryPolicy
+	// Type of the requested configuration
+	ConfigurationType ConfigurationType `json:"configuration_type,omitempty"`
+	// Name of the requested configuration (leave empty for a full list)
+	ConfigurationName string `json:"configuration_name,omitempty"`
+	retryPolicy
 }
 
 type GetConfigurationResponse struct {
-    VolumeConfiguration []*VolumeConfiguration `json:"volume_configuration,omitempty"`
-    FailureDomainConfiguration FailureDomainConfiguration `json:"failure_domain_configuration,omitempty"`
-    UserConfiguration []*UserConfiguration `json:"user_configuration,omitempty"`
-    SystemConfiguration SystemConfiguration `json:"system_configuration,omitempty"`
-    QuotaPoolConfiguration []*QuotaPoolConfiguration `json:"quota_pool_configuration,omitempty"`
-    RuleConfiguration []*RuleConfiguration `json:"rule_configuration,omitempty"`
-    //Obsolete since release 1.4. Use getTenant() instead.
-    TenantConfiguration []*TenantDomainConfiguration `json:"tenant_configuration,omitempty"`
+	VolumeConfiguration        []*VolumeConfiguration     `json:"volume_configuration,omitempty"`
+	FailureDomainConfiguration FailureDomainConfiguration `json:"failure_domain_configuration,omitempty"`
+	UserConfiguration          []*UserConfiguration       `json:"user_configuration,omitempty"`
+	SystemConfiguration        SystemConfiguration        `json:"system_configuration,omitempty"`
+	QuotaPoolConfiguration     []*QuotaPoolConfiguration  `json:"quota_pool_configuration,omitempty"`
+	RuleConfiguration          []*RuleConfiguration       `json:"rule_configuration,omitempty"`
+	//Obsolete since release 1.4. Use getTenant() instead.
+	TenantConfiguration []*TenantDomainConfiguration `json:"tenant_configuration,omitempty"`
 }
 
 type GetDefaultKeyStoreSlotParamsRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetDefaultKeyStoreSlotParamsResponse struct {
-    DefaultKeystoreSlotParams KeyStoreSlotParams `json:"default_keystore_slot_params,omitempty"`
+	DefaultKeystoreSlotParams KeyStoreSlotParams `json:"default_keystore_slot_params,omitempty"`
 }
 
 type GetDeviceIdsRequest struct {
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    retryPolicy
+	ServiceUuid string `json:"service_uuid,omitempty"`
+	retryPolicy
 }
 
 type GetDeviceIdsResponse struct {
-    DeviceIds []int64 `json:"device_ids,omitempty"`
+	DeviceIds []int64 `json:"device_ids,omitempty"`
 }
 
 type GetDeviceListRequest struct {
-    // Specify device id to retrieve data for specific devices. Retrieve all if not set.
-    DeviceId []int64 `json:"device_id,omitempty"`
-    // Specify types to retrieve only devices with matching type.
-    DeviceType []*DeviceContent_ContentType `json:"device_type,omitempty"`
-    retryPolicy
+	// Specify device id to retrieve data for specific devices. Retrieve all if not set.
+	DeviceId []int64 `json:"device_id,omitempty"`
+	// Specify types to retrieve only devices with matching type.
+	DeviceType []*DeviceContent_ContentType `json:"device_type,omitempty"`
+	retryPolicy
 }
 
 type GetDeviceListResponse struct {
-    DeviceList DeviceList `json:"device_list,omitempty"`
+	DeviceList DeviceList `json:"device_list,omitempty"`
 }
 
 type GetDeviceNetworkEndpointsRequest struct {
-    // Specify device id to retrieve data for specific devices. Retrieve all if not set.
-    DeviceId int64 `json:"device_id,omitempty"`
-    retryPolicy
+	// Specify device id to retrieve data for specific devices. Retrieve all if not set.
+	DeviceId int64 `json:"device_id,omitempty"`
+	retryPolicy
 }
 
 type GetDeviceNetworkEndpointsResponse struct {
-    Endpoints []*DeviceNetworkEndpoint `json:"endpoints,omitempty"`
+	Endpoints []*DeviceNetworkEndpoint `json:"endpoints,omitempty"`
 }
 
 type GetDeviceTagsRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetDeviceTagsResponse struct {
-    Tag []string `json:"tag,omitempty"`
+	Tag []string `json:"tag,omitempty"`
 }
 
 type GetEffectiveVolumeConfigurationRequest struct {
-    //volume_uuid and configuration_name are mutually exclusive.
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    ConfigurationName string `json:"configuration_name,omitempty"`
-    retryPolicy
+	//volume_uuid and configuration_name are mutually exclusive.
+	VolumeUuid        string `json:"volume_uuid,omitempty"`
+	ConfigurationName string `json:"configuration_name,omitempty"`
+	retryPolicy
 }
 
 type GetEffectiveVolumeConfigurationResponse struct {
-    Configuration VolumeConfiguration `json:"configuration,omitempty"`
+	Configuration VolumeConfiguration `json:"configuration,omitempty"`
 }
 
 type GetEncryptStatusRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetEncryptStatusResponse struct {
-    Status string `json:"status,omitempty"`
+	Status string `json:"status,omitempty"`
 }
 
 type GetEncryptedVolumeKeyRequest struct {
-    // to retrieve data of a slot, the slot's password hash needs to be known on the client side.
-    KeystoreSlotUuid string `json:"keystore_slot_uuid,omitempty"`
-    EncodedSlotPasswordHash string `json:"encoded_slot_password_hash,omitempty"`
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    KeyVersion int32 `json:"key_version,omitempty"`
-    retryPolicy
+	// to retrieve data of a slot, the slot's password hash needs to be known on the client side.
+	KeystoreSlotUuid        string `json:"keystore_slot_uuid,omitempty"`
+	EncodedSlotPasswordHash string `json:"encoded_slot_password_hash,omitempty"`
+	VolumeUuid              string `json:"volume_uuid,omitempty"`
+	KeyVersion              int32  `json:"key_version,omitempty"`
+	retryPolicy
 }
 
 type GetEncryptedVolumeKeyResponse struct {
-    EncryptedVolumeKey EncodedEncryptedKey `json:"encrypted_volume_key,omitempty"`
+	EncryptedVolumeKey EncodedEncryptedKey `json:"encrypted_volume_key,omitempty"`
 }
 
 type GetFileMetadataDumpRequest struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    // as an alternative to file_id (to be resolved to file_id internally)
-    File string `json:"file,omitempty"`
-    FileId int64 `json:"file_id,omitempty"`
-    // for segment block dumps from data services
-    IncludeSegmentDumps bool `json:"include_segment_dumps,omitempty"`
-    // optional
-    SegmentStartOffset int64 `json:"segment_start_offset,omitempty"`
-    // optional
-    StripeNumber int32 `json:"stripe_number,omitempty"`
-    retryPolicy
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	// as an alternative to file_id (to be resolved to file_id internally)
+	File   string `json:"file,omitempty"`
+	FileId int64  `json:"file_id,omitempty"`
+	// for segment block dumps from data services
+	IncludeSegmentDumps bool `json:"include_segment_dumps,omitempty"`
+	// optional
+	SegmentStartOffset int64 `json:"segment_start_offset,omitempty"`
+	// optional
+	StripeNumber int32 `json:"stripe_number,omitempty"`
+	retryPolicy
 }
 
 type GetFileMetadataDumpResponse struct {
-    FileMetadataDump FileMetadataDump `json:"file_metadata_dump,omitempty"`
-    StripeBlockDump []string `json:"stripe_block_dump,omitempty"`
-    // start offset where stopped due to size limit
-    LastSegmentStartOffset int64 `json:"last_segment_start_offset,omitempty"`
-    // stripe number where stopped due to size limit
-    LastStripeNumber int32 `json:"last_stripe_number,omitempty"`
+	FileMetadataDump FileMetadataDump `json:"file_metadata_dump,omitempty"`
+	StripeBlockDump  []string         `json:"stripe_block_dump,omitempty"`
+	// start offset where stopped due to size limit
+	LastSegmentStartOffset int64 `json:"last_segment_start_offset,omitempty"`
+	// stripe number where stopped due to size limit
+	LastStripeNumber int32 `json:"last_stripe_number,omitempty"`
 }
 
 type GetFiringRulesRequest struct {
-    Filteroutsilenced bool `json:"filterOutSilenced,omitempty"`
-    retryPolicy
+	Filteroutsilenced bool `json:"filterOutSilenced,omitempty"`
+	retryPolicy
 }
 
 type GetFiringRulesResponse struct {
-    // List of currently firing alerts
-    Rule []*FiringRule `json:"rule,omitempty"`
+	// List of currently firing alerts
+	Rule []*FiringRule `json:"rule,omitempty"`
 }
 
 type GetHealthManagerStatusRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetHealthManagerStatusResponse struct {
-    HealthManagerStatus HealthManagerStatus `json:"health_manager_status,omitempty"`
+	HealthManagerStatus HealthManagerStatus `json:"health_manager_status,omitempty"`
 }
 
 type GetInformationRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetInformationResponse struct {
 }
 
 type GetKeyStoreSlotWithoutHashRequest struct {
-    KeystoreSlotUuid string `json:"keystore_slot_uuid,omitempty"`
-    retryPolicy
+	KeystoreSlotUuid string `json:"keystore_slot_uuid,omitempty"`
+	retryPolicy
 }
 
 type GetKeyStoreSlotWithoutHashResponse struct {
-    KeystoreSlot EncodedKeyStoreSlot `json:"keystore_slot,omitempty"`
+	KeystoreSlot EncodedKeyStoreSlot `json:"keystore_slot,omitempty"`
 }
 
 type GetLabelsRequest struct {
-    Namespace Label_Namespace `json:"namespace,omitempty"`
-    FilterEntityType Label_EntityType `json:"filter_entity_type,omitempty"`
-    FilterEntityId string `json:"filter_entity_id,omitempty"`
-    LabelName string `json:"label_name,omitempty"`
-    retryPolicy
+	Namespace        Label_Namespace  `json:"namespace,omitempty"`
+	FilterEntityType Label_EntityType `json:"filter_entity_type,omitempty"`
+	FilterEntityId   string           `json:"filter_entity_id,omitempty"`
+	LabelName        string           `json:"label_name,omitempty"`
+	retryPolicy
 }
 
 type GetLabelsResponse struct {
-    Label []*Label `json:"label,omitempty"`
+	Label []*Label `json:"label,omitempty"`
 }
 
 type GetLatestEventRequest struct {
-    SubjectType AuditEvent_SubjectType `json:"subject_type,omitempty"`
-    SubjectId string `json:"subject_id,omitempty"`
-    retryPolicy
+	SubjectType AuditEvent_SubjectType `json:"subject_type,omitempty"`
+	SubjectId   string                 `json:"subject_id,omitempty"`
+	retryPolicy
 }
 
 type GetLatestEventResponse struct {
-    LatestEvent AuditEvent `json:"latest_event,omitempty"`
+	LatestEvent AuditEvent `json:"latest_event,omitempty"`
 }
 
 type GetLicenseRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetLicenseResponse struct {
-    CustomerId string `json:"customer_id,omitempty"`
-    CustomerName string `json:"customer_name,omitempty"`
-    ProductVersion string `json:"product_version,omitempty"`
-    ExpiryDateTimestampS int64 `json:"expiry_date_timestamp_s,omitempty"`
-    LimitedToTotalLogicalBytes int64 `json:"limited_to_total_logical_bytes,omitempty"`
-    CurrentUsageTotalLogicalBytes int64 `json:"current_usage_total_logical_bytes,omitempty"`
-    LimitedToTotalPhysicalBytes int64 `json:"limited_to_total_physical_bytes,omitempty"`
-    LicenseInfoMessage string `json:"license_info_message,omitempty"`
-    LicenseWarningMessage string `json:"license_warning_message,omitempty"`
+	CustomerId                    string `json:"customer_id,omitempty"`
+	CustomerName                  string `json:"customer_name,omitempty"`
+	ProductVersion                string `json:"product_version,omitempty"`
+	ExpiryDateTimestampS          int64  `json:"expiry_date_timestamp_s,omitempty"`
+	LimitedToTotalLogicalBytes    int64  `json:"limited_to_total_logical_bytes,omitempty"`
+	CurrentUsageTotalLogicalBytes int64  `json:"current_usage_total_logical_bytes,omitempty"`
+	LimitedToTotalPhysicalBytes   int64  `json:"limited_to_total_physical_bytes,omitempty"`
+	LicenseInfoMessage            string `json:"license_info_message,omitempty"`
+	LicenseWarningMessage         string `json:"license_warning_message,omitempty"`
 }
 
 type GetNetworkTestResultRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetNetworkTestResultResponse struct {
-    Status GetNetworkTestResultResponse_Status `json:"status,omitempty"`
-    Result []*GetNetworkTestResultResponse_ConnectionTestJobResult `json:"result,omitempty"`
+	Status GetNetworkTestResultResponse_Status                     `json:"status,omitempty"`
+	Result []*GetNetworkTestResultResponse_ConnectionTestJobResult `json:"result,omitempty"`
 }
 
 type GetNetworkTestResultResponse_Status string
 
-const(
-    GetNetworkTestResultResponse_Status_DONE GetNetworkTestResultResponse_Status = "DONE"
-    GetNetworkTestResultResponse_Status_IN_PROGRESS GetNetworkTestResultResponse_Status = "IN_PROGRESS"
-    GetNetworkTestResultResponse_Status_NOT_SCHEDULED GetNetworkTestResultResponse_Status = "NOT_SCHEDULED"
+const (
+	GetNetworkTestResultResponse_Status_DONE          GetNetworkTestResultResponse_Status = "DONE"
+	GetNetworkTestResultResponse_Status_IN_PROGRESS   GetNetworkTestResultResponse_Status = "IN_PROGRESS"
+	GetNetworkTestResultResponse_Status_NOT_SCHEDULED GetNetworkTestResultResponse_Status = "NOT_SCHEDULED"
 )
 
 type GetNetworkTestResultResponse_ConnectionTestJobResult struct {
-    RpcTargetServerRole string `json:"rpc_target_server_role,omitempty"`
-    RpcTargetClientRole string `json:"rpc_target_client_role,omitempty"`
-    ResultType GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType `json:"result_type,omitempty"`
-    BytesSent int64 `json:"bytes_sent,omitempty"`
-    BytesReceived int64 `json:"bytes_received,omitempty"`
-    TestDurationMs int64 `json:"test_duration_ms,omitempty"`
-    HistogramBucket []*GetNetworkTestResultResponse_ConnectionTestJobResult_HistogramBucket `json:"histogram_bucket,omitempty"`
+	RpcTargetServerRole string                                                                  `json:"rpc_target_server_role,omitempty"`
+	RpcTargetClientRole string                                                                  `json:"rpc_target_client_role,omitempty"`
+	ResultType          GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType         `json:"result_type,omitempty"`
+	BytesSent           int64                                                                   `json:"bytes_sent,omitempty"`
+	BytesReceived       int64                                                                   `json:"bytes_received,omitempty"`
+	TestDurationMs      int64                                                                   `json:"test_duration_ms,omitempty"`
+	HistogramBucket     []*GetNetworkTestResultResponse_ConnectionTestJobResult_HistogramBucket `json:"histogram_bucket,omitempty"`
 }
 
 type GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType string
 
-const(
-    GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_NOT_SCHEDULED GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "NOT_SCHEDULED"
-    GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_PING_FAILED GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "PING_FAILED"
-    GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_RESPONSE_ERROR GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "RESPONSE_ERROR"
-    GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_RESPONSE_SUCCESS GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "RESPONSE_SUCCESS"
-    GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_RESPONSE_TIME_OUT GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "RESPONSE_TIME_OUT"
+const (
+	GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_NOT_SCHEDULED     GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "NOT_SCHEDULED"
+	GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_PING_FAILED       GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "PING_FAILED"
+	GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_RESPONSE_ERROR    GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "RESPONSE_ERROR"
+	GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_RESPONSE_SUCCESS  GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "RESPONSE_SUCCESS"
+	GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType_RESPONSE_TIME_OUT GetNetworkTestResultResponse_ConnectionTestJobResult_ResultType = "RESPONSE_TIME_OUT"
 )
 
 type GetNetworkTestResultResponse_ConnectionTestJobResult_HistogramBucket struct {
-    UpperBoundUs int64 `json:"upper_bound_us,omitempty"`
-    Count int64 `json:"count,omitempty"`
+	UpperBoundUs int64 `json:"upper_bound_us,omitempty"`
+	Count        int64 `json:"count,omitempty"`
 }
 
 type GetNotificationRulesRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetNotificationRulesResponse struct {
-    Rule []*NotificationRule `json:"rule,omitempty"`
+	Rule []*NotificationRule `json:"rule,omitempty"`
 }
 
 type GetPolicyPresetsRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetPolicyPresetsResponse struct {
-    PolicyPreset []*PolicyPreset `json:"policy_preset,omitempty"`
+	PolicyPreset []*PolicyPreset `json:"policy_preset,omitempty"`
 }
 
 type GetPolicyRuleSetsRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetPolicyRuleSetsResponse struct {
-    PolicyRuleSet []*PolicyRuleSet `json:"policy_rule_set,omitempty"`
+	PolicyRuleSet []*PolicyRuleSet `json:"policy_rule_set,omitempty"`
 }
 
 type GetPolicyRulesRequest struct {
-    // If not set, simply returns all policy rules. If set, returns only effective policy rules with their effective policies.
-    PolicySubject GetPolicyRulesRequest_PolicySubject `json:"policy_subject,omitempty"`
-    // If not set, returns latest version.
-    PolicyRuleSetVersion int64 `json:"policy_rule_set_version,omitempty"`
-    retryPolicy
+	// If not set, simply returns all policy rules. If set, returns only effective policy rules with their effective policies.
+	PolicySubject GetPolicyRulesRequest_PolicySubject `json:"policy_subject,omitempty"`
+	// If not set, returns latest version.
+	PolicyRuleSetVersion int64 `json:"policy_rule_set_version,omitempty"`
+	retryPolicy
 }
 
 type GetPolicyRulesRequest_PolicySubject struct {
-    // Set the following subject(s) to match a certain one: Global: global. Tenant: tenant. Volume: tenant and volume. File: tenant, volume and file. Client: tenant, volume, file and client info.
-    Global bool `json:"global,omitempty"`
-    Tenant GetPolicyRulesRequest_PolicySubject_TenantPolicySubject `json:"tenant,omitempty"`
-    Volume GetPolicyRulesRequest_PolicySubject_VolumePolicySubject `json:"volume,omitempty"`
-    File GetPolicyRulesRequest_PolicySubject_FilePolicySubject `json:"file,omitempty"`
-    Client GetPolicyRulesRequest_PolicySubject_ClientPolicySubject `json:"client,omitempty"`
+	// Set the following subject(s) to match a certain one: Global: global. Tenant: tenant. Volume: tenant and volume. File: tenant, volume and file. Client: tenant, volume, file and client info.
+	Global bool                                                    `json:"global,omitempty"`
+	Tenant GetPolicyRulesRequest_PolicySubject_TenantPolicySubject `json:"tenant,omitempty"`
+	Volume GetPolicyRulesRequest_PolicySubject_VolumePolicySubject `json:"volume,omitempty"`
+	File   GetPolicyRulesRequest_PolicySubject_FilePolicySubject   `json:"file,omitempty"`
+	Client GetPolicyRulesRequest_PolicySubject_ClientPolicySubject `json:"client,omitempty"`
 }
 
 type GetPolicyRulesRequest_PolicySubject_ClientPolicySubject struct {
-    ClientIpAddress string `json:"client_ip_address,omitempty"`
-    ClientType GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType `json:"client_type,omitempty"`
+	ClientIpAddress string                                                             `json:"client_ip_address,omitempty"`
+	ClientType      GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType `json:"client_type,omitempty"`
 }
 
 type GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType string
 
-const(
-    GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType_NATIVE GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType = "NATIVE"
-    GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType_NFS GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType = "NFS"
-    GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType_S3 GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType = "S3"
+const (
+	GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType_NATIVE GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType = "NATIVE"
+	GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType_NFS    GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType = "NFS"
+	GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType_S3     GetPolicyRulesRequest_PolicySubject_ClientPolicySubject_ClientType = "S3"
 )
 
 type GetPolicyRulesRequest_PolicySubject_FilePolicySubject struct {
-    Name string `json:"name,omitempty"`
-    Owner string `json:"owner,omitempty"`
-    SizeBytes int64 `json:"size_bytes,omitempty"`
-    LastAccessAgeS int64 `json:"last_access_age_s,omitempty"`
-    LastModificationAgeS int64 `json:"last_modification_age_s,omitempty"`
-    FileXattr []*XAttr `json:"file_xattr,omitempty"`
-    DirectoryXattr []*XAttr `json:"directory_xattr,omitempty"`
-    RecursiveDirectoryXattr []*XAttr `json:"recursive_directory_xattr,omitempty"`
+	Name                    string   `json:"name,omitempty"`
+	Owner                   string   `json:"owner,omitempty"`
+	SizeBytes               int64    `json:"size_bytes,omitempty"`
+	LastAccessAgeS          int64    `json:"last_access_age_s,omitempty"`
+	LastModificationAgeS    int64    `json:"last_modification_age_s,omitempty"`
+	FileXattr               []*XAttr `json:"file_xattr,omitempty"`
+	DirectoryXattr          []*XAttr `json:"directory_xattr,omitempty"`
+	RecursiveDirectoryXattr []*XAttr `json:"recursive_directory_xattr,omitempty"`
 }
 
 type GetPolicyRulesRequest_PolicySubject_Label struct {
-    Name string `json:"name,omitempty"`
-    Value string `json:"value,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 type GetPolicyRulesRequest_PolicySubject_TenantPolicySubject struct {
-    Uuid string `json:"uuid,omitempty"`
-    Name string `json:"name,omitempty"`
-    Label []*GetPolicyRulesRequest_PolicySubject_Label `json:"label,omitempty"`
+	Uuid  string                                       `json:"uuid,omitempty"`
+	Name  string                                       `json:"name,omitempty"`
+	Label []*GetPolicyRulesRequest_PolicySubject_Label `json:"label,omitempty"`
 }
 
 type GetPolicyRulesRequest_PolicySubject_VolumePolicySubject struct {
-    Uuid string `json:"uuid,omitempty"`
-    Name string `json:"name,omitempty"`
-    Label []*GetPolicyRulesRequest_PolicySubject_Label `json:"label,omitempty"`
+	Uuid  string                                       `json:"uuid,omitempty"`
+	Name  string                                       `json:"name,omitempty"`
+	Label []*GetPolicyRulesRequest_PolicySubject_Label `json:"label,omitempty"`
 }
 
 type GetPolicyRulesResponse struct {
-    PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
+	PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
 }
 
 type GetQuotaRequest struct {
-    TenantDomain string `json:"tenant_domain,omitempty"`
-    OnlyEntity []*ConsumingEntity `json:"only_entity,omitempty"`
-    OnlyResourceType []*Resource_Type `json:"only_resource_type,omitempty"`
-    IncludeDefaultQuotas bool `json:"include_default_quotas,omitempty"`
-    retryPolicy
+	TenantDomain         string             `json:"tenant_domain,omitempty"`
+	OnlyEntity           []*ConsumingEntity `json:"only_entity,omitempty"`
+	OnlyResourceType     []*Resource_Type   `json:"only_resource_type,omitempty"`
+	IncludeDefaultQuotas bool               `json:"include_default_quotas,omitempty"`
+	retryPolicy
 }
 
 type GetQuotaResponse struct {
-    Quotas []*Quota `json:"quotas,omitempty"`
+	Quotas []*Quota `json:"quotas,omitempty"`
 }
 
 type GetRulesRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetRulesResponse struct {
 }
 
 type GetServiceDumpRequest struct {
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    SupportTicketId int32 `json:"support_ticket_id,omitempty"`
-    retryPolicy
+	ServiceUuid     string `json:"service_uuid,omitempty"`
+	SupportTicketId int32  `json:"support_ticket_id,omitempty"`
+	retryPolicy
 }
 
 type GetServiceDumpResponse struct {
-    // byte stream from the zip file
-    Bytes string `json:"bytes,omitempty"`
-    // not empty if s3 upload is requested
-    S3UploadResponseCode int32 `json:"s3_upload_response_code,omitempty"`
+	// byte stream from the zip file
+	Bytes string `json:"bytes,omitempty"`
+	// not empty if s3 upload is requested
+	S3UploadResponseCode int32 `json:"s3_upload_response_code,omitempty"`
 }
 
 type GetServicesRequest struct {
-    // Filter for service type.
-    ServiceType []*ServiceType `json:"service_type,omitempty"`
-    // Filter for service UUID
-    Serviceuuid string `json:"serviceUuid,omitempty"`
-    retryPolicy
+	// Filter for service type.
+	ServiceType []*ServiceType `json:"service_type,omitempty"`
+	// Filter for service UUID
+	Serviceuuid string `json:"serviceUuid,omitempty"`
+	retryPolicy
 }
 
 type GetServicesResponse struct {
-    Service []*ServiceDescription `json:"service,omitempty"`
+	Service []*ServiceDescription `json:"service,omitempty"`
 }
 
 type GetSupportDumpRequest struct {
-    SupportDumpId string `json:"support_dump_id,omitempty"`
-    retryPolicy
+	SupportDumpId string `json:"support_dump_id,omitempty"`
+	retryPolicy
 }
 
 type GetSupportDumpResponse struct {
-    Bytes string `json:"bytes,omitempty"`
+	Bytes string `json:"bytes,omitempty"`
 }
 
 type GetSupportDumpStatusRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetSupportDumpStatusResponse struct {
-    // Obsolete, use status field
-    ObsoleteIsInProgress bool `json:"OBSOLETE_is_in_progress,omitempty"`
-    SupportDumpId string `json:"support_dump_id,omitempty"`
-    Status GetSupportDumpStatusResponse_Status `json:"status,omitempty"`
-    // not empty if s3 upload is requested
-    SupportTicketId int32 `json:"support_ticket_id,omitempty"`
-    // not empty if s3 upload is requested
-    S3UploadResponseCode int32 `json:"s3_upload_response_code,omitempty"`
+	// Obsolete, use status field
+	ObsoleteIsInProgress bool                                `json:"OBSOLETE_is_in_progress,omitempty"`
+	SupportDumpId        string                              `json:"support_dump_id,omitempty"`
+	Status               GetSupportDumpStatusResponse_Status `json:"status,omitempty"`
+	// not empty if s3 upload is requested
+	SupportTicketId int32 `json:"support_ticket_id,omitempty"`
+	// not empty if s3 upload is requested
+	S3UploadResponseCode int32 `json:"s3_upload_response_code,omitempty"`
 }
 
 type GetSupportDumpStatusResponse_Status string
 
-const(
-    GetSupportDumpStatusResponse_Status_DONE GetSupportDumpStatusResponse_Status = "DONE"
-    GetSupportDumpStatusResponse_Status_GENERATING GetSupportDumpStatusResponse_Status = "GENERATING"
-    GetSupportDumpStatusResponse_Status_NOT_FOUND GetSupportDumpStatusResponse_Status = "NOT_FOUND"
+const (
+	GetSupportDumpStatusResponse_Status_DONE       GetSupportDumpStatusResponse_Status = "DONE"
+	GetSupportDumpStatusResponse_Status_GENERATING GetSupportDumpStatusResponse_Status = "GENERATING"
+	GetSupportDumpStatusResponse_Status_NOT_FOUND  GetSupportDumpStatusResponse_Status = "NOT_FOUND"
 )
 
 type GetSystemStatisticsRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type GetSystemStatisticsResponse struct {
-    // Current system statistics
-    Statistics SystemStatistics `json:"statistics,omitempty"`
-    // total_physical_capacity & total_physical_usage ensure backward compatibility for manila driver Overall physical storage capacity in bytes
-    TotalPhysicalCapacity int64 `json:"total_physical_capacity,omitempty"`
-    // Current overall physical usage in bytes
-    TotalPhysicalUsage int64 `json:"total_physical_usage,omitempty"`
+	// Current system statistics
+	Statistics SystemStatistics `json:"statistics,omitempty"`
+	// total_physical_capacity & total_physical_usage ensure backward compatibility for manila driver Overall physical storage capacity in bytes
+	TotalPhysicalCapacity int64 `json:"total_physical_capacity,omitempty"`
+	// Current overall physical usage in bytes
+	TotalPhysicalUsage int64 `json:"total_physical_usage,omitempty"`
 }
 
 type GetTaskListRequest struct {
-    // The limit number of tasks requested. Result list will contain task_count_limit elements, if set and > 0. No limit, if = 0.
-    TaskCountLimit int32 `json:"task_count_limit,omitempty"`
-    // Filter to tasks in non-final states.
-    OnlyProcessing bool `json:"only_processing,omitempty"`
-    // The task to query, or empty for all recent tasks.
-    TaskId []string `json:"task_id,omitempty"`
-    // The type to filter to, if set.
-    TaskType TaskType `json:"task_type,omitempty"`
-    // UI Relevant Parameters Database lookup in reversed (descending) direction
-    OldestTasksFirst bool `json:"oldest_tasks_first,omitempty"`
-    // Requesting only root tasks
-    OnlyRootTasks bool `json:"only_root_tasks,omitempty"`
-    // The key in database to start the iterator at
-    StartAtKey string `json:"start_at_key,omitempty"`
-    // The state to filter to, if set.
-    TaskState TaskState `json:"task_state,omitempty"`
-    // The parent task id to query its subtasks
-    ByParentTaskId string `json:"by_parent_task_id,omitempty"`
-    ObsoleteOnlyUiSampling bool `json:"OBSOLETE_only_ui_sampling,omitempty"`
-    retryPolicy
+	// The limit number of tasks requested. Result list will contain task_count_limit elements, if set and > 0. No limit, if = 0.
+	TaskCountLimit int32 `json:"task_count_limit,omitempty"`
+	// Filter to tasks in non-final states.
+	OnlyProcessing bool `json:"only_processing,omitempty"`
+	// The task to query, or empty for all recent tasks.
+	TaskId []string `json:"task_id,omitempty"`
+	// The type to filter to, if set.
+	TaskType TaskType `json:"task_type,omitempty"`
+	// UI Relevant Parameters Database lookup in reversed (descending) direction
+	OldestTasksFirst bool `json:"oldest_tasks_first,omitempty"`
+	// Requesting only root tasks
+	OnlyRootTasks bool `json:"only_root_tasks,omitempty"`
+	// The key in database to start the iterator at
+	StartAtKey string `json:"start_at_key,omitempty"`
+	// The state to filter to, if set.
+	TaskState TaskState `json:"task_state,omitempty"`
+	// The parent task id to query its subtasks
+	ByParentTaskId         string `json:"by_parent_task_id,omitempty"`
+	ObsoleteOnlyUiSampling bool   `json:"OBSOLETE_only_ui_sampling,omitempty"`
+	retryPolicy
 }
 
 type GetTaskListResponse struct {
-    // List of currently scheduled or running tasks
-    Tasks []*TaskInfo `json:"tasks,omitempty"`
+	// List of currently scheduled or running tasks
+	Tasks []*TaskInfo `json:"tasks,omitempty"`
 }
 
 type GetTenantRequest struct {
-    TenantId []string `json:"tenant_id,omitempty"`
-    retryPolicy
+	TenantId []string `json:"tenant_id,omitempty"`
+	retryPolicy
 }
 
 type GetTenantResponse struct {
-    Tenant []*TenantDomainConfiguration `json:"tenant,omitempty"`
+	Tenant []*TenantDomainConfiguration `json:"tenant,omitempty"`
 }
 
 type GetTopConsumerRequest struct {
-    Scope GetTopConsumerRequest_Scope `json:"scope,omitempty"`
-    ScopeIdentifier string `json:"scope_identifier,omitempty"`
-    TopConsumerLimit int32 `json:"top_consumer_limit,omitempty"`
-    OnlyConsumerType []*ConsumingEntity_Type `json:"only_consumer_type,omitempty"`
-    OnlyResourceType []*Resource_Type `json:"only_resource_type,omitempty"`
-    retryPolicy
+	Scope            GetTopConsumerRequest_Scope `json:"scope,omitempty"`
+	ScopeIdentifier  string                      `json:"scope_identifier,omitempty"`
+	TopConsumerLimit int32                       `json:"top_consumer_limit,omitempty"`
+	OnlyConsumerType []*ConsumingEntity_Type     `json:"only_consumer_type,omitempty"`
+	OnlyResourceType []*Resource_Type            `json:"only_resource_type,omitempty"`
+	retryPolicy
 }
 
 type GetTopConsumerRequest_Scope string
 
-const(
-    GetTopConsumerRequest_Scope_SYSTEM GetTopConsumerRequest_Scope = "SYSTEM"
-    GetTopConsumerRequest_Scope_TENANT GetTopConsumerRequest_Scope = "TENANT"
-    GetTopConsumerRequest_Scope_VOLUME GetTopConsumerRequest_Scope = "VOLUME"
+const (
+	GetTopConsumerRequest_Scope_SYSTEM GetTopConsumerRequest_Scope = "SYSTEM"
+	GetTopConsumerRequest_Scope_TENANT GetTopConsumerRequest_Scope = "TENANT"
+	GetTopConsumerRequest_Scope_VOLUME GetTopConsumerRequest_Scope = "VOLUME"
 )
 
 type GetTopConsumerResponse struct {
-    TopConsumer []*GetTopConsumerResponse_TopConsumer `json:"top_consumer,omitempty"`
+	TopConsumer []*GetTopConsumerResponse_TopConsumer `json:"top_consumer,omitempty"`
 }
 
 type GetTopConsumerResponse_Consumer struct {
-    Identifier ConsumingEntity `json:"identifier,omitempty"`
-    Usage int64 `json:"usage,omitempty"`
+	Identifier ConsumingEntity `json:"identifier,omitempty"`
+	Usage      int64           `json:"usage,omitempty"`
 }
 
 type GetTopConsumerResponse_TopConsumer struct {
-    ConsumerType ConsumingEntity_Type `json:"consumer_type,omitempty"`
-    ResourceType Resource_Type `json:"resource_type,omitempty"`
-    Consumer []*GetTopConsumerResponse_Consumer `json:"consumer,omitempty"`
+	ConsumerType ConsumingEntity_Type               `json:"consumer_type,omitempty"`
+	ResourceType Resource_Type                      `json:"resource_type,omitempty"`
+	Consumer     []*GetTopConsumerResponse_Consumer `json:"consumer,omitempty"`
 }
 
 type GetUnformattedDevicesRequest struct {
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    retryPolicy
+	ServiceUuid string `json:"service_uuid,omitempty"`
+	retryPolicy
 }
 
 type GetUnformattedDevicesResponse struct {
-    UnformattedDevice []*UnformattedDevice `json:"unformatted_device,omitempty"`
+	UnformattedDevice []*UnformattedDevice `json:"unformatted_device,omitempty"`
 }
 
 type GetUsersRequest struct {
-    UserId []string `json:"user_id,omitempty"`
-    retryPolicy
+	UserId []string `json:"user_id,omitempty"`
+	retryPolicy
 }
 
 type GetUsersResponse struct {
-    UserConfiguration []*UserConfiguration `json:"user_configuration,omitempty"`
+	UserConfiguration []*UserConfiguration `json:"user_configuration,omitempty"`
 }
 
 type GetVolumeListRequest struct {
-    //Restrict query to single volume
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    // Restrict query to tenant domain
-    TenantDomain string `json:"tenant_domain,omitempty"`
-    retryPolicy
+	//Restrict query to single volume
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	// Restrict query to tenant domain
+	TenantDomain string `json:"tenant_domain,omitempty"`
+	retryPolicy
 }
 
 type GetVolumeListResponse struct {
-    // List of volumes
-    Volume []*Volume `json:"volume,omitempty"`
+	// List of volumes
+	Volume []*Volume `json:"volume,omitempty"`
 }
 
 type GetVolumeMappingInfosRequest struct {
-    // Filter for specific uuids.
-    Uuid []string `json:"uuid,omitempty"`
-    IncludeDeleted bool `json:"include_deleted,omitempty"`
-    TenantDomain string `json:"tenant_domain,omitempty"`
-    IncludeMirrored bool `json:"include_mirrored,omitempty"`
-    retryPolicy
+	// Filter for specific uuids.
+	Uuid            []string `json:"uuid,omitempty"`
+	IncludeDeleted  bool     `json:"include_deleted,omitempty"`
+	TenantDomain    string   `json:"tenant_domain,omitempty"`
+	IncludeMirrored bool     `json:"include_mirrored,omitempty"`
+	retryPolicy
 }
 
 type GroupsToAttributesMapping struct {
-    LdapGroup []string `json:"ldap_group,omitempty"`
-    // SUPER_USER, FILESYSTEM_ADMIN, ...
-    Role UserRole `json:"role,omitempty"`
-    AdminOfTenantId string `json:"admin_of_tenant_id,omitempty"`
-    MemberOfTenantId string `json:"member_of_tenant_id,omitempty"`
+	LdapGroup []string `json:"ldap_group,omitempty"`
+	// SUPER_USER, FILESYSTEM_ADMIN, ...
+	Role             UserRole `json:"role,omitempty"`
+	AdminOfTenantId  string   `json:"admin_of_tenant_id,omitempty"`
+	MemberOfTenantId string   `json:"member_of_tenant_id,omitempty"`
 }
 
 type HealthManagerStatus struct {
-    NextMaintenanceWindowState HealthManagerStatus_MaintenanceWindowMode `json:"next_maintenance_window_state,omitempty"`
-    NextMaintenanceWindowStartMs int64 `json:"next_maintenance_window_start_ms,omitempty"`
-    DevicesWithCleanupDue int32 `json:"devices_with_cleanup_due,omitempty"`
-    DevicesWithFstrimDue int32 `json:"devices_with_fstrim_due,omitempty"`
-    VolumesWithScrubDue int32 `json:"volumes_with_scrub_due,omitempty"`
-    RunningHealthManagerTasks int32 `json:"running_health_manager_tasks,omitempty"`
-    DefectiveDevices int32 `json:"defective_devices,omitempty"`
-    DevicesWithCatchupDue int32 `json:"devices_with_catchup_due,omitempty"`
-    VolumesWithEnforcePlacementDue int32 `json:"volumes_with_enforce_placement_due,omitempty"`
-    VolumesWithErasureDue int32 `json:"volumes_with_erasure_due,omitempty"`
-    SnapshotsWithErasureDue int32 `json:"snapshots_with_erasure_due,omitempty"`
-    HostsWithVersionUpdateDue int32 `json:"hosts_with_version_update_due,omitempty"`
-    SystemHealth HealthManagerStatus_SystemHealth `json:"system_health,omitempty"`
-    SystemHealthReason []string `json:"system_health_reason,omitempty"`
-    RegistryReplicasInSync bool `json:"registry_replicas_in_sync,omitempty"`
+	NextMaintenanceWindowState     HealthManagerStatus_MaintenanceWindowMode `json:"next_maintenance_window_state,omitempty"`
+	NextMaintenanceWindowStartMs   int64                                     `json:"next_maintenance_window_start_ms,omitempty"`
+	DevicesWithCleanupDue          int32                                     `json:"devices_with_cleanup_due,omitempty"`
+	DevicesWithFstrimDue           int32                                     `json:"devices_with_fstrim_due,omitempty"`
+	VolumesWithScrubDue            int32                                     `json:"volumes_with_scrub_due,omitempty"`
+	RunningHealthManagerTasks      int32                                     `json:"running_health_manager_tasks,omitempty"`
+	DefectiveDevices               int32                                     `json:"defective_devices,omitempty"`
+	DevicesWithCatchupDue          int32                                     `json:"devices_with_catchup_due,omitempty"`
+	VolumesWithEnforcePlacementDue int32                                     `json:"volumes_with_enforce_placement_due,omitempty"`
+	VolumesWithErasureDue          int32                                     `json:"volumes_with_erasure_due,omitempty"`
+	SnapshotsWithErasureDue        int32                                     `json:"snapshots_with_erasure_due,omitempty"`
+	HostsWithVersionUpdateDue      int32                                     `json:"hosts_with_version_update_due,omitempty"`
+	SystemHealth                   HealthManagerStatus_SystemHealth          `json:"system_health,omitempty"`
+	SystemHealthReason             []string                                  `json:"system_health_reason,omitempty"`
+	RegistryReplicasInSync         bool                                      `json:"registry_replicas_in_sync,omitempty"`
 }
 
 type HealthManagerStatus_MaintenanceWindowMode string
 
-const(
-    HealthManagerStatus_MaintenanceWindowMode_ACTIVE HealthManagerStatus_MaintenanceWindowMode = "ACTIVE"
-    HealthManagerStatus_MaintenanceWindowMode_ALWAYS HealthManagerStatus_MaintenanceWindowMode = "ALWAYS"
-    HealthManagerStatus_MaintenanceWindowMode_HEALTH_MANAGER_DISABLED HealthManagerStatus_MaintenanceWindowMode = "HEALTH_MANAGER_DISABLED"
-    HealthManagerStatus_MaintenanceWindowMode_SCHEDULED HealthManagerStatus_MaintenanceWindowMode = "SCHEDULED"
+const (
+	HealthManagerStatus_MaintenanceWindowMode_ACTIVE                  HealthManagerStatus_MaintenanceWindowMode = "ACTIVE"
+	HealthManagerStatus_MaintenanceWindowMode_ALWAYS                  HealthManagerStatus_MaintenanceWindowMode = "ALWAYS"
+	HealthManagerStatus_MaintenanceWindowMode_HEALTH_MANAGER_DISABLED HealthManagerStatus_MaintenanceWindowMode = "HEALTH_MANAGER_DISABLED"
+	HealthManagerStatus_MaintenanceWindowMode_SCHEDULED               HealthManagerStatus_MaintenanceWindowMode = "SCHEDULED"
 )
 
 type HealthManagerStatus_SystemHealth string
 
-const(
-    HealthManagerStatus_SystemHealth_DEGRADED HealthManagerStatus_SystemHealth = "DEGRADED"
-    HealthManagerStatus_SystemHealth_HEALTHY HealthManagerStatus_SystemHealth = "HEALTHY"
+const (
+	HealthManagerStatus_SystemHealth_DEGRADED HealthManagerStatus_SystemHealth = "DEGRADED"
+	HealthManagerStatus_SystemHealth_HEALTHY  HealthManagerStatus_SystemHealth = "HEALTHY"
 )
 
 type ImportAccessKeysRequest struct {
-    UserName string `json:"user_name,omitempty"`
-    AccessKeyDetails []*AccessKeyDetails `json:"access_key_details,omitempty"`
-    retryPolicy
+	UserName         string              `json:"user_name,omitempty"`
+	AccessKeyDetails []*AccessKeyDetails `json:"access_key_details,omitempty"`
+	retryPolicy
 }
 
 type ImportAccessKeysResponse struct {
 }
 
 type ImportConfigurationRequest struct {
-    //Type of the configuration to be edited
-    ConfigurationType ConfigurationType `json:"configuration_type,omitempty"`
-    // Name of the configuration to be edited
-    ConfigurationName string `json:"configuration_name,omitempty"`
-    // Textual representation of the configuration. The configuration is being deleted if this is empty.
-    ProtoDump string `json:"proto_dump,omitempty"`
-    retryPolicy
+	//Type of the configuration to be edited
+	ConfigurationType ConfigurationType `json:"configuration_type,omitempty"`
+	// Name of the configuration to be edited
+	ConfigurationName string `json:"configuration_name,omitempty"`
+	// Textual representation of the configuration. The configuration is being deleted if this is empty.
+	ProtoDump string `json:"proto_dump,omitempty"`
+	retryPolicy
 }
 
 type ImportConfigurationResponse struct {
 }
 
 type ImportPolicyRulesRequest struct {
-    Creator string `json:"creator,omitempty"`
-    // Must have the format of EditablePolicyRuleSet. If only a single policy rule is defined: Update it, if UUID is set, and create it otherwise. If multiple are defined, set all as current set. Must not import default policy rules.
-    ProtoDump string `json:"proto_dump,omitempty"`
-    retryPolicy
+	Creator string `json:"creator,omitempty"`
+	// Must have the format of EditablePolicyRuleSet. If only a single policy rule is defined: Update it, if UUID is set, and create it otherwise. If multiple are defined, set all as current set. Must not import default policy rules.
+	ProtoDump string `json:"proto_dump,omitempty"`
+	retryPolicy
 }
 
 type ImportPolicyRulesResponse struct {
 }
 
 type InternalOnDiskFormatPolicy struct {
-    CrcMethod InternalOnDiskFormatPolicy_CrcMethod `json:"crc_method,omitempty"`
-    PersistentFormat InternalOnDiskFormatPolicy_PersistentFormat `json:"persistent_format,omitempty"`
+	CrcMethod        InternalOnDiskFormatPolicy_CrcMethod        `json:"crc_method,omitempty"`
+	PersistentFormat InternalOnDiskFormatPolicy_PersistentFormat `json:"persistent_format,omitempty"`
 }
 
 type InternalOnDiskFormatPolicy_CrcMethod string
 
-const(
-    InternalOnDiskFormatPolicy_CrcMethod_CRC_32C InternalOnDiskFormatPolicy_CrcMethod = "CRC_32C"
-    InternalOnDiskFormatPolicy_CrcMethod_CRC_32_ISCSI InternalOnDiskFormatPolicy_CrcMethod = "CRC_32_ISCSI"
-    InternalOnDiskFormatPolicy_CrcMethod_NO_CRC InternalOnDiskFormatPolicy_CrcMethod = "NO_CRC"
+const (
+	InternalOnDiskFormatPolicy_CrcMethod_CRC_32C      InternalOnDiskFormatPolicy_CrcMethod = "CRC_32C"
+	InternalOnDiskFormatPolicy_CrcMethod_CRC_32_ISCSI InternalOnDiskFormatPolicy_CrcMethod = "CRC_32_ISCSI"
+	InternalOnDiskFormatPolicy_CrcMethod_NO_CRC       InternalOnDiskFormatPolicy_CrcMethod = "NO_CRC"
 )
 
 type InternalOnDiskFormatPolicy_PersistentFormat string
 
-const(
-    InternalOnDiskFormatPolicy_PersistentFormat_V1_METADATA_FILE InternalOnDiskFormatPolicy_PersistentFormat = "V1_METADATA_FILE"
-    InternalOnDiskFormatPolicy_PersistentFormat_V2_METADATA_HEADER_4K InternalOnDiskFormatPolicy_PersistentFormat = "V2_METADATA_HEADER_4K"
-    InternalOnDiskFormatPolicy_PersistentFormat_V3_METADATA_HEADER_4K_BLOCK_LENGTH InternalOnDiskFormatPolicy_PersistentFormat = "V3_METADATA_HEADER_4K_BLOCK_LENGTH"
+const (
+	InternalOnDiskFormatPolicy_PersistentFormat_V1_METADATA_FILE                   InternalOnDiskFormatPolicy_PersistentFormat = "V1_METADATA_FILE"
+	InternalOnDiskFormatPolicy_PersistentFormat_V2_METADATA_HEADER_4K              InternalOnDiskFormatPolicy_PersistentFormat = "V2_METADATA_HEADER_4K"
+	InternalOnDiskFormatPolicy_PersistentFormat_V3_METADATA_HEADER_4K_BLOCK_LENGTH InternalOnDiskFormatPolicy_PersistentFormat = "V3_METADATA_HEADER_4K_BLOCK_LENGTH"
 )
 
 type KeyStoreSlotParams struct {
-    // method this slot uses to encrypt the volume keys
-    KeyEncryptionMethod KeyStoreSlotParams_KeyEncryptionMethod `json:"key_encryption_method,omitempty"`
-    PasswordHashMethod KeyStoreSlotParams_HashMethod `json:"password_hash_method,omitempty"`
-    PasswordHashIterations int32 `json:"password_hash_iterations,omitempty"`
-    KeyDerivationMethod KeyStoreSlotParams_HashMethod `json:"key_derivation_method,omitempty"`
-    KeyDerivationIterations int32 `json:"key_derivation_iterations,omitempty"`
+	// method this slot uses to encrypt the volume keys
+	KeyEncryptionMethod     KeyStoreSlotParams_KeyEncryptionMethod `json:"key_encryption_method,omitempty"`
+	PasswordHashMethod      KeyStoreSlotParams_HashMethod          `json:"password_hash_method,omitempty"`
+	PasswordHashIterations  int32                                  `json:"password_hash_iterations,omitempty"`
+	KeyDerivationMethod     KeyStoreSlotParams_HashMethod          `json:"key_derivation_method,omitempty"`
+	KeyDerivationIterations int32                                  `json:"key_derivation_iterations,omitempty"`
 }
 
 type KeyStoreSlotParams_HashMethod string
 
-const(
-    KeyStoreSlotParams_HashMethod_PBKDF2WithHmacSHA512 KeyStoreSlotParams_HashMethod = "PBKDF2WITHHMACSHA512"
+const (
+	KeyStoreSlotParams_HashMethod_PBKDF2WithHmacSHA512 KeyStoreSlotParams_HashMethod = "PBKDF2WITHHMACSHA512"
 )
 
 type KeyStoreSlotParams_KeyEncryptionMethod string
 
-const(
-    KeyStoreSlotParams_KeyEncryptionMethod_AES_CBC_256_PKCS5PADDING KeyStoreSlotParams_KeyEncryptionMethod = "AES_CBC_256_PKCS5PADDING"
+const (
+	KeyStoreSlotParams_KeyEncryptionMethod_AES_CBC_256_PKCS5PADDING KeyStoreSlotParams_KeyEncryptionMethod = "AES_CBC_256_PKCS5PADDING"
 )
 
 type Label struct {
-    // Visibility of this label. Currently all labels are visible system-wide to super users.
-    Namespace Label_Namespace `json:"namespace,omitempty"`
-    // Type of entity to which the label belongs.
-    EntityType Label_EntityType `json:"entity_type,omitempty"`
-    // Id of the entity to which the label belongs. Labels can only be set for existing entities.
-    EntityId string `json:"entity_id,omitempty"`
-    // Name of the label, must be a valid ascii string.
-    Name string `json:"name,omitempty"`
-    // Value of label.
-    Value string `json:"value,omitempty"`
+	// Visibility of this label. Currently all labels are visible system-wide to super users.
+	Namespace Label_Namespace `json:"namespace,omitempty"`
+	// Type of entity to which the label belongs.
+	EntityType Label_EntityType `json:"entity_type,omitempty"`
+	// Id of the entity to which the label belongs. Labels can only be set for existing entities.
+	EntityId string `json:"entity_id,omitempty"`
+	// Name of the label, must be a valid ascii string.
+	Name string `json:"name,omitempty"`
+	// Value of label.
+	Value string `json:"value,omitempty"`
 }
 
 type Label_EntityType string
 
-const(
-    Label_EntityType_SERVICE Label_EntityType = "SERVICE"
-    Label_EntityType_TENANT Label_EntityType = "TENANT"
-    Label_EntityType_VOLUME Label_EntityType = "VOLUME"
+const (
+	Label_EntityType_SERVICE Label_EntityType = "SERVICE"
+	Label_EntityType_TENANT  Label_EntityType = "TENANT"
+	Label_EntityType_VOLUME  Label_EntityType = "VOLUME"
 )
 
 type Label_Namespace string
 
-const(
-    Label_Namespace_SYSTEM Label_Namespace = "SYSTEM"
+const (
+	Label_Namespace_SYSTEM Label_Namespace = "SYSTEM"
 )
 
 type LabelPattern struct {
-    NameRegex string `json:"name_regex,omitempty"`
-    ValueRegex string `json:"value_regex,omitempty"`
+	NameRegex  string `json:"name_regex,omitempty"`
+	ValueRegex string `json:"value_regex,omitempty"`
 }
 
 type ListCaRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type ListCaResponse struct {
-    // List of certificate authorities
-    Ca []*CertificateAuthority `json:"ca,omitempty"`
+	// List of certificate authorities
+	Ca []*CertificateAuthority `json:"ca,omitempty"`
 }
 
 type ListCertificatesRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type ListCertificatesResponse struct {
-    // List of certificate records
-    Certificate []*CertificateRecord `json:"certificate,omitempty"`
+	// List of certificate records
+	Certificate []*CertificateRecord `json:"certificate,omitempty"`
 }
 
 type ListCsrRequest struct {
-    // Limit to state
-    State CsrState `json:"state,omitempty"`
-    retryPolicy
+	// Limit to state
+	State CsrState `json:"state,omitempty"`
+	retryPolicy
 }
 
 type ListCsrResponse struct {
-    // List of open CSRs
-    Csr []*CertificateSigningRequest `json:"csr,omitempty"`
+	// List of open CSRs
+	Csr []*CertificateSigningRequest `json:"csr,omitempty"`
 }
 
 type ListRegistryReplicasRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type ListRegistryReplicasResponse struct {
-    // A list all DIR device IDs that are currently acting as replicas.
-    DeviceIds []string `json:"device_ids,omitempty"`
+	// A list all DIR device IDs that are currently acting as replicas.
+	DeviceIds []string `json:"device_ids,omitempty"`
 }
 
 type ListSnapshotsRequest struct {
-    // Volume uuid
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    retryPolicy
+	// Volume uuid
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	retryPolicy
 }
 
 type ListSnapshotsResponse struct {
-    // Snapshots
-    Snapshot []*VolumeSnapshot `json:"snapshot,omitempty"`
+	// Snapshots
+	Snapshot []*VolumeSnapshot `json:"snapshot,omitempty"`
 }
 
 type MakeDeviceRequest struct {
-    HandleId string `json:"handle_id,omitempty"`
-    DeviceType MakeDeviceSettings_DeviceType `json:"device_type,omitempty"`
-    FsType MakeDeviceSettings_FsType `json:"fs_type,omitempty"`
-    Comment string `json:"comment,omitempty"`
-    retryPolicy
+	HandleId   string                        `json:"handle_id,omitempty"`
+	DeviceType MakeDeviceSettings_DeviceType `json:"device_type,omitempty"`
+	FsType     MakeDeviceSettings_FsType     `json:"fs_type,omitempty"`
+	Comment    string                        `json:"comment,omitempty"`
+	retryPolicy
 }
 
 type MakeDeviceResponse struct {
-    // ID of the created task
-    TaskId string `json:"task_id,omitempty"`
-    HostName string `json:"host_name,omitempty"`
-    DeviceName string `json:"device_name,omitempty"`
+	// ID of the created task
+	TaskId     string `json:"task_id,omitempty"`
+	HostName   string `json:"host_name,omitempty"`
+	DeviceName string `json:"device_name,omitempty"`
 }
 
 type MakeDeviceSettings struct {
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    FsType MakeDeviceSettings_FsType `json:"fs_type,omitempty"`
-    DeviceType MakeDeviceSettings_DeviceType `json:"device_type,omitempty"`
-    DevicePath string `json:"device_path,omitempty"`
+	ServiceUuid string                        `json:"service_uuid,omitempty"`
+	FsType      MakeDeviceSettings_FsType     `json:"fs_type,omitempty"`
+	DeviceType  MakeDeviceSettings_DeviceType `json:"device_type,omitempty"`
+	DevicePath  string                        `json:"device_path,omitempty"`
 }
 
 type MakeDeviceSettings_DeviceType string
 
-const(
-    MakeDeviceSettings_DeviceType_DATA MakeDeviceSettings_DeviceType = "DATA"
-    MakeDeviceSettings_DeviceType_METADATA MakeDeviceSettings_DeviceType = "METADATA"
-    MakeDeviceSettings_DeviceType_REGISTRY MakeDeviceSettings_DeviceType = "REGISTRY"
+const (
+	MakeDeviceSettings_DeviceType_DATA     MakeDeviceSettings_DeviceType = "DATA"
+	MakeDeviceSettings_DeviceType_METADATA MakeDeviceSettings_DeviceType = "METADATA"
+	MakeDeviceSettings_DeviceType_REGISTRY MakeDeviceSettings_DeviceType = "REGISTRY"
 )
 
 type MakeDeviceSettings_FsType string
 
-const(
-    MakeDeviceSettings_FsType_EXT4 MakeDeviceSettings_FsType = "EXT4"
-    MakeDeviceSettings_FsType_XFS MakeDeviceSettings_FsType = "XFS"
+const (
+	MakeDeviceSettings_FsType_EXT4 MakeDeviceSettings_FsType = "EXT4"
+	MakeDeviceSettings_FsType_XFS  MakeDeviceSettings_FsType = "XFS"
 )
 
 type MetadataReplicationPolicy struct {
-    ReplicationFactor int32 `json:"replication_factor,omitempty"`
+	ReplicationFactor int32 `json:"replication_factor,omitempty"`
 }
 
 type NotificationRule struct {
-    Uuid string `json:"uuid,omitempty"`
-    Description string `json:"description,omitempty"`
-    FilterSource []*NotificationRule_NotificationSource `json:"filter_source,omitempty"`
-    FilterSeverity NotificationRule_Severity `json:"filter_severity,omitempty"`
-    NotificationTarget []*NotificationTarget `json:"notification_target,omitempty"`
-    Enabled bool `json:"enabled,omitempty"`
+	Uuid               string                                 `json:"uuid,omitempty"`
+	Description        string                                 `json:"description,omitempty"`
+	FilterSource       []*NotificationRule_NotificationSource `json:"filter_source,omitempty"`
+	FilterSeverity     NotificationRule_Severity              `json:"filter_severity,omitempty"`
+	NotificationTarget []*NotificationTarget                  `json:"notification_target,omitempty"`
+	Enabled            bool                                   `json:"enabled,omitempty"`
 }
 
 type NotificationRule_NotificationSource string
 
-const(
-    NotificationRule_NotificationSource_ALERT_MANAGER NotificationRule_NotificationSource = "ALERT_MANAGER"
-    NotificationRule_NotificationSource_HEALTH_MANAGER NotificationRule_NotificationSource = "HEALTH_MANAGER"
-    NotificationRule_NotificationSource_QUOTA_MANAGER NotificationRule_NotificationSource = "QUOTA_MANAGER"
+const (
+	NotificationRule_NotificationSource_ALERT_MANAGER  NotificationRule_NotificationSource = "ALERT_MANAGER"
+	NotificationRule_NotificationSource_HEALTH_MANAGER NotificationRule_NotificationSource = "HEALTH_MANAGER"
+	NotificationRule_NotificationSource_QUOTA_MANAGER  NotificationRule_NotificationSource = "QUOTA_MANAGER"
 )
 
 type NotificationRule_Severity string
 
-const(
-    NotificationRule_Severity_ERROR NotificationRule_Severity = "ERROR"
-    NotificationRule_Severity_INFO NotificationRule_Severity = "INFO"
-    NotificationRule_Severity_WARN NotificationRule_Severity = "WARN"
+const (
+	NotificationRule_Severity_ERROR NotificationRule_Severity = "ERROR"
+	NotificationRule_Severity_INFO  NotificationRule_Severity = "INFO"
+	NotificationRule_Severity_WARN  NotificationRule_Severity = "WARN"
 )
 
 type NotificationTarget struct {
-    TargetType NotificationTarget_TargetType `json:"target_type,omitempty"`
-    // only considered when target_type is EMAIL
-    EmailAddress string `json:"email_address,omitempty"`
-    // only considered when target_type is EMAIL_USER
-    EmailDomain string `json:"email_domain,omitempty"`
-    // only considered when target_type is EMAIL_ROLE
-    RoleType NotificationTarget_RoleType `json:"role_type,omitempty"`
+	TargetType NotificationTarget_TargetType `json:"target_type,omitempty"`
+	// only considered when target_type is EMAIL
+	EmailAddress string `json:"email_address,omitempty"`
+	// only considered when target_type is EMAIL_USER
+	EmailDomain string `json:"email_domain,omitempty"`
+	// only considered when target_type is EMAIL_ROLE
+	RoleType NotificationTarget_RoleType `json:"role_type,omitempty"`
 }
 
 type NotificationTarget_RoleType string
 
-const(
-    NotificationTarget_RoleType_SUPERUSER NotificationTarget_RoleType = "SUPERUSER"
-    NotificationTarget_RoleType_TENANT_ADMIN NotificationTarget_RoleType = "TENANT_ADMIN"
+const (
+	NotificationTarget_RoleType_SUPERUSER    NotificationTarget_RoleType = "SUPERUSER"
+	NotificationTarget_RoleType_TENANT_ADMIN NotificationTarget_RoleType = "TENANT_ADMIN"
 )
 
 type NotificationTarget_TargetType string
 
-const(
-    NotificationTarget_TargetType_AUDIT_LOG NotificationTarget_TargetType = "AUDIT_LOG"
-    NotificationTarget_TargetType_EMAIL NotificationTarget_TargetType = "EMAIL"
-    NotificationTarget_TargetType_EMAIL_ROLE NotificationTarget_TargetType = "EMAIL_ROLE"
-    NotificationTarget_TargetType_EMAIL_USER NotificationTarget_TargetType = "EMAIL_USER"
+const (
+	NotificationTarget_TargetType_AUDIT_LOG  NotificationTarget_TargetType = "AUDIT_LOG"
+	NotificationTarget_TargetType_EMAIL      NotificationTarget_TargetType = "EMAIL"
+	NotificationTarget_TargetType_EMAIL_ROLE NotificationTarget_TargetType = "EMAIL_ROLE"
+	NotificationTarget_TargetType_EMAIL_USER NotificationTarget_TargetType = "EMAIL_USER"
 )
 
 type OSyncBehaviorPolicy struct {
-    Mode OSyncBehaviorPolicy_Mode `json:"mode,omitempty"`
+	Mode OSyncBehaviorPolicy_Mode `json:"mode,omitempty"`
 }
 
 type OSyncBehaviorPolicy_Mode string
 
-const(
-    OSyncBehaviorPolicy_Mode_AS_REQUESTED OSyncBehaviorPolicy_Mode = "AS_REQUESTED"
-    OSyncBehaviorPolicy_Mode_DISABLE_ALWAYS OSyncBehaviorPolicy_Mode = "DISABLE_ALWAYS"
-    OSyncBehaviorPolicy_Mode_ENABLE_ALWAYS OSyncBehaviorPolicy_Mode = "ENABLE_ALWAYS"
+const (
+	OSyncBehaviorPolicy_Mode_AS_REQUESTED   OSyncBehaviorPolicy_Mode = "AS_REQUESTED"
+	OSyncBehaviorPolicy_Mode_DISABLE_ALWAYS OSyncBehaviorPolicy_Mode = "DISABLE_ALWAYS"
+	OSyncBehaviorPolicy_Mode_ENABLE_ALWAYS  OSyncBehaviorPolicy_Mode = "ENABLE_ALWAYS"
 )
 
 type OrdinaryUserPrivilegePolicy struct {
-    CanSetSuid bool `json:"can_set_suid,omitempty"`
-    CanChown bool `json:"can_chown,omitempty"`
-    CanChgrp bool `json:"can_chgrp,omitempty"`
+	CanSetSuid bool `json:"can_set_suid,omitempty"`
+	CanChown   bool `json:"can_chown,omitempty"`
+	CanChgrp   bool `json:"can_chgrp,omitempty"`
 }
 
 type OverrideCreateModePolicy struct {
-    OverrideCreateMode int32 `json:"override_create_mode,omitempty"`
-    OverrideDirectoryMode int32 `json:"override_directory_mode,omitempty"`
+	OverrideCreateMode    int32 `json:"override_create_mode,omitempty"`
+	OverrideDirectoryMode int32 `json:"override_directory_mode,omitempty"`
 }
 
 type PageCachePolicy struct {
-    Mode PageCachePolicy_Mode `json:"mode,omitempty"`
-    EnableDirectWritebacks bool `json:"enable_direct_writebacks,omitempty"`
+	Mode                   PageCachePolicy_Mode `json:"mode,omitempty"`
+	EnableDirectWritebacks bool                 `json:"enable_direct_writebacks,omitempty"`
 }
 
 type PageCachePolicy_Mode string
 
-const(
-    PageCachePolicy_Mode_FLUSH_ALWAYS PageCachePolicy_Mode = "FLUSH_ALWAYS"
-    PageCachePolicy_Mode_KEEP_ALWAYS PageCachePolicy_Mode = "KEEP_ALWAYS"
-    PageCachePolicy_Mode_USE_HEURISTIC PageCachePolicy_Mode = "USE_HEURISTIC"
+const (
+	PageCachePolicy_Mode_FLUSH_ALWAYS  PageCachePolicy_Mode = "FLUSH_ALWAYS"
+	PageCachePolicy_Mode_KEEP_ALWAYS   PageCachePolicy_Mode = "KEEP_ALWAYS"
+	PageCachePolicy_Mode_USE_HEURISTIC PageCachePolicy_Mode = "USE_HEURISTIC"
 )
 
 type PlacementSettings struct {
-    //* Place on devices that have these tags 
-    RequiredDeviceTags PlacementSettings_Tags `json:"required_device_tags,omitempty"`
-    //* Do not place on devices that have these tags 
-    ForbiddenDeviceTags PlacementSettings_Tags `json:"forbidden_device_tags,omitempty"`
-    // Prefer placement on devices on the client machine.
-    PreferClientLocalDevice bool `json:"prefer_client_local_device,omitempty"`
-    // File replicas are placed to support MR locality and reduce bandwidth requirements.
-    OptimizeForMapreduce bool `json:"optimize_for_mapreduce,omitempty"`
-    // Do not place on devices within the same MACHINE/RACK/ROOM/CLUSTER/...
-    FailureDomainType FailureDomainType `json:"failure_domain_type,omitempty"`
-    PlacementMethod PlacementSettings_PlacementMethod `json:"placement_method,omitempty"`
+	//* Place on devices that have these tags
+	RequiredDeviceTags PlacementSettings_Tags `json:"required_device_tags,omitempty"`
+	//* Do not place on devices that have these tags
+	ForbiddenDeviceTags PlacementSettings_Tags `json:"forbidden_device_tags,omitempty"`
+	// Ignore tag requirements if no placement would be possible otherwise */
+	SoftenTagRequirements bool `json:"soften_tag_requirements,omitempty"`
+	// Prefer placement on devices on the client machine.
+	PreferClientLocalDevice bool `json:"prefer_client_local_device,omitempty"`
+	// File replicas are placed to support MR locality and reduce bandwidth requirements.
+	OptimizeForMapreduce bool `json:"optimize_for_mapreduce,omitempty"`
+	// Do not place on devices within the same MACHINE/RACK/ROOM/CLUSTER/...
+	FailureDomainType FailureDomainType                 `json:"failure_domain_type,omitempty"`
+	PlacementMethod   PlacementSettings_PlacementMethod `json:"placement_method,omitempty"`
 }
 
 type PlacementSettings_PlacementMethod string
 
-const(
-    PlacementSettings_PlacementMethod_AUTOMATIC_HDD_SSD PlacementSettings_PlacementMethod = "AUTOMATIC_HDD_SSD"
-    PlacementSettings_PlacementMethod_TAG_BASED PlacementSettings_PlacementMethod = "TAG_BASED"
+const (
+	PlacementSettings_PlacementMethod_AUTOMATIC_HDD_SSD PlacementSettings_PlacementMethod = "AUTOMATIC_HDD_SSD"
+	PlacementSettings_PlacementMethod_TAG_BASED         PlacementSettings_PlacementMethod = "TAG_BASED"
 )
 
 type PlacementSettings_Tags struct {
-    Tags []string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 }
 
 type Policies struct {
-    // Volume metadata placement
-    MetadataReplication MetadataReplicationPolicy `json:"metadata_replication,omitempty"`
-    MetadataTagBasedPlacement TagBasedPlacementPolicy `json:"metadata_tag_based_placement,omitempty"`
-    MetadataFailureDomainPlacement FailureDomainPlacementPolicy `json:"metadata_failure_domain_placement,omitempty"`
-    // Volume
-    UserAndGroupMappingSecurity UserAndGroupMappingSecurityPolicy `json:"user_and_group_mapping_security,omitempty"`
-    AdditionalPrivilegedGroupsSecurity AdditionalPrivilegedGroupsSecurityPolicy `json:"additional_privileged_groups_security,omitempty"`
-    OrdinaryUserPrivilege OrdinaryUserPrivilegePolicy `json:"ordinary_user_privilege,omitempty"`
-    WindowsSpecificSecurity WindowsSpecificSecurityPolicy `json:"windows_specific_security,omitempty"`
-    OverrideCreateMode OverrideCreateModePolicy `json:"override_create_mode,omitempty"`
-    VolumeSnapshotFrequency VolumeSnapshotFrequencyPolicy `json:"volume_snapshot_frequency,omitempty"`
-    VolumeSnapshotRetention VolumeSnapshotRetentionPolicy `json:"volume_snapshot_retention,omitempty"`
-    VolumeEncryption VolumeEncryptionPolicy `json:"volume_encryption,omitempty"`
-    // File placement
-    FileTagBasedPlacement TagBasedPlacementPolicy `json:"file_tag_based_placement,omitempty"`
-    FileFailureDomainPlacement FailureDomainPlacementPolicy `json:"file_failure_domain_placement,omitempty"`
-    FileRetention FileRetentionPolicy `json:"file_retention,omitempty"`
-    // File layout
-    FileRecode FileRecodePolicy `json:"file_recode,omitempty"`
-    FileRedundancy FileRedundancyPolicy `json:"file_redundancy,omitempty"`
-    InternalOnDiskFormat InternalOnDiskFormatPolicy `json:"internal_on_disk_format,omitempty"`
-    ReplicationRedundancyDetails ReplicationRedundancyDetailsPolicy `json:"replication_redundancy_details,omitempty"`
-    EcRedundancyDetails EcRedundancyDetailsPolicy `json:"ec_redundancy_details,omitempty"`
-    SpecialFilePlacement SpecialFilePlacementPolicy `json:"special_file_placement,omitempty"`
-    // File IO
-    FilePrefetch FilePrefetchPolicy `json:"file_prefetch,omitempty"`
-    FileMetadataCache FileMetadataCachePolicy `json:"file_metadata_cache,omitempty"`
-    PageCache PageCachePolicy `json:"page_cache,omitempty"`
-    DeferredWriteback DeferredWritebackPolicy `json:"deferred_writeback,omitempty"`
-    DeferredClose DeferredClosePolicy `json:"deferred_close,omitempty"`
-    RpcRetryOperations RpcRetryOperationsPolicy `json:"rpc_retry_operations,omitempty"`
-    FileLock FileLockPolicy `json:"file_lock,omitempty"`
-    DiskIo DiskIoPolicy `json:"disk_io,omitempty"`
-    OSyncBehavior OSyncBehaviorPolicy `json:"o_sync_behavior,omitempty"`
-    ClientCache ClientCachePolicy `json:"client_cache,omitempty"`
-    FsyncBehavior FsyncBehaviorPolicy `json:"fsync_behavior,omitempty"`
-    Checksum ChecksumPolicy `json:"checksum,omitempty"`
-    DataServiceCache DataServiceCachePolicy `json:"data_service_cache,omitempty"`
-    EcParity EcParityPolicy `json:"ec_parity,omitempty"`
-    ConcurrentAppendHandling ConcurrentAppendHandlingPolicy `json:"concurrent_append_handling,omitempty"`
+	// Volume metadata placement
+	MetadataReplication            MetadataReplicationPolicy    `json:"metadata_replication,omitempty"`
+	MetadataTagBasedPlacement      TagBasedPlacementPolicy      `json:"metadata_tag_based_placement,omitempty"`
+	MetadataFailureDomainPlacement FailureDomainPlacementPolicy `json:"metadata_failure_domain_placement,omitempty"`
+	// Volume
+	UserAndGroupMappingSecurity        UserAndGroupMappingSecurityPolicy        `json:"user_and_group_mapping_security,omitempty"`
+	AdditionalPrivilegedGroupsSecurity AdditionalPrivilegedGroupsSecurityPolicy `json:"additional_privileged_groups_security,omitempty"`
+	OrdinaryUserPrivilege              OrdinaryUserPrivilegePolicy              `json:"ordinary_user_privilege,omitempty"`
+	WindowsSpecificSecurity            WindowsSpecificSecurityPolicy            `json:"windows_specific_security,omitempty"`
+	OverrideCreateMode                 OverrideCreateModePolicy                 `json:"override_create_mode,omitempty"`
+	VolumeSnapshotFrequency            VolumeSnapshotFrequencyPolicy            `json:"volume_snapshot_frequency,omitempty"`
+	VolumeSnapshotRetention            VolumeSnapshotRetentionPolicy            `json:"volume_snapshot_retention,omitempty"`
+	VolumeEncryption                   VolumeEncryptionPolicy                   `json:"volume_encryption,omitempty"`
+	// File placement
+	FileTagBasedPlacement      TagBasedPlacementPolicy      `json:"file_tag_based_placement,omitempty"`
+	FileFailureDomainPlacement FailureDomainPlacementPolicy `json:"file_failure_domain_placement,omitempty"`
+	FileRetention              FileRetentionPolicy          `json:"file_retention,omitempty"`
+	// File layout
+	FileRecode                   FileRecodePolicy                   `json:"file_recode,omitempty"`
+	FileRedundancy               FileRedundancyPolicy               `json:"file_redundancy,omitempty"`
+	InternalOnDiskFormat         InternalOnDiskFormatPolicy         `json:"internal_on_disk_format,omitempty"`
+	ReplicationRedundancyDetails ReplicationRedundancyDetailsPolicy `json:"replication_redundancy_details,omitempty"`
+	EcRedundancyDetails          EcRedundancyDetailsPolicy          `json:"ec_redundancy_details,omitempty"`
+	SpecialFilePlacement         SpecialFilePlacementPolicy         `json:"special_file_placement,omitempty"`
+	// File IO
+	FilePrefetch             FilePrefetchPolicy             `json:"file_prefetch,omitempty"`
+	FileMetadataCache        FileMetadataCachePolicy        `json:"file_metadata_cache,omitempty"`
+	PageCache                PageCachePolicy                `json:"page_cache,omitempty"`
+	DeferredWriteback        DeferredWritebackPolicy        `json:"deferred_writeback,omitempty"`
+	DeferredClose            DeferredClosePolicy            `json:"deferred_close,omitempty"`
+	RpcRetryOperations       RpcRetryOperationsPolicy       `json:"rpc_retry_operations,omitempty"`
+	FileLock                 FileLockPolicy                 `json:"file_lock,omitempty"`
+	DiskIo                   DiskIoPolicy                   `json:"disk_io,omitempty"`
+	OSyncBehavior            OSyncBehaviorPolicy            `json:"o_sync_behavior,omitempty"`
+	ClientCache              ClientCachePolicy              `json:"client_cache,omitempty"`
+	FsyncBehavior            FsyncBehaviorPolicy            `json:"fsync_behavior,omitempty"`
+	Checksum                 ChecksumPolicy                 `json:"checksum,omitempty"`
+	DataServiceCache         DataServiceCachePolicy         `json:"data_service_cache,omitempty"`
+	EcParity                 EcParityPolicy                 `json:"ec_parity,omitempty"`
+	ConcurrentAppendHandling ConcurrentAppendHandlingPolicy `json:"concurrent_append_handling,omitempty"`
 }
 
 type PolicyPreset struct {
-    Id string `json:"id,omitempty"`
-    Name string `json:"name,omitempty"`
-    Description string `json:"description,omitempty"`
-    Deprecated bool `json:"deprecated,omitempty"`
-    // When setting a rule, can be left empty because policies are generated programmatically. When getting a rule, contains (effective) policies.
-    Policies Policies `json:"policies,omitempty"`
+	Id          string `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+	Deprecated  bool   `json:"deprecated,omitempty"`
+	// When setting a rule, can be left empty because policies are generated programmatically. When getting a rule, contains (effective) policies.
+	Policies Policies `json:"policies,omitempty"`
 }
 
 type PolicyRule struct {
-    Uuid string `json:"uuid,omitempty"`
-    Name string `json:"name,omitempty"`
-    Description string `json:"description,omitempty"`
-    Creator string `json:"creator,omitempty"`
-    Enabled bool `json:"enabled,omitempty"`
-    // If set, this rule is a default rule provided by us. The rule has been generated programmatically and is read-only.
-    Default bool `json:"default,omitempty"`
-    // Used to prioritize if any subject is affected by multiple rules. Must be distinct!
-    OrderingNumber int32 `json:"ordering_number,omitempty"`
-    Scope PolicyScope `json:"scope,omitempty"`
-    // Exactly one field must be set.
-    PolicyPreset PolicyPreset `json:"policy_preset,omitempty"`
-    Policies Policies `json:"policies,omitempty"`
+	Uuid        string `json:"uuid,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+	Creator     string `json:"creator,omitempty"`
+	Enabled     bool   `json:"enabled,omitempty"`
+	// If set, this rule is a default rule provided by us. The rule has been generated programmatically and is read-only.
+	Default bool `json:"default,omitempty"`
+	// Used to prioritize if any subject is affected by multiple rules. Must be distinct!
+	OrderingNumber int32       `json:"ordering_number,omitempty"`
+	Scope          PolicyScope `json:"scope,omitempty"`
+	// Exactly one field must be set.
+	PolicyPreset PolicyPreset `json:"policy_preset,omitempty"`
+	Policies     Policies     `json:"policies,omitempty"`
 }
 
 type PolicyRuleSet struct {
-    Version int64 `json:"version,omitempty"`
-    Creator string `json:"creator,omitempty"`
-    Comment string `json:"comment,omitempty"`
+	Version int64  `json:"version,omitempty"`
+	Creator string `json:"creator,omitempty"`
+	Comment string `json:"comment,omitempty"`
 }
 
 type PolicyScope struct {
-    // Must be set exclusively.
-    Global bool `json:"global,omitempty"`
-    // Can be combined.
-    Tenant []*TenantScope `json:"tenant,omitempty"`
-    Volume []*VolumeScope `json:"volume,omitempty"`
-    File []*FileScope `json:"file,omitempty"`
-    FilesOperator PolicyScope_Operator `json:"files_operator,omitempty"`
-    Client []*ClientScope `json:"client,omitempty"`
+	// Must be set exclusively.
+	Global bool `json:"global,omitempty"`
+	// Can be combined.
+	Tenant        []*TenantScope       `json:"tenant,omitempty"`
+	Volume        []*VolumeScope       `json:"volume,omitempty"`
+	File          []*FileScope         `json:"file,omitempty"`
+	FilesOperator PolicyScope_Operator `json:"files_operator,omitempty"`
+	Client        []*ClientScope       `json:"client,omitempty"`
 }
 
 type PolicyScope_Operator string
 
-const(
-    PolicyScope_Operator_ALL_OF PolicyScope_Operator = "ALL_OF"
-    PolicyScope_Operator_ANY_OF PolicyScope_Operator = "ANY_OF"
+const (
+	PolicyScope_Operator_ALL_OF PolicyScope_Operator = "ALL_OF"
+	PolicyScope_Operator_ANY_OF PolicyScope_Operator = "ANY_OF"
 )
 
 type PublishBucketVolumeRequest struct {
-    // The S3 exclusive bucket volume to publish.
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    // Make the volume available as S3 bucket using the given name.
-    BucketName string `json:"bucket_name,omitempty"`
-    retryPolicy
+	// The S3 exclusive bucket volume to publish.
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	// Make the volume available as S3 bucket using the given name.
+	BucketName string `json:"bucket_name,omitempty"`
+	retryPolicy
 }
 
 type PublishBucketVolumeResponse struct {
 }
 
 type Quota struct {
-    // Global identifier of this quota pool configuration (should be empty for new quotas)
-    Id string `json:"id,omitempty"`
-    // One consuming entity (Quota applies to the first consumer only; the list structure is kept for backward-compatibility).
-    Consumer []*ConsumingEntity `json:"consumer,omitempty"`
-    // One or several resource limits
-    Limits []*Resource `json:"limits,omitempty"`
-    // Optional list of current quota usage (field is ignored for set/import quota)
-    CurrentUsage []*Resource `json:"current_usage,omitempty"`
+	// Global identifier of this quota pool configuration (should be empty for new quotas)
+	Id string `json:"id,omitempty"`
+	// One consuming entity (Quota applies to the first consumer only; the list structure is kept for backward-compatibility).
+	Consumer []*ConsumingEntity `json:"consumer,omitempty"`
+	// One or several resource limits
+	Limits []*Resource `json:"limits,omitempty"`
+	// Optional list of current quota usage (field is ignored for set/import quota)
+	CurrentUsage []*Resource `json:"current_usage,omitempty"`
 }
 
 type QuotaPoolConfiguration struct {
-    // One or several resource limits
-    Resource []*Resource `json:"resource,omitempty"`
-    // One consuming entity (Quota applies to the first consumer only; the list structure is kept for backward-compatibility).
-    Consumer []*ConsumingEntity `json:"consumer,omitempty"`
-    //Global identifier of this quota pool configuration
-    Id string `json:"id,omitempty"`
+	// One or several resource limits
+	Resource []*Resource `json:"resource,omitempty"`
+	// One consuming entity (Quota applies to the first consumer only; the list structure is kept for backward-compatibility).
+	Consumer []*ConsumingEntity `json:"consumer,omitempty"`
+	//Global identifier of this quota pool configuration
+	Id string `json:"id,omitempty"`
 }
 
 type RebalanceSettings struct {
-    // If device disk space usage is below this threshold (5 to overutilized_threshold_percentage) the device is considered underutilized.
-    UnderutilizedThresholdPercentage int32 `json:"underutilized_threshold_percentage,omitempty"`
-    // If device disk space usage exceeds this threshold (underutilized_threshold_percentage to 95) the device is considered overutilized.
-    OverutilizedThresholdPercentage int32 `json:"overutilized_threshold_percentage,omitempty"`
-    MaxBytesToMove int64 `json:"max_bytes_to_move,omitempty"`
+	// If device disk space usage is below this threshold (5 to overutilized_threshold_percentage) the device is considered underutilized.
+	UnderutilizedThresholdPercentage int32 `json:"underutilized_threshold_percentage,omitempty"`
+	// If device disk space usage exceeds this threshold (underutilized_threshold_percentage to 95) the device is considered overutilized.
+	OverutilizedThresholdPercentage int32 `json:"overutilized_threshold_percentage,omitempty"`
+	MaxBytesToMove                  int64 `json:"max_bytes_to_move,omitempty"`
 }
 
 type RegenerateDatabaseRequest struct {
-    Databasetype RegenerateDatabaseRequest_DatabaseType `json:"databaseType,omitempty"`
-    // Database identifier, like a volume UUID for VOLUME_ACCOUNTING database type for example.
-    DatabaseIdentifier string `json:"database_identifier,omitempty"`
-    retryPolicy
+	Databasetype RegenerateDatabaseRequest_DatabaseType `json:"databaseType,omitempty"`
+	// Database identifier, like a volume UUID for VOLUME_ACCOUNTING database type for example.
+	DatabaseIdentifier string `json:"database_identifier,omitempty"`
+	retryPolicy
 }
 
 type RegenerateDatabaseRequest_DatabaseType string
 
-const(
-    RegenerateDatabaseRequest_DatabaseType_VOLUME_ACCOUNTING RegenerateDatabaseRequest_DatabaseType = "VOLUME_ACCOUNTING"
+const (
+	RegenerateDatabaseRequest_DatabaseType_VOLUME_ACCOUNTING RegenerateDatabaseRequest_DatabaseType = "VOLUME_ACCOUNTING"
 )
 
 type RegenerateDatabaseResponse struct {
 }
 
 type RemoveKeystoreSlotRequest struct {
-    KeystoreSlotUuid string `json:"keystore_slot_uuid,omitempty"`
-    retryPolicy
+	KeystoreSlotUuid string `json:"keystore_slot_uuid,omitempty"`
+	retryPolicy
 }
 
 type RemoveKeystoreSlotResponse struct {
 }
 
 type RemoveRegistryReplicaRequest struct {
-    // A string containing the device ID of the replica to remove.
-    DeviceId string `json:"device_id,omitempty"`
-    // Optional comment field for auditing.
-    Comment string `json:"comment,omitempty"`
-    retryPolicy
+	// A string containing the device ID of the replica to remove.
+	DeviceId string `json:"device_id,omitempty"`
+	// Optional comment field for auditing.
+	Comment string `json:"comment,omitempty"`
+	retryPolicy
 }
 
 type RemoveRegistryReplicaResponse struct {
 }
 
 type ReplicationRedundancyDetailsPolicy struct {
-    FileStructure ReplicationRedundancyDetailsPolicy_FileStructure `json:"file_structure,omitempty"`
-    DistributionSchema ReplicationRedundancyDetailsPolicy_DistributionSchema `json:"distribution_schema,omitempty"`
-    ReplicationFactor int32 `json:"replication_factor,omitempty"`
+	FileStructure      ReplicationRedundancyDetailsPolicy_FileStructure      `json:"file_structure,omitempty"`
+	DistributionSchema ReplicationRedundancyDetailsPolicy_DistributionSchema `json:"distribution_schema,omitempty"`
+	ReplicationFactor  int32                                                 `json:"replication_factor,omitempty"`
 }
 
 type ReplicationRedundancyDetailsPolicy_DistributionSchema struct {
-    DataStripeCount int32 `json:"data_stripe_count,omitempty"`
-    StripingMethod ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod `json:"striping_method,omitempty"`
+	DataStripeCount int32                                                                `json:"data_stripe_count,omitempty"`
+	StripingMethod  ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod `json:"striping_method,omitempty"`
 }
 
 type ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod string
 
-const(
-    ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod_BLOCK_LEVEL ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod = "BLOCK_LEVEL"
-    ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod_OBJECT_LEVEL ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod = "OBJECT_LEVEL"
+const (
+	ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod_BLOCK_LEVEL  ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod = "BLOCK_LEVEL"
+	ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod_OBJECT_LEVEL ReplicationRedundancyDetailsPolicy_DistributionSchema_StripingMethod = "OBJECT_LEVEL"
 )
 
 type ReplicationRedundancyDetailsPolicy_FileStructure struct {
-    BlockSizeBytes int32 `json:"block_size_bytes,omitempty"`
-    ObjectSizeBytes int64 `json:"object_size_bytes,omitempty"`
-    SegmentSizeBytes int64 `json:"segment_size_bytes,omitempty"`
+	BlockSizeBytes   int32 `json:"block_size_bytes,omitempty"`
+	ObjectSizeBytes  int64 `json:"object_size_bytes,omitempty"`
+	SegmentSizeBytes int64 `json:"segment_size_bytes,omitempty"`
 }
 
 type ResolveGlobalFileIdRequest struct {
-    GlobalFileId string `json:"global_file_id,omitempty"`
-    retryPolicy
+	GlobalFileId string `json:"global_file_id,omitempty"`
+	retryPolicy
 }
 
 type ResolveGlobalFileIdResponse struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    // path relative to volume uuid
-    File string `json:"file,omitempty"`
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	// path relative to volume uuid
+	File string `json:"file,omitempty"`
 }
 
 type ResolvePolicyRuleNameRequest struct {
-    PolicyRuleName string `json:"policy_rule_name,omitempty"`
-    retryPolicy
+	PolicyRuleName string `json:"policy_rule_name,omitempty"`
+	retryPolicy
 }
 
 type ResolvePolicyRuleNameResponse struct {
-    PolicyRuleUuid string `json:"policy_rule_uuid,omitempty"`
+	PolicyRuleUuid string `json:"policy_rule_uuid,omitempty"`
 }
 
 type ResolveTenantNameRequest struct {
-    TenantName string `json:"tenant_name,omitempty"`
-    retryPolicy
+	TenantName string `json:"tenant_name,omitempty"`
+	retryPolicy
 }
 
 type ResolveTenantNameResponse struct {
-    TenantId string `json:"tenant_id,omitempty"`
+	TenantId string `json:"tenant_id,omitempty"`
 }
 
 type ResolveVolumeNameRequest struct {
-    VolumeName string `json:"volume_name,omitempty"`
-    // Optional tenant domain for the volume
-    TenantDomain string `json:"tenant_domain,omitempty"`
-    retryPolicy
+	VolumeName string `json:"volume_name,omitempty"`
+	// Optional tenant domain for the volume
+	TenantDomain string `json:"tenant_domain,omitempty"`
+	retryPolicy
 }
 
 type ResolveVolumeNameResponse struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    ObsoleteVolumeUuid []string `json:"OBSOLETE_volume_uuid,omitempty"`
+	VolumeUuid         string   `json:"volume_uuid,omitempty"`
+	ObsoleteVolumeUuid []string `json:"OBSOLETE_volume_uuid,omitempty"`
 }
 
 type Resource struct {
-    //Type of the resource
-    Type Resource_Type `json:"type,omitempty"`
-    //Value of the resource
-    Value int64 `json:"value,omitempty"`
-    // Only set for Quota@GetQuotaResponse
-    LimitType Resource_LimitType `json:"limit_type,omitempty"`
+	//Type of the resource
+	Type Resource_Type `json:"type,omitempty"`
+	//Value of the resource
+	Value int64 `json:"value,omitempty"`
+	// Only set for Quota@GetQuotaResponse
+	LimitType Resource_LimitType `json:"limit_type,omitempty"`
 }
 
 type Resource_LimitType string
 
-const(
-    Resource_LimitType_DEFAULT_QUOTA Resource_LimitType = "DEFAULT_QUOTA"
-    Resource_LimitType_DERIVED Resource_LimitType = "DERIVED"
-    Resource_LimitType_LICENSE Resource_LimitType = "LICENSE"
-    Resource_LimitType_QUOTA Resource_LimitType = "QUOTA"
+const (
+	Resource_LimitType_DEFAULT_QUOTA Resource_LimitType = "DEFAULT_QUOTA"
+	Resource_LimitType_DERIVED       Resource_LimitType = "DERIVED"
+	Resource_LimitType_LICENSE       Resource_LimitType = "LICENSE"
+	Resource_LimitType_QUOTA         Resource_LimitType = "QUOTA"
 )
 
 type Resource_Type string
 
-const(
-    Resource_Type_DIRECTORY_COUNT Resource_Type = "DIRECTORY_COUNT"
-    Resource_Type_FILE_COUNT Resource_Type = "FILE_COUNT"
-    Resource_Type_HDD_LOGICAL_DISK_SPACE Resource_Type = "HDD_LOGICAL_DISK_SPACE"
-    Resource_Type_HDD_PHYSICAL_DISK_SPACE Resource_Type = "HDD_PHYSICAL_DISK_SPACE"
-    Resource_Type_LOGICAL_DISK_SPACE Resource_Type = "LOGICAL_DISK_SPACE"
-    Resource_Type_PHYSICAL_DISK_SPACE Resource_Type = "PHYSICAL_DISK_SPACE"
-    Resource_Type_RESERVED_0 Resource_Type = "RESERVED_0"
-    Resource_Type_RESERVED_4 Resource_Type = "RESERVED_4"
-    Resource_Type_RESERVED_7 Resource_Type = "RESERVED_7"
-    Resource_Type_SSD_LOGICAL_DISK_SPACE Resource_Type = "SSD_LOGICAL_DISK_SPACE"
-    Resource_Type_SSD_PHYSICAL_DISK_SPACE Resource_Type = "SSD_PHYSICAL_DISK_SPACE"
-    Resource_Type_VOLUME_COUNT Resource_Type = "VOLUME_COUNT"
+const (
+	Resource_Type_DIRECTORY_COUNT         Resource_Type = "DIRECTORY_COUNT"
+	Resource_Type_FILE_COUNT              Resource_Type = "FILE_COUNT"
+	Resource_Type_HDD_LOGICAL_DISK_SPACE  Resource_Type = "HDD_LOGICAL_DISK_SPACE"
+	Resource_Type_HDD_PHYSICAL_DISK_SPACE Resource_Type = "HDD_PHYSICAL_DISK_SPACE"
+	Resource_Type_LOGICAL_DISK_SPACE      Resource_Type = "LOGICAL_DISK_SPACE"
+	Resource_Type_PHYSICAL_DISK_SPACE     Resource_Type = "PHYSICAL_DISK_SPACE"
+	Resource_Type_RESERVED_0              Resource_Type = "RESERVED_0"
+	Resource_Type_RESERVED_4              Resource_Type = "RESERVED_4"
+	Resource_Type_RESERVED_7              Resource_Type = "RESERVED_7"
+	Resource_Type_SSD_LOGICAL_DISK_SPACE  Resource_Type = "SSD_LOGICAL_DISK_SPACE"
+	Resource_Type_SSD_PHYSICAL_DISK_SPACE Resource_Type = "SSD_PHYSICAL_DISK_SPACE"
+	Resource_Type_VOLUME_COUNT            Resource_Type = "VOLUME_COUNT"
 )
 
 type RestrictTime struct {
-    // 0-24
-    RestrictToHours []int32 `json:"restrict_to_hours,omitempty"`
-    // 0=Sun, 1=Mon, ...
-    RestrictToWeekdays []int32 `json:"restrict_to_weekdays,omitempty"`
-    // 0-53, restrict to weeks of year.
-    RestrictToWeekOfYear []int32 `json:"restrict_to_week_of_year,omitempty"`
+	// 0-24
+	RestrictToHours []int32 `json:"restrict_to_hours,omitempty"`
+	// 0=Sun, 1=Mon, ...
+	RestrictToWeekdays []int32 `json:"restrict_to_weekdays,omitempty"`
+	// 0-53, restrict to weeks of year.
+	RestrictToWeekOfYear []int32 `json:"restrict_to_week_of_year,omitempty"`
 }
 
 type ResumeTaskRequest struct {
-    // List of one or more IDs of the tasks to be resumed
-    TaskId []string `json:"task_id,omitempty"`
-    retryPolicy
+	// List of one or more IDs of the tasks to be resumed
+	TaskId []string `json:"task_id,omitempty"`
+	retryPolicy
 }
 
 type ResumeTaskResponse struct {
 }
 
 type RetryTaskRequest struct {
-    // List of one or more IDs of the tasks to be restarted
-    TaskId []string `json:"task_id,omitempty"`
-    retryPolicy
+	// List of one or more IDs of the tasks to be restarted
+	TaskId []string `json:"task_id,omitempty"`
+	retryPolicy
 }
 
 type RetryTaskResponse struct {
 }
 
 type RevokeCertificateRequest struct {
-    // Certificate fingerprint to revoke
-    Fingerprint string `json:"fingerprint,omitempty"`
-    // Reason to revoke according to RFC 5280
-    CrlReason CrlReason `json:"crl_reason,omitempty"`
-    retryPolicy
+	// Certificate fingerprint to revoke
+	Fingerprint string `json:"fingerprint,omitempty"`
+	// Reason to revoke according to RFC 5280
+	CrlReason CrlReason `json:"crl_reason,omitempty"`
+	retryPolicy
 }
 
 type RevokeCertificateResponse struct {
 }
 
 type RpcRetryOperationsPolicy struct {
-    Mode RpcRetryOperationsPolicy_Mode `json:"mode,omitempty"`
+	Mode RpcRetryOperationsPolicy_Mode `json:"mode,omitempty"`
 }
 
 type RpcRetryOperationsPolicy_Mode string
 
-const(
-    RpcRetryOperationsPolicy_Mode_RETRY_FOREVER RpcRetryOperationsPolicy_Mode = "RETRY_FOREVER"
-    RpcRetryOperationsPolicy_Mode_RETRY_FOREVER_UNLESS_FULL RpcRetryOperationsPolicy_Mode = "RETRY_FOREVER_UNLESS_FULL"
-    RpcRetryOperationsPolicy_Mode_RETRY_INTERACTIVE RpcRetryOperationsPolicy_Mode = "RETRY_INTERACTIVE"
-    RpcRetryOperationsPolicy_Mode_RETRY_NEVER RpcRetryOperationsPolicy_Mode = "RETRY_NEVER"
+const (
+	RpcRetryOperationsPolicy_Mode_RETRY_FOREVER             RpcRetryOperationsPolicy_Mode = "RETRY_FOREVER"
+	RpcRetryOperationsPolicy_Mode_RETRY_FOREVER_UNLESS_FULL RpcRetryOperationsPolicy_Mode = "RETRY_FOREVER_UNLESS_FULL"
+	RpcRetryOperationsPolicy_Mode_RETRY_INTERACTIVE         RpcRetryOperationsPolicy_Mode = "RETRY_INTERACTIVE"
+	RpcRetryOperationsPolicy_Mode_RETRY_NEVER               RpcRetryOperationsPolicy_Mode = "RETRY_NEVER"
 )
 
 type RuleAction struct {
-    ActionType RuleAction_ActionType `json:"action_type,omitempty"`
-    NotifyEmailAddress []string `json:"notify_email_address,omitempty"`
+	ActionType         RuleAction_ActionType `json:"action_type,omitempty"`
+	NotifyEmailAddress []string              `json:"notify_email_address,omitempty"`
 }
 
 type RuleAction_ActionType string
 
-const(
-    RuleAction_ActionType_DO_NOTHING RuleAction_ActionType = "DO_NOTHING"
-    RuleAction_ActionType_OBSOLETE_CLEANUP_DEVICE RuleAction_ActionType = "OBSOLETE_CLEANUP_DEVICE"
-    RuleAction_ActionType_OBSOLETE_ENFORCE_FILE_PLACEMENT RuleAction_ActionType = "OBSOLETE_ENFORCE_FILE_PLACEMENT"
-    RuleAction_ActionType_OBSOLETE_ENFORCE_VOLUME_PLACEMENT RuleAction_ActionType = "OBSOLETE_ENFORCE_VOLUME_PLACEMENT"
-    RuleAction_ActionType_OBSOLETE_MANAGE_REGISTRY_REPLICAS RuleAction_ActionType = "OBSOLETE_MANAGE_REGISTRY_REPLICAS"
-    RuleAction_ActionType_OBSOLETE_NOTIFY RuleAction_ActionType = "OBSOLETE_NOTIFY"
-    RuleAction_ActionType_OBSOLETE_REBALANCE_DEVICE RuleAction_ActionType = "OBSOLETE_REBALANCE_DEVICE"
-    RuleAction_ActionType_OBSOLETE_REGENERATE_DEVICE RuleAction_ActionType = "OBSOLETE_REGENERATE_DEVICE"
-    RuleAction_ActionType_OBSOLETE_SCRUB_VOLUME RuleAction_ActionType = "OBSOLETE_SCRUB_VOLUME"
-    RuleAction_ActionType_OBSOLETE_SET_DEVICE_DISCONNECTED RuleAction_ActionType = "OBSOLETE_SET_DEVICE_DISCONNECTED"
-    RuleAction_ActionType_OBSOLETE_SET_DEVICE_OFFLINE RuleAction_ActionType = "OBSOLETE_SET_DEVICE_OFFLINE"
-    RuleAction_ActionType_OBSOLETE_TRIGGER_VOLUME_CHECKPOINT RuleAction_ActionType = "OBSOLETE_TRIGGER_VOLUME_CHECKPOINT"
-    RuleAction_ActionType_RESET_VOLUME_ACCOUNTING RuleAction_ActionType = "RESET_VOLUME_ACCOUNTING"
-    RuleAction_ActionType_UNREGISTER_SERVICE RuleAction_ActionType = "UNREGISTER_SERVICE"
+const (
+	RuleAction_ActionType_DO_NOTHING                         RuleAction_ActionType = "DO_NOTHING"
+	RuleAction_ActionType_OBSOLETE_CLEANUP_DEVICE            RuleAction_ActionType = "OBSOLETE_CLEANUP_DEVICE"
+	RuleAction_ActionType_OBSOLETE_ENFORCE_FILE_PLACEMENT    RuleAction_ActionType = "OBSOLETE_ENFORCE_FILE_PLACEMENT"
+	RuleAction_ActionType_OBSOLETE_ENFORCE_VOLUME_PLACEMENT  RuleAction_ActionType = "OBSOLETE_ENFORCE_VOLUME_PLACEMENT"
+	RuleAction_ActionType_OBSOLETE_MANAGE_REGISTRY_REPLICAS  RuleAction_ActionType = "OBSOLETE_MANAGE_REGISTRY_REPLICAS"
+	RuleAction_ActionType_OBSOLETE_NOTIFY                    RuleAction_ActionType = "OBSOLETE_NOTIFY"
+	RuleAction_ActionType_OBSOLETE_REBALANCE_DEVICE          RuleAction_ActionType = "OBSOLETE_REBALANCE_DEVICE"
+	RuleAction_ActionType_OBSOLETE_REGENERATE_DEVICE         RuleAction_ActionType = "OBSOLETE_REGENERATE_DEVICE"
+	RuleAction_ActionType_OBSOLETE_SCRUB_VOLUME              RuleAction_ActionType = "OBSOLETE_SCRUB_VOLUME"
+	RuleAction_ActionType_OBSOLETE_SET_DEVICE_DISCONNECTED   RuleAction_ActionType = "OBSOLETE_SET_DEVICE_DISCONNECTED"
+	RuleAction_ActionType_OBSOLETE_SET_DEVICE_OFFLINE        RuleAction_ActionType = "OBSOLETE_SET_DEVICE_OFFLINE"
+	RuleAction_ActionType_OBSOLETE_TRIGGER_VOLUME_CHECKPOINT RuleAction_ActionType = "OBSOLETE_TRIGGER_VOLUME_CHECKPOINT"
+	RuleAction_ActionType_RESET_VOLUME_ACCOUNTING            RuleAction_ActionType = "RESET_VOLUME_ACCOUNTING"
+	RuleAction_ActionType_UNREGISTER_SERVICE                 RuleAction_ActionType = "UNREGISTER_SERVICE"
 )
 
 type RuleConfiguration struct {
-    RuleIdentifier string `json:"rule_identifier,omitempty"`
-    // A flag indicating whether the rule is enabled.
-    Enabled bool `json:"enabled,omitempty"`
-    // Number of seconds to wait before alerting.
-    AlertAfterSeconds int32 `json:"alert_after_seconds,omitempty"`
-    // Time restrictions for alerting.
-    RestrictTime RestrictTime `json:"restrict_time,omitempty"`
-    // Actions to take when alerting.
-    Actions []*RuleAction `json:"actions,omitempty"`
+	RuleIdentifier string `json:"rule_identifier,omitempty"`
+	// A flag indicating whether the rule is enabled.
+	Enabled bool `json:"enabled,omitempty"`
+	// Number of seconds to wait before alerting.
+	AlertAfterSeconds int32 `json:"alert_after_seconds,omitempty"`
+	// Time restrictions for alerting.
+	RestrictTime RestrictTime `json:"restrict_time,omitempty"`
+	// Actions to take when alerting.
+	Actions []*RuleAction `json:"actions,omitempty"`
 }
 
 type RuleDescriptor struct {
-    RuleIdentifier string `json:"rule_identifier,omitempty"`
-    AlertConfiguration AlertConfiguration `json:"alert_configuration,omitempty"`
-    SensorIdentifier string `json:"sensor_identifier,omitempty"`
-    SensorParameters []string `json:"sensor_parameters,omitempty"`
-    // The description of the sensor's working (with placeholders)
-    SensorDescription string `json:"sensor_description,omitempty"`
-    // The description of what state has been detected (with placeholders)
-    SensorMessage string `json:"sensor_message,omitempty"`
-    // What the user should do manually
-    SensorSuggestedAction string `json:"sensor_suggested_action,omitempty"`
-    Actions []*RuleAction `json:"actions,omitempty"`
-    // The set of supported actions for the rule.
-    SupportedActions []*RuleAction `json:"supported_actions,omitempty"`
-    Severity FiringRule_RuleSeverity `json:"severity,omitempty"`
+	RuleIdentifier     string             `json:"rule_identifier,omitempty"`
+	AlertConfiguration AlertConfiguration `json:"alert_configuration,omitempty"`
+	SensorIdentifier   string             `json:"sensor_identifier,omitempty"`
+	SensorParameters   []string           `json:"sensor_parameters,omitempty"`
+	// The description of the sensor's working (with placeholders)
+	SensorDescription string `json:"sensor_description,omitempty"`
+	// The description of what state has been detected (with placeholders)
+	SensorMessage string `json:"sensor_message,omitempty"`
+	// What the user should do manually
+	SensorSuggestedAction string        `json:"sensor_suggested_action,omitempty"`
+	Actions               []*RuleAction `json:"actions,omitempty"`
+	// The set of supported actions for the rule.
+	SupportedActions []*RuleAction           `json:"supported_actions,omitempty"`
+	Severity         FiringRule_RuleSeverity `json:"severity,omitempty"`
 }
 
 type ScrubSettings struct {
-    // Obsolete since release 2.6.
-    SkipOpenFiles bool `json:"skip_open_files,omitempty"`
+	// Obsolete since release 2.6.
+	SkipOpenFiles bool `json:"skip_open_files,omitempty"`
 }
 
 type ServiceDescription struct {
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    ServiceName string `json:"service_name,omitempty"`
-    // The service's network addresses.
-    NetworkAddresses []*ServiceDescription_NetworkEndpoint `json:"network_addresses,omitempty"`
-    // HTTP status page server endpoint.
-    StatusServer ServiceDescription_NetworkEndpoint `json:"status_server,omitempty"`
-    // service type
-    ServiceType ServiceType `json:"service_type,omitempty"`
-    // service's last seen time stamp in ms
-    LastSeenTimestampMs int64 `json:"last_seen_timestamp_ms,omitempty"`
-    // service availability
-    IsAvailable bool `json:"is_available,omitempty"`
-    // Service has a registered network location
-    IsRegistered bool `json:"is_registered,omitempty"`
-    IsPrimary bool `json:"is_primary,omitempty"`
-    FailureDomainInfos []*FailureDomainInfo `json:"failure_domain_infos,omitempty"`
-    //additional service information
-    AdditionalServiceAddress ServiceDescription_NetworkEndpoint `json:"additional_service_address,omitempty"`
-    RdmaEnabled bool `json:"rdma_enabled,omitempty"`
+	ServiceUuid string `json:"service_uuid,omitempty"`
+	ServiceName string `json:"service_name,omitempty"`
+	// The service's network addresses.
+	NetworkAddresses []*ServiceDescription_NetworkEndpoint `json:"network_addresses,omitempty"`
+	// HTTP status page server endpoint.
+	StatusServer ServiceDescription_NetworkEndpoint `json:"status_server,omitempty"`
+	// service type
+	ServiceType ServiceType `json:"service_type,omitempty"`
+	// service's last seen time stamp in ms
+	LastSeenTimestampMs int64 `json:"last_seen_timestamp_ms,omitempty"`
+	// service availability
+	IsAvailable bool `json:"is_available,omitempty"`
+	// Service has a registered network location
+	IsRegistered       bool                 `json:"is_registered,omitempty"`
+	IsPrimary          bool                 `json:"is_primary,omitempty"`
+	FailureDomainInfos []*FailureDomainInfo `json:"failure_domain_infos,omitempty"`
+	//additional service information
+	AdditionalServiceAddress ServiceDescription_NetworkEndpoint `json:"additional_service_address,omitempty"`
+	RdmaEnabled              bool                               `json:"rdma_enabled,omitempty"`
 }
 
 type ServiceDescription_NetworkEndpoint struct {
-    Protocol ServiceDescription_NetworkEndpoint_Protocol `json:"protocol,omitempty"`
-    //IP address of the server.
-    IpAddress string `json:"ip_address,omitempty"`
-    // TCP/UDP port number.
-    Port int32 `json:"port,omitempty"`
+	Protocol ServiceDescription_NetworkEndpoint_Protocol `json:"protocol,omitempty"`
+	//IP address of the server.
+	IpAddress string `json:"ip_address,omitempty"`
+	// TCP/UDP port number.
+	Port int32 `json:"port,omitempty"`
 }
 
 type ServiceDescription_NetworkEndpoint_Protocol string
 
-const(
-    ServiceDescription_NetworkEndpoint_Protocol_HTTP ServiceDescription_NetworkEndpoint_Protocol = "HTTP"
-    ServiceDescription_NetworkEndpoint_Protocol_HTTPS ServiceDescription_NetworkEndpoint_Protocol = "HTTPS"
-    ServiceDescription_NetworkEndpoint_Protocol_NFS ServiceDescription_NetworkEndpoint_Protocol = "NFS"
-    ServiceDescription_NetworkEndpoint_Protocol_PLAIN ServiceDescription_NetworkEndpoint_Protocol = "PLAIN"
+const (
+	ServiceDescription_NetworkEndpoint_Protocol_HTTP  ServiceDescription_NetworkEndpoint_Protocol = "HTTP"
+	ServiceDescription_NetworkEndpoint_Protocol_HTTPS ServiceDescription_NetworkEndpoint_Protocol = "HTTPS"
+	ServiceDescription_NetworkEndpoint_Protocol_NFS   ServiceDescription_NetworkEndpoint_Protocol = "NFS"
+	ServiceDescription_NetworkEndpoint_Protocol_PLAIN ServiceDescription_NetworkEndpoint_Protocol = "PLAIN"
 )
 
 type ServiceStatusServerNetworkEndpoint struct {
-    // related to HTTP status server FQDN or IP address of the server.
-    Hostname string `json:"hostname,omitempty"`
-    // TCP/UDP port number.
-    Port int32 `json:"port,omitempty"`
-    // service type.
-    ServiceType ServiceType `json:"service_type,omitempty"`
-    // service's last seen time stamp in ms
-    LastSeenTimestampMs int64 `json:"last_seen_timestamp_ms,omitempty"`
-    // service availability
-    IsAvailable bool `json:"is_available,omitempty"`
-    //service uuid
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    // service name (display host name)
-    ServiceName string `json:"service_name,omitempty"`
-    IsPrimary bool `json:"is_primary,omitempty"`
+	// related to HTTP status server FQDN or IP address of the server.
+	Hostname string `json:"hostname,omitempty"`
+	// TCP/UDP port number.
+	Port int32 `json:"port,omitempty"`
+	// service type.
+	ServiceType ServiceType `json:"service_type,omitempty"`
+	// service's last seen time stamp in ms
+	LastSeenTimestampMs int64 `json:"last_seen_timestamp_ms,omitempty"`
+	// service availability
+	IsAvailable bool `json:"is_available,omitempty"`
+	//service uuid
+	ServiceUuid string `json:"service_uuid,omitempty"`
+	// service name (display host name)
+	ServiceName string `json:"service_name,omitempty"`
+	IsPrimary   bool   `json:"is_primary,omitempty"`
 }
 
 type SetCertificateOwnerRequest struct {
-    // Certificate certificate fingerprint
-    Fingerprint string `json:"fingerprint,omitempty"`
-    // Tenant id
-    TenantId string `json:"tenant_id,omitempty"`
-    retryPolicy
+	// Certificate certificate fingerprint
+	Fingerprint string `json:"fingerprint,omitempty"`
+	// Tenant id
+	TenantId string `json:"tenant_id,omitempty"`
+	retryPolicy
 }
 
 type SetCertificateOwnerResponse struct {
 }
 
 type SetCertificateSubjectRequest struct {
-    // X.509 certificate fingerprint
-    Fingerprint string `json:"fingerprint,omitempty"`
-    // Certificate subject description
-    Subject CertificateSubject `json:"subject,omitempty"`
-    retryPolicy
+	// X.509 certificate fingerprint
+	Fingerprint string `json:"fingerprint,omitempty"`
+	// Certificate subject description
+	Subject CertificateSubject `json:"subject,omitempty"`
+	retryPolicy
 }
 
 type SetCertificateSubjectResponse struct {
 }
 
 type SetConfigurationRequest struct {
-    ConfigurationType ConfigurationType `json:"configuration_type,omitempty"`
-    ConfigurationName string `json:"configuration_name,omitempty"`
-    VolumeConfiguration VolumeConfiguration `json:"volume_configuration,omitempty"`
-    FailureDomainConfiguration FailureDomainConfiguration `json:"failure_domain_configuration,omitempty"`
-    UserConfiguration UserConfiguration `json:"user_configuration,omitempty"`
-    SystemConfiguration SystemConfiguration `json:"system_configuration,omitempty"`
-    RuleConfiguration RuleConfiguration `json:"rule_configuration,omitempty"`
-    // Obsolete since release 1.4. Use setTenant() instead.
-    TenantConfiguration TenantDomainConfiguration `json:"tenant_configuration,omitempty"`
-    retryPolicy
+	ConfigurationType          ConfigurationType          `json:"configuration_type,omitempty"`
+	ConfigurationName          string                     `json:"configuration_name,omitempty"`
+	VolumeConfiguration        VolumeConfiguration        `json:"volume_configuration,omitempty"`
+	FailureDomainConfiguration FailureDomainConfiguration `json:"failure_domain_configuration,omitempty"`
+	UserConfiguration          UserConfiguration          `json:"user_configuration,omitempty"`
+	SystemConfiguration        SystemConfiguration        `json:"system_configuration,omitempty"`
+	RuleConfiguration          RuleConfiguration          `json:"rule_configuration,omitempty"`
+	// Obsolete since release 1.4. Use setTenant() instead.
+	TenantConfiguration TenantDomainConfiguration `json:"tenant_configuration,omitempty"`
+	retryPolicy
 }
 
 type SetConfigurationResponse struct {
 }
 
 type SetEncryptedVolumeKeyRequest struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    KeyVersion int32 `json:"key_version,omitempty"`
-    // not required if this is the first key for the volume.
-    ExistingKeystoreSlotUuid string `json:"existing_keystore_slot_uuid,omitempty"`
-    EncodedExistingKeystoreSlotPasswordHash string `json:"encoded_existing_keystore_slot_password_hash,omitempty"`
-    NewEncryptedVolumeKey EncodedEncryptedKey `json:"new_encrypted_volume_key,omitempty"`
-    NewKeystoreSlotUuid string `json:"new_keystore_slot_uuid,omitempty"`
-    EncodedNewKeystoreSlotPasswordHash string `json:"encoded_new_keystore_slot_password_hash,omitempty"`
-    retryPolicy
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	KeyVersion int32  `json:"key_version,omitempty"`
+	// not required if this is the first key for the volume.
+	ExistingKeystoreSlotUuid                string              `json:"existing_keystore_slot_uuid,omitempty"`
+	EncodedExistingKeystoreSlotPasswordHash string              `json:"encoded_existing_keystore_slot_password_hash,omitempty"`
+	NewEncryptedVolumeKey                   EncodedEncryptedKey `json:"new_encrypted_volume_key,omitempty"`
+	NewKeystoreSlotUuid                     string              `json:"new_keystore_slot_uuid,omitempty"`
+	EncodedNewKeystoreSlotPasswordHash      string              `json:"encoded_new_keystore_slot_password_hash,omitempty"`
+	retryPolicy
 }
 
 type SetEncryptedVolumeKeyResponse struct {
 }
 
 type SetLabelsRequest struct {
-    Label []*Label `json:"label,omitempty"`
-    retryPolicy
+	Label []*Label `json:"label,omitempty"`
+	retryPolicy
 }
 
 type SetLabelsResponse struct {
 }
 
 type SetNotificationRuleRequest struct {
-    Rule NotificationRule `json:"rule,omitempty"`
-    retryPolicy
+	Rule NotificationRule `json:"rule,omitempty"`
+	retryPolicy
 }
 
 type SetNotificationRuleResponse struct {
 }
 
 type SetQuotaRequest struct {
-    Quotas []*Quota `json:"quotas,omitempty"`
-    retryPolicy
+	Quotas []*Quota `json:"quotas,omitempty"`
+	retryPolicy
 }
 
 type SetQuotaResponse struct {
 }
 
 type SetTenantRequest struct {
-    Tenant TenantDomainConfiguration `json:"tenant,omitempty"`
-    // Labels to set for the tenant prior to its creation. Name and value are sufficient.
-    OnCreateLabel []*Label `json:"on_create_label,omitempty"`
-    retryPolicy
+	Tenant TenantDomainConfiguration `json:"tenant,omitempty"`
+	// Labels to set for the tenant prior to its creation. Name and value are sufficient.
+	OnCreateLabel []*Label `json:"on_create_label,omitempty"`
+	retryPolicy
 }
 
 type SetTenantResponse struct {
-    TenantId string `json:"tenant_id,omitempty"`
+	TenantId string `json:"tenant_id,omitempty"`
 }
 
 type SilenceAlertRequest struct {
-    AlertIdentifier string `json:"alert_identifier,omitempty"`
-    Qualifiers FiringRule `json:"qualifiers,omitempty"`
-    SilenceForS int64 `json:"silence_for_s,omitempty"`
-    retryPolicy
+	AlertIdentifier string     `json:"alert_identifier,omitempty"`
+	Qualifiers      FiringRule `json:"qualifiers,omitempty"`
+	SilenceForS     int64      `json:"silence_for_s,omitempty"`
+	retryPolicy
 }
 
 type SilenceAlertResponse struct {
 }
 
 type SpecialFilePlacementPolicy struct {
-    PreferClientLocalDevices bool `json:"prefer_client_local_devices,omitempty"`
-    TryToPlaceStripesInSameMachine bool `json:"try_to_place_stripes_in_same_machine,omitempty"`
+	PreferClientLocalDevices       bool `json:"prefer_client_local_devices,omitempty"`
+	TryToPlaceStripesInSameMachine bool `json:"try_to_place_stripes_in_same_machine,omitempty"`
 }
 
 type StartNetworkTestRequest struct {
-    retryPolicy
+	retryPolicy
 }
 
 type StartNetworkTestResponse struct {
 }
 
 type SubjectList struct {
-    Type SubjectList_Type `json:"type,omitempty"`
-    // in case of UNFORMATTED_DEVICE subjectId = serviceUuid.concat(path) in case of SNAPSHOT subjectId = volumeUuid:snapshotName
-    SubjectId []string `json:"subject_id,omitempty"`
-    // is relevant for UNFORMATTED_DEVICE case
-    Devicetype MakeDeviceSettings_DeviceType `json:"deviceType,omitempty"`
+	Type SubjectList_Type `json:"type,omitempty"`
+	// in case of UNFORMATTED_DEVICE subjectId = serviceUuid.concat(path) in case of SNAPSHOT subjectId = volumeUuid:snapshotName
+	SubjectId []string `json:"subject_id,omitempty"`
+	// is relevant for UNFORMATTED_DEVICE case
+	Devicetype MakeDeviceSettings_DeviceType `json:"deviceType,omitempty"`
 }
 
 type SubjectList_Type string
 
-const(
-    SubjectList_Type_DEVICE SubjectList_Type = "DEVICE"
-    SubjectList_Type_SNAPSHOT SubjectList_Type = "SNAPSHOT"
-    SubjectList_Type_TASK SubjectList_Type = "TASK"
-    SubjectList_Type_UNFORMATTED_DEVICE SubjectList_Type = "UNFORMATTED_DEVICE"
-    SubjectList_Type_VOLUME SubjectList_Type = "VOLUME"
+const (
+	SubjectList_Type_DEVICE             SubjectList_Type = "DEVICE"
+	SubjectList_Type_SNAPSHOT           SubjectList_Type = "SNAPSHOT"
+	SubjectList_Type_TASK               SubjectList_Type = "TASK"
+	SubjectList_Type_UNFORMATTED_DEVICE SubjectList_Type = "UNFORMATTED_DEVICE"
+	SubjectList_Type_VOLUME             SubjectList_Type = "VOLUME"
 )
 
 type SystemConfiguration struct {
-    Smtp SystemConfiguration_SmtpServerConfig `json:"smtp,omitempty"`
-    // Configuration for the Quobyte network
-    Network SystemConfiguration_NetworkConfig `json:"network,omitempty"`
-    // Configuration for the LDAP user database
-    Ldap []*SystemConfiguration_LdapServerConfig `json:"ldap,omitempty"`
-    // Configuration for user authentication
-    Security SystemConfiguration_SecurityConfig `json:"security,omitempty"`
-    //License key for this installation
-    LicenseKey string `json:"license_key,omitempty"`
-    // Configuration for the Keystone user database
-    Keystone SystemConfiguration_KeystoneConfig `json:"keystone,omitempty"`
-    Registry SystemConfiguration_RegistryConfig `json:"registry,omitempty"`
-    // Obsolete, use tuned profiles
-    ObsoleteEnableLowLatencyMode bool `json:"OBSOLETE_enable_low_latency_mode,omitempty"`
-    S3Proxy SystemConfiguration_S3ProxyConfig `json:"s3_proxy,omitempty"`
-    QnsConfig SystemConfiguration_QuobyteNameServiceConfig `json:"qns_config,omitempty"`
-    HealthManagerConfig SystemConfiguration_HealthManagerConfig `json:"health_manager_config,omitempty"`
-    DeviceManagerConfig SystemConfiguration_DeviceManagerConfig `json:"device_manager_config,omitempty"`
-    PolicyEngineConfig SystemConfiguration_PolicyEngineConfig `json:"policy_engine_config,omitempty"`
-    ClientConfiguration SystemConfiguration_ClientConfiguration `json:"client_configuration,omitempty"`
-    DnsServerConfig SystemConfiguration_DnsServerConfig `json:"dns_server_config,omitempty"`
-    ClusterConfiguration SystemConfiguration_ClusterConfiguration `json:"cluster_configuration,omitempty"`
+	Smtp SystemConfiguration_SmtpServerConfig `json:"smtp,omitempty"`
+	// Configuration for the Quobyte network
+	Network SystemConfiguration_NetworkConfig `json:"network,omitempty"`
+	// Configuration for the LDAP user database
+	Ldap []*SystemConfiguration_LdapServerConfig `json:"ldap,omitempty"`
+	// Configuration for user authentication
+	Security SystemConfiguration_SecurityConfig `json:"security,omitempty"`
+	//License key for this installation
+	LicenseKey string `json:"license_key,omitempty"`
+	// Configuration for the Keystone user database
+	Keystone SystemConfiguration_KeystoneConfig `json:"keystone,omitempty"`
+	Registry SystemConfiguration_RegistryConfig `json:"registry,omitempty"`
+	// Obsolete, use tuned profiles
+	ObsoleteEnableLowLatencyMode bool                                         `json:"OBSOLETE_enable_low_latency_mode,omitempty"`
+	S3Proxy                      SystemConfiguration_S3ProxyConfig            `json:"s3_proxy,omitempty"`
+	QnsConfig                    SystemConfiguration_QuobyteNameServiceConfig `json:"qns_config,omitempty"`
+	HealthManagerConfig          SystemConfiguration_HealthManagerConfig      `json:"health_manager_config,omitempty"`
+	DeviceManagerConfig          SystemConfiguration_DeviceManagerConfig      `json:"device_manager_config,omitempty"`
+	PolicyEngineConfig           SystemConfiguration_PolicyEngineConfig       `json:"policy_engine_config,omitempty"`
+	ClientConfiguration          SystemConfiguration_ClientConfiguration      `json:"client_configuration,omitempty"`
+	DnsServerConfig              SystemConfiguration_DnsServerConfig          `json:"dns_server_config,omitempty"`
+	ClusterConfiguration         SystemConfiguration_ClusterConfiguration     `json:"cluster_configuration,omitempty"`
 }
 
 type SystemConfiguration_AutomaticReleaseRolloutPolicy struct {
-    Enable bool `json:"enable,omitempty"`
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
+	Enable                      bool `json:"enable,omitempty"`
+	RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
 }
 
 type SystemConfiguration_CatchupPolicy struct {
-    Enable bool `json:"enable,omitempty"`
+	Enable bool `json:"enable,omitempty"`
 }
 
 type SystemConfiguration_CleanupPolicy struct {
-    Enable bool `json:"enable,omitempty"`
-    // min time between a successful cleanup and the scheduling of a new task
-    IntervalS int64 `json:"interval_s,omitempty"`
-    // if true, cleanup tasks will only be started during maintenance window
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
-    // max parallel cleanup tasks scheduled per service
-    LimitMaxTasksPerService int32 `json:"limit_max_tasks_per_service,omitempty"`
-    // global max parallel cleanup tasks scheduled by health manager
-    LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
+	Enable bool `json:"enable,omitempty"`
+	// min time between a successful cleanup and the scheduling of a new task
+	IntervalS int64 `json:"interval_s,omitempty"`
+	// if true, cleanup tasks will only be started during maintenance window
+	RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
+	// max parallel cleanup tasks scheduled per service
+	LimitMaxTasksPerService int32 `json:"limit_max_tasks_per_service,omitempty"`
+	// global max parallel cleanup tasks scheduled by health manager
+	LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
 }
 
 type SystemConfiguration_ClientConfiguration struct {
-    EnableMinidumpUploads bool `json:"enable_minidump_uploads,omitempty"`
+	EnableMinidumpUploads bool `json:"enable_minidump_uploads,omitempty"`
 }
 
 type SystemConfiguration_ClusterConfiguration struct {
-    ClusterName string `json:"cluster_name,omitempty"`
+	ClusterName string `json:"cluster_name,omitempty"`
+	// Do not allow any clients or services older than this to register
+	MinimumComponentVersion string `json:"minimum_component_version,omitempty"`
+	// Override global constant values on registration
+	GlobalConstantOverride []*SystemConfiguration_GlobalConstantOverride `json:"global_constant_override,omitempty"`
 }
 
 type SystemConfiguration_DeviceManagerConfig struct {
-    // Initial state of newly created devices. I.e. after a MakeDevice, the new devices start OFFLINE / ONLINE.
-    SetCreatedDataDevicesOnline bool `json:"set_created_data_devices_online,omitempty"`
-    SetCreatedMetadataDevicesOnline bool `json:"set_created_metadata_devices_online,omitempty"`
-    FsckBeforeMount SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount `json:"fsck_before_mount,omitempty"`
+	// Initial state of newly created devices. I.e. after a MakeDevice, the new devices start OFFLINE / ONLINE.
+	SetCreatedDataDevicesOnline     bool                                                                      `json:"set_created_data_devices_online,omitempty"`
+	SetCreatedMetadataDevicesOnline bool                                                                      `json:"set_created_metadata_devices_online,omitempty"`
+	FsckBeforeMount                 SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount `json:"fsck_before_mount,omitempty"`
 }
 
 type SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount string
 
-const(
-    SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount_ALWAYS SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount = "ALWAYS"
-    SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount_DISABLE SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount = "DISABLE"
-    SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount_PER_DEVICE SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount = "PER_DEVICE"
+const (
+	SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount_ALWAYS     SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount = "ALWAYS"
+	SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount_DISABLE    SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount = "DISABLE"
+	SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount_PER_DEVICE SystemConfiguration_DeviceManagerConfig_AutoFilesSystemCheckOnDeviceMount = "PER_DEVICE"
 )
 
 type SystemConfiguration_DnsServerConfig struct {
-    Enable bool `json:"enable,omitempty"`
+	Enable bool `json:"enable,omitempty"`
 }
 
 type SystemConfiguration_EnforcePlacementPolicy struct {
-    Enable bool `json:"enable,omitempty"`
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
-    IntervalS int64 `json:"interval_s,omitempty"`
+	Enable                      bool  `json:"enable,omitempty"`
+	RestrictToMaintenanceWindow bool  `json:"restrict_to_maintenance_window,omitempty"`
+	IntervalS                   int64 `json:"interval_s,omitempty"`
 }
 
 type SystemConfiguration_EraseSnapshotPolicy struct {
-    Enable bool `json:"enable,omitempty"`
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
+	Enable                      bool `json:"enable,omitempty"`
+	RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
 }
 
 type SystemConfiguration_EraseVolumePolicy struct {
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
+	RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
 }
 
 type SystemConfiguration_FstrimPolicy struct {
-    Enable bool `json:"enable,omitempty"`
-    // min time between a successful fstrim and the scheduling of a new task
-    IntervalS int64 `json:"interval_s,omitempty"`
-    // if true, fstrim tasks will only be started during maintenance window
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
-    // max parallel fstrim tasks scheduled per service
-    LimitMaxTasksPerService int32 `json:"limit_max_tasks_per_service,omitempty"`
-    // global max parallel fstrim tasks scheduled by health manager
-    LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
+	Enable bool `json:"enable,omitempty"`
+	// min time between a successful fstrim and the scheduling of a new task
+	IntervalS int64 `json:"interval_s,omitempty"`
+	// if true, fstrim tasks will only be started during maintenance window
+	RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
+	// max parallel fstrim tasks scheduled per service
+	LimitMaxTasksPerService int32 `json:"limit_max_tasks_per_service,omitempty"`
+	// global max parallel fstrim tasks scheduled by health manager
+	LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
+}
+
+type SystemConfiguration_GlobalConstantOverride struct {
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 type SystemConfiguration_HandleDefectiveDevicesPolicy struct {
-    // disables the execution of the rule
-    Enable bool `json:"enable,omitempty"`
-    // action to be taken on defective devices. Default is to set device to REGENERATE
-    Action SystemConfiguration_HandleDefectiveDevicesPolicy_Action `json:"action,omitempty"`
-    // don't start more regenerate tasks if limit_max_tasks regenerate tasks are already running
-    LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
+	// disables the execution of the rule
+	Enable bool `json:"enable,omitempty"`
+	// action to be taken on defective devices. Default is to set device to REGENERATE
+	Action SystemConfiguration_HandleDefectiveDevicesPolicy_Action `json:"action,omitempty"`
+	// don't start more regenerate tasks if limit_max_tasks regenerate tasks are already running
+	LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
 }
 
 type SystemConfiguration_HandleDefectiveDevicesPolicy_Action string
 
-const(
-    SystemConfiguration_HandleDefectiveDevicesPolicy_Action_NO_ACTION SystemConfiguration_HandleDefectiveDevicesPolicy_Action = "NO_ACTION"
-    SystemConfiguration_HandleDefectiveDevicesPolicy_Action_REGENERATE_DEVICE SystemConfiguration_HandleDefectiveDevicesPolicy_Action = "REGENERATE_DEVICE"
-    SystemConfiguration_HandleDefectiveDevicesPolicy_Action_TAKE_OFFLINE SystemConfiguration_HandleDefectiveDevicesPolicy_Action = "TAKE_OFFLINE"
+const (
+	SystemConfiguration_HandleDefectiveDevicesPolicy_Action_NO_ACTION         SystemConfiguration_HandleDefectiveDevicesPolicy_Action = "NO_ACTION"
+	SystemConfiguration_HandleDefectiveDevicesPolicy_Action_REGENERATE_DEVICE SystemConfiguration_HandleDefectiveDevicesPolicy_Action = "REGENERATE_DEVICE"
+	SystemConfiguration_HandleDefectiveDevicesPolicy_Action_TAKE_OFFLINE      SystemConfiguration_HandleDefectiveDevicesPolicy_Action = "TAKE_OFFLINE"
 )
 
 type SystemConfiguration_HealthManagerConfig struct {
-    Enable bool `json:"enable,omitempty"`
-    // Some policies are restricted to run during a maintenance window. Define this window here.
-    MaintenanceWindow []*RestrictTime `json:"maintenance_window,omitempty"`
-    RebalancePolicy SystemConfiguration_RebalancePolicy `json:"rebalance_policy,omitempty"`
-    CatchupPolicy SystemConfiguration_CatchupPolicy `json:"catchup_policy,omitempty"`
-    FstrimPolicy SystemConfiguration_FstrimPolicy `json:"fstrim_policy,omitempty"`
-    CleanupPolicy SystemConfiguration_CleanupPolicy `json:"cleanup_policy,omitempty"`
-    HandleDefectiveDevicesPolicy SystemConfiguration_HandleDefectiveDevicesPolicy `json:"handle_defective_devices_policy,omitempty"`
-    UpdateStatesOfDrainedDevicesPolicy SystemConfiguration_UpdateStatesOfDrainedDevicesPolicy `json:"update_states_of_drained_devices_policy,omitempty"`
-    ScrubPolicy SystemConfiguration_ScrubPolicy `json:"scrub_policy,omitempty"`
-    RegenerateUnavailableDevicesPolicy SystemConfiguration_RegenerateUnavailableDevicesPolicy `json:"regenerate_unavailable_devices_policy,omitempty"`
-    EnforcePlacementPolicy SystemConfiguration_EnforcePlacementPolicy `json:"enforce_placement_policy,omitempty"`
-    EraseSnapshotPolicy SystemConfiguration_EraseSnapshotPolicy `json:"erase_snapshot_policy,omitempty"`
-    EraseVolumePolicy SystemConfiguration_EraseVolumePolicy `json:"erase_volume_policy,omitempty"`
-    ResetAccountingPolicy SystemConfiguration_ResetAccountingPolicy `json:"reset_accounting_policy,omitempty"`
-    AutomaticReleaseRolloutPolicy SystemConfiguration_AutomaticReleaseRolloutPolicy `json:"automatic_release_rollout_policy,omitempty"`
-    TieringPolicy SystemConfiguration_TieringPolicy `json:"tiering_policy,omitempty"`
+	Enable bool `json:"enable,omitempty"`
+	// Some policies are restricted to run during a maintenance window. Define this window here.
+	MaintenanceWindow                  []*RestrictTime                                        `json:"maintenance_window,omitempty"`
+	RebalancePolicy                    SystemConfiguration_RebalancePolicy                    `json:"rebalance_policy,omitempty"`
+	CatchupPolicy                      SystemConfiguration_CatchupPolicy                      `json:"catchup_policy,omitempty"`
+	FstrimPolicy                       SystemConfiguration_FstrimPolicy                       `json:"fstrim_policy,omitempty"`
+	CleanupPolicy                      SystemConfiguration_CleanupPolicy                      `json:"cleanup_policy,omitempty"`
+	HandleDefectiveDevicesPolicy       SystemConfiguration_HandleDefectiveDevicesPolicy       `json:"handle_defective_devices_policy,omitempty"`
+	UpdateStatesOfDrainedDevicesPolicy SystemConfiguration_UpdateStatesOfDrainedDevicesPolicy `json:"update_states_of_drained_devices_policy,omitempty"`
+	ScrubPolicy                        SystemConfiguration_ScrubPolicy                        `json:"scrub_policy,omitempty"`
+	RegenerateUnavailableDevicesPolicy SystemConfiguration_RegenerateUnavailableDevicesPolicy `json:"regenerate_unavailable_devices_policy,omitempty"`
+	EnforcePlacementPolicy             SystemConfiguration_EnforcePlacementPolicy             `json:"enforce_placement_policy,omitempty"`
+	EraseSnapshotPolicy                SystemConfiguration_EraseSnapshotPolicy                `json:"erase_snapshot_policy,omitempty"`
+	EraseVolumePolicy                  SystemConfiguration_EraseVolumePolicy                  `json:"erase_volume_policy,omitempty"`
+	ResetAccountingPolicy              SystemConfiguration_ResetAccountingPolicy              `json:"reset_accounting_policy,omitempty"`
+	AutomaticReleaseRolloutPolicy      SystemConfiguration_AutomaticReleaseRolloutPolicy      `json:"automatic_release_rollout_policy,omitempty"`
+	TieringPolicy                      SystemConfiguration_TieringPolicy                      `json:"tiering_policy,omitempty"`
 }
 
 type SystemConfiguration_KeystoneConfig struct {
-    //Name of the Keystone server
-    Hostname string `json:"hostname,omitempty"`
-    //Admin port of the Keystone identity API (default is 35357)
-    Port int32 `json:"port,omitempty"`
-    // ID of a Keystone admin user
-    AdminUserId string `json:"admin_user_id,omitempty"`
-    // Password for the Keystone user
-    AdminPassword string `json:"admin_password,omitempty"`
-    //ID of the Keystone project used for Quobyte
-    QuobyteProjectId string `json:"quobyte_project_id,omitempty"`
-    // Mapping S3 accounts to Openstack tenant projects rather than domains
-    AlternativeMapping bool `json:"alternative_mapping,omitempty"`
-    // To disable the backend
-    Disabled bool `json:"disabled,omitempty"`
+	//Name of the Keystone server
+	Hostname string `json:"hostname,omitempty"`
+	//Admin port of the Keystone identity API (default is 35357)
+	Port int32 `json:"port,omitempty"`
+	// ID of a Keystone admin user
+	AdminUserId string `json:"admin_user_id,omitempty"`
+	// Password for the Keystone user
+	AdminPassword string `json:"admin_password,omitempty"`
+	//ID of the Keystone project used for Quobyte
+	QuobyteProjectId string `json:"quobyte_project_id,omitempty"`
+	// Mapping S3 accounts to Openstack tenant projects rather than domains
+	AlternativeMapping bool `json:"alternative_mapping,omitempty"`
+	// To disable the backend
+	Disabled bool `json:"disabled,omitempty"`
 }
 
 type SystemConfiguration_LdapServerConfig struct {
-    //The LDAP server URL
-    Url string `json:"url,omitempty"`
-    //The LDAP base DN
-    BaseDn string `json:"base_dn,omitempty"`
-    //The LDAP bind user credentials DN
-    BindUserDn string `json:"bind_user_dn,omitempty"`
-    // The LDAP bind user credentials secret
-    BindUserSecret string `json:"bind_user_secret,omitempty"`
-    // Source from where the user role should be obtained
-    UserAttributesSource SystemConfiguration_LdapServerConfig_DataSource `json:"user_attributes_source,omitempty"`
-    // Mapping of ldap groups to user attributes (if role_source==LDAP_GROUP_MEMBERSHIP)
-    GroupsToAttributesMapping []*GroupsToAttributesMapping `json:"groups_to_attributes_mapping,omitempty"`
-    //Relative distinguished names (RDN) for groups used for the LDAP_GROUP_MEMBERSHIP search.
-    GroupRdn []string `json:"group_rdn,omitempty"`
-    //Attribute name of user RDN
-    UserRdnAttributeName string `json:"user_rdn_attribute_name,omitempty"`
-    // Enables/disables "referral-follow" feature for LDAP client (in case of multiple LDAP-servers should be enabled)
-    ReferralFollow bool `json:"referral_follow,omitempty"`
-    // A unique id of this ldap backend
-    Id string `json:"id,omitempty"`
-    // A given name of this ldap backend
-    Name string `json:"name,omitempty"`
-    // To disable the backend
-    Disabled bool `json:"disabled,omitempty"`
+	//The LDAP server URL
+	Url string `json:"url,omitempty"`
+	//The LDAP base DN
+	BaseDn string `json:"base_dn,omitempty"`
+	//The LDAP bind user credentials DN
+	BindUserDn string `json:"bind_user_dn,omitempty"`
+	// The LDAP bind user credentials secret
+	BindUserSecret string `json:"bind_user_secret,omitempty"`
+	// Source from where the user role should be obtained
+	UserAttributesSource SystemConfiguration_LdapServerConfig_DataSource `json:"user_attributes_source,omitempty"`
+	// Mapping of ldap groups to user attributes (if role_source==LDAP_GROUP_MEMBERSHIP)
+	GroupsToAttributesMapping []*GroupsToAttributesMapping `json:"groups_to_attributes_mapping,omitempty"`
+	//Relative distinguished names (RDN) for groups used for the LDAP_GROUP_MEMBERSHIP search.
+	GroupRdn []string `json:"group_rdn,omitempty"`
+	//Attribute name of user RDN
+	UserRdnAttributeName string `json:"user_rdn_attribute_name,omitempty"`
+	// Enables/disables "referral-follow" feature for LDAP client (in case of multiple LDAP-servers should be enabled)
+	ReferralFollow bool `json:"referral_follow,omitempty"`
+	// A unique id of this ldap backend
+	Id string `json:"id,omitempty"`
+	// A given name of this ldap backend
+	Name string `json:"name,omitempty"`
+	// To disable the backend
+	Disabled bool `json:"disabled,omitempty"`
 }
 
 type SystemConfiguration_LdapServerConfig_DataSource string
 
-const(
-    SystemConfiguration_LdapServerConfig_DataSource_LDAP_ATTRIBUTE SystemConfiguration_LdapServerConfig_DataSource = "LDAP_ATTRIBUTE"
-    SystemConfiguration_LdapServerConfig_DataSource_LDAP_GROUP_MEMBERSHIP SystemConfiguration_LdapServerConfig_DataSource = "LDAP_GROUP_MEMBERSHIP"
-    SystemConfiguration_LdapServerConfig_DataSource_LOCAL_DATABASE SystemConfiguration_LdapServerConfig_DataSource = "LOCAL_DATABASE"
+const (
+	SystemConfiguration_LdapServerConfig_DataSource_LDAP_ATTRIBUTE        SystemConfiguration_LdapServerConfig_DataSource = "LDAP_ATTRIBUTE"
+	SystemConfiguration_LdapServerConfig_DataSource_LDAP_GROUP_MEMBERSHIP SystemConfiguration_LdapServerConfig_DataSource = "LDAP_GROUP_MEMBERSHIP"
+	SystemConfiguration_LdapServerConfig_DataSource_LOCAL_DATABASE        SystemConfiguration_LdapServerConfig_DataSource = "LOCAL_DATABASE"
 )
 
 type SystemConfiguration_NetworkConfig struct {
-    //White-listed networks for service-service communication
-    EnabledServiceNetworks []string `json:"enabled_service_networks,omitempty"`
-    //White-listed networks for client-service communication (if empty, the service network is used)
-    EnabledClientNetworks []string `json:"enabled_client_networks,omitempty"`
-    // Pairs within these networks will encrypt their communication
-    EncryptedNetworkPairs []*SystemConfiguration_NetworkConfig_NetworkList `json:"encrypted_network_pairs,omitempty"`
+	//White-listed networks for service-service communication
+	EnabledServiceNetworks []string `json:"enabled_service_networks,omitempty"`
+	//White-listed networks for client-service communication (if empty, the service network is used)
+	EnabledClientNetworks []string `json:"enabled_client_networks,omitempty"`
+	// Pairs within these networks will encrypt their communication
+	EncryptedNetworkPairs []*SystemConfiguration_NetworkConfig_NetworkList `json:"encrypted_network_pairs,omitempty"`
 }
 
 type SystemConfiguration_NetworkConfig_NetworkList struct {
-    Network []string `json:"network,omitempty"`
+	Network []string `json:"network,omitempty"`
 }
 
 type SystemConfiguration_PolicyEngineConfig struct {
-    Enable bool `json:"enable,omitempty"`
+	Enable bool `json:"enable,omitempty"`
 }
 
 type SystemConfiguration_QuobyteNameServiceConfig struct {
-    Id string `json:"id,omitempty"`
-    Secret string `json:"secret,omitempty"`
+	Id     string `json:"id,omitempty"`
+	Secret string `json:"secret,omitempty"`
 }
 
 type SystemConfiguration_RebalancePolicy struct {
-    // disables the execution of the rule
-    Enable bool `json:"enable,omitempty"`
-    // parameter for dynamic threshold of "device too full" detection. The emptiest and the fullest device are determined and if (fullest% - emptiest% > keep_usage_within_band_fraction * 100), a rebalance is started for the fullest devices until all device fills are in the rebalance_band again.
-    KeepUsageWithinBandFraction float32 `json:"keep_usage_within_band_fraction,omitempty"`
-    // rebalance tasks for data devices are started with one source device and multiple targets. limit_max_tasks sets the limits the number of source devices rebalancing in parallel
-    LimitMaxRebalanceDataDeviceTasks int32 `json:"limit_max_rebalance_data_device_tasks,omitempty"`
-    // if true, rebalance tasks will only be started during maintenance window
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
-    // minimal time between a successful rebalance task and a retry
-    RetrySuccessfulPeriodS int64 `json:"retry_successful_period_s,omitempty"`
-    // minimal time between an unsuccessful rebalance task and a retry
-    RetryFailedPeriodS int64 `json:"retry_failed_period_s,omitempty"`
-    // rebalance tasks will max move X bytes of the device's content to enable shorter turn-around times.
-    MaxBytesToMove int64 `json:"max_bytes_to_move,omitempty"`
+	// disables the execution of the rule
+	Enable bool `json:"enable,omitempty"`
+	// parameter for dynamic threshold of "device too full" detection. The emptiest and the fullest device are determined and if (fullest% - emptiest% > keep_usage_within_band_fraction * 100), a rebalance is started for the fullest devices until all device fills are in the rebalance_band again.
+	KeepUsageWithinBandFraction float32 `json:"keep_usage_within_band_fraction,omitempty"`
+	// rebalance tasks for data devices are started with one source device and multiple targets. limit_max_tasks sets the limits the number of source devices rebalancing in parallel
+	LimitMaxRebalanceDataDeviceTasks int32 `json:"limit_max_rebalance_data_device_tasks,omitempty"`
+	// if true, rebalance tasks will only be started during maintenance window
+	RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
+	// minimal time between a successful rebalance task and a retry
+	RetrySuccessfulPeriodS int64 `json:"retry_successful_period_s,omitempty"`
+	// minimal time between an unsuccessful rebalance task and a retry
+	RetryFailedPeriodS int64 `json:"retry_failed_period_s,omitempty"`
+	// rebalance tasks will max move X bytes of the device's content to enable shorter turn-around times.
+	MaxBytesToMove int64 `json:"max_bytes_to_move,omitempty"`
 }
 
 type SystemConfiguration_RegenerateUnavailableDevicesPolicy struct {
-    Enable bool `json:"enable,omitempty"`
-    // Grace period after the device was detected to be unavailable until a remove device task is started.
-    DeviceUnavailableGracePeriodS int64 `json:"device_unavailable_grace_period_s,omitempty"`
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
-    // don't start more regenerate tasks if limit_max_tasks regenerate tasks are already running
-    LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
+	Enable bool `json:"enable,omitempty"`
+	// Grace period after the device was detected to be unavailable until a remove device task is started.
+	DeviceUnavailableGracePeriodS int64 `json:"device_unavailable_grace_period_s,omitempty"`
+	RestrictToMaintenanceWindow   bool  `json:"restrict_to_maintenance_window,omitempty"`
+	// don't start more regenerate tasks if limit_max_tasks regenerate tasks are already running
+	LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
 }
 
 type SystemConfiguration_RegistryConfig struct {
-    // Desired number of replicas for the registry
-    ReplicationFactor int32 `json:"replication_factor,omitempty"`
+	// Desired number of replicas for the registry
+	ReplicationFactor int32 `json:"replication_factor,omitempty"`
 }
 
 type SystemConfiguration_ResetAccountingPolicy struct {
-    Enable bool `json:"enable,omitempty"`
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
-    SetVolumesOfflineDuringReset bool `json:"set_volumes_offline_during_reset,omitempty"`
+	Enable                       bool `json:"enable,omitempty"`
+	RestrictToMaintenanceWindow  bool `json:"restrict_to_maintenance_window,omitempty"`
+	SetVolumesOfflineDuringReset bool `json:"set_volumes_offline_during_reset,omitempty"`
 }
 
 type SystemConfiguration_S3ProxyConfig struct {
-    Ldap SystemConfiguration_LdapServerConfig `json:"ldap,omitempty"`
-    Keystone SystemConfiguration_KeystoneConfig `json:"keystone,omitempty"`
-    AuthenticationType SystemConfiguration_S3ProxyConfig_AuthenticationType `json:"authentication_type,omitempty"`
-    HttpPort int32 `json:"http_port,omitempty"`
-    HttpsPort int32 `json:"https_port,omitempty"`
-    RedirectToHttps bool `json:"redirect_to_https,omitempty"`
-    Hostname []string `json:"hostname,omitempty"`
-    // Enables the S3 browser UI when set, accessible as subdomain of one of the configured hosts, i.e. http[s]://<browser_bucket_name>.<hostname>/index.html
-    BrowserBucketName string `json:"browser_bucket_name,omitempty"`
-    // Create a new volume for each create bucket initiated via the S3 Service API, if set true.
-    CreateVolumePerBucket bool `json:"create_volume_per_bucket,omitempty"`
+	Ldap               SystemConfiguration_LdapServerConfig                 `json:"ldap,omitempty"`
+	Keystone           SystemConfiguration_KeystoneConfig                   `json:"keystone,omitempty"`
+	AuthenticationType SystemConfiguration_S3ProxyConfig_AuthenticationType `json:"authentication_type,omitempty"`
+	HttpPort           int32                                                `json:"http_port,omitempty"`
+	HttpsPort          int32                                                `json:"https_port,omitempty"`
+	RedirectToHttps    bool                                                 `json:"redirect_to_https,omitempty"`
+	Hostname           []string                                             `json:"hostname,omitempty"`
+	// Enables the S3 browser UI when set, accessible as subdomain of one of the configured hosts, i.e. http[s]://<browser_bucket_name>.<hostname>/index.html
+	BrowserBucketName string `json:"browser_bucket_name,omitempty"`
+	// Create a new volume for each create bucket initiated via the S3 Service API, if set true.
+	CreateVolumePerBucket bool `json:"create_volume_per_bucket,omitempty"`
 }
 
 type SystemConfiguration_S3ProxyConfig_AuthenticationType string
 
-const(
-    SystemConfiguration_S3ProxyConfig_AuthenticationType_KEYSTONE SystemConfiguration_S3ProxyConfig_AuthenticationType = "KEYSTONE"
-    SystemConfiguration_S3ProxyConfig_AuthenticationType_LDAP SystemConfiguration_S3ProxyConfig_AuthenticationType = "LDAP"
-    SystemConfiguration_S3ProxyConfig_AuthenticationType_PASSWORD_FILE SystemConfiguration_S3ProxyConfig_AuthenticationType = "PASSWORD_FILE"
-    SystemConfiguration_S3ProxyConfig_AuthenticationType_REGISTRY_USER_DATABASE SystemConfiguration_S3ProxyConfig_AuthenticationType = "REGISTRY_USER_DATABASE"
+const (
+	SystemConfiguration_S3ProxyConfig_AuthenticationType_KEYSTONE               SystemConfiguration_S3ProxyConfig_AuthenticationType = "KEYSTONE"
+	SystemConfiguration_S3ProxyConfig_AuthenticationType_LDAP                   SystemConfiguration_S3ProxyConfig_AuthenticationType = "LDAP"
+	SystemConfiguration_S3ProxyConfig_AuthenticationType_PASSWORD_FILE          SystemConfiguration_S3ProxyConfig_AuthenticationType = "PASSWORD_FILE"
+	SystemConfiguration_S3ProxyConfig_AuthenticationType_REGISTRY_USER_DATABASE SystemConfiguration_S3ProxyConfig_AuthenticationType = "REGISTRY_USER_DATABASE"
 )
 
 type SystemConfiguration_ScrubPolicy struct {
-    // disables the execution of the rule
-    Enable bool `json:"enable,omitempty"`
-    // min time between the last successful scrub of a volume and the scheduling of a new task
-    IntervalS int64 `json:"interval_s,omitempty"`
-    // if true, scrub tasks will only be started during maintenance mode
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
-    // limit how many scrub subtasks will be run in parallel.
-    LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
+	// disables the execution of the rule
+	Enable bool `json:"enable,omitempty"`
+	// min time between the last successful scrub of a volume and the scheduling of a new task
+	IntervalS int64 `json:"interval_s,omitempty"`
+	// if true, scrub tasks will only be started during maintenance mode
+	RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
+	// limit how many scrub subtasks will be run in parallel.
+	LimitMaxTasks int32 `json:"limit_max_tasks,omitempty"`
 }
 
 type SystemConfiguration_SecurityConfig struct {
-    ObsoleteUserDatabase string `json:"OBSOLETE_user_database,omitempty"`
-    // Global lifetime restriction (sec) for access keys. If not set or 0 - no global restriction
-    MaxAccessKeyLifetimeS int64 `json:"max_access_key_lifetime_s,omitempty"`
+	ObsoleteUserDatabase string `json:"OBSOLETE_user_database,omitempty"`
+	// Global lifetime restriction (sec) for access keys. If not set or 0 - no global restriction
+	MaxAccessKeyLifetimeS int64 `json:"max_access_key_lifetime_s,omitempty"`
 }
 
 type SystemConfiguration_SmtpServerConfig struct {
-    Host string `json:"host,omitempty"`
-    Port int32 `json:"port,omitempty"`
-    Username string `json:"username,omitempty"`
-    Password string `json:"password,omitempty"`
-    UseTls bool `json:"use_tls,omitempty"`
-    DefaultSender string `json:"default_sender,omitempty"`
+	Host          string `json:"host,omitempty"`
+	Port          int32  `json:"port,omitempty"`
+	Username      string `json:"username,omitempty"`
+	Password      string `json:"password,omitempty"`
+	UseTls        bool   `json:"use_tls,omitempty"`
+	DefaultSender string `json:"default_sender,omitempty"`
 }
 
 type SystemConfiguration_TieringPolicy struct {
-    Enable bool `json:"enable,omitempty"`
-    RestrictToMaintenanceWindow bool `json:"restrict_to_maintenance_window,omitempty"`
-    IntervalS int64 `json:"interval_s,omitempty"`
+	Enable                      bool  `json:"enable,omitempty"`
+	RestrictToMaintenanceWindow bool  `json:"restrict_to_maintenance_window,omitempty"`
+	IntervalS                   int64 `json:"interval_s,omitempty"`
 }
 
 type SystemConfiguration_UpdateStatesOfDrainedDevicesPolicy struct {
-    Enable bool `json:"enable,omitempty"`
+	Enable bool `json:"enable,omitempty"`
 }
 
 type SystemStatistics struct {
-    // Number of tasks in the system. Number of FINISHED tasks might only contain recently completed tasks
-    TaskCounts []*SystemStatistics_TaskCount `json:"task_counts,omitempty"`
-    //Number of registered devices
-    RegisteredDeviceCount int32 `json:"registered_device_count,omitempty"`
-    //Number of devices currently not registered with a service
-    UnassociatedDeviceCount int32 `json:"unassociated_device_count,omitempty"`
-    //Number of devices that are {ONLINE,OFFLINE,DRAIN} but are not available (service down or unassociated)
-    UnavailableDeviceCount int32 `json:"unavailable_device_count,omitempty"`
-    //Number of devices that are considered gone for good
-    DecommissionedDevice int32 `json:"decommissioned_device,omitempty"`
-    // Number of volumes in the system.
-    VolumeCount int32 `json:"volume_count,omitempty"`
-    // Overall physical storage capacity in bytes
-    TotalPhysicalCapacity int64 `json:"total_physical_capacity,omitempty"`
-    // Current overall physical usage in bytes
-    TotalPhysicalUsage int64 `json:"total_physical_usage,omitempty"`
-    // Overall logical storage capacity in bytes
-    TotalLogicalCapacity int64 `json:"total_logical_capacity,omitempty"`
-    // Current overall logical usage in bytes
-    TotalLogicalUsage int64 `json:"total_logical_usage,omitempty"`
+	// Number of tasks in the system. Number of FINISHED tasks might only contain recently completed tasks
+	TaskCounts []*SystemStatistics_TaskCount `json:"task_counts,omitempty"`
+	//Number of registered devices
+	RegisteredDeviceCount int32 `json:"registered_device_count,omitempty"`
+	//Number of devices currently not registered with a service
+	UnassociatedDeviceCount int32 `json:"unassociated_device_count,omitempty"`
+	//Number of devices that are {ONLINE,OFFLINE,DRAIN} but are not available (service down or unassociated)
+	UnavailableDeviceCount int32 `json:"unavailable_device_count,omitempty"`
+	//Number of devices that are considered gone for good
+	DecommissionedDevice int32 `json:"decommissioned_device,omitempty"`
+	// Number of volumes in the system.
+	VolumeCount int32 `json:"volume_count,omitempty"`
+	// Overall physical storage capacity in bytes
+	TotalPhysicalCapacity int64 `json:"total_physical_capacity,omitempty"`
+	// Current overall physical usage in bytes
+	TotalPhysicalUsage int64 `json:"total_physical_usage,omitempty"`
+	// Overall logical storage capacity in bytes
+	TotalLogicalCapacity int64 `json:"total_logical_capacity,omitempty"`
+	// Current overall logical usage in bytes
+	TotalLogicalUsage int64 `json:"total_logical_usage,omitempty"`
 }
 
 type SystemStatistics_TaskCount struct {
-    TaskState TaskState `json:"task_state,omitempty"`
-    TaskCount int32 `json:"task_count,omitempty"`
-    HasErrors bool `json:"has_errors,omitempty"`
+	TaskState TaskState `json:"task_state,omitempty"`
+	TaskCount int32     `json:"task_count,omitempty"`
+	HasErrors bool      `json:"has_errors,omitempty"`
 }
 
 type TagBasedPlacementPolicy struct {
-    RequiredTag []string `json:"required_tag,omitempty"`
-    ForbiddenTag []string `json:"forbidden_tag,omitempty"`
+	RequiredTag  []string `json:"required_tag,omitempty"`
+	ForbiddenTag []string `json:"forbidden_tag,omitempty"`
 }
 
 type TaskInfo struct {
-    TaskId string `json:"task_id,omitempty"`
-    TaskType TaskType `json:"task_type,omitempty"`
-    State TaskState `json:"state,omitempty"`
-    // Start date of task (ms since epoch), only set if the task is not SCHEDULED.
-    BeginTimestampMs int64 `json:"begin_timestamp_ms,omitempty"`
-    // Completion date of task (ms since epoch), only set if the task is FINISHED, CANCELLED, FAILED.
-    EndTimestampMs int64 `json:"end_timestamp_ms,omitempty"`
-    // Human readable error message is only set if state == FAILED.
-    ErrorMessage string `json:"error_message,omitempty"`
-    // Contains the 'why' of the running task.
-    Comment string `json:"comment,omitempty"`
-    // Scope.
-    SuperTaskId string `json:"super_task_id,omitempty"`
-    Scope []*SubjectList `json:"scope,omitempty"`
-    // Progress indicators.
-    Progress TaskInfo_Progress `json:"progress,omitempty"`
-    Performance []*TaskInfo_Performance `json:"performance,omitempty"`
-    // Listing of errorneous files/volumes (subtasks only).
-    ErrorDetails []*TaskInfo_ErrorDetails `json:"error_details,omitempty"`
-    OwnerType TaskInfo_OwnerType `json:"owner_type,omitempty"`
-    MakeDeviceSettings MakeDeviceSettings `json:"make_device_settings,omitempty"`
-    CopyFileSettings CopyFilesSettings `json:"copy_file_settings,omitempty"`
-    // Summary for the origins of pending long running operations.
-    ExecutionProblem TaskInfo_ExecutionProblem `json:"execution_problem,omitempty"`
+	TaskId   string    `json:"task_id,omitempty"`
+	TaskType TaskType  `json:"task_type,omitempty"`
+	State    TaskState `json:"state,omitempty"`
+	// Start date of task (ms since epoch), only set if the task is not SCHEDULED.
+	BeginTimestampMs int64 `json:"begin_timestamp_ms,omitempty"`
+	// Completion date of task (ms since epoch), only set if the task is FINISHED, CANCELLED, FAILED.
+	EndTimestampMs int64 `json:"end_timestamp_ms,omitempty"`
+	// Human readable error message is only set if state == FAILED.
+	ErrorMessage string `json:"error_message,omitempty"`
+	// Contains the 'why' of the running task.
+	Comment string `json:"comment,omitempty"`
+	// Scope.
+	SuperTaskId string         `json:"super_task_id,omitempty"`
+	Scope       []*SubjectList `json:"scope,omitempty"`
+	// Progress indicators.
+	Progress    TaskInfo_Progress       `json:"progress,omitempty"`
+	Performance []*TaskInfo_Performance `json:"performance,omitempty"`
+	// Listing of errorneous files/volumes (subtasks only).
+	ErrorDetails       []*TaskInfo_ErrorDetails `json:"error_details,omitempty"`
+	OwnerType          TaskInfo_OwnerType       `json:"owner_type,omitempty"`
+	MakeDeviceSettings MakeDeviceSettings       `json:"make_device_settings,omitempty"`
+	CopyFileSettings   CopyFilesSettings        `json:"copy_file_settings,omitempty"`
+	// Summary for the origins of pending long running operations.
+	ExecutionProblem TaskInfo_ExecutionProblem `json:"execution_problem,omitempty"`
 }
 
 type TaskInfo_OwnerType string
 
-const(
-    TaskInfo_OwnerType_HEALTH_MANAGER TaskInfo_OwnerType = "HEALTH_MANAGER"
-    TaskInfo_OwnerType_USER TaskInfo_OwnerType = "USER"
+const (
+	TaskInfo_OwnerType_HEALTH_MANAGER TaskInfo_OwnerType = "HEALTH_MANAGER"
+	TaskInfo_OwnerType_USER           TaskInfo_OwnerType = "USER"
 )
 
 type TaskInfo_ErrorDetails struct {
-    Description string `json:"description,omitempty"`
-    Item []string `json:"item,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Item        []string `json:"item,omitempty"`
 }
 
 type TaskInfo_ExecutionProblem struct {
-    // Counter and list of identifiers for devices hindering operations due to their mode i.e. != ONLINE or DRAIN
-    OperationsForOfflineDevice int32 `json:"operations_for_offline_device,omitempty"`
-    OfflineDeviceId []int64 `json:"offline_device_id,omitempty"`
-    // Counter and list of identifiers for devices hindering operations due to their fill
-    OperationsForFullDevice int32 `json:"operations_for_full_device,omitempty"`
-    FullDeviceId []int64 `json:"full_device_id,omitempty"`
-    // Counter and list of identifiers for devices hindering operations due to being defective
-    OperationsForDefectiveDevice int32 `json:"operations_for_defective_device,omitempty"`
-    DefectiveDeviceId []int64 `json:"defective_device_id,omitempty"`
-    // Counter and list of identifiers for devices hindering operations due to being unmounted
-    OperationsForUnmountedDevice int32 `json:"operations_for_unmounted_device,omitempty"`
-    UnmountedDeviceId []int64 `json:"unmounted_device_id,omitempty"`
-    // Counter and list of identifiers for devices hindering operations due to being not registered
-    OperationsForUnregisteredDevice int32 `json:"operations_for_unregistered_device,omitempty"`
-    UnregisteredDeviceId []int64 `json:"unregistered_device_id,omitempty"`
-    // Counter and list of identifiers for devices hindering operations due to their utilization
-    OperationsForBusyDevice int32 `json:"operations_for_busy_device,omitempty"`
-    BusyDevice []int64 `json:"busy_device,omitempty"`
-    // Counter and list of identifiers for volumes hindering operations due to not being operational
-    OperationsForNoPrimaryVolume int32 `json:"operations_for_no_primary_volume,omitempty"`
-    NoPrimaryVolumeUuid []string `json:"no_primary_volume_uuid,omitempty"`
-    // Counter and list of identifiers for volumes hindering operations due to being deleted
-    OperationsForDeletedVolume int32 `json:"operations_for_deleted_volume,omitempty"`
-    DeletedVolumeUuid []string `json:"deleted_volume_uuid,omitempty"`
-    // Counter and list of identifiers for services hindering operations due to being unavailable
-    OperationsForUnavailableService int32 `json:"operations_for_unavailable_service,omitempty"`
-    UnavailableServiceUuid []string `json:"unavailable_service_uuid,omitempty"`
-    // Hit-count of long running operations summarized by RPC target.
-    OperationCountPerVolumeUuid []*TaskInfo_ExecutionProblem_CounterByRpcTarget `json:"operation_count_per_volume_uuid,omitempty"`
-    OperationCountPerDeviceId []*TaskInfo_ExecutionProblem_CounterByRpcTarget `json:"operation_count_per_device_id,omitempty"`
-    OperationCountPerServiceUuid []*TaskInfo_ExecutionProblem_CounterByRpcTarget `json:"operation_count_per_service_uuid,omitempty"`
+	// Counter and list of identifiers for devices hindering operations due to their mode i.e. != ONLINE or DRAIN
+	OperationsForOfflineDevice int32   `json:"operations_for_offline_device,omitempty"`
+	OfflineDeviceId            []int64 `json:"offline_device_id,omitempty"`
+	// Counter and list of identifiers for devices hindering operations due to their fill
+	OperationsForFullDevice int32   `json:"operations_for_full_device,omitempty"`
+	FullDeviceId            []int64 `json:"full_device_id,omitempty"`
+	// Counter and list of identifiers for devices hindering operations due to being defective
+	OperationsForDefectiveDevice int32   `json:"operations_for_defective_device,omitempty"`
+	DefectiveDeviceId            []int64 `json:"defective_device_id,omitempty"`
+	// Counter and list of identifiers for devices hindering operations due to being unmounted
+	OperationsForUnmountedDevice int32   `json:"operations_for_unmounted_device,omitempty"`
+	UnmountedDeviceId            []int64 `json:"unmounted_device_id,omitempty"`
+	// Counter and list of identifiers for devices hindering operations due to being not registered
+	OperationsForUnregisteredDevice int32   `json:"operations_for_unregistered_device,omitempty"`
+	UnregisteredDeviceId            []int64 `json:"unregistered_device_id,omitempty"`
+	// Counter and list of identifiers for devices hindering operations due to their utilization
+	OperationsForBusyDevice int32   `json:"operations_for_busy_device,omitempty"`
+	BusyDevice              []int64 `json:"busy_device,omitempty"`
+	// Counter and list of identifiers for volumes hindering operations due to not being operational
+	OperationsForNoPrimaryVolume int32    `json:"operations_for_no_primary_volume,omitempty"`
+	NoPrimaryVolumeUuid          []string `json:"no_primary_volume_uuid,omitempty"`
+	// Counter and list of identifiers for volumes hindering operations due to being deleted
+	OperationsForDeletedVolume int32    `json:"operations_for_deleted_volume,omitempty"`
+	DeletedVolumeUuid          []string `json:"deleted_volume_uuid,omitempty"`
+	// Counter and list of identifiers for services hindering operations due to being unavailable
+	OperationsForUnavailableService int32    `json:"operations_for_unavailable_service,omitempty"`
+	UnavailableServiceUuid          []string `json:"unavailable_service_uuid,omitempty"`
+	// Hit-count of long running operations summarized by RPC target.
+	OperationCountPerVolumeUuid  []*TaskInfo_ExecutionProblem_CounterByRpcTarget `json:"operation_count_per_volume_uuid,omitempty"`
+	OperationCountPerDeviceId    []*TaskInfo_ExecutionProblem_CounterByRpcTarget `json:"operation_count_per_device_id,omitempty"`
+	OperationCountPerServiceUuid []*TaskInfo_ExecutionProblem_CounterByRpcTarget `json:"operation_count_per_service_uuid,omitempty"`
 }
 
 type TaskInfo_ExecutionProblem_CounterByRpcTarget struct {
-    // volume, device or service
-    Identifier string `json:"identifier,omitempty"`
-    Count int32 `json:"count,omitempty"`
+	// volume, device or service
+	Identifier string `json:"identifier,omitempty"`
+	Count      int32  `json:"count,omitempty"`
 }
 
 type TaskInfo_Performance struct {
-    Type TaskInfo_Performance_Type `json:"type,omitempty"`
-    PerSecond float32 `json:"per_second,omitempty"`
-    Processed int64 `json:"processed,omitempty"`
-    Error int64 `json:"error,omitempty"`
-    Total int64 `json:"total,omitempty"`
+	Type      TaskInfo_Performance_Type `json:"type,omitempty"`
+	PerSecond float32                   `json:"per_second,omitempty"`
+	Processed int64                     `json:"processed,omitempty"`
+	Error     int64                     `json:"error,omitempty"`
+	Total     int64                     `json:"total,omitempty"`
 }
 
 type TaskInfo_Performance_Type string
 
-const(
-    TaskInfo_Performance_Type_BYTE TaskInfo_Performance_Type = "BYTE"
-    TaskInfo_Performance_Type_FILE TaskInfo_Performance_Type = "FILE"
-    TaskInfo_Performance_Type_REGISTRY TaskInfo_Performance_Type = "REGISTRY"
-    TaskInfo_Performance_Type_VOLUME TaskInfo_Performance_Type = "VOLUME"
+const (
+	TaskInfo_Performance_Type_BYTE     TaskInfo_Performance_Type = "BYTE"
+	TaskInfo_Performance_Type_FILE     TaskInfo_Performance_Type = "FILE"
+	TaskInfo_Performance_Type_REGISTRY TaskInfo_Performance_Type = "REGISTRY"
+	TaskInfo_Performance_Type_VOLUME   TaskInfo_Performance_Type = "VOLUME"
 )
 
 type TaskInfo_Progress struct {
-    // success_fraction, failure_fraction e [0;1[ success_fraction + failure_fraction <= 1
-    SuccessFraction float32 `json:"success_fraction,omitempty"`
-    FailureFraction float32 `json:"failure_fraction,omitempty"`
-    TimeElapsedS int64 `json:"time_elapsed_s,omitempty"`
-    // Long.MAX_VALUE if not started yet.
-    EtaS int64 `json:"eta_s,omitempty"`
-    OperationsInFlightCount int32 `json:"operations_in_flight_count,omitempty"`
-    LongRunningOperation []*TaskInfo_Progress_LongRunningOperation `json:"long_running_operation,omitempty"`
-    CurrentLongRunningOperationsCount int32 `json:"current_long_running_operations_count,omitempty"`
-    TotalLongRunningOperationsCount int64 `json:"total_long_running_operations_count,omitempty"`
-    HumanReadableSummary string `json:"human_readable_summary,omitempty"`
-    AreAllSubjectOperationsOk bool `json:"are_all_subject_operations_ok,omitempty"`
-    ObsoleteStalledBySubject SubjectList `json:"OBSOLETE_stalled_by_subject,omitempty"`
+	// success_fraction, failure_fraction e [0;1[ success_fraction + failure_fraction <= 1
+	SuccessFraction float32 `json:"success_fraction,omitempty"`
+	FailureFraction float32 `json:"failure_fraction,omitempty"`
+	TimeElapsedS    int64   `json:"time_elapsed_s,omitempty"`
+	// Long.MAX_VALUE if not started yet.
+	EtaS                              int64                                     `json:"eta_s,omitempty"`
+	OperationsInFlightCount           int32                                     `json:"operations_in_flight_count,omitempty"`
+	LongRunningOperation              []*TaskInfo_Progress_LongRunningOperation `json:"long_running_operation,omitempty"`
+	CurrentLongRunningOperationsCount int32                                     `json:"current_long_running_operations_count,omitempty"`
+	TotalLongRunningOperationsCount   int64                                     `json:"total_long_running_operations_count,omitempty"`
+	HumanReadableSummary              string                                    `json:"human_readable_summary,omitempty"`
+	AreAllSubjectOperationsOk         bool                                      `json:"are_all_subject_operations_ok,omitempty"`
+	ObsoleteStalledBySubject          SubjectList                               `json:"OBSOLETE_stalled_by_subject,omitempty"`
 }
 
 type TaskInfo_Progress_LongRunningOperation struct {
-    // Identifier of the operation, e.g. ADD_REPLICA.
-    OperationId string `json:"operation_id,omitempty"`
-    // The subject in question, e.g. a certain file.
-    Subject string `json:"subject,omitempty"`
-    // The operation's RPC target(s), e.g. volume or device UUID(s).
-    RpcTarget []string `json:"rpc_target,omitempty"`
-    // Additional "free text" info about the operation.
-    Details string `json:"details,omitempty"`
-    // Timestamp in [ms] when the operation started.
-    StartTimestampMs int64 `json:"start_timestamp_ms,omitempty"`
+	// Identifier of the operation, e.g. ADD_REPLICA.
+	OperationId string `json:"operation_id,omitempty"`
+	// The subject in question, e.g. a certain file.
+	Subject string `json:"subject,omitempty"`
+	// The operation's RPC target(s), e.g. volume or device UUID(s).
+	RpcTarget []string `json:"rpc_target,omitempty"`
+	// Additional "free text" info about the operation.
+	Details string `json:"details,omitempty"`
+	// Timestamp in [ms] when the operation started.
+	StartTimestampMs int64 `json:"start_timestamp_ms,omitempty"`
 }
 
 type TenantDomainConfiguration struct {
-    //UUID of the tenant domain
-    TenantId string `json:"tenant_id,omitempty"`
-    //Name of the tenant domain
-    Name string `json:"name,omitempty"`
-    //List of one or more IP networks belonging to the domain. Notation: <address>/<netmask length>
-    RestrictToNetwork []string `json:"restrict_to_network,omitempty"`
-    // List of one or more volumes accessible in the domain
-    VolumeAccess []*TenantDomainConfiguration_VolumeAccess `json:"volume_access,omitempty"`
+	//UUID of the tenant domain
+	TenantId string `json:"tenant_id,omitempty"`
+	//Name of the tenant domain
+	Name string `json:"name,omitempty"`
+	//List of one or more IP networks belonging to the domain. Notation: <address>/<netmask length>
+	RestrictToNetwork []string `json:"restrict_to_network,omitempty"`
+	// List of one or more volumes accessible in the domain
+	VolumeAccess []*TenantDomainConfiguration_VolumeAccess `json:"volume_access,omitempty"`
 }
 
 type TenantDomainConfiguration_VolumeAccess struct {
-    // UUID of the volume to grant access to (e.g "c858ffe2-4fa1-4c78-adbf-54c211734883")
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    //IP network to limit accessibility to. Notation: <address>/<netmask length>
-    RestrictToNetwork string `json:"restrict_to_network,omitempty"`
-    // True if only read-access is allowed
-    ReadOnly bool `json:"read_only,omitempty"`
+	// UUID of the volume to grant access to (e.g "c858ffe2-4fa1-4c78-adbf-54c211734883")
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	//IP network to limit accessibility to. Notation: <address>/<netmask length>
+	RestrictToNetwork string `json:"restrict_to_network,omitempty"`
+	// True if only read-access is allowed
+	ReadOnly bool `json:"read_only,omitempty"`
 }
 
 type TenantScope struct {
-    Uuid string `json:"uuid,omitempty"`
-    NameRegex string `json:"name_regex,omitempty"`
-    LabelPattern LabelPattern `json:"label_pattern,omitempty"`
+	Uuid         string       `json:"uuid,omitempty"`
+	NameRegex    string       `json:"name_regex,omitempty"`
+	LabelPattern LabelPattern `json:"label_pattern,omitempty"`
 }
 
 type UnformattedDevice struct {
-    ServiceUuid string `json:"service_uuid,omitempty"`
-    // e.g. /dev/sda
-    DiskName string `json:"disk_name,omitempty"`
-    // e.g. sdd, hdd or smr
-    Type DeviceHardwareType `json:"type,omitempty"`
-    Model string `json:"model,omitempty"`
-    Serial string `json:"serial,omitempty"`
-    Hostname string `json:"hostname,omitempty"`
-    SizeInBytes int64 `json:"size_in_bytes,omitempty"`
-    HandleId string `json:"handle_id,omitempty"`
+	ServiceUuid string `json:"service_uuid,omitempty"`
+	// e.g. /dev/sda
+	DiskName string `json:"disk_name,omitempty"`
+	// e.g. sdd, hdd or smr
+	Type        DeviceHardwareType `json:"type,omitempty"`
+	Model       string             `json:"model,omitempty"`
+	Serial      string             `json:"serial,omitempty"`
+	Hostname    string             `json:"hostname,omitempty"`
+	SizeInBytes int64              `json:"size_in_bytes,omitempty"`
+	HandleId    string             `json:"handle_id,omitempty"`
 }
 
 type UnlockMasterKeystoreSlotRequest struct {
-    MasterKeystoreSlotPassword string `json:"master_keystore_slot_password,omitempty"`
-    retryPolicy
+	MasterKeystoreSlotPassword string `json:"master_keystore_slot_password,omitempty"`
+	retryPolicy
 }
 
 type UnlockMasterKeystoreSlotResponse struct {
 }
 
 type UnpublishBucketVolumeRequest struct {
-    // The S3 exclusive bucket volume to unpublish.
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    ObsoleteBucketName string `json:"OBSOLETE_bucket_name,omitempty"`
-    ObsoleteBucketOwner string `json:"OBSOLETE_bucket_owner,omitempty"`
-    retryPolicy
+	// The S3 exclusive bucket volume to unpublish.
+	VolumeUuid          string `json:"volume_uuid,omitempty"`
+	ObsoleteBucketName  string `json:"OBSOLETE_bucket_name,omitempty"`
+	ObsoleteBucketOwner string `json:"OBSOLETE_bucket_owner,omitempty"`
+	retryPolicy
 }
 
 type UnpublishBucketVolumeResponse struct {
 }
 
 type UpdateDeviceRequest struct {
-    // Device to update
-    DeviceId int64 `json:"device_id,omitempty"`
-    // Set the device status, if set.
-    SetDeviceStatus Device_Status `json:"set_device_status,omitempty"`
-    // List of device tags to use, if update_device_tags is set.
-    DeviceTags []string `json:"device_tags,omitempty"`
-    UpdateDeviceTags bool `json:"update_device_tags,omitempty"`
-    // Set draining mode.
-    Draining bool `json:"draining,omitempty"`
-    // Type to add or remove depending whether remove_device_type is set or not.
-    DeviceType DeviceContent_ContentType `json:"device_type,omitempty"`
-    // True if device shall be removed
-    RemoveDeviceType bool `json:"remove_device_type,omitempty"`
-    // For auditing (MGMTApi)
-    Comment string `json:"comment,omitempty"`
-    // Set the device LED, if set.
-    SetLedStatus Device_LEDStatus `json:"set_led_status,omitempty"`
-    SetDeviceHealth Device_DeviceHealth `json:"set_device_health,omitempty"`
-    SetMountState Device_MountState `json:"set_mount_state,omitempty"`
-    SetFilesystemCheckBeforeMount Device_FileSystemCheckBeforeMount `json:"set_filesystem_check_before_mount,omitempty"`
-    retryPolicy
+	// Device to update
+	DeviceId int64 `json:"device_id,omitempty"`
+	// Set the device status, if set.
+	SetDeviceStatus Device_Status `json:"set_device_status,omitempty"`
+	// List of device tags to use, if update_device_tags is set.
+	DeviceTags       []string `json:"device_tags,omitempty"`
+	UpdateDeviceTags bool     `json:"update_device_tags,omitempty"`
+	// Set draining mode.
+	Draining bool `json:"draining,omitempty"`
+	// Type to add or remove depending whether remove_device_type is set or not.
+	DeviceType DeviceContent_ContentType `json:"device_type,omitempty"`
+	// True if device shall be removed
+	RemoveDeviceType bool `json:"remove_device_type,omitempty"`
+	// For auditing (MGMTApi)
+	Comment string `json:"comment,omitempty"`
+	// Set the device LED, if set.
+	SetLedStatus                  Device_LEDStatus                  `json:"set_led_status,omitempty"`
+	SetDeviceHealth               Device_DeviceHealth               `json:"set_device_health,omitempty"`
+	SetMountState                 Device_MountState                 `json:"set_mount_state,omitempty"`
+	SetFilesystemCheckBeforeMount Device_FileSystemCheckBeforeMount `json:"set_filesystem_check_before_mount,omitempty"`
+	retryPolicy
 }
 
 type UpdateDeviceResponse struct {
 }
 
 type UpdatePolicyRulesRequest struct {
-    // Disallows default. Default policy Rules can't be created.
-    PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
-    retryPolicy
+	// Disallows default. Default policy Rules can't be created.
+	PolicyRule []*PolicyRule `json:"policy_rule,omitempty"`
+	retryPolicy
 }
 
 type UpdatePolicyRulesResponse struct {
 }
 
 type UpdateUserRequest struct {
-    UserName string `json:"user_name,omitempty"`
-    Password string `json:"password,omitempty"`
-    Email string `json:"email,omitempty"`
-    AdminOfTenantId []string `json:"admin_of_tenant_id,omitempty"`
-    Role UserRole `json:"role,omitempty"`
-    DeleteRoles bool `json:"delete_roles,omitempty"`
-    MemberOfTenantId []string `json:"member_of_tenant_id,omitempty"`
-    MemberOfGroup []string `json:"member_of_group,omitempty"`
-    retryPolicy
+	UserName         string   `json:"user_name,omitempty"`
+	Password         string   `json:"password,omitempty"`
+	Email            string   `json:"email,omitempty"`
+	AdminOfTenantId  []string `json:"admin_of_tenant_id,omitempty"`
+	Role             UserRole `json:"role,omitempty"`
+	DeleteRoles      bool     `json:"delete_roles,omitempty"`
+	MemberOfTenantId []string `json:"member_of_tenant_id,omitempty"`
+	MemberOfGroup    []string `json:"member_of_group,omitempty"`
+	retryPolicy
 }
 
 type UpdateUserResponse struct {
-    UserConfiguration UserConfiguration `json:"user_configuration,omitempty"`
+	UserConfiguration UserConfiguration `json:"user_configuration,omitempty"`
 }
 
 type UpdateVolumeRequest struct {
-    //UUID of the volume to change.
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    // New name for the volume.
-    Name string `json:"name,omitempty"`
-    // UUID of the device where a replica should be added
-    AddReplicaDeviceId int64 `json:"add_replica_device_id,omitempty"`
-    // UUID of the device from where a replica should be removed
-    RemoveReplicaDeviceId int64 `json:"remove_replica_device_id,omitempty"`
-    // ID of the preferred primary replica device.
-    PreferredPrimaryReplicaDeviceId int64 `json:"preferred_primary_replica_device_id,omitempty"`
-    // Whether any set preferred primary replica device should be removed.
-    RemovePreferredPrimaryReplicaDevice bool `json:"remove_preferred_primary_replica_device,omitempty"`
-    // Name of the configuration to be used for the volume
-    SetConfigurationName string `json:"set_configuration_name,omitempty"`
-    // Only for mirrored volume:
-    RemoteRegistryTarget []string `json:"remote_registry_target,omitempty"`
-    // Use publishVolume() instead.
-    ObsoleteBucketName string `json:"OBSOLETE_bucket_name,omitempty"`
-    ObsoleteBucketOwner string `json:"OBSOLETE_bucket_owner,omitempty"`
-    ObsoleteBucketDomain string `json:"OBSOLETE_bucket_domain,omitempty"`
-    retryPolicy
+	//UUID of the volume to change.
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	// New name for the volume.
+	Name string `json:"name,omitempty"`
+	// UUID of the device where a replica should be added
+	AddReplicaDeviceId int64 `json:"add_replica_device_id,omitempty"`
+	// UUID of the device from where a replica should be removed
+	RemoveReplicaDeviceId int64 `json:"remove_replica_device_id,omitempty"`
+	// ID of the preferred primary replica device.
+	PreferredPrimaryReplicaDeviceId int64 `json:"preferred_primary_replica_device_id,omitempty"`
+	// Whether any set preferred primary replica device should be removed.
+	RemovePreferredPrimaryReplicaDevice bool `json:"remove_preferred_primary_replica_device,omitempty"`
+	// Name of the configuration to be used for the volume
+	SetConfigurationName string `json:"set_configuration_name,omitempty"`
+	// Only for mirrored volume:
+	RemoteRegistryTarget []string `json:"remote_registry_target,omitempty"`
+	// Use publishVolume() instead.
+	ObsoleteBucketName   string `json:"OBSOLETE_bucket_name,omitempty"`
+	ObsoleteBucketOwner  string `json:"OBSOLETE_bucket_owner,omitempty"`
+	ObsoleteBucketDomain string `json:"OBSOLETE_bucket_domain,omitempty"`
+	retryPolicy
 }
 
 type UpdateVolumeResponse struct {
 }
 
 type UserAndGroupMappingSecurityPolicy struct {
-    MappingPolicy UserAndGroupMappingSecurityPolicy_MappingPolicy `json:"mapping_policy,omitempty"`
+	MappingPolicy UserAndGroupMappingSecurityPolicy_MappingPolicy `json:"mapping_policy,omitempty"`
 }
 
 type UserAndGroupMappingSecurityPolicy_MappingPolicy string
 
-const(
-    UserAndGroupMappingSecurityPolicy_MappingPolicy_DENY_UNKNOWN UserAndGroupMappingSecurityPolicy_MappingPolicy = "DENY_UNKNOWN"
-    UserAndGroupMappingSecurityPolicy_MappingPolicy_USE_NUMERIC_ID_FOR_UNKNOWN UserAndGroupMappingSecurityPolicy_MappingPolicy = "USE_NUMERIC_ID_FOR_UNKNOWN"
+const (
+	UserAndGroupMappingSecurityPolicy_MappingPolicy_DENY_UNKNOWN               UserAndGroupMappingSecurityPolicy_MappingPolicy = "DENY_UNKNOWN"
+	UserAndGroupMappingSecurityPolicy_MappingPolicy_USE_NUMERIC_ID_FOR_UNKNOWN UserAndGroupMappingSecurityPolicy_MappingPolicy = "USE_NUMERIC_ID_FOR_UNKNOWN"
 )
 
 type UserConfiguration struct {
-    //ID (name) of the user
-    Id string `json:"id,omitempty"`
-    // Hash method for password encryption (e.g."SALTED_SHA512")
-    HashMethod HashMethod `json:"hash_method,omitempty"`
-    //Hash of the user password
-    PasswordHash string `json:"password_hash,omitempty"`
-    //Salt value used for encryption
-    Salt string `json:"salt,omitempty"`
-    //Email address od the user
-    Email string `json:"email,omitempty"`
-    //Role of the user
-    Role []*UserRole `json:"role,omitempty"`
-    AdminOfTenantId []string `json:"admin_of_tenant_id,omitempty"`
-    LastLoginTimestampMs int64 `json:"last_login_timestamp_ms,omitempty"`
-    // Access key credentials
-    AccessKeyCredentials []*AccessKeyCredentials `json:"access_key_credentials,omitempty"`
-    // Groups user is member of
-    Group []string `json:"group,omitempty"`
-    UserSource UserSource `json:"user_source,omitempty"`
-    MemberOfTenantId []string `json:"member_of_tenant_id,omitempty"`
+	//ID (name) of the user
+	Id string `json:"id,omitempty"`
+	// Hash method for password encryption (e.g."SALTED_SHA512")
+	HashMethod HashMethod `json:"hash_method,omitempty"`
+	//Hash of the user password
+	PasswordHash string `json:"password_hash,omitempty"`
+	//Salt value used for encryption
+	Salt string `json:"salt,omitempty"`
+	//Email address od the user
+	Email string `json:"email,omitempty"`
+	//Role of the user
+	Role                 []*UserRole `json:"role,omitempty"`
+	AdminOfTenantId      []string    `json:"admin_of_tenant_id,omitempty"`
+	LastLoginTimestampMs int64       `json:"last_login_timestamp_ms,omitempty"`
+	// Access key credentials
+	AccessKeyCredentials []*AccessKeyCredentials `json:"access_key_credentials,omitempty"`
+	// Groups user is member of
+	Group            []string   `json:"group,omitempty"`
+	UserSource       UserSource `json:"user_source,omitempty"`
+	MemberOfTenantId []string   `json:"member_of_tenant_id,omitempty"`
 }
 
 type UserCredentials struct {
-    //Client-system user name
-    Username string `json:"username,omitempty"`
-    //List of one or more client-system group names
-    Groups []string `json:"groups,omitempty"`
-    //The tenant domain of the given user. Defaults to an empty string for the default domain
-    TenantDomain string `json:"tenant_domain,omitempty"`
-    //Active user role
-    UserRole UserRole `json:"user_role,omitempty"`
+	//Client-system user name
+	Username string `json:"username,omitempty"`
+	//List of one or more client-system group names
+	Groups []string `json:"groups,omitempty"`
+	//The tenant domain of the given user. Defaults to an empty string for the default domain
+	TenantDomain string `json:"tenant_domain,omitempty"`
+	//Active user role
+	UserRole UserRole `json:"user_role,omitempty"`
 }
 
 type UserSource struct {
-    DirectoryType UserSource_DirectoryType `json:"directory_type,omitempty"`
-    DirectoryId string `json:"directory_id,omitempty"`
-    // Last update of fields from directory service
-    LastUpdateTimestampMillis int64 `json:"last_update_timestamp_millis,omitempty"`
+	DirectoryType UserSource_DirectoryType `json:"directory_type,omitempty"`
+	DirectoryId   string                   `json:"directory_id,omitempty"`
+	// Last update of fields from directory service
+	LastUpdateTimestampMillis int64 `json:"last_update_timestamp_millis,omitempty"`
 }
 
 type UserSource_DirectoryType string
 
-const(
-    UserSource_DirectoryType_INTERNAL_DATABASE UserSource_DirectoryType = "INTERNAL_DATABASE"
-    UserSource_DirectoryType_KEYSTONE UserSource_DirectoryType = "KEYSTONE"
-    UserSource_DirectoryType_LDAP UserSource_DirectoryType = "LDAP"
+const (
+	UserSource_DirectoryType_INTERNAL_DATABASE UserSource_DirectoryType = "INTERNAL_DATABASE"
+	UserSource_DirectoryType_KEYSTONE          UserSource_DirectoryType = "KEYSTONE"
+	UserSource_DirectoryType_LDAP              UserSource_DirectoryType = "LDAP"
 )
 
 type VerifyLicenseRequest struct {
-    Key string `json:"key,omitempty"`
-    retryPolicy
+	Key string `json:"key,omitempty"`
+	retryPolicy
 }
 
 type VerifyLicenseResponse struct {
-    ObsoleteValid bool `json:"OBSOLETE_valid,omitempty"`
-    VerificationResult VerifyLicenseResponse_VerificationResult `json:"verification_result,omitempty"`
+	ObsoleteValid      bool                                     `json:"OBSOLETE_valid,omitempty"`
+	VerificationResult VerifyLicenseResponse_VerificationResult `json:"verification_result,omitempty"`
 }
 
 type VerifyLicenseResponse_VerificationResult string
 
-const(
-    VerifyLicenseResponse_VerificationResult_EXPIRED VerifyLicenseResponse_VerificationResult = "EXPIRED"
-    VerifyLicenseResponse_VerificationResult_INVALID VerifyLicenseResponse_VerificationResult = "INVALID"
-    VerifyLicenseResponse_VerificationResult_OK VerifyLicenseResponse_VerificationResult = "OK"
-    VerifyLicenseResponse_VerificationResult_SUPERSEDED VerifyLicenseResponse_VerificationResult = "SUPERSEDED"
+const (
+	VerifyLicenseResponse_VerificationResult_EXPIRED    VerifyLicenseResponse_VerificationResult = "EXPIRED"
+	VerifyLicenseResponse_VerificationResult_INVALID    VerifyLicenseResponse_VerificationResult = "INVALID"
+	VerifyLicenseResponse_VerificationResult_OK         VerifyLicenseResponse_VerificationResult = "OK"
+	VerifyLicenseResponse_VerificationResult_SUPERSEDED VerifyLicenseResponse_VerificationResult = "SUPERSEDED"
 )
 
 type Volume struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    Name string `json:"name,omitempty"`
-    ReplicaDeviceIds []int64 `json:"replica_device_ids,omitempty"`
-    // Not set if no replica device is preferred.
-    PreferredPrimaryReplicaDeviceId int64 `json:"preferred_primary_replica_device_id,omitempty"`
-    ScheduledForDeletion bool `json:"scheduled_for_deletion,omitempty"`
-    QuotaDiskSpaceBytes int64 `json:"quota_disk_space_bytes,omitempty"`
-    UsedDiskSpaceBytes int64 `json:"used_disk_space_bytes,omitempty"`
-    FileCount int64 `json:"file_count,omitempty"`
-    DirectoryCount int64 `json:"directory_count,omitempty"`
-    // Usage statistics.
-    ObsoleteVolumeMetrics VolumeMetrics `json:"OBSOLETE_volume_metrics,omitempty"`
-    ConfigurationName string `json:"configuration_name,omitempty"`
-    TenantDomain string `json:"tenant_domain,omitempty"`
-    // Set of devices that contain files of this volume.
-    DeviceSpread []int64 `json:"device_spread,omitempty"`
-    // Timestamp of last successful scrub.
-    LastSuccessfulScrubMs int64 `json:"last_successful_scrub_ms,omitempty"`
-    PrimaryDeviceId int64 `json:"primary_device_id,omitempty"`
-    UsedLogicalSpaceBytes int64 `json:"used_logical_space_bytes,omitempty"`
-    BucketNames []string `json:"bucket_names,omitempty"`
-    Isexclusivevolumebucket bool `json:"isExclusiveVolumeBucket,omitempty"`
-    // states if the bucket is default within tenant
-    TenantDefault bool `json:"tenant_default,omitempty"`
-    // Optional source for async replication. If set, all metadata and data of the volume will be retrieved from the volume on the Quobyte installation associated with this source.
-    AsyncReplicationSource AsyncReplicationSource `json:"async_replication_source,omitempty"`
-    AsyncReplicationProgress AsyncReplicationProgress `json:"async_replication_progress,omitempty"`
-    LastAccessTimestampS int64 `json:"last_access_timestamp_s,omitempty"`
-    VolumeEncryptionContext VolumeEncryptionContext `json:"volume_encryption_context,omitempty"`
+	VolumeUuid       string  `json:"volume_uuid,omitempty"`
+	Name             string  `json:"name,omitempty"`
+	ReplicaDeviceIds []int64 `json:"replica_device_ids,omitempty"`
+	// Not set if no replica device is preferred.
+	PreferredPrimaryReplicaDeviceId int64 `json:"preferred_primary_replica_device_id,omitempty"`
+	ScheduledForDeletion            bool  `json:"scheduled_for_deletion,omitempty"`
+	QuotaDiskSpaceBytes             int64 `json:"quota_disk_space_bytes,omitempty"`
+	UsedDiskSpaceBytes              int64 `json:"used_disk_space_bytes,omitempty"`
+	FileCount                       int64 `json:"file_count,omitempty"`
+	DirectoryCount                  int64 `json:"directory_count,omitempty"`
+	// Usage statistics.
+	ObsoleteVolumeMetrics VolumeMetrics `json:"OBSOLETE_volume_metrics,omitempty"`
+	ConfigurationName     string        `json:"configuration_name,omitempty"`
+	TenantDomain          string        `json:"tenant_domain,omitempty"`
+	// Set of devices that contain files of this volume.
+	DeviceSpread []int64 `json:"device_spread,omitempty"`
+	// Timestamp of last successful scrub.
+	LastSuccessfulScrubMs   int64    `json:"last_successful_scrub_ms,omitempty"`
+	PrimaryDeviceId         int64    `json:"primary_device_id,omitempty"`
+	UsedLogicalSpaceBytes   int64    `json:"used_logical_space_bytes,omitempty"`
+	BucketNames             []string `json:"bucket_names,omitempty"`
+	Isexclusivevolumebucket bool     `json:"isExclusiveVolumeBucket,omitempty"`
+	// states if the bucket is default within tenant
+	TenantDefault bool `json:"tenant_default,omitempty"`
+	// Optional source for async replication. If set, all metadata and data of the volume will be retrieved from the volume on the Quobyte installation associated with this source.
+	AsyncReplicationSource   AsyncReplicationSource   `json:"async_replication_source,omitempty"`
+	AsyncReplicationProgress AsyncReplicationProgress `json:"async_replication_progress,omitempty"`
+	LastAccessTimestampS     int64                    `json:"last_access_timestamp_s,omitempty"`
+	VolumeEncryptionContext  VolumeEncryptionContext  `json:"volume_encryption_context,omitempty"`
 }
 
 type VolumeConfiguration struct {
-    //Name of the configuration
-    ConfigurationName string `json:"configuration_name,omitempty"`
-    // Inheritance: use the named configuration and overwrite it with anything set in this config  (e.g."BASE")
-    BaseConfiguration string `json:"base_configuration,omitempty"`
-    // Configuration for the related metadata
-    VolumeMetadataConfiguration VolumeMetadataConfiguration `json:"volume_metadata_configuration,omitempty"`
-    // Textual representation of the basic configuration
-    DefaultConfig ConfigurationStatement `json:"default_config,omitempty"`
-    // Optional list of one or more refinements of the basic configuration
-    Refinement []*ConfigurationRefinement `json:"refinement,omitempty"`
-    SnapshotConfiguration VolumeSnapshotConfiguration `json:"snapshot_configuration,omitempty"`
-    MetadataCacheConfiguration FileMetadataCacheConfiguration `json:"metadata_cache_configuration,omitempty"`
-    // Definition of security critical behaviour
-    SecurityConfiguration VolumeSecurityConfiguration `json:"security_configuration,omitempty"`
-    PrefetchConfiguration VolumePrefetchConfiguration `json:"prefetch_configuration,omitempty"`
-    FileRetentionPolicy FileRetentionPolicy `json:"file_retention_policy,omitempty"`
+	//Name of the configuration
+	ConfigurationName string `json:"configuration_name,omitempty"`
+	// Inheritance: use the named configuration and overwrite it with anything set in this config  (e.g."BASE")
+	BaseConfiguration string `json:"base_configuration,omitempty"`
+	// Configuration for the related metadata
+	VolumeMetadataConfiguration VolumeMetadataConfiguration `json:"volume_metadata_configuration,omitempty"`
+	// Textual representation of the basic configuration
+	DefaultConfig ConfigurationStatement `json:"default_config,omitempty"`
+	// Optional list of one or more refinements of the basic configuration
+	Refinement                 []*ConfigurationRefinement     `json:"refinement,omitempty"`
+	SnapshotConfiguration      VolumeSnapshotConfiguration    `json:"snapshot_configuration,omitempty"`
+	MetadataCacheConfiguration FileMetadataCacheConfiguration `json:"metadata_cache_configuration,omitempty"`
+	// Definition of security critical behaviour
+	SecurityConfiguration VolumeSecurityConfiguration `json:"security_configuration,omitempty"`
+	PrefetchConfiguration VolumePrefetchConfiguration `json:"prefetch_configuration,omitempty"`
+	FileRetentionPolicy   FileRetentionPolicy         `json:"file_retention_policy,omitempty"`
 }
 
 type VolumeEncryptionContext struct {
-    KeyOwner VolumeEncryptionContext_VolumeKeyOwner `json:"key_owner,omitempty"`
-    FileEncryptionMethod VolumeEncryptionContext_FileEncryptionMethod `json:"file_encryption_method,omitempty"`
-    KeyDerivationMethod VolumeEncryptionContext_KeyDerivationMethod `json:"key_derivation_method,omitempty"`
+	KeyOwner             VolumeEncryptionContext_VolumeKeyOwner       `json:"key_owner,omitempty"`
+	FileEncryptionMethod VolumeEncryptionContext_FileEncryptionMethod `json:"file_encryption_method,omitempty"`
+	KeyDerivationMethod  VolumeEncryptionContext_KeyDerivationMethod  `json:"key_derivation_method,omitempty"`
 }
 
 type VolumeEncryptionContext_FileEncryptionMethod string
 
-const(
-    VolumeEncryptionContext_FileEncryptionMethod_AES_XTS_128 VolumeEncryptionContext_FileEncryptionMethod = "AES_XTS_128"
-    VolumeEncryptionContext_FileEncryptionMethod_AES_XTS_256 VolumeEncryptionContext_FileEncryptionMethod = "AES_XTS_256"
+const (
+	VolumeEncryptionContext_FileEncryptionMethod_AES_XTS_128 VolumeEncryptionContext_FileEncryptionMethod = "AES_XTS_128"
+	VolumeEncryptionContext_FileEncryptionMethod_AES_XTS_256 VolumeEncryptionContext_FileEncryptionMethod = "AES_XTS_256"
 )
 
 type VolumeEncryptionContext_KeyDerivationMethod string
 
-const(
-    VolumeEncryptionContext_KeyDerivationMethod_HMAC_SHA256 VolumeEncryptionContext_KeyDerivationMethod = "HMAC_SHA256"
-    VolumeEncryptionContext_KeyDerivationMethod_HMAC_SHA512 VolumeEncryptionContext_KeyDerivationMethod = "HMAC_SHA512"
+const (
+	VolumeEncryptionContext_KeyDerivationMethod_HMAC_SHA256 VolumeEncryptionContext_KeyDerivationMethod = "HMAC_SHA256"
+	VolumeEncryptionContext_KeyDerivationMethod_HMAC_SHA512 VolumeEncryptionContext_KeyDerivationMethod = "HMAC_SHA512"
 )
 
 type VolumeEncryptionContext_VolumeKeyOwner string
 
-const(
-    VolumeEncryptionContext_VolumeKeyOwner_SYSTEM VolumeEncryptionContext_VolumeKeyOwner = "SYSTEM"
-    VolumeEncryptionContext_VolumeKeyOwner_USER VolumeEncryptionContext_VolumeKeyOwner = "USER"
+const (
+	VolumeEncryptionContext_VolumeKeyOwner_SYSTEM VolumeEncryptionContext_VolumeKeyOwner = "SYSTEM"
+	VolumeEncryptionContext_VolumeKeyOwner_USER   VolumeEncryptionContext_VolumeKeyOwner = "USER"
 )
 
 type VolumeEncryptionPolicy struct {
-    Profile VolumeEncryptionPolicy_Profile `json:"profile,omitempty"`
+	Profile VolumeEncryptionPolicy_Profile `json:"profile,omitempty"`
 }
 
 type VolumeEncryptionPolicy_Profile string
 
-const(
-    VolumeEncryptionPolicy_Profile_NONE VolumeEncryptionPolicy_Profile = "NONE"
-    VolumeEncryptionPolicy_Profile_SYSTEM_AES_128 VolumeEncryptionPolicy_Profile = "SYSTEM_AES_128"
-    VolumeEncryptionPolicy_Profile_SYSTEM_AES_256 VolumeEncryptionPolicy_Profile = "SYSTEM_AES_256"
+const (
+	VolumeEncryptionPolicy_Profile_NONE           VolumeEncryptionPolicy_Profile = "NONE"
+	VolumeEncryptionPolicy_Profile_SYSTEM_AES_128 VolumeEncryptionPolicy_Profile = "SYSTEM_AES_128"
+	VolumeEncryptionPolicy_Profile_SYSTEM_AES_256 VolumeEncryptionPolicy_Profile = "SYSTEM_AES_256"
 )
 
 type VolumeMappingInfo struct {
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    VolumeName string `json:"volume_name,omitempty"`
-    TenantId string `json:"tenant_id,omitempty"`
-    ConfigurationName string `json:"configuration_name,omitempty"`
+	VolumeUuid        string `json:"volume_uuid,omitempty"`
+	VolumeName        string `json:"volume_name,omitempty"`
+	TenantId          string `json:"tenant_id,omitempty"`
+	ConfigurationName string `json:"configuration_name,omitempty"`
 }
 
 type VolumeMetadataConfiguration struct {
-    // The placement constraints for metadata replicas
-    PlacementSettings PlacementSettings `json:"placement_settings,omitempty"`
-    //The number of volume metadata replicas. Recommended: 3
-    ReplicationFactor int32 `json:"replication_factor,omitempty"`
+	// The placement constraints for metadata replicas
+	PlacementSettings PlacementSettings `json:"placement_settings,omitempty"`
+	//The number of volume metadata replicas. Recommended: 3
+	ReplicationFactor int32 `json:"replication_factor,omitempty"`
 }
 
 type VolumeMetrics struct {
-    UpdateOperations int64 `json:"update_operations,omitempty"`
-    UpdateOperationsRate float32 `json:"update_operations_rate,omitempty"`
-    LookupOperations int64 `json:"lookup_operations,omitempty"`
-    LookupOperationsRate float32 `json:"lookup_operations_rate,omitempty"`
+	UpdateOperations     int64   `json:"update_operations,omitempty"`
+	UpdateOperationsRate float32 `json:"update_operations_rate,omitempty"`
+	LookupOperations     int64   `json:"lookup_operations,omitempty"`
+	LookupOperationsRate float32 `json:"lookup_operations_rate,omitempty"`
 }
 
 type VolumePrefetchConfiguration struct {
-    // Regular expression that matches on the filenames that should trigger file prefetching.
-    FileNameRegex string `json:"file_name_regex,omitempty"`
-    // The index of the submatch within the regular expression that refers to the sequence number.
-    RegexMatchIndex int32 `json:"regex_match_index,omitempty"`
+	// Regular expression that matches on the filenames that should trigger file prefetching.
+	FileNameRegex string `json:"file_name_regex,omitempty"`
+	// The index of the submatch within the regular expression that refers to the sequence number.
+	RegexMatchIndex int32 `json:"regex_match_index,omitempty"`
 }
 
 type VolumeScope struct {
-    Uuid string `json:"uuid,omitempty"`
-    NameRegex string `json:"name_regex,omitempty"`
-    LabelPattern LabelPattern `json:"label_pattern,omitempty"`
+	Uuid         string       `json:"uuid,omitempty"`
+	NameRegex    string       `json:"name_regex,omitempty"`
+	LabelPattern LabelPattern `json:"label_pattern,omitempty"`
 }
 
 type VolumeSecurityConfiguration struct {
-    // Policy to handle unknown accounts
-    UserAndGroupMappingPolicy VolumeSecurityConfiguration_MappingPolicy `json:"user_and_group_mapping_policy,omitempty"`
-    // Additional groups that have superuser privileges on volume
-    AdditionalPrivilegedGroups []string `json:"additional_privileged_groups,omitempty"`
-    // Allow setting SUID and SGID without superuser privileges
-    UnprivilegedUserCanSetSuid bool `json:"unprivileged_user_can_set_suid,omitempty"`
-    // Allow chown without superuser privileges
-    UnprivilegedUserCanChown bool `json:"unprivileged_user_can_chown,omitempty"`
-    // Allow chgroup to foreign group without superuser privileges
-    UnprivilegedUserCanChgrp bool `json:"unprivileged_user_can_chgrp,omitempty"`
-    // Mode for files created by Windows clients (octal, default 0600)
-    WindowsCreateMode int32 `json:"windows_create_mode,omitempty"`
-    // Mode for directories created by Windows clients (octal, default 0700)
-    WindowsDirectoryMode int32 `json:"windows_directory_mode,omitempty"`
-    // Policy to select owning group for files created by Windows clients
-    WindowsGroupSelection VolumeSecurityConfiguration_GroupSelectionPolicy `json:"windows_group_selection,omitempty"`
-    // Used group if windows_group_selection=DEFAULT_GROUP is set
-    WindowsDefaultGroup string `json:"windows_default_group,omitempty"`
-    // Override mode for new files (octal), windows_create_mode ineffective when set
-    OverrideCreateMode int32 `json:"override_create_mode,omitempty"`
-    // Override mode for new directories (octal), windows_directory_mode ineffective when set
-    OverrideDirectoryMode int32 `json:"override_directory_mode,omitempty"`
+	// Policy to handle unknown accounts
+	UserAndGroupMappingPolicy VolumeSecurityConfiguration_MappingPolicy `json:"user_and_group_mapping_policy,omitempty"`
+	// Additional groups that have superuser privileges on volume
+	AdditionalPrivilegedGroups []string `json:"additional_privileged_groups,omitempty"`
+	// Allow setting SUID and SGID without superuser privileges
+	UnprivilegedUserCanSetSuid bool `json:"unprivileged_user_can_set_suid,omitempty"`
+	// Allow chown without superuser privileges
+	UnprivilegedUserCanChown bool `json:"unprivileged_user_can_chown,omitempty"`
+	// Allow chgroup to foreign group without superuser privileges
+	UnprivilegedUserCanChgrp bool `json:"unprivileged_user_can_chgrp,omitempty"`
+	// Mode for files created by Windows clients (octal, default 0600)
+	WindowsCreateMode int32 `json:"windows_create_mode,omitempty"`
+	// Mode for directories created by Windows clients (octal, default 0700)
+	WindowsDirectoryMode int32 `json:"windows_directory_mode,omitempty"`
+	// Policy to select owning group for files created by Windows clients
+	WindowsGroupSelection VolumeSecurityConfiguration_GroupSelectionPolicy `json:"windows_group_selection,omitempty"`
+	// Used group if windows_group_selection=DEFAULT_GROUP is set
+	WindowsDefaultGroup string `json:"windows_default_group,omitempty"`
+	// Override mode for new files (octal), windows_create_mode ineffective when set
+	OverrideCreateMode int32 `json:"override_create_mode,omitempty"`
+	// Override mode for new directories (octal), windows_directory_mode ineffective when set
+	OverrideDirectoryMode int32 `json:"override_directory_mode,omitempty"`
 }
 
 type VolumeSecurityConfiguration_GroupSelectionPolicy string
 
-const(
-    VolumeSecurityConfiguration_GroupSelectionPolicy_DEFAULT_GROUP VolumeSecurityConfiguration_GroupSelectionPolicy = "DEFAULT_GROUP"
-    VolumeSecurityConfiguration_GroupSelectionPolicy_PARENT_DIRECTORY VolumeSecurityConfiguration_GroupSelectionPolicy = "PARENT_DIRECTORY"
-    VolumeSecurityConfiguration_GroupSelectionPolicy_USERNAME VolumeSecurityConfiguration_GroupSelectionPolicy = "USERNAME"
+const (
+	VolumeSecurityConfiguration_GroupSelectionPolicy_DEFAULT_GROUP    VolumeSecurityConfiguration_GroupSelectionPolicy = "DEFAULT_GROUP"
+	VolumeSecurityConfiguration_GroupSelectionPolicy_PARENT_DIRECTORY VolumeSecurityConfiguration_GroupSelectionPolicy = "PARENT_DIRECTORY"
+	VolumeSecurityConfiguration_GroupSelectionPolicy_USERNAME         VolumeSecurityConfiguration_GroupSelectionPolicy = "USERNAME"
 )
 
 type VolumeSecurityConfiguration_MappingPolicy string
 
-const(
-    VolumeSecurityConfiguration_MappingPolicy_DENY_UNKNOWN VolumeSecurityConfiguration_MappingPolicy = "DENY_UNKNOWN"
-    VolumeSecurityConfiguration_MappingPolicy_USE_NUMERIC_ID_FOR_UNKNOWN VolumeSecurityConfiguration_MappingPolicy = "USE_NUMERIC_ID_FOR_UNKNOWN"
+const (
+	VolumeSecurityConfiguration_MappingPolicy_DENY_UNKNOWN               VolumeSecurityConfiguration_MappingPolicy = "DENY_UNKNOWN"
+	VolumeSecurityConfiguration_MappingPolicy_USE_NUMERIC_ID_FOR_UNKNOWN VolumeSecurityConfiguration_MappingPolicy = "USE_NUMERIC_ID_FOR_UNKNOWN"
 )
 
 type VolumeSnapshot struct {
-    // Volume uuid
-    VolumeUuid string `json:"volume_uuid,omitempty"`
-    // Snapshot version
-    Version int64 `json:"version,omitempty"`
-    // Snapshot name
-    Name string `json:"name,omitempty"`
-    // Comment
-    Comment string `json:"comment,omitempty"`
-    // Create time
-    Timestamp int64 `json:"timestamp,omitempty"`
-    // Pinned snapshot (will not be deleted by cleanup)
-    Pinned bool `json:"pinned,omitempty"`
+	// Volume uuid
+	VolumeUuid string `json:"volume_uuid,omitempty"`
+	// Snapshot version
+	Version int64 `json:"version,omitempty"`
+	// Snapshot name
+	Name string `json:"name,omitempty"`
+	// Comment
+	Comment string `json:"comment,omitempty"`
+	// Create time
+	Timestamp int64 `json:"timestamp,omitempty"`
+	// Pinned snapshot (will not be deleted by cleanup)
+	Pinned bool `json:"pinned,omitempty"`
 }
 
 type VolumeSnapshotConfiguration struct {
-    // Time span in seconds between two automatic snapshots.
-    SnapshotIntervalS int32 `json:"snapshot_interval_s,omitempty"`
-    // Maximum lifetime of an automatically created snapshot in seconds.
-    SnapshotLifetimeS int32 `json:"snapshot_lifetime_s,omitempty"`
+	// Time span in seconds between two automatic snapshots.
+	SnapshotIntervalS int32 `json:"snapshot_interval_s,omitempty"`
+	// Maximum lifetime of an automatically created snapshot in seconds.
+	SnapshotLifetimeS int32 `json:"snapshot_lifetime_s,omitempty"`
 }
 
 type VolumeSnapshotFrequencyPolicy struct {
-    IntervalS int32 `json:"interval_s,omitempty"`
+	IntervalS int32 `json:"interval_s,omitempty"`
 }
 
 type VolumeSnapshotRetentionPolicy struct {
-    LifetimeS int32 `json:"lifetime_s,omitempty"`
+	LifetimeS int32 `json:"lifetime_s,omitempty"`
 }
 
 type WindowsSpecificSecurityPolicy struct {
-    CreateMode int32 `json:"create_mode,omitempty"`
-    DirectoryMode int32 `json:"directory_mode,omitempty"`
-    GroupSelection WindowsSpecificSecurityPolicy_GroupSelectionPolicy `json:"group_selection,omitempty"`
-    DefaultGroup string `json:"default_group,omitempty"`
+	CreateMode     int32                                              `json:"create_mode,omitempty"`
+	DirectoryMode  int32                                              `json:"directory_mode,omitempty"`
+	GroupSelection WindowsSpecificSecurityPolicy_GroupSelectionPolicy `json:"group_selection,omitempty"`
+	DefaultGroup   string                                             `json:"default_group,omitempty"`
 }
 
 type WindowsSpecificSecurityPolicy_GroupSelectionPolicy string
 
-const(
-    WindowsSpecificSecurityPolicy_GroupSelectionPolicy_DEFAULT_GROUP WindowsSpecificSecurityPolicy_GroupSelectionPolicy = "DEFAULT_GROUP"
-    WindowsSpecificSecurityPolicy_GroupSelectionPolicy_PARENT_DIRECTORY WindowsSpecificSecurityPolicy_GroupSelectionPolicy = "PARENT_DIRECTORY"
-    WindowsSpecificSecurityPolicy_GroupSelectionPolicy_USERNAME WindowsSpecificSecurityPolicy_GroupSelectionPolicy = "USERNAME"
+const (
+	WindowsSpecificSecurityPolicy_GroupSelectionPolicy_DEFAULT_GROUP    WindowsSpecificSecurityPolicy_GroupSelectionPolicy = "DEFAULT_GROUP"
+	WindowsSpecificSecurityPolicy_GroupSelectionPolicy_PARENT_DIRECTORY WindowsSpecificSecurityPolicy_GroupSelectionPolicy = "PARENT_DIRECTORY"
+	WindowsSpecificSecurityPolicy_GroupSelectionPolicy_USERNAME         WindowsSpecificSecurityPolicy_GroupSelectionPolicy = "USERNAME"
 )
 
 type XAttr struct {
-    Name string `json:"name,omitempty"`
-    Value string `json:"value,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 func (client *QuobyteClient) AcknowledgeAlert(request *AcknowledgeAlertRequest) (result *AcknowledgeAlertResponse, err error) {
-    var response AcknowledgeAlertResponse
-    if err = client.sendRequest("acknowledgeAlert", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response AcknowledgeAlertResponse
+	if err = client.SendRequest("acknowledgeAlert", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) AddCa(request *AddCaRequest) (result *AddCaResponse, err error) {
-    var response AddCaResponse
-    if err = client.sendRequest("addCa", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response AddCaResponse
+	if err = client.SendRequest("addCa", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) AddCertificate(request *AddCertificateRequest) (result *AddCertificateResponse, err error) {
-    var response AddCertificateResponse
-    if err = client.sendRequest("addCertificate", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response AddCertificateResponse
+	if err = client.SendRequest("addCertificate", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) AddCsr(request *AddCsrRequest) (result *AddCsrResponse, err error) {
-    var response AddCsrResponse
-    if err = client.sendRequest("addCsr", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response AddCsrResponse
+	if err = client.SendRequest("addCsr", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) AddRegistryReplica(request *AddRegistryReplicaRequest) (result *AddRegistryReplicaResponse, err error) {
-    var response AddRegistryReplicaResponse
-    if err = client.sendRequest("addRegistryReplica", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response AddRegistryReplicaResponse
+	if err = client.SendRequest("addRegistryReplica", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CancelNetworkTest(request *CancelNetworkTestRequest) (result *CancelNetworkTestResponse, err error) {
-    var response CancelNetworkTestResponse
-    if err = client.sendRequest("cancelNetworkTest", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CancelNetworkTestResponse
+	if err = client.SendRequest("cancelNetworkTest", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CancelSupportDump(request *CancelSupportDumpRequest) (result *CancelSupportDumpResponse, err error) {
-    var response CancelSupportDumpResponse
-    if err = client.sendRequest("cancelSupportDump", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CancelSupportDumpResponse
+	if err = client.SendRequest("cancelSupportDump", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CancelTask(request *CancelTaskRequest) (result *CancelTaskResponse, err error) {
-    var response CancelTaskResponse
-    if err = client.sendRequest("cancelTask", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CancelTaskResponse
+	if err = client.SendRequest("cancelTask", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CancelVolumeErasure(request *CancelVolumeErasureRequest) (result *CancelVolumeErasureResponse, err error) {
-    var response CancelVolumeErasureResponse
-    if err = client.sendRequest("cancelVolumeErasure", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CancelVolumeErasureResponse
+	if err = client.SendRequest("cancelVolumeErasure", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ChangePolicyRulePriority(request *ChangePolicyRulePriorityRequest) (result *ChangePolicyRulePriorityResponse, err error) {
-    var response ChangePolicyRulePriorityResponse
-    if err = client.sendRequest("changePolicyRulePriority", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ChangePolicyRulePriorityResponse
+	if err = client.SendRequest("changePolicyRulePriority", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ConfigureRule(request *ConfigureRuleRequest) (result *ConfigureRuleResponse, err error) {
-    var response ConfigureRuleResponse
-    if err = client.sendRequest("configureRule", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ConfigureRuleResponse
+	if err = client.SendRequest("configureRule", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateAccessKeyCredentials(request *CreateAccessKeyCredentialsRequest) (result *CreateAccessKeyCredentialsResponse, err error) {
-    var response CreateAccessKeyCredentialsResponse
-    if err = client.sendRequest("createAccessKeyCredentials", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateAccessKeyCredentialsResponse
+	if err = client.SendRequest("createAccessKeyCredentials", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateCopyFilesTask(request *CreateCopyFilesTaskRequest) (result *CreateTaskResponse, err error) {
-    var response CreateTaskResponse
-    if err = client.sendRequest("createCopyFilesTask", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateTaskResponse
+	if err = client.SendRequest("createCopyFilesTask", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateMasterKeystoreSlot(request *CreateMasterKeystoreSlotRequest) (result *CreateMasterKeystoreSlotResponse, err error) {
-    var response CreateMasterKeystoreSlotResponse
-    if err = client.sendRequest("createMasterKeystoreSlot", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateMasterKeystoreSlotResponse
+	if err = client.SendRequest("createMasterKeystoreSlot", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateMirroredVolume(request *CreateMirroredVolumeRequest) (result *CreateMirroredVolumeResponse, err error) {
-    var response CreateMirroredVolumeResponse
-    if err = client.sendRequest("createMirroredVolume", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateMirroredVolumeResponse
+	if err = client.SendRequest("createMirroredVolume", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateNewUserKeystoreSlot(request *CreateNewUserKeystoreSlotRequest) (result *CreateNewUserKeystoreSlotResponse, err error) {
-    var response CreateNewUserKeystoreSlotResponse
-    if err = client.sendRequest("createNewUserKeystoreSlot", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateNewUserKeystoreSlotResponse
+	if err = client.SendRequest("createNewUserKeystoreSlot", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateNotificationRule(request *CreateNotificationRuleRequest) (result *CreateNotificationRuleResponse, err error) {
-    var response CreateNotificationRuleResponse
-    if err = client.sendRequest("createNotificationRule", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateNotificationRuleResponse
+	if err = client.SendRequest("createNotificationRule", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreatePolicyRule(request *CreatePolicyRuleRequest) (result *CreatePolicyRuleResponse, err error) {
-    var response CreatePolicyRuleResponse
-    if err = client.sendRequest("createPolicyRule", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreatePolicyRuleResponse
+	if err = client.SendRequest("createPolicyRule", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreatePolicyRuleSet(request *CreatePolicyRuleSetRequest) (result *CreatePolicyRuleSetResponse, err error) {
-    var response CreatePolicyRuleSetResponse
-    if err = client.sendRequest("createPolicyRuleSet", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreatePolicyRuleSetResponse
+	if err = client.SendRequest("createPolicyRuleSet", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateSnapshot(request *CreateSnapshotRequest) (result *CreateSnapshotResponse, err error) {
-    var response CreateSnapshotResponse
-    if err = client.sendRequest("createSnapshot", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateSnapshotResponse
+	if err = client.SendRequest("createSnapshot", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateTask(request *CreateTaskRequest) (result *CreateTaskResponse, err error) {
-    var response CreateTaskResponse
-    if err = client.sendRequest("createTask", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateTaskResponse
+	if err = client.SendRequest("createTask", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateUser(request *CreateUserRequest) (result *CreateUserResponse, err error) {
-    var response CreateUserResponse
-    if err = client.sendRequest("createUser", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateUserResponse
+	if err = client.SendRequest("createUser", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) CreateVolume(request *CreateVolumeRequest) (result *CreateVolumeResponse, err error) {
-    var response CreateVolumeResponse
-    if err = client.sendRequest("createVolume", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response CreateVolumeResponse
+	if err = client.SendRequest("createVolume", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DecideCsr(request *DecideCsrRequest) (result *DecideCsrResponse, err error) {
-    var response DecideCsrResponse
-    if err = client.sendRequest("decideCsr", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DecideCsrResponse
+	if err = client.SendRequest("decideCsr", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteAccessKeyCredentials(request *DeleteAccessKeyCredentialsRequest) (result *DeleteAccessKeyCredentialsResponse, err error) {
-    var response DeleteAccessKeyCredentialsResponse
-    if err = client.sendRequest("deleteAccessKeyCredentials", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteAccessKeyCredentialsResponse
+	if err = client.SendRequest("deleteAccessKeyCredentials", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteCa(request *DeleteCaRequest) (result *DeleteCaResponse, err error) {
-    var response DeleteCaResponse
-    if err = client.sendRequest("deleteCa", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteCaResponse
+	if err = client.SendRequest("deleteCa", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteCertificate(request *DeleteCertificateRequest) (result *DeleteCertificateResponse, err error) {
-    var response DeleteCertificateResponse
-    if err = client.sendRequest("deleteCertificate", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteCertificateResponse
+	if err = client.SendRequest("deleteCertificate", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteConfiguration(request *DeleteConfigurationRequest) (result *DeleteConfigurationResponse, err error) {
-    var response DeleteConfigurationResponse
-    if err = client.sendRequest("deleteConfiguration", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteConfigurationResponse
+	if err = client.SendRequest("deleteConfiguration", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteCsr(request *DeleteCsrRequest) (result *DeleteCsrResponse, err error) {
-    var response DeleteCsrResponse
-    if err = client.sendRequest("deleteCsr", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteCsrResponse
+	if err = client.SendRequest("deleteCsr", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteLabels(request *DeleteLabelsRequest) (result *DeleteLabelsResponse, err error) {
-    var response DeleteLabelsResponse
-    if err = client.sendRequest("deleteLabels", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteLabelsResponse
+	if err = client.SendRequest("deleteLabels", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteNotificationRule(request *DeleteNotificationRuleRequest) (result *DeleteNotificationRuleResponse, err error) {
-    var response DeleteNotificationRuleResponse
-    if err = client.sendRequest("deleteNotificationRule", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteNotificationRuleResponse
+	if err = client.SendRequest("deleteNotificationRule", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeletePolicyRules(request *DeletePolicyRulesRequest) (result *DeletePolicyRulesResponse, err error) {
-    var response DeletePolicyRulesResponse
-    if err = client.sendRequest("deletePolicyRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeletePolicyRulesResponse
+	if err = client.SendRequest("deletePolicyRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteSnapshot(request *DeleteSnapshotRequest) (result *DeleteSnapshotResponse, err error) {
-    var response DeleteSnapshotResponse
-    if err = client.sendRequest("deleteSnapshot", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteSnapshotResponse
+	if err = client.SendRequest("deleteSnapshot", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteTenant(request *DeleteTenantRequest) (result *DeleteTenantResponse, err error) {
-    var response DeleteTenantResponse
-    if err = client.sendRequest("deleteTenant", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteTenantResponse
+	if err = client.SendRequest("deleteTenant", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteUser(request *DeleteUserRequest) (result *DeleteUserResponse, err error) {
-    var response DeleteUserResponse
-    if err = client.sendRequest("deleteUser", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteUserResponse
+	if err = client.SendRequest("deleteUser", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeleteVolume(request *DeleteVolumeRequest) (result *DeleteVolumeResponse, err error) {
-    var response DeleteVolumeResponse
-    if err = client.sendRequest("deleteVolume", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeleteVolumeResponse
+	if err = client.SendRequest("deleteVolume", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DeregisterService(request *DeregisterServiceRequest) (result *DeregisterServiceResponse, err error) {
-    var response DeregisterServiceResponse
-    if err = client.sendRequest("deregisterService", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DeregisterServiceResponse
+	if err = client.SendRequest("deregisterService", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DisconnectMirroredVolume(request *DisconnectMirroredVolumeRequest) (result *DisconnectMirroredVolumeResponse, err error) {
-    var response DisconnectMirroredVolumeResponse
-    if err = client.sendRequest("disconnectMirroredVolume", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DisconnectMirroredVolumeResponse
+	if err = client.SendRequest("disconnectMirroredVolume", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DumpEffectivePolicyRules(request *DumpEffectivePolicyRulesRequest) (result *DumpEffectivePolicyRulesResponse, err error) {
-    var response DumpEffectivePolicyRulesResponse
-    if err = client.sendRequest("dumpEffectivePolicyRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DumpEffectivePolicyRulesResponse
+	if err = client.SendRequest("dumpEffectivePolicyRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) DumpPolicyPresets(request *DumpPolicyPresetsRequest) (result *DumpPolicyPresetsResponse, err error) {
-    var response DumpPolicyPresetsResponse
-    if err = client.sendRequest("dumpPolicyPresets", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response DumpPolicyPresetsResponse
+	if err = client.SendRequest("dumpPolicyPresets", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) EraseSnapshot(request *EraseSnapshotRequest) (result *EraseSnapshotResponse, err error) {
-    var response EraseSnapshotResponse
-    if err = client.sendRequest("eraseSnapshot", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response EraseSnapshotResponse
+	if err = client.SendRequest("eraseSnapshot", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) EraseVolume(request *EraseVolumeRequest) (result *EraseVolumeResponse, err error) {
-    var response EraseVolumeResponse
-    if err = client.sendRequest("eraseVolume", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response EraseVolumeResponse
+	if err = client.SendRequest("eraseVolume", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ExportCertificate(request *ExportCertificateRequest) (result *ExportCertificateResponse, err error) {
-    var response ExportCertificateResponse
-    if err = client.sendRequest("exportCertificate", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ExportCertificateResponse
+	if err = client.SendRequest("exportCertificate", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ExportConfiguration(request *ExportConfigurationRequest) (result *ExportConfigurationResponse, err error) {
-    var response ExportConfigurationResponse
-    if err = client.sendRequest("exportConfiguration", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ExportConfigurationResponse
+	if err = client.SendRequest("exportConfiguration", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ExportPolicyRules(request *ExportPolicyRulesRequest) (result *ExportPolicyRulesResponse, err error) {
-    var response ExportPolicyRulesResponse
-    if err = client.sendRequest("exportPolicyRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ExportPolicyRulesResponse
+	if err = client.SendRequest("exportPolicyRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ExportVolume(request *ExportVolumeRequest) (result *ExportVolumeResponse, err error) {
-    var response ExportVolumeResponse
-    if err = client.sendRequest("exportVolume", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ExportVolumeResponse
+	if err = client.SendRequest("exportVolume", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) FilterPolicyRules(request *FilterPolicyRulesRequest) (result *FilterPolicyRulesResponse, err error) {
-    var response FilterPolicyRulesResponse
-    if err = client.sendRequest("filterPolicyRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response FilterPolicyRulesResponse
+	if err = client.SendRequest("filterPolicyRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GenerateAsyncSupportDump(request *GenerateAsyncSupportDumpRequest) (result *GenerateAsyncSupportDumpResponse, err error) {
-    var response GenerateAsyncSupportDumpResponse
-    if err = client.sendRequest("generateAsyncSupportDump", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GenerateAsyncSupportDumpResponse
+	if err = client.SendRequest("generateAsyncSupportDump", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetAccounting(request *GetAccountingRequest) (result *GetAccountingResponse, err error) {
-    var response GetAccountingResponse
-    if err = client.sendRequest("getAccounting", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetAccountingResponse
+	if err = client.SendRequest("getAccounting", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetAddKeySlotData(request *GetAddKeySlotDataRequest) (result *GetAddKeySlotDataResponse, err error) {
-    var response GetAddKeySlotDataResponse
-    if err = client.sendRequest("getAddKeySlotData", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetAddKeySlotDataResponse
+	if err = client.SendRequest("getAddKeySlotData", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetAnalyzeReports(request *GetAnalyzeReportsRequest) (result *GetAnalyzeReportsResponse, err error) {
-    var response GetAnalyzeReportsResponse
-    if err = client.sendRequest("getAnalyzeReports", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetAnalyzeReportsResponse
+	if err = client.SendRequest("getAnalyzeReports", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetAuditLog(request *GetAuditLogRequest) (result *GetAuditLogResponse, err error) {
-    var response GetAuditLogResponse
-    if err = client.sendRequest("getAuditLog", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetAuditLogResponse
+	if err = client.SendRequest("getAuditLog", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetCertificateSubject(request *GetCertificateSubjectRequest) (result *GetCertificateSubjectResponse, err error) {
-    var response GetCertificateSubjectResponse
-    if err = client.sendRequest("getCertificateSubject", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetCertificateSubjectResponse
+	if err = client.SendRequest("getCertificateSubject", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetClientList(request *GetClientListRequest) (result *GetClientListResponse, err error) {
-    var response GetClientListResponse
-    if err = client.sendRequest("getClientList", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetClientListResponse
+	if err = client.SendRequest("getClientList", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetConfiguration(request *GetConfigurationRequest) (result *GetConfigurationResponse, err error) {
-    var response GetConfigurationResponse
-    if err = client.sendRequest("getConfiguration", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetConfigurationResponse
+	if err = client.SendRequest("getConfiguration", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetDefaultKeyStoreSlotParams(request *GetDefaultKeyStoreSlotParamsRequest) (result *GetDefaultKeyStoreSlotParamsResponse, err error) {
-    var response GetDefaultKeyStoreSlotParamsResponse
-    if err = client.sendRequest("getDefaultKeyStoreSlotParams", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetDefaultKeyStoreSlotParamsResponse
+	if err = client.SendRequest("getDefaultKeyStoreSlotParams", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetDeviceIds(request *GetDeviceIdsRequest) (result *GetDeviceIdsResponse, err error) {
-    var response GetDeviceIdsResponse
-    if err = client.sendRequest("getDeviceIds", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetDeviceIdsResponse
+	if err = client.SendRequest("getDeviceIds", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetDeviceList(request *GetDeviceListRequest) (result *GetDeviceListResponse, err error) {
-    var response GetDeviceListResponse
-    if err = client.sendRequest("getDeviceList", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetDeviceListResponse
+	if err = client.SendRequest("getDeviceList", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetDeviceNetworkEndpoints(request *GetDeviceNetworkEndpointsRequest) (result *GetDeviceNetworkEndpointsResponse, err error) {
-    var response GetDeviceNetworkEndpointsResponse
-    if err = client.sendRequest("getDeviceNetworkEndpoints", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetDeviceNetworkEndpointsResponse
+	if err = client.SendRequest("getDeviceNetworkEndpoints", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetDeviceTags(request *GetDeviceTagsRequest) (result *GetDeviceTagsResponse, err error) {
-    var response GetDeviceTagsResponse
-    if err = client.sendRequest("getDeviceTags", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetDeviceTagsResponse
+	if err = client.SendRequest("getDeviceTags", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetEffectiveVolumeConfiguration(request *GetEffectiveVolumeConfigurationRequest) (result *GetEffectiveVolumeConfigurationResponse, err error) {
-    var response GetEffectiveVolumeConfigurationResponse
-    if err = client.sendRequest("getEffectiveVolumeConfiguration", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetEffectiveVolumeConfigurationResponse
+	if err = client.SendRequest("getEffectiveVolumeConfiguration", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetEncryptStatus(request *GetEncryptStatusRequest) (result *GetEncryptStatusResponse, err error) {
-    var response GetEncryptStatusResponse
-    if err = client.sendRequest("getEncryptStatus", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetEncryptStatusResponse
+	if err = client.SendRequest("getEncryptStatus", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetEncryptedVolumeKey(request *GetEncryptedVolumeKeyRequest) (result *GetEncryptedVolumeKeyResponse, err error) {
-    var response GetEncryptedVolumeKeyResponse
-    if err = client.sendRequest("getEncryptedVolumeKey", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetEncryptedVolumeKeyResponse
+	if err = client.SendRequest("getEncryptedVolumeKey", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetFileMetadataDump(request *GetFileMetadataDumpRequest) (result *GetFileMetadataDumpResponse, err error) {
-    var response GetFileMetadataDumpResponse
-    if err = client.sendRequest("getFileMetadataDump", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetFileMetadataDumpResponse
+	if err = client.SendRequest("getFileMetadataDump", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetFiringRules(request *GetFiringRulesRequest) (result *GetFiringRulesResponse, err error) {
-    var response GetFiringRulesResponse
-    if err = client.sendRequest("getFiringRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetFiringRulesResponse
+	if err = client.SendRequest("getFiringRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetHealthManagerStatus(request *GetHealthManagerStatusRequest) (result *GetHealthManagerStatusResponse, err error) {
-    var response GetHealthManagerStatusResponse
-    if err = client.sendRequest("getHealthManagerStatus", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetHealthManagerStatusResponse
+	if err = client.SendRequest("getHealthManagerStatus", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetInformation(request *GetInformationRequest) (result *GetInformationResponse, err error) {
-    var response GetInformationResponse
-    if err = client.sendRequest("getInformation", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetInformationResponse
+	if err = client.SendRequest("getInformation", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetKeyStoreSlotWithoutHash(request *GetKeyStoreSlotWithoutHashRequest) (result *GetKeyStoreSlotWithoutHashResponse, err error) {
-    var response GetKeyStoreSlotWithoutHashResponse
-    if err = client.sendRequest("getKeyStoreSlotWithoutHash", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetKeyStoreSlotWithoutHashResponse
+	if err = client.SendRequest("getKeyStoreSlotWithoutHash", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetLabels(request *GetLabelsRequest) (result *GetLabelsResponse, err error) {
-    var response GetLabelsResponse
-    if err = client.sendRequest("getLabels", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetLabelsResponse
+	if err = client.SendRequest("getLabels", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetLatestEvent(request *GetLatestEventRequest) (result *GetLatestEventResponse, err error) {
-    var response GetLatestEventResponse
-    if err = client.sendRequest("getLatestEvent", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetLatestEventResponse
+	if err = client.SendRequest("getLatestEvent", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetLicense(request *GetLicenseRequest) (result *GetLicenseResponse, err error) {
-    var response GetLicenseResponse
-    if err = client.sendRequest("getLicense", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetLicenseResponse
+	if err = client.SendRequest("getLicense", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetNetworkTestResult(request *GetNetworkTestResultRequest) (result *GetNetworkTestResultResponse, err error) {
-    var response GetNetworkTestResultResponse
-    if err = client.sendRequest("getNetworkTestResult", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetNetworkTestResultResponse
+	if err = client.SendRequest("getNetworkTestResult", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetNotificationRules(request *GetNotificationRulesRequest) (result *GetNotificationRulesResponse, err error) {
-    var response GetNotificationRulesResponse
-    if err = client.sendRequest("getNotificationRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetNotificationRulesResponse
+	if err = client.SendRequest("getNotificationRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetPolicyPresets(request *GetPolicyPresetsRequest) (result *GetPolicyPresetsResponse, err error) {
-    var response GetPolicyPresetsResponse
-    if err = client.sendRequest("getPolicyPresets", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetPolicyPresetsResponse
+	if err = client.SendRequest("getPolicyPresets", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetPolicyRuleSets(request *GetPolicyRuleSetsRequest) (result *GetPolicyRuleSetsResponse, err error) {
-    var response GetPolicyRuleSetsResponse
-    if err = client.sendRequest("getPolicyRuleSets", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetPolicyRuleSetsResponse
+	if err = client.SendRequest("getPolicyRuleSets", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetPolicyRules(request *GetPolicyRulesRequest) (result *GetPolicyRulesResponse, err error) {
-    var response GetPolicyRulesResponse
-    if err = client.sendRequest("getPolicyRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetPolicyRulesResponse
+	if err = client.SendRequest("getPolicyRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetQuota(request *GetQuotaRequest) (result *GetQuotaResponse, err error) {
-    var response GetQuotaResponse
-    if err = client.sendRequest("getQuota", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetQuotaResponse
+	if err = client.SendRequest("getQuota", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetRules(request *GetRulesRequest) (result *GetRulesResponse, err error) {
-    var response GetRulesResponse
-    if err = client.sendRequest("getRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetRulesResponse
+	if err = client.SendRequest("getRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetServiceDump(request *GetServiceDumpRequest) (result *GetServiceDumpResponse, err error) {
-    var response GetServiceDumpResponse
-    if err = client.sendRequest("getServiceDump", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetServiceDumpResponse
+	if err = client.SendRequest("getServiceDump", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetServices(request *GetServicesRequest) (result *GetServicesResponse, err error) {
-    var response GetServicesResponse
-    if err = client.sendRequest("getServices", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetServicesResponse
+	if err = client.SendRequest("getServices", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetSupportDump(request *GetSupportDumpRequest) (result *GetSupportDumpResponse, err error) {
-    var response GetSupportDumpResponse
-    if err = client.sendRequest("getSupportDump", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetSupportDumpResponse
+	if err = client.SendRequest("getSupportDump", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetSupportDumpStatus(request *GetSupportDumpStatusRequest) (result *GetSupportDumpStatusResponse, err error) {
-    var response GetSupportDumpStatusResponse
-    if err = client.sendRequest("getSupportDumpStatus", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetSupportDumpStatusResponse
+	if err = client.SendRequest("getSupportDumpStatus", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetSystemStatistics(request *GetSystemStatisticsRequest) (result *GetSystemStatisticsResponse, err error) {
-    var response GetSystemStatisticsResponse
-    if err = client.sendRequest("getSystemStatistics", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetSystemStatisticsResponse
+	if err = client.SendRequest("getSystemStatistics", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetTaskList(request *GetTaskListRequest) (result *GetTaskListResponse, err error) {
-    var response GetTaskListResponse
-    if err = client.sendRequest("getTaskList", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetTaskListResponse
+	if err = client.SendRequest("getTaskList", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetTenant(request *GetTenantRequest) (result *GetTenantResponse, err error) {
-    var response GetTenantResponse
-    if err = client.sendRequest("getTenant", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetTenantResponse
+	if err = client.SendRequest("getTenant", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetUnformattedDevices(request *GetUnformattedDevicesRequest) (result *GetUnformattedDevicesResponse, err error) {
-    var response GetUnformattedDevicesResponse
-    if err = client.sendRequest("getUnformattedDevices", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetUnformattedDevicesResponse
+	if err = client.SendRequest("getUnformattedDevices", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetUsers(request *GetUsersRequest) (result *GetUsersResponse, err error) {
-    var response GetUsersResponse
-    if err = client.sendRequest("getUsers", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetUsersResponse
+	if err = client.SendRequest("getUsers", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) GetVolumeList(request *GetVolumeListRequest) (result *GetVolumeListResponse, err error) {
-    var response GetVolumeListResponse
-    if err = client.sendRequest("getVolumeList", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response GetVolumeListResponse
+	if err = client.SendRequest("getVolumeList", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ImportAccessKeys(request *ImportAccessKeysRequest) (result *ImportAccessKeysResponse, err error) {
-    var response ImportAccessKeysResponse
-    if err = client.sendRequest("importAccessKeys", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ImportAccessKeysResponse
+	if err = client.SendRequest("importAccessKeys", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ImportConfiguration(request *ImportConfigurationRequest) (result *ImportConfigurationResponse, err error) {
-    var response ImportConfigurationResponse
-    if err = client.sendRequest("importConfiguration", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ImportConfigurationResponse
+	if err = client.SendRequest("importConfiguration", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ImportPolicyRules(request *ImportPolicyRulesRequest) (result *ImportPolicyRulesResponse, err error) {
-    var response ImportPolicyRulesResponse
-    if err = client.sendRequest("importPolicyRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ImportPolicyRulesResponse
+	if err = client.SendRequest("importPolicyRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ListCa(request *ListCaRequest) (result *ListCaResponse, err error) {
-    var response ListCaResponse
-    if err = client.sendRequest("listCa", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ListCaResponse
+	if err = client.SendRequest("listCa", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ListCertificates(request *ListCertificatesRequest) (result *ListCertificatesResponse, err error) {
-    var response ListCertificatesResponse
-    if err = client.sendRequest("listCertificates", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ListCertificatesResponse
+	if err = client.SendRequest("listCertificates", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ListCsr(request *ListCsrRequest) (result *ListCsrResponse, err error) {
-    var response ListCsrResponse
-    if err = client.sendRequest("listCsr", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ListCsrResponse
+	if err = client.SendRequest("listCsr", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ListRegistryReplicas(request *ListRegistryReplicasRequest) (result *ListRegistryReplicasResponse, err error) {
-    var response ListRegistryReplicasResponse
-    if err = client.sendRequest("listRegistryReplicas", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ListRegistryReplicasResponse
+	if err = client.SendRequest("listRegistryReplicas", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ListSnapshots(request *ListSnapshotsRequest) (result *ListSnapshotsResponse, err error) {
-    var response ListSnapshotsResponse
-    if err = client.sendRequest("listSnapshots", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ListSnapshotsResponse
+	if err = client.SendRequest("listSnapshots", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) MakeDevice(request *MakeDeviceRequest) (result *MakeDeviceResponse, err error) {
-    var response MakeDeviceResponse
-    if err = client.sendRequest("makeDevice", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response MakeDeviceResponse
+	if err = client.SendRequest("makeDevice", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) PublishBucketVolume(request *PublishBucketVolumeRequest) (result *PublishBucketVolumeResponse, err error) {
-    var response PublishBucketVolumeResponse
-    if err = client.sendRequest("publishBucketVolume", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response PublishBucketVolumeResponse
+	if err = client.SendRequest("publishBucketVolume", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) RegenerateDatabase(request *RegenerateDatabaseRequest) (result *RegenerateDatabaseResponse, err error) {
-    var response RegenerateDatabaseResponse
-    if err = client.sendRequest("regenerateDatabase", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response RegenerateDatabaseResponse
+	if err = client.SendRequest("regenerateDatabase", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) RemoveKeystoreSlot(request *RemoveKeystoreSlotRequest) (result *RemoveKeystoreSlotResponse, err error) {
-    var response RemoveKeystoreSlotResponse
-    if err = client.sendRequest("removeKeystoreSlot", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response RemoveKeystoreSlotResponse
+	if err = client.SendRequest("removeKeystoreSlot", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) RemoveRegistryReplica(request *RemoveRegistryReplicaRequest) (result *RemoveRegistryReplicaResponse, err error) {
-    var response RemoveRegistryReplicaResponse
-    if err = client.sendRequest("removeRegistryReplica", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response RemoveRegistryReplicaResponse
+	if err = client.SendRequest("removeRegistryReplica", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ResolveGlobalFileId(request *ResolveGlobalFileIdRequest) (result *ResolveGlobalFileIdResponse, err error) {
-    var response ResolveGlobalFileIdResponse
-    if err = client.sendRequest("resolveGlobalFileId", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ResolveGlobalFileIdResponse
+	if err = client.SendRequest("resolveGlobalFileId", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ResolvePolicyRuleName(request *ResolvePolicyRuleNameRequest) (result *ResolvePolicyRuleNameResponse, err error) {
-    var response ResolvePolicyRuleNameResponse
-    if err = client.sendRequest("resolvePolicyRuleName", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ResolvePolicyRuleNameResponse
+	if err = client.SendRequest("resolvePolicyRuleName", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ResolveTenantName(request *ResolveTenantNameRequest) (result *ResolveTenantNameResponse, err error) {
-    var response ResolveTenantNameResponse
-    if err = client.sendRequest("resolveTenantName", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ResolveTenantNameResponse
+	if err = client.SendRequest("resolveTenantName", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ResolveVolumeName(request *ResolveVolumeNameRequest) (result *ResolveVolumeNameResponse, err error) {
-    var response ResolveVolumeNameResponse
-    if err = client.sendRequest("resolveVolumeName", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ResolveVolumeNameResponse
+	if err = client.SendRequest("resolveVolumeName", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) ResumeTask(request *ResumeTaskRequest) (result *ResumeTaskResponse, err error) {
-    var response ResumeTaskResponse
-    if err = client.sendRequest("resumeTask", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response ResumeTaskResponse
+	if err = client.SendRequest("resumeTask", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) RetryTask(request *RetryTaskRequest) (result *RetryTaskResponse, err error) {
-    var response RetryTaskResponse
-    if err = client.sendRequest("retryTask", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response RetryTaskResponse
+	if err = client.SendRequest("retryTask", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) RevokeCertificate(request *RevokeCertificateRequest) (result *RevokeCertificateResponse, err error) {
-    var response RevokeCertificateResponse
-    if err = client.sendRequest("revokeCertificate", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response RevokeCertificateResponse
+	if err = client.SendRequest("revokeCertificate", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) SetCertificateOwner(request *SetCertificateOwnerRequest) (result *SetCertificateOwnerResponse, err error) {
-    var response SetCertificateOwnerResponse
-    if err = client.sendRequest("setCertificateOwner", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response SetCertificateOwnerResponse
+	if err = client.SendRequest("setCertificateOwner", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) SetCertificateSubject(request *SetCertificateSubjectRequest) (result *SetCertificateSubjectResponse, err error) {
-    var response SetCertificateSubjectResponse
-    if err = client.sendRequest("setCertificateSubject", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response SetCertificateSubjectResponse
+	if err = client.SendRequest("setCertificateSubject", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) SetConfiguration(request *SetConfigurationRequest) (result *SetConfigurationResponse, err error) {
-    var response SetConfigurationResponse
-    if err = client.sendRequest("setConfiguration", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response SetConfigurationResponse
+	if err = client.SendRequest("setConfiguration", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) SetEncryptedVolumeKey(request *SetEncryptedVolumeKeyRequest) (result *SetEncryptedVolumeKeyResponse, err error) {
-    var response SetEncryptedVolumeKeyResponse
-    if err = client.sendRequest("setEncryptedVolumeKey", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response SetEncryptedVolumeKeyResponse
+	if err = client.SendRequest("setEncryptedVolumeKey", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) SetLabels(request *SetLabelsRequest) (result *SetLabelsResponse, err error) {
-    var response SetLabelsResponse
-    if err = client.sendRequest("setLabels", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response SetLabelsResponse
+	if err = client.SendRequest("setLabels", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) SetNotificationRule(request *SetNotificationRuleRequest) (result *SetNotificationRuleResponse, err error) {
-    var response SetNotificationRuleResponse
-    if err = client.sendRequest("setNotificationRule", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response SetNotificationRuleResponse
+	if err = client.SendRequest("setNotificationRule", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) SetQuota(request *SetQuotaRequest) (result *SetQuotaResponse, err error) {
-    var response SetQuotaResponse
-    if err = client.sendRequest("setQuota", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response SetQuotaResponse
+	if err = client.SendRequest("setQuota", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) SetTenant(request *SetTenantRequest) (result *SetTenantResponse, err error) {
-    var response SetTenantResponse
-    if err = client.sendRequest("setTenant", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response SetTenantResponse
+	if err = client.SendRequest("setTenant", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) SilenceAlert(request *SilenceAlertRequest) (result *SilenceAlertResponse, err error) {
-    var response SilenceAlertResponse
-    if err = client.sendRequest("silenceAlert", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response SilenceAlertResponse
+	if err = client.SendRequest("silenceAlert", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) StartNetworkTest(request *StartNetworkTestRequest) (result *StartNetworkTestResponse, err error) {
-    var response StartNetworkTestResponse
-    if err = client.sendRequest("startNetworkTest", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response StartNetworkTestResponse
+	if err = client.SendRequest("startNetworkTest", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) UnlockMasterKeystoreSlot(request *UnlockMasterKeystoreSlotRequest) (result *UnlockMasterKeystoreSlotResponse, err error) {
-    var response UnlockMasterKeystoreSlotResponse
-    if err = client.sendRequest("unlockMasterKeystoreSlot", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response UnlockMasterKeystoreSlotResponse
+	if err = client.SendRequest("unlockMasterKeystoreSlot", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) UnpublishBucketVolume(request *UnpublishBucketVolumeRequest) (result *UnpublishBucketVolumeResponse, err error) {
-    var response UnpublishBucketVolumeResponse
-    if err = client.sendRequest("unpublishBucketVolume", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response UnpublishBucketVolumeResponse
+	if err = client.SendRequest("unpublishBucketVolume", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) UpdateDevice(request *UpdateDeviceRequest) (result *UpdateDeviceResponse, err error) {
-    var response UpdateDeviceResponse
-    if err = client.sendRequest("updateDevice", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response UpdateDeviceResponse
+	if err = client.SendRequest("updateDevice", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) UpdatePolicyRules(request *UpdatePolicyRulesRequest) (result *UpdatePolicyRulesResponse, err error) {
-    var response UpdatePolicyRulesResponse
-    if err = client.sendRequest("updatePolicyRules", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response UpdatePolicyRulesResponse
+	if err = client.SendRequest("updatePolicyRules", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) UpdateUser(request *UpdateUserRequest) (result *UpdateUserResponse, err error) {
-    var response UpdateUserResponse
-    if err = client.sendRequest("updateUser", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response UpdateUserResponse
+	if err = client.SendRequest("updateUser", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) UpdateVolume(request *UpdateVolumeRequest) (result *UpdateVolumeResponse, err error) {
-    var response UpdateVolumeResponse
-    if err = client.sendRequest("updateVolume", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response UpdateVolumeResponse
+	if err = client.SendRequest("updateVolume", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 func (client *QuobyteClient) VerifyLicense(request *VerifyLicenseRequest) (result *VerifyLicenseResponse, err error) {
-    var response VerifyLicenseResponse
-    if err = client.sendRequest("verifyLicense", request, &response); err != nil {
-        return nil, err
-    }
-    return &response, nil
+	var response VerifyLicenseResponse
+	if err = client.SendRequest("verifyLicense", request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
