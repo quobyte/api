@@ -120,8 +120,30 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 		if err != nil {
 			return (err)
 		}
-		return fmt.Errorf("JsonRPC failed with error (error code: %d) %s",
-			resp.StatusCode, string(body))
+		return addDebugInfo(
+			fmt.Errorf("JsonRPC failed with error (error code: %d)", resp.StatusCode),
+			string(body),
+		)
 	}
 	return decodeResponse(resp.Body, &response)
+}
+
+// debugError holds extra data that is not logged by default.
+type debugError struct {
+	err  error
+	data string
+}
+
+func (e debugError) Error() string { return e.err.Error() }
+
+func addDebugInfo(err error, data string) error {
+	return debugError{err, data}
+}
+
+// WithDebugInfo appends extra data to the given error for debugging purposes.
+func WithDebugInfo(err error) error {
+	if de, ok := err.(debugError); ok {
+		return fmt.Errorf("%v: %s", de.err, de.data)
+	}
+	return err
 }
