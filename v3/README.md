@@ -3,8 +3,8 @@
 Get the Quobyte 3.x api client
 
 ```bash
-# Get Quobyte 3.x api (notice v3 at the end of the import)
-go get github.com/quobyte/api/v3
+# Replace v3.x.x with a valid tag v3.x.x api tag (https://github.com/quobyte/api/tags)
+go get github.com/quobyte/api<@v3.x.x>
 ```
 
 ## Usage
@@ -14,7 +14,6 @@ package main
 
 import (
   "log"
-  // Get Quobyte 3.x api (notice v3 at the end of the import)
   quobyte_api "github.com/quobyte/api/v3"
 )
 

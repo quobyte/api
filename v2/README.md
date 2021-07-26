@@ -2,13 +2,11 @@
 
 Quobyte golang API follows `go module` system for versioning.
 
-To get Quobyte 3.x api client, please follow 3.x [documentation](v3/README.md)
-
 Get the Quobyte 2.x api client
 
 ```bash
-# Get Quobyte 2.x api
-go get github.com/quobyte/api
+# Replace v2.x.x with a valid tag v2.x.x api tag (https://github.com/quobyte/api/tags)
+go get github.com/quobyte/api@<v2.x.x>
 ```
 
 ## Usage
@@ -19,7 +17,7 @@ package main
 import (
   "log"
   // Get Quobyte 2.x api
-  quobyte_api "github.com/quobyte/api"
+  quobyte_v2_api "github.com/quobyte/api/v2"
 )
 
 func main() {
@@ -33,15 +31,15 @@ func main() {
         os.Exit(1)
     }
 
-    client := quobyte_api.NewQuobyteClient(*url, *username, *password)
-    client.SetAPIRetryPolicy(quobyte_api.RetryInfinitely) // Default quobyte_api.RetryInteractive
-    req := &quobyte_api.CreateVolumeRequest{
+    client := quobyte_v2_api.NewQuobyteClient(*url, *username, *password)
+    client.SetAPIRetryPolicy(quobyte_v2_api.RetryInfinitely) // Default quobyte_api.RetryInteractive
+    req := &quobyte_v2_api.CreateVolumeRequest{
         Name:              "MyVolume",
         TenantId:          "32edb36d-badc-affe-b44a-4ab749af4d9a",
         RootUserId:        "root",
         RootGroupId:	   "root",
         ConfigurationName: "BASE",
-        Label: []*quobyte_api.Label{
+        Label: []*quobyte_v2_api.Label{
             {Name: "label1", Value: "value1"},
             {Name: "label2", Value: "value2"},
         },
