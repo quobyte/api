@@ -1,7 +1,9 @@
 package quobyte
 
 import (
+	"log"
 	"net/http"
+	"net/http/cookiejar"
 	"regexp"
 )
 
@@ -19,6 +21,7 @@ type QuobyteClient struct {
 	username       string
 	password       string
 	apiRetryPolicy string
+	hasCookies     bool
 }
 
 func (client *QuobyteClient) SetAPIRetryPolicy(retry string) {
@@ -35,13 +38,20 @@ func (client *QuobyteClient) SetTransport(t http.RoundTripper) {
 
 // NewQuobyteClient creates a new Quobyte API client
 func NewQuobyteClient(url string, username string, password string) *QuobyteClient {
-	return &QuobyteClient{
-		client:         &http.Client{},
-		url:            url,
-		username:       username,
-		password:       password,
-		apiRetryPolicy: RetryInteractive,
+	cookieJar, err := cookiejar.New(nil)
+	if err == nil {
+		return &QuobyteClient{
+			client:         &http.Client{Jar: cookieJar},
+			url:            url,
+			username:       username,
+			password:       password,
+			apiRetryPolicy: RetryInteractive,
+			hasCookies:     false,
+		}
+	} else {
+		log.Fatalf("could not initialize cookie jar due to %s", err.Error())
 	}
+	return nil
 }
 
 // GetVolumeUUID resolves the volumeUUID for the given volume and tenant name.

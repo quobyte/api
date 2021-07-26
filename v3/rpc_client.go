@@ -11,11 +11,14 @@ import (
 	"net/http"
 	"reflect"
 	"strconv"
+	"sync"
 )
 
 const (
 	emptyResponse string = "Empty result and no error occured"
 )
+
+var mux sync.Mutex
 
 type request struct {
 	ID      string      `json:"id"`
@@ -105,7 +108,12 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 		return err
 	}
 	req.Header.Set("Content-Type", "application/json")
-	req.SetBasicAuth(client.username, client.password)
+	// If no cookies, serialize requests such that first successful request sets the cookies
+	if !client.hasCookies {
+		mux.Lock()
+		defer mux.Unlock()
+		req.SetBasicAuth(client.username, client.password)
+	}
 	resp, err := client.client.Do(req)
 	if err != nil {
 		return err
@@ -122,6 +130,11 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 		}
 		return fmt.Errorf("JsonRPC failed with error (error code: %d) %s",
 			resp.StatusCode, string(body))
+	}
+	if len(resp.Cookies()) > 0 {
+		client.hasCookies = true
+	} else {
+		client.hasCookies = false
 	}
 	return decodeResponse(resp.Body, &response)
 }
