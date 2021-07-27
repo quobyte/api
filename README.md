@@ -15,7 +15,7 @@ package main
 
 import (
   "log"
-  quobyte_api "github.com/quobyte/api/v3"
+  quobyte_api "github.com/quobyte/api/quobyte"
 )
 
 func main() {
