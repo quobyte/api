@@ -6,5 +6,5 @@
    released as github tag v3.0.1, the entry in `./v3/go.mod` must be as following  
 
     ```bash
-     module github.com/quobyte/api/v3.0.1
+     module github.com/quobyte/api/v3
     ```

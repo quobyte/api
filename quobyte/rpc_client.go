@@ -1,4 +1,4 @@
-package v2
+package quobyte
 
 import (
 	"bytes"
@@ -118,7 +118,6 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 	if err != nil {
 		return err
 	}
-	// log.Printf("response %v", resp)
 	defer resp.Body.Close()
 
 	if resp.StatusCode < 200 || resp.StatusCode > 299 {
