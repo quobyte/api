@@ -1,3 +1,3 @@
-module github.com/quobyte/api/v3
+module github.com/quobyte/api
 
 go 1.14

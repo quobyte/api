@@ -3,8 +3,8 @@
 ## Releasing new version
 
 * `go.mod` files must be present at the root level of the project
-* Each major release (vX.a.b) must provide unique import path such as `github.com/quobyte/api/vX`
-  * To meet this requirement, rename directory with `vX`
+* Each major release beyond V1 (such =v2[+].a.b) must provide unique import path such as `github.com/quobyte/api/vX`
+  * To get around this issue, we always use v1.x.x (never make V2 release)
 * For local testing of edited module,
   * Create a standalone project with the `testing or main.go` and `go mod init` inside the project root.
       The `go mod init` fetches the depedencies required by code.
