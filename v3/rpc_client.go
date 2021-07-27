@@ -103,38 +103,60 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 	if err != nil {
 		return err
 	}
-	req, err := http.NewRequest("POST", client.url, bytes.NewBuffer(message))
+	req, err := http.NewRequest("POST", client.url.String(), bytes.NewBuffer(message))
 	if err != nil {
 		return err
 	}
 	req.Header.Set("Content-Type", "application/json")
 	// If no cookies, serialize requests such that first successful request sets the cookies
-	if !client.hasCookies {
+	for {
 		mux.Lock()
-		defer mux.Unlock()
-		req.SetBasicAuth(client.username, client.password)
-	}
-	resp, err := client.client.Do(req)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		if resp.StatusCode == 401 {
-			return errors.New("Unable to authenticate with Quobyte API service")
-		}
-		body, err := ioutil.ReadAll(resp.Body)
+		hasCookies, err := client.hasCookies()
 		if err != nil {
-			return (err)
+			return err
 		}
-		return fmt.Errorf("JsonRPC failed with error (error code: %d) %s",
-			resp.StatusCode, string(body))
+		if !hasCookies {
+			req.SetBasicAuth(client.username, client.password)
+			// no cookies available, must hold lock until request is completed and
+			// new cookies are created by server
+			defer mux.Unlock()
+		} else {
+			// let every thread/routine send request using the cookie
+			mux.Unlock()
+		}
+		resp, err := client.client.Do(req)
+		if err != nil {
+			return err
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode < 200 || resp.StatusCode > 299 {
+			if resp.StatusCode == 401 {
+				_, ok := req.Header["Authorization"]
+				if ok {
+					return errors.New("Unable to authenticate with Quobyte API service")
+				}
+				// Session is not valid anymore (service restart, sesssion invalidated etc)!!
+				// resend basic auth and get new cookies
+				// invalidate session cookies
+				cookieJar := client.client.Jar
+				if cookieJar != nil {
+					cookies := cookieJar.Cookies(client.url)
+					for _, cookie := range cookies {
+						cookie.MaxAge = -1
+					}
+					cookieJar.SetCookies(client.url, cookies)
+				}
+				// retry request with authorization header
+				continue
+			}
+			body, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				return (err)
+			}
+			return fmt.Errorf("JsonRPC failed with error (error code: %d) %s",
+				resp.StatusCode, string(body))
+		}
+		return decodeResponse(resp.Body, &response)
 	}
-	if len(resp.Cookies()) > 0 {
-		client.hasCookies = true
-	} else {
-		client.hasCookies = false
-	}
-	return decodeResponse(resp.Body, &response)
 }

@@ -3,8 +3,9 @@ package quobyte
 import (
 	"log"
 	"net/http"
-	"regexp"
 	"net/http/cookiejar"
+	"net/url"
+	"regexp"
 )
 
 // retry policy codes
@@ -17,11 +18,15 @@ var UUIDValidator = regexp.MustCompile("^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0
 
 type QuobyteClient struct {
 	client         *http.Client
-	url            string
+	url            *url.URL
 	username       string
 	password       string
 	apiRetryPolicy string
-	hasCookies     bool
+	// hasCookies     bool
+}
+
+func (client *QuobyteClient) hasCookies() (bool, error) {
+	return client.client.Jar != nil && len(client.client.Jar.Cookies(client.url)) > 0, nil
 }
 
 func (client *QuobyteClient) SetAPIRetryPolicy(retry string) {
@@ -37,19 +42,21 @@ func (client *QuobyteClient) SetTransport(t http.RoundTripper) {
 }
 
 // NewQuobyteClient creates a new Quobyte API client
-func NewQuobyteClient(url string, username string, password string) *QuobyteClient {
-	cookieJar, err := cookiejar.New(nil)
-	if err == nil {
-		return &QuobyteClient{
-			client:         &http.Client{Jar: cookieJar},
-			url:            url,
-			username:       username,
-			password:       password,
-			apiRetryPolicy: RetryInteractive,
-			hasCookies:     false,
-		}
-	} else {
+func NewQuobyteClient(urlStr string, username string, password string) *QuobyteClient {
+	url, err := url.Parse(urlStr)
+	if err != nil {
 		log.Fatalf("could not initialize cookie jar due to %s", err.Error())
+	}
+	cookieJar, err := cookiejar.New(nil)
+	if err != nil {
+		log.Fatalf("could not initialize cookie jar due to %s", err.Error())
+	}
+	return &QuobyteClient{
+		client:         &http.Client{Jar: cookieJar},
+		url:            url,
+		username:       username,
+		password:       password,
+		apiRetryPolicy: RetryInteractive,
 	}
 	return nil
 }
