@@ -3,11 +3,12 @@
 Get the Quobyte 3.x api client
 
 ```bash
-# Replace v3.x.x with a valid tag v3.x.x api tag (https://github.com/quobyte/api/tags)
-go get github.com/quobyte/api<@v3.x.x>
+go get github.com/quobyte/api/v3
 ```
 
 ## Usage
+
+`Note:` Create below example in separate project outside of the api repository to avoid circular `go mod` dependencies.
 
 ```go
 package main
