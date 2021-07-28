@@ -14,6 +14,6 @@
 * Publishing change must always have highest minor version of all the published tags (even if the tag is deleted,
  the new version must have the higher version than deleted tag).
 
-Note: go mod updates dependency to highest minor version available. Even if the version is deleted from the tags,
+Note: go mod updates dependency to the highest minor version available. Even if the version is deleted from the tags,
 go-git gets it from the deleted references (Uhhh!!). The only way out is to create a new higher minor
 version with the changes.
