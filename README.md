@@ -1,9 +1,9 @@
 # Quobyte API Clients
 
-Get the Quobyte 3.x api client
+Get the Quobyte api client
 
 ```bash
-go get github.com/quobyte/api/v3
+go get github.com/quobyte/api
 ```
 
 ## Usage
