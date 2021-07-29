@@ -45,7 +45,7 @@ func (client *QuobyteClient) SetTransport(t http.RoundTripper) {
 func NewQuobyteClient(urlStr string, username string, password string) *QuobyteClient {
 	url, err := url.Parse(urlStr)
 	if err != nil {
-		log.Fatalf("could not initialize cookie jar due to %s", err.Error())
+		log.Fatalf("could not parse url due to %s", err.Error())
 	}
 	cookieJar, err := cookiejar.New(nil)
 	if err != nil {
