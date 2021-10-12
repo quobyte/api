@@ -35,7 +35,7 @@ func main() {
         Name:              "MyVolume",
         TenantId:          "32edb36d-badc-affe-b44a-4ab749af4d9a",
         RootUserId:        "root",
-        RootGroupId:	   "root",
+        RootGroupId:       "root",
         ConfigurationName: "BASE",
         Label: []*quobyte_api.Label{
             {Name: "label1", Value: "value1"},
@@ -48,8 +48,8 @@ func main() {
         log.Fatalf("Error: %v", err)
     }
 
-    capactiy := int64(1024 * 1024 * 1024)
-    err = client.SetVolumeQuota(response.VolumeUuid, capactiy)
+    capacity := int64(1024 * 1024 * 1024)
+    err = client.SetVolumeQuota(response.VolumeUuid, capacity)
     if err != nil {
         log.Fatalf("Error: %v", err)
     }

@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	emptyResponse string = "Empty result and no error occured"
+	emptyResponse string = "Empty result and no error occurred"
 )
 
 var mux sync.Mutex
@@ -136,7 +136,7 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 				if ok {
 					return errors.New("Unable to authenticate with Quobyte API service")
 				}
-				// Session is not valid anymore (service restart, sesssion invalidated etc)!!
+				// Session is not valid anymore (service restart, session invalidated etc)!!
 				// resend basic auth and get new cookies
 				// invalidate session cookies
 				cookieJar := client.client.Jar
