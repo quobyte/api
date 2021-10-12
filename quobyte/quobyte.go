@@ -105,6 +105,7 @@ func (client *QuobyteClient) ResolveVolumeNameToUUID(volumeName, tenant string) 
 	return response.VolumeUuid, nil
 }
 
+// Deprecated: Use Erase variant of the method instead.
 // DeleteVolumeByResolvingNamesToUUID deletes the volume by resolving the volume name and tenant name to
 // respective UUID if required.
 // This method should be used if the given volume, tenant information is name or UUID.
@@ -118,6 +119,7 @@ func (client *QuobyteClient) DeleteVolumeByResolvingNamesToUUID(volume, tenant s
 	return err
 }
 
+// Deprecated: Use Erase variant of the method instead.
 // DeleteVolumeByName deletes a volume by a given name
 func (client *QuobyteClient) DeleteVolumeByName(volumeName, tenant string) error {
 	uuid, err := client.ResolveVolumeNameToUUID(volumeName, tenant)
@@ -129,19 +131,43 @@ func (client *QuobyteClient) DeleteVolumeByName(volumeName, tenant string) error
 	return err
 }
 
+// EraseVolumeByResolvingNamesToUUID Erases the volume by resolving the volume name and tenant name to
+// respective UUID if required.
+// This method should be used if the given volume, tenant information is name or UUID.
+func (client *QuobyteClient) EraseVolumeByResolvingNamesToUUID(volume, tenant string, force bool) error {
+	volumeUUID, err := client.GetVolumeUUID(volume, tenant)
+	if err != nil {
+		return err
+	}
+
+	_, err = client.EraseVolume(&EraseVolumeRequest{VolumeUuid: volumeUUID, Force: force})
+	return err
+}
+
+// EraseVolumeByName Erases the volume by given name
+func (client *QuobyteClient) EraseVolumeByName(volumeName, tenant string, force bool) error {
+	uuid, err := client.ResolveVolumeNameToUUID(volumeName, tenant)
+	if err != nil {
+		return err
+	}
+
+	_, err = client.EraseVolume(&EraseVolumeRequest{VolumeUuid: uuid, Force: force})
+	return err
+}
+
 // SetVolumeQuota sets a Quota to the specified Volume
 func (client *QuobyteClient) SetVolumeQuota(volumeUUID string, quotaSize int64) error {
 	request := &SetQuotaRequest{
 		Quotas: []*Quota{
-			&Quota{
+			{
 				Consumer: []*ConsumingEntity{
-					&ConsumingEntity{
+					{
 						Type:       ConsumingEntity_Type_VOLUME,
 						Identifier: volumeUUID,
 					},
 				},
 				Limits: []*Resource{
-					&Resource{
+					{
 						Type:  Resource_Type_LOGICAL_DISK_SPACE,
 						Value: quotaSize,
 					},
