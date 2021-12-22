@@ -3,6 +3,8 @@ package quobyte
 import (
 	"bytes"
 	"encoding/json"
+	"net/http"
+	"net/http/httptest"
 	"reflect"
 	"testing"
 )
@@ -172,6 +174,35 @@ func TestDecodeErrorCode(t *testing.T) {
 		if decodeTest.expected != err.decodeErrorCode() {
 			t.Logf("Expected: %s got %s\n", decodeTest.expected, err.decodeErrorCode())
 			t.Fail()
+		}
+	}
+}
+
+func TestSendRequest(t *testing.T) {
+	// alternately return 200 (OK) / 401 (Unauthorized)
+	returnOK := true
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		if returnOK {
+			returnOK = false
+			w.Header().Add("Set-Cookie", "session=value")
+			w.WriteHeader(200)
+			w.Write([]byte("{\"result\":{\"volume_uuid\":\"1234\"}}"))
+			return
+		}
+		returnOK = true
+		w.WriteHeader(401)
+		w.Write([]byte("Unauthorized"))
+	}))
+	defer srv.Close()
+
+	client := NewQuobyteClient(srv.URL, "user", "pw")
+	for i := 0; i < 2; i++ {
+		resp := &CreateVolumeResponse{}
+		if err := client.sendRequest("dummyMethod", &request{}, &resp); err != nil {
+			t.Fatalf("Unexpected error (i=%d): %+v", i, err)
+		}
+		if got, want := resp.VolumeUuid, "1234"; got != want {
+			t.Fatalf("Unexpected result (i=%d): got %s, want %s", i, got, want)
 		}
 	}
 }
