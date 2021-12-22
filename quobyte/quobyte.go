@@ -58,7 +58,6 @@ func NewQuobyteClient(urlStr string, username string, password string) *QuobyteC
 		password:       password,
 		apiRetryPolicy: RetryInteractive,
 	}
-	return nil
 }
 
 // GetVolumeUUID resolves the volumeUUID for the given volume and tenant name.
