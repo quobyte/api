@@ -103,13 +103,13 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 	if err != nil {
 		return err
 	}
-	req, err := http.NewRequest("POST", client.url.String(), bytes.NewBuffer(message))
-	if err != nil {
-		return err
-	}
-	req.Header.Set("Content-Type", "application/json")
 	// If no cookies, serialize requests such that first successful request sets the cookies
 	for {
+		req, err := http.NewRequest("POST", client.url.String(), bytes.NewBuffer(message))
+		if err != nil {
+			return err
+		}
+		req.Header.Set("Content-Type", "application/json")
 		mux.Lock()
 		hasCookies, err := client.hasCookies()
 		if err != nil {
