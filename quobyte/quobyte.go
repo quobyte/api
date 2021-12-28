@@ -131,29 +131,27 @@ func (client *QuobyteClient) DeleteVolumeByName(volumeName, tenant string) error
 	return err
 }
 
-// EraseVolumeByResolvingNamesToUUID Erases the volume by resolving the volume name and tenant name to
-// respective UUID if required.
-// This method should be used if the given volume, tenant information is name or UUID.
-// TODO (venkat): Add 'force' flag once 2.x is phased out
-func (client *QuobyteClient) EraseVolumeByResolvingNamesToUUID(volume, tenant string) error {
+// EraseVolumeByResolvingNamesToUUID Erases the volume by resolving the volume name and tenant name
+// to respective UUID if required. (Use only against Quobyte 3.x) 
+func (client *QuobyteClient) EraseVolumeByResolvingNamesToUUID(volume, tenant string, force bool) error {
+	volumeUUID, err := client.GetVolumeUUID(volume, tenant)
+	if err != nil {
+		return err
+	}
+
+	_, err = client.EraseVolume(&EraseVolumeRequest{VolumeUuid: volumeUUID, Force: force})
+	return err
+}
+
+// EraseVolumeByResolvingNamesToUUID_2X Erases the volume by resolving the volume name and tenant name
+// to respective UUID if required. (Use against Quobyte 2.x or 3.x) 
+func (client *QuobyteClient) EraseVolumeByResolvingNamesToUUID_2X(volume, tenant string) error {
 	volumeUUID, err := client.GetVolumeUUID(volume, tenant)
 	if err != nil {
 		return err
 	}
 
 	_, err = client.EraseVolume(&EraseVolumeRequest{VolumeUuid: volumeUUID})
-	return err
-}
-
-// EraseVolumeByName Erases the volume by given name
-// TODO (venkat): Add 'force' flag once 2.x is phased out
-func (client *QuobyteClient) EraseVolumeByName(volumeName, tenant string) error {
-	uuid, err := client.ResolveVolumeNameToUUID(volumeName, tenant)
-	if err != nil {
-		return err
-	}
-
-	_, err = client.EraseVolume(&EraseVolumeRequest{VolumeUuid: uuid})
 	return err
 }
 
