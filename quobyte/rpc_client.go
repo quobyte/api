@@ -15,7 +15,8 @@ import (
 )
 
 const (
-	emptyResponse string = "Empty result and no error occurred"
+	emptyResponse      string = "Empty result and no error occurred"
+	errorMessageFormat string = "method: %s error message: %s"
 )
 
 var mux sync.Mutex
@@ -64,7 +65,7 @@ func encodeRequest(method string, params interface{}) ([]byte, error) {
 	})
 }
 
-func decodeResponse(ioReader io.Reader, reply interface{}) error {
+func decodeResponse(method string, ioReader io.Reader, reply interface{}) error {
 	var resp response
 	if err := json.NewDecoder(ioReader).Decode(&resp); err != nil {
 		return err
@@ -77,12 +78,12 @@ func decodeResponse(ioReader io.Reader, reply interface{}) error {
 		}
 
 		if rpcErr.Message != "" {
-			return errors.New(rpcErr.Message)
+			return fmt.Errorf(errorMessageFormat, method, rpcErr.Message)
 		}
 
 		respError := rpcErr.decodeErrorCode()
 		if respError != "" {
-			return errors.New(respError)
+			return fmt.Errorf(errorMessageFormat, method, respError)
 		}
 	}
 
@@ -90,7 +91,7 @@ func decodeResponse(ioReader io.Reader, reply interface{}) error {
 		return json.Unmarshal(*resp.Result, reply)
 	}
 
-	return errors.New(emptyResponse)
+	return fmt.Errorf(errorMessageFormat, method, emptyResponse)
 }
 
 func (client QuobyteClient) sendRequest(method string, request interface{}, response interface{}) error {
@@ -157,6 +158,6 @@ func (client QuobyteClient) sendRequest(method string, request interface{}, resp
 			return fmt.Errorf("JsonRPC failed with error (error code: %d) %s",
 				resp.StatusCode, string(body))
 		}
-		return decodeResponse(resp.Body, &response)
+		return decodeResponse(method, resp.Body, &response)
 	}
 }

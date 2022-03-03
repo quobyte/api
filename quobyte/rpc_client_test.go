@@ -3,6 +3,7 @@ package quobyte
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -62,7 +63,7 @@ func TestSuccessfullDecodeResponse(t *testing.T) {
 	res, _ := json.Marshal(expectedResult)
 
 	var resp CreateVolumeResponse
-	err := decodeResponse(bytes.NewReader(res), &resp)
+	err := decodeResponse("", bytes.NewReader(res), &resp)
 	if err != nil {
 		t.Log(err)
 		t.Fail()
@@ -75,7 +76,8 @@ func TestSuccessfullDecodeResponse(t *testing.T) {
 }
 
 func TestSuccessfullDecodeResponseWithErrorMessage(t *testing.T) {
-	errorMessage := "ERROR_CODE_INVALID_REQUEST"
+	method := "testMethod"
+	errorMessage := fmt.Sprintf(errorMessageFormat, method, "ERROR_CODE_INVALID_REQUEST")
 	var byt json.RawMessage
 	byt, _ = json.Marshal(&rpcError{
 		Code:    -32600,
@@ -91,7 +93,7 @@ func TestSuccessfullDecodeResponseWithErrorMessage(t *testing.T) {
 	res, _ := json.Marshal(expectedResult)
 
 	var resp CreateVolumeResponse
-	err := decodeResponse(bytes.NewReader(res), &resp)
+	err := decodeResponse(method, bytes.NewReader(res), &resp)
 	if err == nil {
 		t.Log("No error occurred")
 		t.Fail()
@@ -104,7 +106,8 @@ func TestSuccessfullDecodeResponseWithErrorMessage(t *testing.T) {
 }
 
 func TestSuccesfullDecodeResponseWithErrorCode(t *testing.T) {
-	errorMessage := "ERROR_CODE_INVALID_REQUEST"
+	method := "testMethod"
+	errorMessage := fmt.Sprintf(errorMessageFormat, method, "ERROR_CODE_INVALID_REQUEST")
 	var byt json.RawMessage
 	byt, _ = json.Marshal(&rpcError{
 		Code: -32600,
@@ -119,7 +122,7 @@ func TestSuccesfullDecodeResponseWithErrorCode(t *testing.T) {
 	res, _ := json.Marshal(expectedResult)
 
 	var resp CreateVolumeResponse
-	err := decodeResponse(bytes.NewReader(res), &resp)
+	err := decodeResponse(method, bytes.NewReader(res), &resp)
 	if err == nil {
 		t.Log("No error occurred")
 		t.Fail()
@@ -132,6 +135,8 @@ func TestSuccesfullDecodeResponseWithErrorCode(t *testing.T) {
 }
 
 func TestBadDecodeResponse(t *testing.T) {
+	method := "testMethod"
+	expectedError := fmt.Sprintf(errorMessageFormat, method, emptyResponse)
 	expectedResult := &response{
 		ID:      "0",
 		Version: "2.0",
@@ -140,14 +145,14 @@ func TestBadDecodeResponse(t *testing.T) {
 	res, _ := json.Marshal(expectedResult)
 
 	var resp CreateVolumeResponse
-	err := decodeResponse(bytes.NewReader(res), &resp)
+	err := decodeResponse(method, bytes.NewReader(res), &resp)
 	if err == nil {
 		t.Log("No error occurred")
 		t.Fail()
 	}
 
-	if emptyResponse != err.Error() {
-		t.Logf("Expected: %s got %s\n", emptyResponse, err.Error())
+	if expectedError != err.Error() {
+		t.Logf("Expected: %s got %s\n", expectedError, err.Error())
 		t.Fail()
 	}
 }
