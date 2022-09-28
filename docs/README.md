@@ -2,6 +2,9 @@
 
 ## Releasing new version
 
+* Compile Quobyte source and copy generated types.go from <QUOBYTE_SOURCE>/build/golang/api/types.go
+  to <api-rep>/quobyte/types.go
+* Run `gofmt -w <api-rep>/quobyte/types.go`
 * `go.mod` files must be present at the root level of the project
 * Each major release beyond V1 (such =v2[+].a.b) must provide unique import path such as `github.com/quobyte/api/vX`
   * To get around this issue, we always use v1.x.x (**NEVER** make v2 release)
