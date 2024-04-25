@@ -45,7 +45,7 @@ type ExtendedQuobyteApi interface {
 	SetTransport(t http.RoundTripper)
 }
 
-// compile time check for interface check
+// compile time check for interface compatibility
 var _ ExtendedQuobyteApi = &QuobyteClient{}
 
 func (client *QuobyteClient) hasCookies() (bool, error) {
