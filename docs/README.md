@@ -6,6 +6,8 @@
   to <api-rep>/quobyte/types.go
 * Run `gofmt -w <api-rep>/quobyte/types.go`
 * `go.mod` files must be present at the root level of the project
+* Run `go build ./...` in the project root (in the parent of go.mod file) to run compilation pass
+  (binary is not produced but checks for possible compilation issues) 
 * Each major release beyond V1 (such =v2[+].a.b) must provide unique import path such as `github.com/quobyte/api/vX`
   * To get around this issue, we always use v1.x.x (**NEVER** make v2 release)
   * Further, each `*.go` file must have a `package XYZ` statement as the first line and must be placed into `XZY`
