@@ -24,9 +24,10 @@ type QuobyteClient struct {
 	apiRetryPolicy string
 }
 
-//go:generate mockgen -package=mocks -destination  ../mocks/mock_quobyte_api.go github.com/quobyte/api/quobyte ExtendedQuobyteApi
 // Extended ExtendedQuobyteApi with some utility methods - such as resolve volume name to uuid before
 // invoking ExtendedQuobyteApi etc
+//
+//go:generate mockgen -package=mocks -destination  ../mocks/mock_quobyte_api.go github.com/quobyte/api/quobyte ExtendedQuobyteApi
 type ExtendedQuobyteApi interface {
 	QuobyteApi
 	GetVolumeUUID(volume, tenant string) (string, error)
