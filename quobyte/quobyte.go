@@ -22,8 +22,31 @@ type QuobyteClient struct {
 	username       string
 	password       string
 	apiRetryPolicy string
-	// hasCookies     bool
 }
+
+// Extended ExtendedQuobyteApi with some utility methods - such as resolve volume name to uuid before
+// invoking ExtendedQuobyteApi etc
+//
+//go:generate mockgen -package=mocks -destination  ../mocks/mock_quobyte_api.go github.com/quobyte/api/quobyte ExtendedQuobyteApi
+type ExtendedQuobyteApi interface {
+	QuobyteApi
+	GetVolumeUUID(volume, tenant string) (string, error)
+	GetTenantUUID(tenant string) (string, error)
+	ResolveVolumeNameToUUID(volumeName, tenant string) (string, error)
+	DeleteVolumeByResolvingNamesToUUID(volume, tenant string) error
+	DeleteVolumeByName(volumeName, tenant string) error
+	EraseVolumeByResolvingNamesToUUID(volume, tenant string, force bool) error
+	EraseVolumeByResolvingNamesToUUID_2X(volume, tenant string) error
+	SetVolumeQuota(volumeUUID string, quotaSize int64) error
+	GetTenantMap() (map[string]string, error)
+	ResolveTenantNameToUUID(name string) (string, error)
+	SetAPIRetryPolicy(retry string)
+	GetAPIRetryPolicy() string
+	SetTransport(t http.RoundTripper)
+}
+
+// compile time check for interface compatibility
+var _ ExtendedQuobyteApi = &QuobyteClient{}
 
 func (client *QuobyteClient) hasCookies() (bool, error) {
 	return client.client.Jar != nil && len(client.client.Jar.Cookies(client.url)) > 0, nil
@@ -132,7 +155,7 @@ func (client *QuobyteClient) DeleteVolumeByName(volumeName, tenant string) error
 }
 
 // EraseVolumeByResolvingNamesToUUID Erases the volume by resolving the volume name and tenant name
-// to respective UUID if required. (Use only against Quobyte 3.x) 
+// to respective UUID if required. (Use only against Quobyte 3.x)
 func (client *QuobyteClient) EraseVolumeByResolvingNamesToUUID(volume, tenant string, force bool) error {
 	volumeUUID, err := client.GetVolumeUUID(volume, tenant)
 	if err != nil {
@@ -144,7 +167,7 @@ func (client *QuobyteClient) EraseVolumeByResolvingNamesToUUID(volume, tenant st
 }
 
 // EraseVolumeByResolvingNamesToUUID_2X Erases the volume by resolving the volume name and tenant name
-// to respective UUID if required. (Use against Quobyte 2.x or 3.x) 
+// to respective UUID if required. (Use against Quobyte 2.x or 3.x)
 func (client *QuobyteClient) EraseVolumeByResolvingNamesToUUID_2X(volume, tenant string) error {
 	volumeUUID, err := client.GetVolumeUUID(volume, tenant)
 	if err != nil {
