@@ -130,6 +130,21 @@ func (mr *MockExtendedQuobyteApiMockRecorder) AddRegistryReplica(arg0 any) *gomo
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddRegistryReplica", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).AddRegistryReplica), arg0)
 }
 
+// AnalyzeVolumes mocks base method.
+func (m *MockExtendedQuobyteApi) AnalyzeVolumes(arg0 *quobyte.AnalyzeVolumesRequest) (*quobyte.AnalyzeVolumesResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "AnalyzeVolumes", arg0)
+	ret0, _ := ret[0].(*quobyte.AnalyzeVolumesResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// AnalyzeVolumes indicates an expected call of AnalyzeVolumes.
+func (mr *MockExtendedQuobyteApiMockRecorder) AnalyzeVolumes(arg0 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AnalyzeVolumes", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).AnalyzeVolumes), arg0)
+}
+
 // CancelNetworkTest mocks base method.
 func (m *MockExtendedQuobyteApi) CancelNetworkTest(arg0 *quobyte.CancelNetworkTestRequest) (*quobyte.CancelNetworkTestResponse, error) {
 	m.ctrl.T.Helper()
@@ -143,6 +158,21 @@ func (m *MockExtendedQuobyteApi) CancelNetworkTest(arg0 *quobyte.CancelNetworkTe
 func (mr *MockExtendedQuobyteApiMockRecorder) CancelNetworkTest(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CancelNetworkTest", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).CancelNetworkTest), arg0)
+}
+
+// CancelQuery mocks base method.
+func (m *MockExtendedQuobyteApi) CancelQuery(arg0 *quobyte.CancelQueryRequest) (*quobyte.CancelQueryResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CancelQuery", arg0)
+	ret0, _ := ret[0].(*quobyte.CancelQueryResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CancelQuery indicates an expected call of CancelQuery.
+func (mr *MockExtendedQuobyteApiMockRecorder) CancelQuery(arg0 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CancelQuery", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).CancelQuery), arg0)
 }
 
 // CancelSupportDump mocks base method.
@@ -950,6 +980,21 @@ func (mr *MockExtendedQuobyteApiMockRecorder) GetDefaultKeyStoreSlotParams(arg0 
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDefaultKeyStoreSlotParams", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).GetDefaultKeyStoreSlotParams), arg0)
 }
 
+// GetDeviceGroups mocks base method.
+func (m *MockExtendedQuobyteApi) GetDeviceGroups(arg0 *quobyte.GetDeviceGroupsRequest) (*quobyte.GetDeviceGroupsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetDeviceGroups", arg0)
+	ret0, _ := ret[0].(*quobyte.GetDeviceGroupsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetDeviceGroups indicates an expected call of GetDeviceGroups.
+func (mr *MockExtendedQuobyteApiMockRecorder) GetDeviceGroups(arg0 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDeviceGroups", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).GetDeviceGroups), arg0)
+}
+
 // GetDeviceIds mocks base method.
 func (m *MockExtendedQuobyteApi) GetDeviceIds(arg0 *quobyte.GetDeviceIdsRequest) (*quobyte.GetDeviceIdsResponse, error) {
 	m.ctrl.T.Helper()
@@ -1263,6 +1308,21 @@ func (m *MockExtendedQuobyteApi) GetPolicyRules(arg0 *quobyte.GetPolicyRulesRequ
 func (mr *MockExtendedQuobyteApiMockRecorder) GetPolicyRules(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPolicyRules", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).GetPolicyRules), arg0)
+}
+
+// GetQueryProgress mocks base method.
+func (m *MockExtendedQuobyteApi) GetQueryProgress(arg0 *quobyte.GetQueryProgressRequest) (*quobyte.GetQueryProgressResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetQueryProgress", arg0)
+	ret0, _ := ret[0].(*quobyte.GetQueryProgressResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetQueryProgress indicates an expected call of GetQueryProgress.
+func (mr *MockExtendedQuobyteApiMockRecorder) GetQueryProgress(arg0 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueryProgress", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).GetQueryProgress), arg0)
 }
 
 // GetQuota mocks base method.
@@ -1653,6 +1713,21 @@ func (m *MockExtendedQuobyteApi) PublishBucketVolume(arg0 *quobyte.PublishBucket
 func (mr *MockExtendedQuobyteApiMockRecorder) PublishBucketVolume(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PublishBucketVolume", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).PublishBucketVolume), arg0)
+}
+
+// QueryFiles mocks base method.
+func (m *MockExtendedQuobyteApi) QueryFiles(arg0 *quobyte.QueryFilesRequest) (*quobyte.QueryFilesResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "QueryFiles", arg0)
+	ret0, _ := ret[0].(*quobyte.QueryFilesResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// QueryFiles indicates an expected call of QueryFiles.
+func (mr *MockExtendedQuobyteApiMockRecorder) QueryFiles(arg0 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "QueryFiles", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).QueryFiles), arg0)
 }
 
 // RegenerateDatabase mocks base method.
@@ -2171,4 +2246,19 @@ func (m *MockExtendedQuobyteApi) VerifyLicense(arg0 *quobyte.VerifyLicenseReques
 func (mr *MockExtendedQuobyteApiMockRecorder) VerifyLicense(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VerifyLicense", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).VerifyLicense), arg0)
+}
+
+// WhoAmI mocks base method.
+func (m *MockExtendedQuobyteApi) WhoAmI(arg0 *quobyte.WhoAmIRequest) (*quobyte.WhoAmIResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "WhoAmI", arg0)
+	ret0, _ := ret[0].(*quobyte.WhoAmIResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// WhoAmI indicates an expected call of WhoAmI.
+func (mr *MockExtendedQuobyteApiMockRecorder) WhoAmI(arg0 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WhoAmI", reflect.TypeOf((*MockExtendedQuobyteApi)(nil).WhoAmI), arg0)
 }
